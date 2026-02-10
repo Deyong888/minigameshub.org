@@ -11,3 +11,16 @@ import { ANALYTICS } from 'astrowind:config';
     />
   ) : null
 }
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P13CNRCFEP"></script>
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-P13CNRCFEP');
+</script>
+
+<!-- Plausible Analytics -->
+<script defer data-domain="minigameshub.org" src="https://analytics.24kwebgames.com/js/script.js"></script>
