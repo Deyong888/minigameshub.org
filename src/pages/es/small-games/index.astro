@@ -1,0 +1,57 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { mainSmallGames } from '~/data/games';
+
+const metadata = {
+  title: 'Small Games - Lightweight & Fast',
+  description: 'Play small games that load instantly. Perfect for low bandwidth or quick fun.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Small Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/small-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": mainSmallGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Small Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Lightweight games that load fast and play smooth.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/es/small-games/casual" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Casual</a>
+      <a href="/es/small-games/quick" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Quick</a>
+      <a href="/es/small-games/short" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Short</a>
+    </div>
+
+    <GameGrid games={mainSmallGames} />
+  </section>
+</Layout>
+

@@ -1,0 +1,295 @@
+---
+import type { Game } from '~/types/game';
+
+interface Props {
+    game: Game;
+    showControls?: boolean;
+    labels?: {
+        loading: string;
+        bossKey: string;
+        mute: string;
+        unmute: string;
+        fullscreen: string;
+        bossKeyHint: string;
+        returnToGame: string;
+    };
+}
+
+const { 
+    game, 
+    showControls = true,
+    labels = {
+        loading: 'Loading',
+        bossKey: 'Boss Key',
+        mute: 'Mute',
+        unmute: 'Unmute',
+        fullscreen: 'Fullscreen',
+        bossKeyHint: 'Press ESC for Boss Key',
+        returnToGame: 'Press ESC to return to game...'
+    }
+} = Astro.props;
+const embedUrl = `${game.url}&sid=GM8A7`;  // 必须包含SID
+---
+
+<div class="game-player" data-game-id={game.id}>
+    <!-- 游戏iframe容器 -->
+    <div class="game-frame-wrapper relative">
+        <iframe
+            id={`game-frame-${game.id}`}
+            src={embedUrl}
+            title={`${game.title} - Play Online Free`}
+            width="100%"
+            height="600"
+            allowfullscreen
+            allow="autoplay; fullscreen; clipboard-write"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+            loading="eager"
+            class="rounded-lg shadow-2xl"
+        ></iframe>
+        
+        <!-- 加载状态 -->
+        <div class="loading-overlay absolute inset-0 flex items-center justify-center bg-gray-900 rounded-lg">
+            <div class="text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
+                <p class="mt-4 text-white">{labels.loading} {game.title}...</p>
+            </div>
+        </div>
+    </div>
+    
+    {showControls && (
+        <div class="player-controls mt-4 flex flex-wrap gap-2 items-center justify-between bg-gray-800 p-3 rounded-lg">
+            <div class="flex gap-2">
+                <!-- 老板键 -->
+                <button 
+                    id="boss-key-btn"
+                    class="boss-key-btn bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                    title={labels.bossKeyHint}
+                >
+                    <span>🚨</span>
+                    <span>{labels.bossKey}</span>
+                </button>
+                
+                <!-- 静音 -->
+                <button 
+                    id="mute-btn"
+                    class="mute-btn bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                    title="Mute (M)"
+                >
+                    <span id="mute-icon">🔊</span>
+                    <span id="mute-text">{labels.mute}</span>
+                </button>
+                
+                <!-- 全屏 -->
+                <button 
+                    id="fullscreen-btn"
+                    class="fullscreen-btn bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded flex items-center gap-2 transition-colors"
+                    title="Fullscreen (F)"
+                >
+                    <span>⛶</span>
+                    <span>{labels.fullscreen}</span>
+                </button>
+            </div>
+            
+            <div class="text-gray-300 text-sm" set:html={labels.bossKeyHint.replace('ESC', '<kbd class="bg-gray-700 px-2 py-1 rounded">ESC</kbd>')} />
+        </div>
+    )}
+    
+    <!-- 老板键遮罩层（默认隐藏） -->
+    <div id="boss-overlay" class="boss-overlay hidden fixed inset-0 bg-gray-100 z-50 overflow-auto">
+        <div class="max-w-5xl mx-auto p-8">
+            <!-- 伪装成Excel界面 -->
+            <div class="bg-white shadow-lg min-h-screen">
+                <div class="bg-green-700 text-white px-4 py-2 flex items-center justify-between">
+                    <span>Q3_Financial_Report.xlsx - Excel</span>
+                    <div class="flex gap-2">
+                        <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="border border-gray-300">
+                        <table class="w-full text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th class="border p-2 text-left">Revenue Stream</th>
+                                    <th class="border p-2 text-right">Q1</th>
+                                    <th class="border p-2 text-right">Q2</th>
+                                    <th class="border p-2 text-right">Q3</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="border p-2">Product Sales</td><td class="border p-2 text-right">$1.2M</td><td class="border p-2 text-right">$1.5M</td><td class="border p-2 text-right">$1.8M</td></tr>
+                                <tr><td class="border p-2">Services</td><td class="border p-2 text-right">$800K</td><td class="border p-2 text-right">$900K</td><td class="border p-2 text-right">$1.1M</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="mt-8 text-gray-500 text-center" set:html={labels.returnToGame.replace('ESC', '<kbd class="bg-gray-200 px-2 py-1 rounded">ESC</kbd>')} />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script is:inline define:vars={{ gameId: game.id, gameTitle: game.title, labels }}>
+    // 老板键功能
+    let isBossMode = false;
+    const bossOverlay = document.getElementById('boss-overlay');
+    const bossBtn = document.getElementById('boss-key-btn');
+    const gameFrame = document.getElementById(`game-frame-${gameId}`);
+    
+    function toggleBossMode() {
+        isBossMode = !isBossMode;
+        
+        if (isBossMode) {
+            // 进入老板模式
+            bossOverlay.classList.remove('hidden');
+            document.title = 'Q3_Financial_Report.xlsx - Excel Online';
+            
+            // 尝试静音游戏（通过postMessage）
+            try {
+                gameFrame.contentWindow.postMessage({ type: 'mute', value: true }, '*');
+            } catch(e) {}
+            
+            // 改变favicon
+            const link = document.querySelector("link[rel*='icon']") || document.createElement('link');
+            link.type = 'image/x-icon';
+            link.rel = 'shortcut icon';
+            link.href = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="%23217346" width="100" height="100"/><text x="50" y="65" font-size="50" text-anchor="middle" fill="white">X</text></svg>';
+            document.head.appendChild(link);
+            
+        } else {
+            // 恢复游戏
+            bossOverlay.classList.add('hidden');
+            document.title = `${gameTitle} - Play Online Free | MiniGamesHub`;
+            
+            try {
+                gameFrame.contentWindow.postMessage({ type: 'mute', value: false }, '*');
+            } catch(e) {}
+            
+            // 恢复favicon
+            const link = document.querySelector("link[rel*='icon']");
+            if (link) link.href = '/favicon.svg';
+        }
+    }
+    
+    // 键盘监听
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' || e.key === '`') {
+            e.preventDefault();
+            toggleBossMode();
+        }
+        if (e.key === 'm' || e.key === 'M') {
+            toggleMute();
+        }
+        if (e.key === 'f' || e.key === 'F') {
+            toggleFullscreen();
+        }
+    });
+    
+    bossBtn?.addEventListener('click', toggleBossMode);
+    
+    // 静音功能
+    let isMuted = false;
+    const muteBtn = document.getElementById('mute-btn');
+    const muteIcon = document.getElementById('mute-icon');
+    const muteText = document.getElementById('mute-text');
+    
+    function toggleMute() {
+        isMuted = !isMuted;
+        muteIcon.textContent = isMuted ? '🔇' : '🔊';
+        muteText.textContent = isMuted ? labels.unmute : labels.mute;
+        
+        try {
+            gameFrame.contentWindow.postMessage({ 
+                type: 'audio', 
+                action: isMuted ? 'mute' : 'unmute' 
+            }, '*');
+        } catch(e) {}
+        
+        // 视觉反馈
+        muteBtn.classList.toggle('bg-red-600', isMuted);
+        muteBtn.classList.toggle('bg-gray-600', !isMuted);
+    }
+    
+    muteBtn?.addEventListener('click', toggleMute);
+    
+    // 全屏功能
+    const fullscreenBtn = document.getElementById('fullscreen-btn');
+    
+    function toggleFullscreen() {
+        if (!document.fullscreenElement) {
+            gameFrame.requestFullscreen?.() || gameFrame.webkitRequestFullscreen?.();
+        } else {
+            document.exitFullscreen?.() || document.webkitExitFullscreen?.();
+        }
+    }
+    
+    fullscreenBtn?.addEventListener('click', toggleFullscreen);
+    
+    // iframe加载完成后隐藏loading
+    gameFrame?.addEventListener('load', () => {
+        const loading = document.querySelector('.loading-overlay');
+        if (loading) loading.classList.add('hidden');
+    });
+</script>
+
+/* 用户交互脚本：收藏与历史记录 */
+<script>
+    // 简单的本地存储管理
+    const playerEl = document.querySelector('.game-player') as HTMLElement;
+    const GAME_ID = playerEl?.dataset?.gameId;
+    
+    // 添加到历史记录
+    function addToHistory(id: string) {
+        let history = JSON.parse(localStorage.getItem('bg_history') || '[]');
+        history = history.filter((item: string) => item !== id); // 移除旧的
+        history.unshift(id); // 添加到开头
+        if (history.length > 20) history.pop(); // 保留最近20个
+        localStorage.setItem('bg_history', JSON.stringify(history));
+    }
+    
+    // 页面加载时记录
+    if (GAME_ID) addToHistory(GAME_ID);
+    
+    // 收藏功能逻辑（配合UI按钮）
+    // @ts-ignore
+    window.toggleFavorite = function(id: string) {
+        let favs = JSON.parse(localStorage.getItem('bg_favorites') || '[]');
+        const index = favs.indexOf(id);
+        if (index > -1) {
+            favs.splice(index, 1);
+            return false; // 已取消
+        } else {
+            favs.push(id);
+            localStorage.setItem('bg_favorites', JSON.stringify(favs));
+            return true; // 已收藏
+        }
+    }
+</script>
+
+<style>
+    .game-frame-wrapper {
+        position: relative;
+        aspect-ratio: 16/9;
+        max-height: 600px;
+    }
+    
+    .game-frame-wrapper iframe {
+        width: 100%;
+        height: 100%;
+    }
+    
+    kbd {
+        font-family: monospace;
+        border: 1px solid #666;
+    }
+    
+    .boss-overlay {
+        animation: fadeIn 0.1s ease-in;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+</style>

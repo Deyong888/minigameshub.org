@@ -1,0 +1,72 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import GameCard from '~/components/game/GameCard.astro';
+import Button from '~/components/ui/Button.astro';
+import type { Game } from '~/types/game';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  games: Game[];
+  link?: string;
+  linkText?: string;
+  id?: string;
+  isDark?: boolean;
+  classes?: Record<string, string>;
+  bg?: string;
+}
+
+const {
+  title = '',
+  subtitle = '',
+  tagline = '',
+  games = [],
+  link,
+  linkText = 'View All Games',
+  id,
+  isDark = false,
+  classes = {},
+  bg = await Astro.slots.render('bg'),
+} = Astro.props;
+---
+
+<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
+  <div class="flex flex-col mb-8">
+    {(title || subtitle || tagline) && (
+      <div class="md:max-w-4xl mb-2">
+        {tagline && (
+          <p class="text-base text-secondary dark:text-blue-200 font-bold tracking-wide uppercase" set:html={tagline} />
+        )}
+        {title && (
+          <h2
+            class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading"
+            set:html={title}
+          />
+        )}
+        {subtitle && (
+          <p
+            class="mt-2 text-muted dark:text-slate-400 text-xl"
+            set:html={subtitle}
+          />
+        )}
+      </div>
+    )}
+    <slot name="content" />
+  </div>
+
+  <div class="grid gap-6 row-gap-5 md:grid-cols-3 lg:grid-cols-6 -mb-6">
+    {games.map((game) => (
+      <GameCard game={game} />
+    ))}
+  </div>
+
+  {link && (
+    <div class="mt-8 text-center">
+      <Button variant="secondary" href={link}>
+        {linkText}
+        <span class="ml-2">→</span>
+      </Button>
+    </div>
+  )}
+</WidgetWrapper>

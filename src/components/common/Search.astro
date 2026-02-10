@@ -1,0 +1,110 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<button id="search-trigger" class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center" aria-label="Search">
+  <Icon name="tabler:search" class="w-5 h-5" />
+</button>
+
+<div id="search-modal" class="fixed inset-0 z-50 hidden bg-gray-900/50 backdrop-blur-sm flex items-start justify-center pt-24">
+    <div class="bg-white dark:bg-slate-800 w-full max-w-3xl rounded-lg shadow-2xl overflow-hidden m-4 flex flex-col max-h-[80vh]">
+        <div class="p-4 border-b dark:border-gray-700 flex justify-between items-center">
+            <h3 class="text-lg font-bold">Search Games</h3>
+            <button id="close-search" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                <Icon name="tabler:x" class="w-6 h-6" />
+            </button>
+        </div>
+        <div class="p-4 overflow-y-auto" id="search-container">
+            <div id="search"></div>
+            <div id="search-dev-msg" class="hidden text-center text-yellow-600 dark:text-yellow-400 py-4">
+                Search works in production builds only.
+            </div>
+        </div>
+    </div>
+</div>
+
+<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+<script src="/pagefind/pagefind-ui.js" is:inline></script>
+
+<script is:inline>
+  window.addEventListener('load', () => {
+    const trigger = document.getElementById('search-trigger');
+    const modal = document.getElementById('search-modal');
+    const close = document.getElementById('close-search');
+    const devMsg = document.getElementById('search-dev-msg');
+    const container = document.getElementById('search');
+
+    // Toggle Modal
+    const toggleModal = (show) => {
+        if (show) {
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            // Focus input if available
+            setTimeout(() => {
+                const input = container.querySelector('input');
+                if (input) input.focus();
+            }, 100);
+        } else {
+            modal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+    };
+
+    trigger?.addEventListener('click', () => toggleModal(true));
+    close?.addEventListener('click', () => toggleModal(false));
+    
+    // Close on outside click
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) toggleModal(false);
+    });
+    
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+            toggleModal(false);
+        }
+    });
+
+    // Initialize Pagefind
+    if (window.PagefindUI) {
+        new PagefindUI({ 
+            element: "#search", 
+            showSubResults: true,
+            showImages: false
+        });
+    } else {
+        // Dev mode fallback
+        if (devMsg) devMsg.classList.remove('hidden');
+        console.warn('PagefindUI not found. Search only works in production.');
+    }
+  });
+</script>
+
+<style is:global>
+    /* Customizing Pagefind UI */
+    :root {
+        --pagefind-ui-scale: 0.8;
+        --pagefind-ui-primary: #3b82f6;
+        --pagefind-ui-text: #334155;
+        --pagefind-ui-background: #ffffff;
+        --pagefind-ui-border: #e2e8f0;
+        --pagefind-ui-tag: #f1f5f9;
+        --pagefind-ui-border-width: 1px;
+        --pagefind-ui-border-radius: 0.5rem;
+        --pagefind-ui-image-border-radius: 0.5rem;
+        --pagefind-ui-image-box-ratio: 3 / 2;
+        --pagefind-ui-font: sans-serif;
+    }
+    
+    .dark {
+        --pagefind-ui-text: #e2e8f0;
+        --pagefind-ui-background: #1e293b;
+        --pagefind-ui-border: #334155;
+        --pagefind-ui-tag: #334155;
+    }
+
+    /* Hide the "Filters" button if not needed or styling issues */
+    .pagefind-ui__search-clear {
+        display: none !important;
+    }
+</style>

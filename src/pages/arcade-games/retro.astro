@@ -1,0 +1,48 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { arcadeRetroGames } from '~/data/games';
+
+const metadata = {
+  title: 'Retro Arcade Games - Pixel Perfect',
+  description: 'Pixel art and chiptunes. Dive into retro arcade goodness.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Retro Arcade Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/arcade-games/retro",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": arcadeRetroGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Retro Arcade Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Nostalgic games with pixel-perfect art.
+    </p>
+    <GameGrid games={arcadeRetroGames} />
+  </section>
+</Layout>

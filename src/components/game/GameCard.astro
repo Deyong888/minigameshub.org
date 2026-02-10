@@ -1,0 +1,98 @@
+---
+import type { Game } from '~/types/game';
+import { getLangFromUrl } from '~/utils/i18n';
+import { Image } from 'astro:assets';
+
+interface Props {
+    game: Game;
+    variant?: 'default' | 'compact';
+    lazy?: boolean;
+}
+
+const { game, variant = 'default', lazy = true } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+
+// Use slug from game data if available, otherwise generate from title
+const slug = game.slug || game.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const gameUrl = lang === 'es' ? `/es/game/${game.id}-${slug}` : `/game/${game.id}-${slug}`;
+
+// Generate keyword-rich alt text
+const altText = `${game.title} - ${game.category} game, play online free, no download`;
+---
+
+<article class="game-card group" data-game-id={game.id} data-category={game.category}>
+    <a href={gameUrl} class="block relative overflow-hidden rounded-xl bg-gray-800 transition-transform hover:scale-105">
+        <!-- 缩略图 -->
+        <div class="aspect-[4/3] relative overflow-hidden">
+            <Image
+                src={game.thumbnail}
+                alt={altText}
+                width={variant === 'compact' ? 200 : 300}
+                height={variant === 'compact' ? 150 : 225}
+                loading={lazy ? 'lazy' : 'eager'}
+                decoding="async"
+                class="w-full h-full object-cover transition-transform group-hover:scale-110"
+            />
+            
+            <!-- 悬停遮罩 -->
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                <div class="text-center">
+                    <div class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-2xl mb-2 mx-auto">▶</div>
+                    <span class="text-white font-medium">Play Now</span>
+                </div>
+            </div>
+            
+            <!-- 标签 -->
+            {game.tags?.includes('new') && (
+                <span class="absolute top-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded">NEW</span>
+            )}
+            {game.tags?.includes('hot') && (
+                <span class="absolute top-2 right-2 bg-red-500 text-white text-xs px-2 py-1 rounded">HOT</span>
+            )}
+        </div>
+        
+        <!-- 游戏信息 -->
+        <div class="p-3">
+            <h3 class="text-white font-semibold truncate group-hover:text-green-400 transition-colors">
+                {game.title}
+            </h3>
+            <div class="flex items-center justify-between mt-2 text-sm text-gray-400">
+                <span class="capitalize">{game.category}</span>
+                <span class="flex items-center gap-1">
+                    <span>⭐</span>
+                    <span>{(Math.random() * 2 + 3).toFixed(1)}</span>
+                </span>
+            </div>
+            
+            <!-- SEO关键词标签（视觉隐藏但SEO可见） -->
+            <div class="sr-only">
+                Play {game.title} online free. {game.category} game, no download required, instant play.
+            </div>
+        </div>
+    </a>
+</article>
+
+<style>
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+    }
+
+    /* 盲盒特效样式 */
+    .mystery-overlay {
+        animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-10px) rotate(-5deg); }
+        75% { transform: translateX(10px) rotate(5deg); }
+    }
+    .animate-shake { animation: shake 0.5s ease-in-out infinite; }
+</style>

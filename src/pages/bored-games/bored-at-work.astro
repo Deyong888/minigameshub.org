@@ -1,0 +1,49 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { boredAtWorkGames } from '~/data/games';
+
+const metadata = {
+  title: 'Bored at Work Games - Play Secretly in Office',
+  description: 'The best collection of browser games to play when you are bored at work. No download required, boss-key included!',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Bored at Work Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/bored-games/bored-at-work",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": boredAtWorkGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-8 md:mb-12 font-heading text-center">
+      Bored at Work Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Sneaky mini-games perfect for office breaks. Quick to play, easy to hide.
+    </p>
+
+    <GameGrid games={boredAtWorkGames} />
+  </section>
+</Layout>

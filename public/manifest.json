@@ -1,0 +1,17 @@
+{
+  "name": "MiniGamesHub",
+  "short_name": "MiniGamesHub",
+  "description": "Games to play when bored at work or school. 5000+ free mini games, browser games, HTML5 games.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

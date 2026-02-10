@@ -1,0 +1,58 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { miniGames } from '~/data/games';
+
+const metadata = {
+  title: 'Mini Games - Quick Fun Browser Games',
+  description: 'Instant fun with our collection of mini games. No install, no login, just play.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Mini Games",
+  "description": metadata.description,
+  "url": "https://boredgames.work/mini-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": miniGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://boredgames.work/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Mini Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Bite-sized entertainment for quick breaks.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/es/mini-games/arcade" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Arcade</a>
+      <a href="/es/mini-games/puzzle" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Puzzle</a>
+      <a href="/es/mini-games/action" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Action</a>
+      <a href="/es/mini-games/relax" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Relax</a>
+    </div>
+
+    <GameGrid games={miniGames} />
+  </section>
+</Layout>
+

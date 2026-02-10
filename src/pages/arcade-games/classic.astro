@@ -1,0 +1,48 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { arcadeClassicGames } from '~/data/games';
+
+const metadata = {
+  title: 'Classic Arcade Games - Old School Fun',
+  description: 'Experience the classics. Pac-Man style, Space Invaders style, and more.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Classic Arcade Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/arcade-games/classic",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": arcadeClassicGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Classic Arcade Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Timeless classics that started it all.
+    </p>
+    <GameGrid games={arcadeClassicGames} />
+  </section>
+</Layout>

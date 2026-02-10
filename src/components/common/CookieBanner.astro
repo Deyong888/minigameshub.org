@@ -1,0 +1,78 @@
+---
+import { useTranslations } from '~/utils/i18n';
+
+const lang = Astro.currentLocale || 'en';
+const t = useTranslations(lang as any);
+
+const { 
+  title = t('cookie.title'),
+  description = t('cookie.description'),
+  acceptText = t('cookie.accept'),
+  declineText = t('cookie.decline'),
+  policyText = t('cookie.policy'),
+  policyLink = lang === 'es' ? '/es/privacy' : '/privacy'
+} = Astro.props;
+---
+
+<div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-50 transform translate-y-full transition-transform duration-300 shadow-lg border-t border-gray-700 hidden">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="text-sm">
+      <span class="font-bold block mb-1 text-base">{title}</span>
+      <span class="text-gray-300">{description}</span>
+      <a href={policyLink} class="underline hover:text-blue-400 ml-1 text-gray-300">{policyText}</a>
+    </div>
+    <div class="flex gap-2 shrink-0">
+      <button id="cookie-decline" class="px-4 py-2 text-sm bg-gray-700 hover:bg-gray-600 rounded text-gray-200 transition border border-gray-600">
+        {declineText}
+      </button>
+      <button id="cookie-accept" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 rounded text-white font-bold transition shadow-lg border border-blue-500">
+        {acceptText}
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const initCookieBanner = () => {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('cookie-accept');
+    const declineBtn = document.getElementById('cookie-decline');
+    const STORAGE_KEY = 'boredgames_cookie_consent';
+
+    if (!cookieBanner) return;
+
+    const consent = localStorage.getItem(STORAGE_KEY);
+    
+    if (!consent) {
+      cookieBanner.classList.remove('hidden');
+      // Small delay for animation
+      setTimeout(() => {
+        cookieBanner.classList.remove('translate-y-full');
+      }, 100);
+    }
+
+    const hideBanner = () => {
+      cookieBanner.classList.add('translate-y-full');
+      setTimeout(() => {
+        cookieBanner.classList.add('hidden');
+      }, 300);
+    };
+
+    if (acceptBtn) {
+      acceptBtn.onclick = () => {
+        localStorage.setItem(STORAGE_KEY, 'accepted');
+        hideBanner();
+      };
+    }
+
+    if (declineBtn) {
+      declineBtn.onclick = () => {
+        localStorage.setItem(STORAGE_KEY, 'declined');
+        hideBanner();
+      };
+    }
+  };
+
+  // Run on initial load and view transitions
+  document.addEventListener('astro:page-load', initCookieBanner);
+</script>

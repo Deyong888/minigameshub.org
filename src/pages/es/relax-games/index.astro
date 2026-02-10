@@ -1,0 +1,57 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { mainRelaxGames } from '~/data/games';
+
+const metadata = {
+  title: 'Relax Games - Stress Relief & Calming',
+  description: 'Unwind with our collection of relax games. Peaceful, calming, and stress-free gaming.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Relax Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/relax-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": mainRelaxGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Relax Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Peaceful games to help you unwind and destress.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/es/relax-games/stress-relief" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Stress Relief</a>
+      <a href="/es/relax-games/calming" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Calming</a>
+      <a href="/es/relax-games/casual" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Casual</a>
+    </div>
+
+    <GameGrid games={mainRelaxGames} />
+  </section>
+</Layout>
+

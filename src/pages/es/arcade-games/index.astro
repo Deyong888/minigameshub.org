@@ -1,0 +1,57 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { mainArcadeGames } from '~/data/games';
+
+const metadata = {
+  title: 'Arcade Games - Classic & Retro Fun',
+  description: 'Play the best arcade games online. Classic, retro, and modern arcade hits.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Arcade Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/arcade-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": mainArcadeGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Arcade Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      The golden age of gaming, right in your browser.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/es/arcade-games/classic" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Classic</a>
+      <a href="/es/arcade-games/retro" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Retro</a>
+      <a href="/es/arcade-games/modern" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Modern</a>
+    </div>
+
+    <GameGrid games={mainArcadeGames} />
+  </section>
+</Layout>
+

@@ -1,0 +1,230 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'My Games - Favorites & History | MiniGamesHub',
+  description: 'Your favorite and recently played games on MiniGamesHub. Keep track of the games you love and jump right back into the action.',
+  ignoreTitleTemplate: true,
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold mb-4">My Games</h1>
+      <p class="text-gray-400">Manage your favorite games and view your play history.</p>
+    </div>
+
+    <div class="flex space-x-6 mb-8 border-b border-gray-700">
+      <button id="tab-favorites" class="pb-3 border-b-2 border-green-500 text-green-500 font-bold transition-colors">
+        Favorites <span id="count-favorites" class="ml-1 text-xs bg-gray-700 text-white px-2 py-0.5 rounded-full">0</span>
+      </button>
+      <button id="tab-history" class="pb-3 border-b-2 border-transparent text-gray-400 hover:text-white transition-colors">
+        History <span id="count-history" class="ml-1 text-xs bg-gray-700 text-white px-2 py-0.5 rounded-full">0</span>
+      </button>
+    </div>
+
+    <div id="content-favorites" class="game-grid grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div class="col-span-full text-center py-20">
+        <div class="animate-spin inline-block w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full mb-4"></div>
+        <p class="text-gray-400">Loading your favorites...</p>
+      </div>
+    </div>
+    
+    <div id="content-history" class="game-grid hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+      <div class="col-span-full text-center py-20">
+        <div class="animate-spin inline-block w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full mb-4"></div>
+        <p class="text-gray-400">Loading your history...</p>
+      </div>
+    </div>
+
+    <!-- Empty State Template -->
+    <template id="empty-state-template">
+      <div class="col-span-full text-center py-20 bg-gray-800/30 rounded-xl">
+        <span class="text-6xl mb-4 block">🎮</span>
+        <h3 class="text-xl font-bold mb-2">No games found</h3>
+        <p class="text-gray-400 mb-6">Start playing some games to build your collection!</p>
+        <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition-colors">
+          Browse Games
+        </a>
+      </div>
+    </template>
+  </section>
+</Layout>
+
+<script>
+  const STATE_KEY = 'boredgames:state';
+  
+  interface Game {
+    id: number;
+    slug: string;
+    title: string;
+    thumbnail: string;
+    category: string;
+    rating: number;
+  }
+
+  // Helper to get state
+  function getGameState() {
+    try {
+      const stored = localStorage.getItem(STATE_KEY);
+      if (stored) {
+        return JSON.parse(stored);
+      }
+    } catch (e) {
+      console.error('Error reading game state', e);
+    }
+    return { favorites: [], history: [] };
+  }
+
+  async function init() {
+    const tabFavorites = document.getElementById('tab-favorites');
+    const tabHistory = document.getElementById('tab-history');
+    const contentFavorites = document.getElementById('content-favorites');
+    const contentHistory = document.getElementById('content-history');
+    const countFavorites = document.getElementById('count-favorites');
+    const countHistory = document.getElementById('count-history');
+
+    if (!tabFavorites || !tabHistory || !contentFavorites || !contentHistory) return;
+
+    // Fetch games data
+    let allGames: Game[] = [];
+    try {
+      const res = await fetch('/api/games.json');
+      if (res.ok) {
+        allGames = await res.json();
+      } else {
+        console.error('Failed to fetch games data');
+        renderError(contentFavorites, 'Failed to load games data.');
+        renderError(contentHistory, 'Failed to load games data.');
+        return;
+      }
+    } catch (e) {
+      console.error('Error fetching games:', e);
+      renderError(contentFavorites, 'Error loading games.');
+      renderError(contentHistory, 'Error loading games.');
+      return;
+    }
+
+    // Map games by slug for easy lookup
+    const gamesMap = new Map<string, Game>();
+    allGames.forEach(g => {
+        gamesMap.set(g.slug, g);
+    });
+
+    const state = getGameState();
+    const favoriteGames = state.favorites.map((slug: string) => gamesMap.get(slug)).filter(Boolean) as Game[];
+    const historyGames = state.history.map((slug: string) => gamesMap.get(slug)).filter(Boolean) as Game[];
+
+    // Update counts
+    if (countFavorites) countFavorites.textContent = favoriteGames.length.toString();
+    if (countHistory) countHistory.textContent = historyGames.length.toString();
+
+    // Render
+    renderGames(contentFavorites, favoriteGames);
+    renderGames(contentHistory, historyGames);
+
+    // Tab switching
+    tabFavorites.addEventListener('click', () => {
+      switchTab('favorites');
+    });
+
+    tabHistory.addEventListener('click', () => {
+      switchTab('history');
+    });
+
+    function switchTab(tab: 'favorites' | 'history') {
+      if (tab === 'favorites') {
+        tabFavorites?.classList.add('border-green-500', 'text-green-500');
+        tabFavorites?.classList.remove('border-transparent', 'text-gray-400');
+        tabHistory?.classList.add('border-transparent', 'text-gray-400');
+        tabHistory?.classList.remove('border-green-500', 'text-green-500');
+        
+        contentFavorites?.classList.remove('hidden');
+        contentHistory?.classList.add('hidden');
+      } else {
+        tabHistory?.classList.add('border-green-500', 'text-green-500');
+        tabHistory?.classList.remove('border-transparent', 'text-gray-400');
+        tabFavorites?.classList.add('border-transparent', 'text-gray-400');
+        tabFavorites?.classList.remove('border-green-500', 'text-green-500');
+        
+        contentHistory?.classList.remove('hidden');
+        contentFavorites?.classList.add('hidden');
+      }
+    }
+
+    function renderGames(container: HTMLElement, games: Game[]) {
+      container.innerHTML = '';
+      
+      if (games.length === 0) {
+        const template = document.getElementById('empty-state-template') as HTMLTemplateElement;
+        if (template) {
+            container.appendChild(template.content.cloneNode(true));
+        } else {
+            container.innerHTML = '<div class="col-span-full text-center py-12 text-gray-400">No games found.</div>';
+        }
+        return;
+      }
+
+      games.forEach(game => {
+        const card = createGameCard(game);
+        container.appendChild(card);
+      });
+    }
+
+    function createGameCard(game: Game) {
+        const article = document.createElement('article');
+        article.className = 'game-card group';
+        
+        const slug = game.slug;
+        const gameUrl = `/game/${game.id}-${slug}`;
+        const altText = `${game.title} - ${game.category} game`;
+
+        article.innerHTML = `
+            <a href="${gameUrl}" class="block relative overflow-hidden rounded-xl bg-gray-800 transition-transform hover:scale-105">
+                <div class="aspect-[4/3] relative overflow-hidden">
+                    <img
+                        src="${game.thumbnail}"
+                        alt="${altText}"
+                        loading="lazy"
+                        class="w-full h-full object-cover transition-transform group-hover:scale-110"
+                    />
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <div class="text-center">
+                            <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center text-xl mb-2 mx-auto">▶</div>
+                            <span class="text-white font-medium text-sm">Play</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3">
+                    <h3 class="text-white font-semibold truncate group-hover:text-green-400 transition-colors text-sm sm:text-base">
+                        ${game.title}
+                    </h3>
+                    <div class="flex items-center justify-between mt-2 text-xs text-gray-400">
+                        <span class="capitalize">${game.category}</span>
+                        <span class="flex items-center gap-1">
+                            <span>⭐</span>
+                            <span>${(game.rating || 4.5).toFixed(1)}</span>
+                        </span>
+                    </div>
+                </div>
+            </a>
+        `;
+        return article;
+    }
+
+    function renderError(container: HTMLElement, msg: string) {
+        container.innerHTML = `<div class="col-span-full text-center py-12 text-red-400">${msg}</div>`;
+    }
+  }
+
+  // Run on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+  
+  // Re-run on view transitions if enabled
+  document.addEventListener('astro:page-load', init);
+</script>

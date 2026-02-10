@@ -1,0 +1,50 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { waitingInLineGames } from '~/data/games';
+
+const metadata = {
+  title: 'Waiting in Line Games - Play Instantly',
+  description: 'Bored while waiting in line? Play these quick, one-handed games instantly. No download required. Perfect for killing time in queues.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Waiting in Line Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/bored-games/waiting-in-line",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": waitingInLineGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-8 md:mb-12 font-heading text-center">
+      Waiting in Line Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Don't just stand there! Play these quick, one-handed games while you wait.
+    </p>
+    
+    <GameGrid games={waitingInLineGames} />
+  </section>
+</Layout>

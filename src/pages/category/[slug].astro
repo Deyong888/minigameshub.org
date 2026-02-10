@@ -1,0 +1,88 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { getUniqueCategories, getGamesByCategory } from '~/data/games';
+
+export async function getStaticPaths() {
+  const categories = getUniqueCategories();
+  
+  return categories.map((category) => ({
+    params: { slug: category.toLowerCase().replace(/\s+/g, '-') },
+    props: { category, games: getGamesByCategory(category) },
+  }));
+}
+
+const { category, games } = Astro.props;
+
+const title = `${category} Games - Play Free Online`;
+const description = `Play the best ${category} games for free on MiniGamesHub.org. No download required. Instant play browser games.`;
+
+const metadata = {
+  title: title,
+  description: description,
+};
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://minigameshub.org/"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "All Categories",
+      "item": "https://minigameshub.org/mini-games" 
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": category,
+      "item": Astro.url.href
+    }]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": title,
+    "description": description,
+    "url": Astro.url.href,
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": games.slice(0, 20).map((game, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `https://minigameshub.org/game/${game.id}-${game.slug}`,
+        "name": game.title
+      }))
+    }
+  }
+];
+---
+
+<Layout metadata={metadata}>
+  {jsonLd.map((schema) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+  
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 capitalize">
+        {category} Games
+      </h1>
+      <p class="text-xl text-muted">
+        Play the best free online <strong>{category} games</strong>.
+        <br/>
+        Browser-based, no download, instant fun.
+      </p>
+    </div>
+    
+    <div class="mb-8">
+        <a href="/mini-games" class="text-primary hover:underline">← Back to All Games</a>
+    </div>
+
+    <GameGrid games={games} />
+  </section>
+</Layout>

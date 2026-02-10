@@ -1,0 +1,106 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { getUniqueCategories, getGamesByCategory } from '~/data/games';
+import { getLangFromUrl, useTranslations } from '~/utils/i18n';
+
+export async function getStaticPaths() {
+  const categories = getUniqueCategories();
+  
+  return categories.map((category) => ({
+    params: { slug: category.toLowerCase().replace(/\s+/g, '-') },
+    props: { category, games: getGamesByCategory(category) },
+  }));
+}
+
+const { category, games } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+// Helper to get translated category name
+const getTranslatedCategory = (cat: string) => {
+    // Try to find translation for 'cat.categoryname'
+    const key = `cat.${cat.toLowerCase()}`;
+    // Use 'as any' to bypass strict type checking for dynamic keys
+    const translated = (t as any)(key);
+    
+    // If translation exists and isn't just undefined (useTranslations logic handles fallback to en, but if key missing in en too?)
+    // Our useTranslations returns undefined if missing in both.
+    if (translated) return translated;
+    
+    // Fallback to capitalizing the original category
+    return cat.charAt(0).toUpperCase() + cat.slice(1);
+};
+
+const translatedCategory = getTranslatedCategory(category);
+
+const metadata = {
+  title: `Juegos de ${translatedCategory} - Juega Gratis Online`,
+  description: `Juega los mejores juegos de ${translatedCategory} gratis en MiniGamesHub.org. Sin descargas. Juegos de navegador instantáneos.`,
+};
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://minigameshub.org/es"
+    },{
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Minijuegos",
+      "item": "https://minigameshub.org/es/mini-games" 
+    },{
+      "@type": "ListItem",
+      "position": 3,
+      "name": translatedCategory,
+      "item": Astro.url.href
+    }]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": metadata.title,
+    "description": metadata.description,
+    "url": Astro.url.href,
+    "inLanguage": "es",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": games.slice(0, 20).map((game, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "url": `https://minigameshub.org/es/game/${game.id}-${game.slug}`,
+        "name": game.title
+      }))
+    }
+  }
+];
+---
+
+<Layout metadata={metadata}>
+  {jsonLd.map((schema) => (
+      <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))}
+  
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-center mb-12">
+      <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 capitalize">
+        Juegos de {translatedCategory}
+      </h1>
+      <p class="text-xl text-muted">
+        Juega los mejores <strong>juegos de {translatedCategory}</strong> gratis online.
+        <br/>
+        En el navegador, sin descargas, diversión instantánea.
+      </p>
+    </div>
+    
+    <div class="mb-8">
+        <a href="/es/mini-games" class="text-primary hover:underline">← Volver a Minijuegos</a>
+    </div>
+
+    <GameGrid games={games} />
+  </section>
+</Layout>

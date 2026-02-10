@@ -1,0 +1,49 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { relaxCasualGames } from '~/data/games';
+
+const metadata = {
+  title: 'Casual Relax Games - Low Pressure Fun',
+  description: 'Enjoy low-pressure gaming with our casual relax games. No timers, no high scores, just fun.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Casual Relax Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/relax-games/casual",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": relaxCasualGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Casual Relax Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Laid-back games for pure enjoyment.
+    </p>
+    <GameGrid games={relaxCasualGames} />
+  </section>
+</Layout>
+

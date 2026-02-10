@@ -1,0 +1,49 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { miniPuzzleGames } from '~/data/games';
+
+const metadata = {
+  title: 'Puzzle Mini Games - Brain Teasers & Logic',
+  description: 'Challenge your mind with our collection of puzzle mini games. Sudoku, 2048, Match-3 and more.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Puzzle Mini Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/mini-games/puzzle",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": miniPuzzleGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Puzzle Mini Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Brain teasers, logic puzzles, and mind-bending challenges.
+    </p>
+    <GameGrid games={miniPuzzleGames} />
+  </section>
+</Layout>
+

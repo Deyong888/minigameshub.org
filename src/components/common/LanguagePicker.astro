@@ -1,0 +1,65 @@
+---
+import { languages } from '~/utils/i18n';
+import { Icon } from 'astro-icon/components';
+
+const currentLang = Astro.currentLocale || 'en';
+const { class: className } = Astro.props;
+
+// Function to create path for switching language
+const getPathForLang = (lang: string) => {
+  const currentPath = Astro.url.pathname;
+  const parts = currentPath.split('/').filter(Boolean);
+  
+  // If current path starts with a supported language, remove it
+  const firstPart = parts[0];
+  if (firstPart && Object.keys(languages).includes(firstPart)) {
+    parts.shift();
+  }
+  
+  // If switching to default language (en), don't prefix
+  if (lang === 'en') {
+    return '/' + parts.join('/');
+  }
+  
+  // Otherwise prefix with new language
+  const suffix = parts.length > 0 ? '/' + parts.join('/') : '';
+  return '/' + lang + suffix;
+};
+---
+
+<div class:list={["relative inline-block text-left group", className]}>
+  <button
+    type="button"
+    class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+    id="language-menu-button"
+    aria-label="Change language"
+    aria-expanded="true"
+    aria-haspopup="true"
+  >
+    <Icon name="tabler:language" class="w-6 h-6 md:w-5 md:h-5" />
+  </button>
+
+  <div
+    class="absolute right-0 z-10 w-40 mt-2 origin-top-right bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-700 divide-y divide-gray-100 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ring-1 ring-black ring-opacity-5 focus:outline-none"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="language-menu-button"
+    tabindex="-1"
+  >
+    <div class="py-1" role="none">
+      {Object.entries(languages).map(([lang, label]) => (
+        <a
+          href={getPathForLang(lang)}
+          class:list={[
+            "block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-800",
+            { "bg-gray-100 dark:bg-slate-800 font-bold": currentLang === lang }
+          ]}
+          role="menuitem"
+          tabindex="-1"
+        >
+          {label}
+        </a>
+      ))}
+    </div>
+  </div>
+</div>

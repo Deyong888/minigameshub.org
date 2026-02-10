@@ -1,0 +1,204 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import GamePlayer from '~/components/game/GamePlayer.astro';
+import { getUniqueGames, getRelatedGames } from '~/data/games';
+import type { Game } from '~/types/game';
+
+export async function getStaticPaths() {
+  const games = getUniqueGames();
+  
+  return games.map((game) => ({
+    params: { id: game.id.toString(), slug: game.slug },
+    props: { game, relatedGames: getRelatedGames(game, 12) },
+  }));
+}
+
+export interface Props {
+  game: Game;
+  relatedGames: Game[];
+}
+
+const { game, relatedGames } = Astro.props;
+
+const metadata = {
+  title: `Play ${game.title} - Free Online Game | MiniGamesHub.org`,
+  description: `Play ${game.title} online for free on MiniGamesHub.org. No download required. ${game.description}`,
+  openGraph: {
+    type: 'video.other',
+    images: [
+        {
+            url: game.thumbnail,
+            width: 1200,
+            height: 630,
+            alt: game.title
+        }
+    ]
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Game Player Section -->
+  <WidgetWrapper id="game-player" containerClass="max-w-7xl mx-auto py-6" bg="<div class='absolute inset-0 bg-blue-50 dark:bg-transparent'></div>">
+    
+    <!-- Breadcrumbs (Simple) -->
+    <div class="text-sm text-gray-500 mb-4">
+      <a href="/" class="hover:text-primary">Home</a> &gt; 
+      <a href={`/category/${game.category.toLowerCase().replace(/\s+/g, '-')}`} class="hover:text-primary">{game.category}</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">{game.title}</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <!-- Main Game Area (2/3 width) -->
+      <div class="lg:col-span-2">
+        <GamePlayer game={game} />
+
+        <!-- Game Controls / Info Bar -->
+        <div class="flex items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm mb-6 mt-4">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{game.title}</h1>
+                <div class="text-sm text-gray-500">
+                    <span class="mr-3">Plays: {game.plays?.toLocaleString()}</span>
+                    <span>Rating: {game.rating}/5</span>
+                </div>
+            </div>
+            <div class="flex gap-2">
+                 <button id="favoriteBtn" data-slug={game.slug} class="btn-secondary px-3 py-1.5 text-sm rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">🤍 Favorite</button>
+                 <button id="shareBtn" class="btn-secondary px-3 py-1.5 text-sm rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">🔗 Share</button>
+            </div>
+        </div>
+
+        <!-- Game Description -->
+        <div class="prose dark:prose-invert max-w-none bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+            <h3>About {game.title}</h3>
+            <p>{game.description}</p>
+            <p>Play {game.title} online directly in your browser. No download required. This game is part of the {game.category} games category.</p>
+            
+            <h4>How to Play</h4>
+            <p>Use keyboard arrows or WASD to control. Space to jump/action.</p>
+        </div>
+      </div>
+
+      <!-- Sidebar (1/3 width) -->
+      <div class="lg:col-span-1">
+        <div class="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm sticky top-24">
+            <h3 class="font-bold text-lg mb-4 border-b pb-2">Similar Games</h3>
+            <div class="flex flex-col gap-4">
+                {relatedGames.slice(0, 6).map(related => (
+                    <a href={`/game/${related.id}-${related.slug}`} class="flex gap-3 group">
+                        <img src={related.thumbnail} alt={related.title} class="w-20 h-14 object-cover rounded bg-gray-200" />
+                        <div>
+                            <h4 class="font-bold text-sm group-hover:text-primary line-clamp-2">{related.title}</h4>
+                            <span class="text-xs text-gray-500">{related.category}</span>
+                        </div>
+                    </a>
+                ))}
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </WidgetWrapper>
+
+  <!-- More Games Grid -->
+  <GameGrid
+    title="You Might Also Like"
+    games={relatedGames}
+    classes={{ container: 'py-8 lg:py-12' }}
+  />
+
+  <!-- Schema.org -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "VideoGame",
+    "name": game.title,
+    "description": game.description,
+    "genre": [game.category],
+    "url": Astro.url.href,
+    "image": game.thumbnail,
+    "playMode": "SinglePlayer",
+    "applicationCategory": "Browser Game",
+    "operatingSystem": "Any",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": game.rating,
+      "ratingCount": 100,
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  })} />
+
+  <script>
+    import { toggleFavorite, isFavorite, addToHistory } from '~/stores/gameState';
+  
+    const initGamePage = () => {
+      const favoriteBtn = document.getElementById('favoriteBtn');
+      const shareBtn = document.getElementById('shareBtn');
+      
+      // Favorite Logic
+      if (favoriteBtn) {
+          const slug = favoriteBtn.getAttribute('data-slug');
+          
+          const updateBtn = () => {
+              if (!slug) return;
+              const isFav = isFavorite(slug);
+              favoriteBtn.textContent = isFav ? '❤️ Saved' : '🤍 Favorite';
+              if (isFav) {
+                  favoriteBtn.classList.add('text-pink-600', 'border-pink-200', 'bg-pink-50');
+              } else {
+                  favoriteBtn.classList.remove('text-pink-600', 'border-pink-200', 'bg-pink-50');
+              }
+          };
+  
+          favoriteBtn.onclick = () => {
+              if (slug) {
+                  toggleFavorite(slug);
+                  updateBtn();
+              }
+          };
+          
+          updateBtn();
+
+          // Add to history
+          if (slug) {
+             setTimeout(() => {
+                 addToHistory(slug);
+             }, 5000);
+          }
+      }
+  
+      // Share Logic
+      if (shareBtn) {
+          shareBtn.onclick = async () => {
+              if (navigator.share) {
+                  try {
+                      await navigator.share({
+                          title: document.title,
+                          url: window.location.href
+                      });
+                  } catch (err) {
+                      console.error('Share failed:', err);
+                  }
+              } else {
+                  // Fallback to clipboard
+                  try {
+                      await navigator.clipboard.writeText(window.location.href);
+                      const originalText = shareBtn.textContent;
+                      shareBtn.textContent = '✅ Copied!';
+                      setTimeout(() => {
+                          shareBtn.textContent = originalText;
+                      }, 2000);
+                  } catch (err) {
+                      console.error('Clipboard failed:', err);
+                  }
+              }
+          };
+      }
+    };
+  
+    document.addEventListener('astro:page-load', initGamePage);
+  </script>
+</Layout>

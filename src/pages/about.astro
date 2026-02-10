@@ -1,0 +1,119 @@
+---
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'About us',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="About us"
+    image={{
+      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'MiniGamesHub Image',
+    }}
+  >
+    <Fragment slot="title">
+      Welcome to <br />
+      <span class="text-accent dark:text-white"> MiniGamesHub</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      MiniGamesHub.org is a leading platform for free online games. We offer a vast collection of over 5,000 games, including arcade classics, puzzle challenges, action-packed adventures, and relaxing casual games. All our games are playable instantly in your browser without any downloads or installations.
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="Platform Statistics"
+    stats={[
+      { title: 'Games', amount: '5000+' },
+      { title: 'Categories', amount: '20+' },
+      { title: 'Users', amount: '1M+' },
+      { title: 'Fun', amount: 'Unlimited' },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Our Game Collection"
+    subtitle="Discover our diverse range of games suitable for all ages and interests."
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: 'Arcade Games',
+        description:
+          'Relive the classics with our collection of retro and modern arcade games.',
+        icon: 'tabler:device-gamepad',
+      },
+      {
+        title: 'Puzzle Games',
+        description:
+          'Challenge your brain with our selection of logic puzzles, match-3, and brain teasers.',
+        icon: 'tabler:puzzle',
+      },
+      {
+        title: 'Action Games',
+        description:
+          'Get your adrenaline pumping with fast-paced action and adventure games.',
+        icon: 'tabler:sword',
+      },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    columns={3}
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Relax Games',
+        description:
+          'Unwind and de-stress with our calming and casual game collection.',
+        icon: 'tabler:coffee',
+      },
+      {
+        title: 'Browser Games',
+        description:
+          'Play instantly on any device - desktop, tablet, or mobile - with no downloads.',
+        icon: 'tabler:browser',
+      },
+      {
+        title: 'Free to Play',
+        description:
+          'All games on MiniGamesHub are completely free to play forever.',
+        icon: 'tabler:coin-off',
+      },
+    ]}
+  />
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="Company Information"
+    subtitle="MiniGamesHub.org is owned and operated by Synthflow Digital LTD."
+    items={[
+      {
+        title: 'Registered Address',
+        description: 'Office 16430, 182-184 High Street North, East Ham, London, E6 2JA',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'Contact Email',
+        description: 'support@synthflowdigital.com',
+        icon: 'tabler:mail',
+      },
+    ]}
+  />
+</Layout>

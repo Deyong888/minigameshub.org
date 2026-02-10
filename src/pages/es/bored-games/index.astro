@@ -1,0 +1,59 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { boredAtWorkGames, boredAtSchoolGames, waitingInLineGames } from '~/data/games';
+
+const games = [...boredAtWorkGames.slice(0, 12), ...boredAtSchoolGames.slice(0, 12), ...waitingInLineGames.slice(0, 12)];
+
+const metadata = {
+  title: 'Bored Games - Play When Bored',
+  description: 'The ultimate collection of games to play when you are bored. At work, at school, or waiting in line.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Bored Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/bored-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Bored Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Cure your boredom with our curated game collections.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/es/bored-games/bored-at-work" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Bored at Work</a>
+      <a href="/es/bored-games/bored-at-school" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Bored at School</a>
+      <a href="/es/bored-games/waiting-in-line" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Waiting in Line</a>
+    </div>
+
+    <GameGrid games={games} />
+  </section>
+</Layout>
+
