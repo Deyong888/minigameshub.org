@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Juegos de Juego Instantáneo - Sin Descarga, Sin Espera',
+  description: 'Salta directamente a la acción con nuestros juegos de juego instantáneo. Sin descarga, sin instalación, solo haz clic y juega. Perfecto para descansos rápidos.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Juegos de Juego Instantáneo",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/no-download-games/instant-play",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/es/" class="hover:text-primary">Inicio</a> &gt; 
+      <a href="/es/no-download-games" class="hover:text-primary">Juegos Sin Descarga</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Juego Instantáneo</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Juegos de Juego Instantáneo
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Cero tiempo de espera. Máxima diversión. Haz clic y juega inmediatamente.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-green-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>¿Qué son los Juegos de Juego Instantáneo?</h3>
+      <p>Los juegos de juego instantáneo están diseñados para la velocidad. Cargan en segundos y no requieren absolutamente ninguna instalación ni espacio en disco. Ya sea que tengas 5 minutos o una hora, estos juegos están listos cuando tú lo estés.</p>
+      <ul>
+        <li><strong>Clic y Jugar:</strong> No se requiere registro ni configuración.</li>
+        <li><strong>Ahorra Almacenamiento:</strong> Mantén tu dispositivo limpio y rápido.</li>
+        <li><strong>Juega en Cualquier Lugar:</strong> Accede a tus juegos favoritos desde cualquier computadora.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+  </section>
+</Layout>

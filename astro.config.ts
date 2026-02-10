@@ -29,15 +29,9 @@ export default defineConfig({
     '/bored-at-work': '/bored-games/bored-at-work',
     '/bored-at-school': '/bored-games/bored-at-school',
     '/waiting-in-line': '/bored-games/waiting-in-line',
-    '/browser-games': '/mini-games',
-    '/html5-games': '/mini-games',
-    '/no-download-games': '/mini-games',
     '/es/bored-at-school': '/es/bored-games/bored-at-school',
     '/es/bored-at-work': '/es/bored-games/bored-at-work',
     '/es/waiting-in-line': '/es/bored-games/waiting-in-line',
-    '/es/browser-games': '/es/mini-games',
-    '/es/html5-games': '/es/mini-games',
-    '/es/no-download-games': '/es/mini-games',
   },
 
   integrations: [

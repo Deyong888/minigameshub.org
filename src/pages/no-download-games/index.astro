@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'No Download Games - Instant Play Free Games',
+  description: 'Play free games instantly without downloading anything. Our no download games are perfect for quick fun at work or school. Zero installation, 100% free.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "No Download Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/no-download-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      No Download Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Instant fun without the wait. Click and play immediately.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/no-download-games/instant-play" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Instant Play</a>
+      <a href="/no-download-games/play-now" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Play Now</a>
+      <a href="/no-download-games/zero-install" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Zero Install</a>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+  </section>
+</Layout>

@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { browserGames } from '~/data/games';
+
+const metadata = {
+  title: 'Browser Games - Play Free Online Games No Download',
+  description: 'Play the best browser games online instantly. No download, no installation required. Enjoy thousands of free HTML5 and WebGL games directly in your browser.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Browser Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/browser-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": browserGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Browser Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Play thousands of free games directly in your browser. No download, no hassle.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/browser-games/html5" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">HTML5</a>
+      <a href="/browser-games/webgl" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">WebGL</a>
+      <a href="/browser-games/flash-alternative" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Flash Alternative</a>
+    </div>
+
+    <GameGrid games={browserGames} />
+  </section>
+</Layout>

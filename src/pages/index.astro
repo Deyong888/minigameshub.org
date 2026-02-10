@@ -6,16 +6,28 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
 import { 
+  // Mini Games
   miniArcadeGames, miniPuzzleGames, miniActionGames,
-  smallCasualGames, smallQuickGames,
-  relaxCalmingGames, relaxCasualGames,
-  boredAtWorkGames, boredAtSchoolGames, waitingInLineGames,
-  arcadeClassicGames, arcadeModernGames
+  // Small Games
+  smallCasualGames, smallQuickGames, smallShortGames,
+  // Relax Games
+  relaxStressReliefGames, relaxCalmingGames, relaxCasualGames,
+  // Bored Games
+  officeGames, unblockedGames, waitingInLineGames,
+  // Arcade Games
+  arcadeClassicGames, arcadeRetroGames, arcadeModernGames,
+  // Browser Games
+  browserHtml5Games, browserWebglGames, browserFlashGames,
+  // No Download Games
+  noDownloadInstantGames, noDownloadPlayNowGames, noDownloadZeroInstallGames,
+  // HTML5 Games
+  html5MobileGames, html5CrossPlatformGames, html5OfflineGames
 } from '~/data/games';
 
 const metadata = {
   title: 'MiniGamesHub - Play 5000+ Mini Games, Small Games & HTML5 Games',
   ignoreTitleTemplate: true,
+  description: 'Free arcade games, relax games, and games to play when bored. No download required! Play the best collection of mini games and small games online.',
 };
 ---
 
@@ -23,163 +35,258 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <div class="py-6">
     <div class="text-center mb-4">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-2 font-heading">
-            MiniGamesHub - Play 5000+ Mini Games, Small Games & HTML5 Games
-        </h1>
-        <p class="text-xl text-gray-600 dark:text-slate-400">
-            Free arcade games, relax games, and games to play when bored. No download required!
-        </p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-2 font-heading">
+        MiniGamesHub - Play 5000+ Mini Games, Small Games & HTML5 Games
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-slate-400 tagline">
+        Free arcade games, relax games, and games to play when bored. No download required!
+      </p>
     </div>
     <GameHero />
   </div>
 
-  <!-- 1. Mini Games Section -->
+  <!-- 1. Mini Games (Core) -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        🎮 Mini Games - Quick Fun
+        <a href="/mini-games" class="hover:text-primary transition">🎮 Mini Games - Quick Fun</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
         The best <strong>mini games</strong> collection online. Short, addictive games perfect for quick breaks.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Mini Arcade Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Classic <strong>arcade games</strong> in mini format. Pac-Man, Tetris, and more <strong>HTML5 games</strong>.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Classic <strong>arcade games</strong> in mini format. Pac-Man, Tetris, and more <strong>HTML5 games</strong>.</p>
         <GameGrid games={miniArcadeGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Mini Puzzle Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Brain-teasing <strong>mini puzzle games</strong> - 2048, Sudoku, match-3 <strong>small games</strong>.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Brain-teasing <strong>mini puzzle games</strong> - 2048, Sudoku, match-3 <strong>small games</strong>.</p>
         <GameGrid games={miniPuzzleGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Mini Action Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Fast-paced <strong>mini action games</strong> for adrenaline seekers.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Fast-paced <strong>mini action games</strong> for adrenaline seekers.</p>
         <GameGrid games={miniActionGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 2. Small Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
+  <!-- 2. Small Games (Core) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-gray-50 dark:bg-slate-900/10">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        🎯 Small Games - Easy to Play
+        <a href="/small-games" class="hover:text-primary transition">🎯 Small Games - Easy to Play</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
         Discover <strong>small games</strong> that pack big fun. Lightweight <strong>HTML5 games</strong> for any device.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Casual Small Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Relaxing <strong>small casual games</strong> - perfect for unwinding.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Relaxing <strong>small casual games</strong> - perfect for unwinding.</p>
         <GameGrid games={smallCasualGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Quick Small Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Small games</strong> under 5 minutes - ideal for busy schedules.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc"><strong>Small games</strong> under 5 minutes - ideal for busy schedules.</p>
         <GameGrid games={smallQuickGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Short Games</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Short sessions for instant gratification.</p>
+        <GameGrid games={smallShortGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 3. Relax Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+  <!-- 3. Relax Games (Emotional) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        😌 Relax Games - Stress Relief
+        <a href="/relax-games" class="hover:text-primary transition">😌 Relax Games - Stress Relief</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
         Unwind with our collection of <strong>relax games</strong>. Calming, peaceful, and therapeutic <strong>mini games</strong>.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Calming Relax Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Soothing <strong>relax games</strong> to reduce stress and anxiety.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Soothing <strong>relax games</strong> to reduce stress and anxiety.</p>
         <GameGrid games={relaxCalmingGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Stress Relief</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Games designed to melt away your worries.</p>
+        <GameGrid games={relaxStressReliefGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Casual Relax Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Low-pressure <strong>relax games</strong> for peaceful gaming sessions.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Low-pressure <strong>relax games</strong> for peaceful gaming sessions.</p>
         <GameGrid games={relaxCasualGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 4. Bored Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
+  <!-- 4. Bored Games (Scenario) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        🎯 Games to Play When Bored
+        <a href="/bored-games" class="hover:text-primary transition">🥱 Games to Play When Bored</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
         Beat boredom with our curated collection. <strong>Bored games</strong> for work, school, and home.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Bored at Work Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Sneaky <strong>games to play when bored at work</strong>. Boss-key included!</p>
-        <GameGrid games={boredAtWorkGames} classes={{ container: '!py-0' }} />
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Sneaky <strong>games to play when bored at work</strong>. Boss-key included!</p>
+        <GameGrid games={officeGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Bored at School Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Games to play when bored at school</strong> - unblocked and Chromebook-friendly.</p>
-        <GameGrid games={boredAtSchoolGames} classes={{ container: '!py-0' }} />
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc"><strong>Games to play when bored at school</strong> - unblocked and Chromebook-friendly.</p>
+        <GameGrid games={unblockedGames} classes={{ container: '!py-0' }} />
     </div>
-    
-     <div class="mb-12">
+
+    <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Bored when waiting in lines</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Relaxing <strong>games to play when bored at home</strong> - no download needed.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Relaxing <strong>games to play when bored at home</strong> - no download needed.</p>
         <GameGrid games={waitingInLineGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 5. Arcade Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+  <!-- 5. Arcade Games (Genre) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-green-50 dark:bg-slate-900/20">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        👾 Arcade Games - Retro Fun
+        <a href="/arcade-games" class="hover:text-primary transition">👾 Arcade Games - Retro Fun</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
         Step into our virtual arcade! Classic and modern <strong>arcade games</strong> - all free to play.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Classic Arcade Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Nostalgic <strong>arcade games</strong> from the 80s and 90s, rebuilt in <strong>HTML5</strong>.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Nostalgic <strong>arcade games</strong> from the 80s and 90s, rebuilt in <strong>HTML5</strong>.</p>
         <GameGrid games={arcadeClassicGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Retro Arcade Games</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Pixel art perfection and old-school challenges.</p>
+        <GameGrid games={arcadeRetroGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Modern Arcade Games</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">New <strong>arcade games</strong> with stunning graphics and addictive gameplay.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">New <strong>arcade games</strong> with stunning graphics and addictive gameplay.</p>
         <GameGrid games={arcadeModernGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- SEO Content Block (EEAT) -->
-  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl text-lg text-muted dark:text-slate-400">
-    <h2 class="font-bold font-heading text-3xl md:text-4xl text-center mb-8 text-gray-900 dark:text-white">What Are Mini Games and Small Games?</h2>
-    <div class="seo-content space-y-6">
-      <p><strong>Mini games</strong> and <strong>small games</strong> are short, casual games designed for quick play sessions. Unlike traditional video games that require hours of commitment, these games can be enjoyed in 5-10 minute bursts. Perfect for busy people who want quick entertainment without commitment.</p>
-      
-      <p><strong>HTML5 games</strong> are browser-based games that require no download. They work on any device with a browser - no apps, no downloads, instant play! Thanks to modern web technology, they offer graphics and gameplay that rival native apps.</p>
-      
-      <p><strong>Arcade games</strong> bring the classic gaming experience to your browser. Whether you prefer retro pixel art or modern 3D graphics, our collection has something for everyone. All <strong>arcade games</strong> on MiniGamesHub are 100% free.</p>
-      
-      <p><strong>Relax games</strong> are designed to reduce stress and provide a calming experience. If you're feeling overwhelmed, try our soothing puzzle games or casual simulation games. They are low-pressure, peaceful games perfect for unwinding after a long day.</p>
-      
-      <p>When you're looking for <strong>games to play when bored</strong>, MiniGamesHub has you covered. For work, we have boss-friendly games. For school, we have unblocked games. Browse our categories to find your perfect match!</p>
+  <!-- 6. Browser Games (Tech - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/browser-games" class="hover:text-primary transition">🌐 Browser Games</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Play directly in your browser. No plugins, no hassle.
+      </p>
     </div>
-  </section>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">HTML5 Browser Games</h3>
+        <GameGrid games={browserHtml5Games} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">WebGL 3D Games</h3>
+        <GameGrid games={browserWebglGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Flash Alternatives</h3>
+        <GameGrid games={browserFlashGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 7. No Download Games (Feature - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-yellow-50 dark:bg-slate-900/10">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/no-download-games" class="hover:text-primary transition">⚡ No Download Games</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Instant fun without the wait.
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Instant Play</h3>
+        <GameGrid games={noDownloadInstantGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Play Now</h3>
+        <GameGrid games={noDownloadPlayNowGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Zero Install</h3>
+        <GameGrid games={noDownloadZeroInstallGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 8. HTML5 Games (Tech - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/html5-games" class="hover:text-primary transition">🚀 HTML5 Games</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Modern technology for the best gaming experience.
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Mobile Friendly</h3>
+        <GameGrid games={html5MobileGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Cross Platform</h3>
+        <GameGrid games={html5CrossPlatformGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Offline Capable</h3>
+        <GameGrid games={html5OfflineGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- SEO Content Block -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
+    <h2>What Are Mini Games and Small Games?</h2>
+    <div class="seo-content">
+      <p><strong>Mini games</strong> and <strong>small games</strong> are short, casual games designed for quick play sessions. They are perfect for those moments when you have a few minutes to spare and want to have some fun without committing to a long gaming session.</p>
+      <p><strong>HTML5 games</strong> are browser-based games that require no download. This means you can play them instantly on any device, whether it's a computer, tablet, or smartphone.</p>
+      <p><strong>Arcade games</strong> bring the classic gaming experience to your browser. From retro classics to modern hits, you can enjoy the thrill of the arcade from the comfort of your home.</p>
+      <p><strong>Relax games</strong> are designed to reduce stress and provide a calming experience. If you're feeling overwhelmed, try one of our soothing puzzle or casual games to help you unwind.</p>
+      <p>When you're looking for <strong>games to play when bored</strong>, MiniGamesHub has you covered with a vast collection of free online games for every taste and mood.</p>
+    </div>
+  </div>
 
   <!-- FAQs Widget ******************* -->
   <FAQs
@@ -191,17 +298,17 @@ const metadata = {
       {
         title: 'What are mini games?',
         description:
-          "Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They're perfect for busy people who want quick entertainment without commitment.",
+          "Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They are perfect for busy people who want quick entertainment without commitment.",
       },
       {
-        title: "What's the difference between mini games and small games?",
+        title: "What is the difference between mini games and small games?",
         description:
-          "Mini games emphasize short playtime, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both - quick to play and light on storage!",
+          "Mini games emphasize short play time, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both - quick to play and light on storage!",
       },
       {
         title: 'What are HTML5 games?',
         description:
-          "HTML5 games are browser-based games built with modern web technology. They work on any device with a browser - no apps, no downloads, instant play!",
+          "HTML5 games are browser-based games built with modern web technology. They run on any device with a browser - no apps, no downloads, instant play!",
       },
       {
         title: 'Can I play arcade games for free?',
@@ -209,12 +316,12 @@ const metadata = {
           "Yes! All arcade games on MiniGamesHub are 100% free. Play classic and modern arcade games instantly in your browser.",
       },
       {
-         title: 'What are relax games?',
-         description: "Relax games are designed to reduce stress and provide a calming experience. They're low-pressure, peaceful games perfect for unwinding after a long day."
+        title: 'What are relax games?',
+        description: "Relax games are designed to reduce stress and provide a calming experience. They are peaceful, pressure-free games perfect for unwinding after a long day."
       },
       {
-         title: 'What are the best games to play when bored?',
-         description: "The best games to play when bored depend on your situation! For work: quick mini games with boss-key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!"
+        title: 'What are the best games to play when bored?',
+        description: "The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!"
       }
     ]}
   />
@@ -229,15 +336,15 @@ const metadata = {
           "name": "What are mini games?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They're perfect for busy people who want quick entertainment without commitment."
+            "text": "Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They are perfect for busy people who want quick entertainment without commitment."
           }
         },
         {
           "@type": "Question",
-          "name": "What's the difference between mini games and small games?",
+          "name": "What is the difference between mini games and small games?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Mini games emphasize short playtime, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both - quick to play and light on storage!"
+            "text": "Mini games emphasize short play time, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both - quick to play and light on storage!"
           }
         },
         {
@@ -245,7 +352,7 @@ const metadata = {
           "name": "What are HTML5 games?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "HTML5 games are browser-based games built with modern web technology. They work on any device with a browser - no apps, no downloads, instant play!"
+            "text": "HTML5 games are browser-based games built with modern web technology. They run on any device with a browser - no apps, no downloads, instant play!"
           }
         },
         {
@@ -261,7 +368,7 @@ const metadata = {
           "name": "What are relax games?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Relax games are designed to reduce stress and provide a calming experience. They're low-pressure, peaceful games perfect for unwinding after a long day."
+            "text": "Relax games are designed to reduce stress and provide a calming experience. They are peaceful, pressure-free games perfect for unwinding after a long day."
           }
         },
         {
@@ -269,7 +376,7 @@ const metadata = {
           "name": "What are the best games to play when bored?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The best games to play when bored depend on your situation! For work: quick mini games with boss-key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!"
+            "text": "The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!"
           }
         }
       ]

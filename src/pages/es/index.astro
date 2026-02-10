@@ -6,16 +6,28 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
 import { 
+  // Mini Games
   miniArcadeGames, miniPuzzleGames, miniActionGames,
-  smallCasualGames, smallQuickGames,
-  relaxCalmingGames, relaxCasualGames,
-  boredAtWorkGames, boredAtSchoolGames, waitingInLineGames,
-  arcadeClassicGames, arcadeModernGames
+  // Small Games
+  smallCasualGames, smallQuickGames, smallShortGames,
+  // Relax Games
+  relaxStressReliefGames, relaxCalmingGames, relaxCasualGames,
+  // Bored Games
+  officeGames, unblockedGames, waitingInLineGames,
+  // Arcade Games
+  arcadeClassicGames, arcadeRetroGames, arcadeModernGames,
+  // Browser Games
+  browserHtml5Games, browserWebglGames, browserFlashGames,
+  // No Download Games
+  noDownloadInstantGames, noDownloadPlayNowGames, noDownloadZeroInstallGames,
+  // HTML5 Games
+  html5MobileGames, html5CrossPlatformGames, html5OfflineGames
 } from '~/data/games';
 
 const metadata = {
   title: 'MiniGamesHub - Juega +5000 Minijuegos, Juegos Pequeños y Juegos HTML5',
   ignoreTitleTemplate: true,
+  description: '¿Aburrido en el trabajo o la escuela? Juega +5000 minijuegos gratis, juegos de navegador y juegos HTML5 al instante en MiniGamesHub. ¡Sin descargas, sin instalación, solo haz clic y juega!',
 };
 ---
 
@@ -23,163 +35,258 @@ const metadata = {
   <!-- Hero Widget ******************* -->
   <div class="py-6">
     <div class="text-center mb-4">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-2 font-heading">
-            MiniGamesHub - Juega +5000 Minijuegos, Juegos Pequeños y Juegos HTML5
-        </h1>
-        <p class="text-xl text-gray-600 dark:text-slate-400">
-            Juegos arcade gratis, juegos relajantes y juegos para cuando estás aburrido. ¡Sin descargas!
-        </p>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-2 font-heading">
+        MiniGamesHub - Juega +5000 Minijuegos, Juegos Pequeños y Juegos HTML5
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-slate-400 tagline">
+        Juegos arcade gratis, juegos de relax y juegos para jugar cuando estás aburrido. ¡Sin descargas!
+      </p>
     </div>
     <GameHero />
   </div>
 
-  <!-- 1. Mini Games Section -->
+  <!-- 1. Mini Games (Core) -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        🎮 Minijuegos - Diversión Rápida
+        <a href="/es/mini-games" class="hover:text-primary transition">🎮 Minijuegos - Diversión Rápida</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
         La mejor colección de <strong>minijuegos</strong> online. Juegos cortos y adictivos perfectos para descansos rápidos.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Minijuegos Arcade</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Clásicos <strong>juegos arcade</strong> en formato mini. Pac-Man, Tetris y más <strong>juegos HTML5</strong>.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Clásicos <strong>juegos arcade</strong> en formato mini. Pac-Man, Tetris y más <strong>juegos HTML5</strong>.</p>
         <GameGrid games={miniArcadeGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Minijuegos de Puzzle</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Minijuegos de puzzle</strong> para desafiar tu mente - 2048, Sudoku, match-3.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Desafíos mentales con <strong>minijuegos de puzzle</strong> - 2048, Sudoku, match-3 y <strong>juegos pequeños</strong>.</p>
         <GameGrid games={miniPuzzleGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Minijuegos de Acción</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Minijuegos de acción</strong> de ritmo rápido para buscadores de adrenalina.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Ritmo rápido con <strong>minijuegos de acción</strong> para buscadores de adrenalina.</p>
         <GameGrid games={miniActionGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 2. Small Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
+  <!-- 2. Small Games (Core) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-gray-50 dark:bg-slate-900/10">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        🎯 Juegos Pequeños - Fáciles de Jugar
+        <a href="/es/small-games" class="hover:text-primary transition">🎯 Juegos Pequeños - Fáciles de Jugar</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
-        Descubre <strong>juegos pequeños</strong> muy divertidos. <strong>Juegos HTML5</strong> ligeros para cualquier dispositivo.
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Descubre <strong>juegos pequeños</strong> con gran diversión. <strong>Juegos HTML5</strong> ligeros para cualquier dispositivo.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Juegos Pequeños Casuales</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Relajantes <strong>juegos casuales</strong> - perfectos para desconectar.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Relajantes <strong>juegos pequeños casuales</strong> - perfectos para desconectar.</p>
         <GameGrid games={smallCasualGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Juegos Pequeños Rápidos</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos pequeños</strong> de menos de 5 minutos - ideales para agendas ocupadas.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc"><strong>Juegos pequeños</strong> de menos de 5 minutos - ideales para agendas ocupadas.</p>
         <GameGrid games={smallQuickGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Juegos Cortos</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Sesiones cortas para gratificación instantánea.</p>
+        <GameGrid games={smallShortGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 3. Relax Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+  <!-- 3. Relax Games (Emotional) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        😌 Juegos Relajantes - Alivio del Estrés
+        <a href="/es/relax-games" class="hover:text-primary transition">😌 Juegos de Relax - Alivio del Estrés</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
-        Relájate con nuestra colección de <strong>juegos relajantes</strong>. <strong>Minijuegos</strong> calmantes, pacíficos y terapéuticos.
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Relájate con nuestra colección de <strong>juegos de relax</strong>. Calmantes, pacíficos y terapéuticos <strong>minijuegos</strong>.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Juegos Relajantes Calmantes</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos relajantes</strong> suaves para reducir el estrés y la ansiedad.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Suaves <strong>juegos relajantes</strong> para reducir el estrés y la ansiedad.</p>
         <GameGrid games={relaxCalmingGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
-        <h3 class="text-2xl font-bold mb-4">Juegos Relajantes Casuales</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos relajantes</strong> sin presión para sesiones de juego pacíficas.</p>
+        <h3 class="text-2xl font-bold mb-4">Alivio del Estrés</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Juegos diseñados para derretir tus preocupaciones.</p>
+        <GameGrid games={relaxStressReliefGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Juegos de Relax Casuales</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Baja presión con <strong>juegos de relax</strong> para sesiones de juego pacíficas.</p>
         <GameGrid games={relaxCasualGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 4. Bored Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
+  <!-- 4. Bored Games (Scenario) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        🎯 Juegos para cuando estás aburrido
+        <a href="/es/bored-games" class="hover:text-primary transition">🥱 Juegos para Jugar cuando Estás Aburrido</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
-        Vence el aburrimiento con nuestra colección curada. <strong>Juegos para el aburrimiento</strong> para el trabajo, la escuela y el hogar.
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Vence el aburrimiento con nuestra colección curada. <strong>Juegos para el aburrimiento</strong> en el trabajo, escuela y hogar.
       </p>
     </div>
 
     <div class="mb-12">
-        <h3 class="text-2xl font-bold mb-4">Juegos para el Trabajo</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos discretos para jugar en el trabajo</strong>. ¡Incluye tecla de jefe!</p>
-        <GameGrid games={boredAtWorkGames} classes={{ container: '!py-0' }} />
+        <h3 class="text-2xl font-bold mb-4">Aburrido en el Trabajo</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Sigilosos <strong>juegos para jugar en el trabajo</strong>. ¡Incluye tecla de jefe!</p>
+        <GameGrid games={officeGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
-        <h3 class="text-2xl font-bold mb-4">Juegos para la Escuela</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos para jugar en la escuela</strong> - desbloqueados y compatibles con Chromebook.</p>
-        <GameGrid games={boredAtSchoolGames} classes={{ container: '!py-0' }} />
+        <h3 class="text-2xl font-bold mb-4">Aburrido en la Escuela</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc"><strong>Juegos para jugar en la escuela</strong> - desbloqueados y amigables con Chromebook.</p>
+        <GameGrid games={unblockedGames} classes={{ container: '!py-0' }} />
     </div>
-    
-     <div class="mb-12">
-        <h3 class="text-2xl font-bold mb-4">Aburrido esperando en la fila</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos relajantes para jugar en casa</strong> - sin descargas.</p>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Esperando en Fila</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Relajantes <strong>juegos para jugar en casa</strong> - sin descargas.</p>
         <GameGrid games={waitingInLineGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- 5. Arcade Games Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+  <!-- 5. Arcade Games (Genre) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-green-50 dark:bg-slate-900/20">
     <div class="mb-8">
       <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
-        👾 Juegos Arcade - Diversión Retro
+        <a href="/es/arcade-games" class="hover:text-primary transition">👾 Juegos Arcade - Diversión Retro</a>
       </h2>
-      <p class="text-xl text-muted dark:text-slate-400">
-        ¡Entra en nuestro arcade virtual! <strong>Juegos arcade</strong> clásicos y modernos - todos gratis.
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        ¡Entra en nuestro arcade virtual! Clásicos y modernos <strong>juegos arcade</strong> - todos gratis.
       </p>
     </div>
 
     <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Juegos Arcade Clásicos</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400"><strong>Juegos arcade</strong> nostálgicos de los 80 y 90, reconstruidos en <strong>HTML5</strong>.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Nostálgicos <strong>juegos arcade</strong> de los 80 y 90, reconstruidos en <strong>HTML5</strong>.</p>
         <GameGrid games={arcadeClassicGames} classes={{ container: '!py-0' }} />
     </div>
 
     <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Juegos Arcade Retro</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Perfección pixel art y desafíos de la vieja escuela.</p>
+        <GameGrid games={arcadeRetroGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
         <h3 class="text-2xl font-bold mb-4">Juegos Arcade Modernos</h3>
-        <p class="mb-4 text-gray-600 dark:text-slate-400">Nuevos <strong>juegos arcade</strong> con gráficos impresionantes y jugabilidad adictiva.</p>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">Nuevos <strong>juegos arcade</strong> con gráficos impresionantes y jugabilidad adictiva.</p>
         <GameGrid games={arcadeModernGames} classes={{ container: '!py-0' }} />
     </div>
   </div>
 
-  <!-- SEO Content Block (EEAT) -->
-  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl text-lg text-muted dark:text-slate-400">
-    <h2 class="font-bold font-heading text-3xl md:text-4xl text-center mb-8 text-gray-900 dark:text-white">¿Qué son los Minijuegos y Juegos Pequeños?</h2>
-    <div class="seo-content space-y-6">
-      <p><strong>Minijuegos</strong> y <strong>juegos pequeños</strong> son juegos cortos y casuales diseñados para sesiones de juego rápido. A diferencia de los videojuegos tradicionales que requieren horas de compromiso, estos juegos pueden disfrutarse en ráfagas de 5-10 minutos. Perfectos para personas ocupadas que quieren entretenimiento rápido sin compromiso.</p>
-      
-      <p><strong>Juegos HTML5</strong> son juegos basados en navegador que no requieren descarga. Funcionan en cualquier dispositivo con un navegador - ¡sin apps, sin descargas, juego instantáneo! Gracias a la tecnología web moderna, ofrecen gráficos y jugabilidad que rivalizan con las apps nativas.</p>
-      
-      <p><strong>Juegos Arcade</strong> traen la experiencia clásica de juego a tu navegador. Ya sea que prefieras arte pixelado retro o gráficos 3D modernos, nuestra colección tiene algo para todos. Todos los <strong>juegos arcade</strong> en MiniGamesHub son 100% gratis.</p>
-      
-      <p><strong>Juegos Relajantes</strong> están diseñados para reducir el estrés y proporcionar una experiencia calmante. Si te sientes abrumado, prueba nuestros suaves juegos de puzzle o simulaciones casuales. Son juegos pacíficos y sin presión, perfectos para desconectar después de un largo día.</p>
-      
-      <p>Cuando buscas <strong>juegos para jugar cuando estás aburrido</strong>, MiniGamesHub te tiene cubierto. Para el trabajo, tenemos juegos amigables con el jefe. Para la escuela, tenemos juegos desbloqueados. ¡Navega por nuestras categorías para encontrar tu pareja perfecta!</p>
+  <!-- 6. Browser Games (Tech - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/es/browser-games" class="hover:text-primary transition">🌐 Juegos de Navegador</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Juega directamente en tu navegador. Sin plugins, sin complicaciones.
+      </p>
     </div>
-  </section>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Juegos de Navegador HTML5</h3>
+        <GameGrid games={browserHtml5Games} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Juegos WebGL 3D</h3>
+        <GameGrid games={browserWebglGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Alternativas a Flash</h3>
+        <GameGrid games={browserFlashGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 7. No Download Games (Feature - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-yellow-50 dark:bg-slate-900/10">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/es/no-download-games" class="hover:text-primary transition">⚡ Juegos Sin Descarga</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Diversión instantánea sin esperas.
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Juego Instantáneo</h3>
+        <GameGrid games={noDownloadInstantGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Jugar Ahora</h3>
+        <GameGrid games={noDownloadPlayNowGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Sin Instalación</h3>
+        <GameGrid games={noDownloadZeroInstallGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 8. HTML5 Games (Tech - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/es/html5-games" class="hover:text-primary transition">🚀 Juegos HTML5</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        Tecnología moderna para la mejor experiencia de juego.
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Compatible con Móvil</h3>
+        <GameGrid games={html5MobileGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Multiplataforma</h3>
+        <GameGrid games={html5CrossPlatformGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Modo Offline</h3>
+        <GameGrid games={html5OfflineGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- SEO Content Block -->
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 prose dark:prose-invert">
+    <h2>¿Qué son los Minijuegos y Juegos Pequeños?</h2>
+    <div class="seo-content">
+      <p><strong>Minijuegos</strong> y <strong>juegos pequeños</strong> son juegos cortos y casuales diseñados para sesiones de juego rápido. Son perfectos para esos momentos en los que tienes unos minutos libres y quieres divertirte sin comprometerte a una larga sesión de juego.</p>
+      <p><strong>Juegos HTML5</strong> son juegos basados en navegador que no requieren descarga. Esto significa que puedes jugarlos al instante en cualquier dispositivo, ya sea una computadora, tableta o teléfono inteligente.</p>
+      <p><strong>Juegos Arcade</strong> traen la experiencia clásica de juego a tu navegador. Desde clásicos retro hasta éxitos modernos, puedes disfrutar de la emoción del arcade desde la comodidad de tu hogar.</p>
+      <p><strong>Juegos de Relax</strong> están diseñados para reducir el estrés y proporcionar una experiencia calmante. Si te sientes abrumado, prueba uno de nuestros rompecabezas relajantes o juegos casuales para ayudarte a desconectar.</p>
+      <p>Cuando buscas <strong>juegos para jugar cuando estás aburrido</strong>, MiniGamesHub te cubre con una vasta colección de juegos en línea gratis para todos los gustos y estados de ánimo.</p>
+    </div>
+  </div>
 
   <!-- FAQs Widget ******************* -->
   <FAQs
@@ -209,12 +316,12 @@ const metadata = {
           "¡Sí! Todos los juegos arcade en MiniGamesHub son 100% gratis. Juega juegos arcade clásicos y modernos al instante en tu navegador.",
       },
       {
-         title: '¿Qué son los juegos relajantes?',
-         description: "Los juegos relajantes están diseñados para reducir el estrés y proporcionar una experiencia calmante. Son juegos pacíficos y sin presión, perfectos para desconectar después de un largo día."
+        title: '¿Qué son los juegos relajantes?',
+        description: "Los juegos relajantes están diseñados para reducir el estrés y proporcionar una experiencia calmante. Son juegos pacíficos y sin presión, perfectos para desconectar después de un largo día."
       },
       {
-         title: '¿Cuáles son los mejores juegos para jugar cuando estás aburrido?',
-         description: "¡Los mejores juegos para jugar cuando estás aburrido dependen de tu situación! Para el trabajo: minijuegos rápidos con tecla de jefe. Para casa: juegos arcade inmersivos. Para el estrés: juegos relajantes calmantes. ¡Navega por nuestras categorías para encontrar tu juego perfecto!"
+        title: '¿Cuáles son los mejores juegos para jugar cuando estás aburrido?',
+        description: "¡Los mejores juegos para jugar cuando estás aburrido dependen de tu situación! Para el trabajo: minijuegos rápidos con tecla de jefe. Para casa: juegos arcade inmersivos. Para el estrés: juegos relajantes calmantes. ¡Navega por nuestras categorías para encontrar tu juego perfecto!"
       }
     ]}
   />

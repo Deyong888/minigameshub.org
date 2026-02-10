@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { browserGames } from '~/data/games';
+
+const metadata = {
+  title: 'Juegos de Navegador - Juega Gratis Online Sin Descargas',
+  description: 'Juega los mejores juegos de navegador online al instante. Sin descargas ni instalaciones. Disfruta de miles de juegos HTML5 y WebGL gratis directamente en tu navegador.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Juegos de Navegador",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/browser-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": browserGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description, // Note: Description might be in English, but acceptable for now
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Juegos de Navegador
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Juega miles de juegos gratis directamente en tu navegador. Sin descargas, sin complicaciones.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/es/browser-games/html5" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">HTML5</a>
+      <a href="/es/browser-games/webgl" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">WebGL</a>
+      <a href="/es/browser-games/flash-alternative" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Alternativa Flash</a>
+    </div>
+
+    <GameGrid games={browserGames} />
+  </section>
+</Layout>

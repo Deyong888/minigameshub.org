@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { html5Games } from '~/data/games';
+
+const metadata = {
+  title: 'Offline Capable Games - Play Without Internet | MiniGamesHub',
+  description: 'Browser games that work even when your internet connection is spotty. Once loaded, these HTML5 games can run offline.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Offline Capable Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/html5-games/offline-capable",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": html5Games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/" class="hover:text-primary">Home</a> &gt; 
+      <a href="/html5-games" class="hover:text-primary">HTML5 Games</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Offline Capable</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Offline Capable Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Keep playing even when the Wi-Fi goes down.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>No Internet? No Problem.</h3>
+      <p>Thanks to modern Service Worker technology and efficient caching, many HTML5 games can continue to run even if you lose your internet connection after loading them.</p>
+      <ul>
+        <li><strong>Travel Friendly:</strong> Perfect for flights or road trips with unstable internet.</li>
+        <li><strong>Data Saver:</strong> Play without constantly using your mobile data plan.</li>
+        <li><strong>Resilient:</strong> Don't let lag spikes ruin your high score run.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={html5Games} />
+  </section>
+</Layout>

@@ -3,6 +3,7 @@ export interface Game {
   slug: string;
   title: string;
   description?: string;
+  rich_content?: string;
   thumbnail: string;
   url: string; // The play URL (iframe source)
   width?: number;

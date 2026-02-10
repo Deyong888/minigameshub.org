@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { html5Games } from '~/data/games';
+
+const metadata = {
+  title: 'HTML5 Browser Games - Play Free on Any Device | MiniGamesHub',
+  description: 'Play the best HTML5 browser games for free. Works on mobile, tablet, and desktop with no plugins required. Enjoy smooth gameplay anywhere.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "HTML5 Browser Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/browser-games/html5",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": html5Games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/" class="hover:text-primary">Home</a> &gt; 
+      <a href="/browser-games" class="hover:text-primary">Browser Games</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">HTML5</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      HTML5 Browser Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Modern games that work seamlessly on your phone, tablet, or computer.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Why HTML5 Games?</h3>
+      <p>HTML5 technology has revolutionized online gaming. Unlike older Flash games, HTML5 games run natively in your browser without any plugins. This means faster load times, better security, and full compatibility with mobile devices.</p>
+      <ul>
+        <li><strong>No Plugins Needed:</strong> Play instantly in Chrome, Safari, Firefox, or Edge.</li>
+        <li><strong>Mobile Ready:</strong> Enjoy the same game on your iPhone, Android, or iPad.</li>
+        <li><strong>Safe & Secure:</strong> No risk of malware from downloading suspicious files.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={html5Games} />
+  </section>
+</Layout>

@@ -7,6 +7,7 @@ const mapGamePixItem = (item: any): Game => ({
   slug: item.namespace || item.id, // Use namespace if available for cleaner URLs
   title: item.title,
   description: item.description,
+  rich_content: item.rich_content,
   thumbnail: item.banner_image || item.image,
   url: item.url,
   width: item.width,
@@ -129,6 +130,46 @@ export const arcadeModernGames: Game[] = allGamePixGames.filter(g =>
   ['action', 'adventure', 'sports', 'racing', '3d'].some(c => g.category.toLowerCase().includes(c))
 ).slice(0, 36);
 
+// 5. Browser Games Subcategories
+export const browserHtml5Games: Game[] = allGamePixGames.filter(g => 
+  ['html5', 'canvas', 'casual', 'arcade'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+export const browserWebglGames: Game[] = allGamePixGames.filter(g => 
+  ['3d', 'racing', 'simulation', 'action'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+export const browserFlashGames: Game[] = allGamePixGames.filter(g => 
+  ['classic', 'platform', 'retro', '2d'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+// 6. No Download Games Subcategories
+export const noDownloadInstantGames: Game[] = allGamePixGames.filter(g => 
+  ['clicker', 'idle', 'runner', 'casual'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+export const noDownloadPlayNowGames: Game[] = allGamePixGames.filter(g => 
+  ['action', 'sports', 'racing', 'arcade'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+export const noDownloadZeroInstallGames: Game[] = allGamePixGames.filter(g => 
+  ['puzzle', 'card', 'board', 'logic'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+// 7. HTML5 Games Subcategories
+export const html5MobileGames: Game[] = allGamePixGames.filter(g => 
+  g.tags.includes('portrait') || ['casual', 'puzzle'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+export const html5CrossPlatformGames: Game[] = allGamePixGames.filter(g => 
+  ['strategy', 'rpg', 'simulation'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+export const html5OfflineGames: Game[] = allGamePixGames.filter(g => 
+  ['solitaire', 'sudoku', '2048', 'mahjong'].some(c => g.category.toLowerCase().includes(c))
+).slice(0, 36);
+
+
 // Main Category Exports (aggregates or specific selections)
 export const mainMiniGames: Game[] = allGamePixGames.slice(0, 36); // Mix
 export const mainSmallGames: Game[] = smallCasualGames;
@@ -158,16 +199,9 @@ export const getGamesByCategory = (category: string) => {
   return allGames.filter(g => g.category === category);
 };
 
-export const getRelatedGames = (game: Game, limit: number = 12): Game[] => {
+export const getRelatedGames = (game: Game, limit: number = 6): Game[] => {
+  // Simple related logic: same category
   return allGames
-    .filter(g => g.id !== game.id) // Exclude current
-    .map(g => {
-      let score = 0;
-      if (g.category === game.category) score += 3;
-      if (g.tags.some(t => game.tags.includes(t))) score += 1;
-      return { g, score };
-    })
-    .sort((a, b) => b.score - a.score)
-    .slice(0, limit)
-    .map(item => item.g);
+    .filter(g => g.id !== game.id && g.category === game.category)
+    .slice(0, limit);
 };

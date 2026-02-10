@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { browserGames } from '~/data/games';
+
+const metadata = {
+  title: 'Alternativas a Flash - Juega Sin Flash Player | MiniGamesHub',
+  description: 'Juega las mejores alternativas a los juegos Flash. Disfruta de juegos de navegador clásicos preservados y rehechos para navegadores modernos usando HTML5 y emuladores.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Alternativas a Flash",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/browser-games/flash-alternative",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": browserGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/es/" class="hover:text-primary">Inicio</a> &gt; 
+      <a href="/es/browser-games" class="hover:text-primary">Juegos de Navegador</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Alternativas a Flash</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Alternativas a Flash
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Manteniendo vivo el espíritu de los juegos Flash clásicos.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Vida después de Flash</h3>
+      <p>Adobe Flash Player puede haber desaparecido, pero los juegos perduran. Ofrecemos una gran colección de juegos HTML5 que capturan la diversión y simplicidad de la edad de oro de los juegos Flash.</p>
+      <ul>
+        <li><strong>Seguro y Protegido:</strong> Tecnología moderna sin los riesgos de seguridad de Flash.</li>
+        <li><strong>Funciona en Todas Partes:</strong> Juega en móvil y tableta, no solo en escritorio.</li>
+        <li><strong>Sensación Clásica:</strong> Disfruta de los mismos géneros: arcade, rompecabezas y juegos de vestir.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={browserGames} />
+  </section>
+</Layout>

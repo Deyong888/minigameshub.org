@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Zero Install Games - No Setup Required | MiniGamesHub',
+  description: 'Enjoy high-quality games without installing anything on your computer. Zero install games keep your device clean and secure.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Zero Install Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/no-download-games/zero-install",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/" class="hover:text-primary">Home</a> &gt; 
+      <a href="/no-download-games" class="hover:text-primary">No Download Games</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Zero Install</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Zero Install Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Keep your device clean. Just play.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Why Choose Zero Install?</h3>
+      <p>Installing games can clutter your hard drive and pose security risks. Zero Install games run entirely in your browser's sandbox, keeping your computer safe and your storage free.</p>
+      <ul>
+        <li><strong>Security:</strong> No executable files to run on your system.</li>
+        <li><strong>Storage:</strong> Save gigabytes of space on your hard drive.</li>
+        <li><strong>Clean:</strong> No leftover files or registry entries when you're done.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+  </section>
+</Layout>

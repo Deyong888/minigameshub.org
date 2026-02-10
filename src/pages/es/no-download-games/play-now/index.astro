@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Jugar Ahora - Juegos de Navegador Instantáneos | MiniGamesHub',
+  description: 'Haz clic y juega inmediatamente. Sin esperas, sin pantallas de carga, sin registro. Solo pura diversión instantánea.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Juegos Jugar Ahora",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/no-download-games/play-now",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/es/" class="hover:text-primary">Inicio</a> &gt; 
+      <a href="/es/no-download-games" class="hover:text-primary">Sin Descarga</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Jugar Ahora</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Jugar Ahora
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Satisfacción instantánea para los jugadores.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Acción de Juego Instantánea</h3>
+      <p>En un mundo de actualizaciones masivas e instalaciones largas, a veces solo quieres jugar. Nuestra colección "Jugar Ahora" se centra en juegos que cargan al instante y te llevan a la acción en segundos.</p>
+      <ul>
+        <li><strong>Carga Rápida:</strong> Activos optimizados para tiempos de inicio rápidos.</li>
+        <li><strong>Sin Cuentas:</strong> Sin muros de registro o inicio de sesión.</li>
+        <li><strong>Controles Simples:</strong> Entra directamente sin una curva de aprendizaje pronunciada.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+  </section>
+</Layout>

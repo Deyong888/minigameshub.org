@@ -73,12 +73,16 @@ const metadata = {
 
         <!-- Game Description -->
         <div class="prose dark:prose-invert max-w-none bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
-            <h3>About {game.title}</h3>
-            <p>{game.description}</p>
-            <p>Play {game.title} online directly in your browser. No download required. This game is part of the {game.category} games category.</p>
-            
-            <h4>How to Play</h4>
-            <p>Use keyboard arrows or WASD to control. Space to jump/action.</p>
+            {game.rich_content ? <div set:html={game.rich_content} /> : (
+                <>
+                    <h3>About {game.title}</h3>
+                    <p>{game.description}</p>
+                    <p>Play {game.title} online directly in your browser. No download required. This game is part of the {game.category} games category.</p>
+                    
+                    <h4>How to Play</h4>
+                    <p>Use keyboard arrows or WASD to control. Space to jump/action.</p>
+                </>
+            )}
         </div>
       </div>
 

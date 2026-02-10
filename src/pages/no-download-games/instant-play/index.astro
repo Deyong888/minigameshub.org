@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Instant Play Games - No Download, No Wait | MiniGamesHub',
+  description: 'Jump straight into the action with our instant play games. No download, no installation, just click and play. Perfect for quick breaks.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Instant Play Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/no-download-games/instant-play",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/" class="hover:text-primary">Home</a> &gt; 
+      <a href="/no-download-games" class="hover:text-primary">No Download Games</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Instant Play</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Instant Play Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Zero wait time. Maximum fun. Click and play immediately.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-green-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>What are Instant Play Games?</h3>
+      <p>Instant play games are designed for speed. They load in seconds and require absolutely no installation or disk space. Whether you have 5 minutes or an hour, these games are ready when you are.</p>
+      <ul>
+        <li><strong>Click & Play:</strong> No registration or setup required.</li>
+        <li><strong>Save Storage:</strong> Keep your device clean and fast.</li>
+        <li><strong>Play Anywhere:</strong> Access your favorite games from any computer.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+  </section>
+</Layout>

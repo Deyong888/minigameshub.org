@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Play Now - Instant Browser Games | MiniGamesHub',
+  description: 'Click and play immediately. No waiting, no loading screens, no registration. Just pure instant gaming fun.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Play Now Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/no-download-games/play-now",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/" class="hover:text-primary">Home</a> &gt; 
+      <a href="/no-download-games" class="hover:text-primary">No Download Games</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Play Now</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Play Now Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Instant gratification for gamers.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Instant Gaming Action</h3>
+      <p>In a world of massive updates and long installations, sometimes you just want to play. Our "Play Now" collection focuses on games that load instantly and get you into the action in seconds.</p>
+      <ul>
+        <li><strong>Fast Loading:</strong> Optimized assets for quick start times.</li>
+        <li><strong>No Accounts:</strong> No registration or login walls.</li>
+        <li><strong>Simple Controls:</strong> Jump right in without a steep learning curve.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+  </section>
+</Layout>

@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { html5Games } from '~/data/games';
+
+const metadata = {
+  title: 'Juegos para Móvil - Juega en iPhone y Android | MiniGamesHub',
+  description: 'Juega juegos gratis optimizados para teléfonos inteligentes y tabletas. No se requiere instalación de aplicaciones, funciona en tu navegador móvil.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Juegos para Móvil",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/html5-games/mobile-friendly",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": html5Games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/es/" class="hover:text-primary">Inicio</a> &gt; 
+      <a href="/es/html5-games" class="hover:text-primary">Juegos HTML5</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Para Móvil</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Juegos para Móvil
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Juegos diseñados para la pantalla táctil de tu teléfono.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Juega sobre la marcha</h3>
+      <p>Lleva tus juegos a cualquier lugar con nuestra colección de títulos optimizados para móviles. Estos juegos están diseñados para funcionar perfectamente en pantallas pequeñas con controles táctiles.</p>
+      <ul>
+        <li><strong>Diseño Responsivo:</strong> Se adapta a cualquier tamaño de pantalla.</li>
+        <li><strong>Controles Táctiles:</strong> Mecánicas intuitivas de toque y deslizamiento.</li>
+        <li><strong>Sin App Store:</strong> Juega al instante en Safari o Chrome.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={html5Games} />
+  </section>
+</Layout>

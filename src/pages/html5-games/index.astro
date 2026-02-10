@@ -1,0 +1,56 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { html5Games } from '~/data/games';
+
+const metadata = {
+  title: 'HTML5 Games - Play Modern Web Games Free',
+  description: 'Enjoy the latest HTML5 games playable on any device. Mobile-friendly, cross-platform, and offline-capable games that run smoothly in your browser.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "HTML5 Games",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/html5-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": html5Games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      HTML5 Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Modern, fast, and beautiful games that work everywhere.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/html5-games/mobile-friendly" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Mobile Friendly</a>
+      <a href="/html5-games/cross-platform" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Cross Platform</a>
+      <a href="/html5-games/offline-capable" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Offline Capable</a>
+    </div>
+
+    <GameGrid games={html5Games} />
+  </section>
+</Layout>

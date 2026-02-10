@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { browserGames } from '~/data/games';
+
+const metadata = {
+  title: 'Juegos WebGL - Juegos 3D para Navegador | MiniGamesHub',
+  description: 'Juega impresionantes juegos WebGL 3D en tu navegador. Experimenta gráficos de alta calidad y una jugabilidad inmersiva sin descargas.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Juegos WebGL",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/browser-games/webgl",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": browserGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/es/" class="hover:text-primary">Inicio</a> &gt; 
+      <a href="/es/browser-games" class="hover:text-primary">Juegos de Navegador</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">WebGL</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Juegos WebGL
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Experiencias 3D inmersivas directamente en tu navegador.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>¿Qué son los juegos WebGL?</h3>
+      <p>WebGL (Web Graphics Library) permite a los navegadores renderizar gráficos 3D de alto rendimiento sin plugins. Esto significa que puedes jugar juegos 3D con calidad de consola aquí mismo en MiniGamesHub.</p>
+      <ul>
+        <li><strong>Gráficos Impresionantes:</strong> Renderizado 3D real en tu navegador.</li>
+        <li><strong>Rendimiento Fluido:</strong> Aceleración por hardware para una jugabilidad rápida.</li>
+        <li><strong>Sin Descargas:</strong> Solo haz clic y juega, no se requiere instalación.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={browserGames} />
+  </section>
+</Layout>

@@ -1,0 +1,65 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { html5Games } from '~/data/games';
+
+const metadata = {
+  title: 'Juegos Multiplataforma - Juega en PC, Tablet y Móvil | MiniGamesHub',
+  description: 'Juega juegos que funcionan en todos los dispositivos. Comienza en tu PC, continúa en tu móvil. Experiencia de juego multiplataforma perfecta.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Juegos Multiplataforma",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/es/html5-games/cross-platform",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": html5Games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <div class="text-sm text-gray-500 mb-4 text-center">
+      <a href="/es/" class="hover:text-primary">Inicio</a> &gt; 
+      <a href="/es/html5-games" class="hover:text-primary">Juegos HTML5</a> &gt; 
+      <span class="font-bold text-gray-700 dark:text-gray-300">Multiplataforma</span>
+    </div>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Juegos Multiplataforma
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Un juego, todos los dispositivos. Juega donde quieras.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Juega en cualquier lugar</h3>
+      <p>¿Por qué limitarse a un dispositivo? Nuestros juegos multiplataforma están construidos con tecnología HTML5 responsiva que se adapta automáticamente al tamaño de tu pantalla.</p>
+      <ul>
+        <li><strong>Compatibilidad Universal:</strong> Windows, macOS, iOS, Android, Linux.</li>
+        <li><strong>Experiencia Perfecta:</strong> El mismo gran juego, sin importar cómo juegues.</li>
+        <li><strong>Basado en Navegador:</strong> No es necesario instalar aplicaciones separadas.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={html5Games} />
+  </section>
+</Layout>

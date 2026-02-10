@@ -82,7 +82,9 @@ export const getFooterData = (lang = 'en') => {
           { text: t('nav.miniGames'), href: getLink('/mini-games', lang) },
           { text: t('nav.smallGames'), href: getLink('/small-games', lang) },
           { text: t('nav.arcadeGames'), href: getLink('/arcade-games', lang) },
-          { text: t('nav.browserGames'), href: getLink('/mini-games', lang) },
+          { text: t('nav.browserGames'), href: getLink('/browser-games', lang) },
+          { text: t('nav.html5Games'), href: getLink('/html5-games', lang) },
+          { text: t('nav.noDownloadGames'), href: getLink('/no-download-games', lang) },
         ],
       },
       {
