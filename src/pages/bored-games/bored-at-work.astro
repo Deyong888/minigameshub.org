@@ -37,6 +37,34 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/bored-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">Bored Games</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Bored at Work</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-8 md:mb-12 font-heading text-center">
       Bored at Work Games
     </h1>
@@ -45,5 +73,25 @@ const schema = {
     </p>
 
     <GameGrid games={boredAtWorkGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Secret Office Gaming</h2>
+      <p>
+        Need a quick mental reset between spreadsheets? Our Bored at Work games are designed for the stealthy office gamer.
+        They are quiet, quick to pause, and don't look too suspicious if someone walks by your desk.
+      </p>
+      
+      <h3>The Art of Slacking (Responsibly)</h3>
+      <ul>
+        <li><strong>Alt-Tab Friendly:</strong> These games can be minimized or closed instantly.</li>
+        <li><strong>Muted by Default:</strong> No sudden loud noises to give you away.</li>
+        <li><strong>Stress Busters:</strong> Take out your frustration on a virtual object instead of your printer.</li>
+      </ul>
+      
+      <h3>Productivity Boosters?</h3>
+      <p>
+        Studies show that taking short, engaging breaks can actually improve focus and productivity in the long run. So go ahead, play a quick round—it's for work!
+      </p>
+    </div>
   </section>
 </Layout>

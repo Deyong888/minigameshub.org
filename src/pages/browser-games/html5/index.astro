@@ -37,11 +37,34 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
-    <div class="text-sm text-gray-500 mb-4 text-center">
-      <a href="/" class="hover:text-primary">Home</a> &gt; 
-      <a href="/browser-games" class="hover:text-primary">Browser Games</a> &gt; 
-      <span class="font-bold text-gray-700 dark:text-gray-300">HTML5</span>
-    </div>
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/browser-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">Browser Games</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">HTML5</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
 
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
       HTML5 Browser Games
@@ -61,5 +84,28 @@ const schema = {
     </div>
 
     <GameGrid games={html5Games} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Experience the Power of HTML5 Gaming</h2>
+      <p>
+        HTML5 has become the gold standard for web-based gaming, offering a rich, multimedia experience without the need for external plugins.
+        Our HTML5 browser games are designed to be lightweight, fast, and incredibly versatile. Whether you're on a high-end gaming PC or a budget smartphone, these games adapt to your device to provide the best possible performance.
+      </p>
+      
+      <h3>Advantages of HTML5 Games</h3>
+      <p>
+        Why are HTML5 games taking over the web? It comes down to accessibility and quality:
+      </p>
+      <ul>
+        <li><strong>Universal Access:</strong> Works on Chrome, Firefox, Safari, Edge, and Opera.</li>
+        <li><strong>Instant Loading:</strong> Optimized assets mean you start playing in seconds.</li>
+        <li><strong>Responsive Design:</strong> Games scale perfectly to fit any screen size, from large monitors to small phone screens.</li>
+      </ul>
+      
+      <h3>Popular Genres in HTML5</h3>
+      <p>
+        The versatility of HTML5 allows for a wide variety of game types. You'll find everything from complex strategy games and RPGs to quick puzzle games and endless runners. Developers are constantly pushing the boundaries of what's possible in a browser.
+      </p>
+    </div>
   </section>
 </Layout>

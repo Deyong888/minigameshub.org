@@ -37,11 +37,34 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
-    <div class="text-sm text-gray-500 mb-4 text-center">
-      <a href="/" class="hover:text-primary">Home</a> &gt; 
-      <a href="/html5-games" class="hover:text-primary">HTML5 Games</a> &gt; 
-      <span class="font-bold text-gray-700 dark:text-gray-300">Cross Platform</span>
-    </div>
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/html5-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">HTML5 Games</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Cross Platform</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
 
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
       Cross Platform Games
@@ -61,5 +84,28 @@ const schema = {
     </div>
 
     <GameGrid games={html5Games} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Seamless Gaming Across All Your Devices</h2>
+      <p>
+        In the modern world, you shouldn't be tied to a single device to enjoy your favorite games. Our cross-platform games are engineered to provide a consistent and high-quality experience whether you are at your desk or on the move.
+        Using responsive HTML5 canvases and adaptive input handling, these games automatically detect your device and adjust accordingly.
+      </p>
+      
+      <h3>How It Works</h3>
+      <p>
+        Developers use flexible coding frameworks that scale graphics and UI elements based on the screen resolution.
+      </p>
+      <ul>
+        <li><strong>Unified Progress:</strong> Some games allow you to save your progress locally or via cloud (if supported) to resume later.</li>
+        <li><strong>Adaptive Controls:</strong> Keyboard and mouse on PC, touch controls on mobile.</li>
+        <li><strong>No Compatibility Issues:</strong> Forget about checking system requirements; if you have a modern browser, you can play.</li>
+      </ul>
+      
+      <h3>Best Browsers for Cross-Platform Gaming</h3>
+      <p>
+        For the smoothest experience, we recommend Google Chrome, Safari, or Microsoft Edge. These browsers have the best support for the latest web standards that power these games.
+      </p>
+    </div>
   </section>
 </Layout>

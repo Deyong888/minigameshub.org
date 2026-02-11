@@ -4,14 +4,14 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import { miniActionGames } from '~/data/games';
 
 const metadata = {
-  title: 'Action Mini Games - Fast-Paced Fun',
-  description: 'Adrenaline pumping action mini games. Shooting, fighting, and defense games for quick fun.',
+  title: 'Minijuegos de Acción - Diversión Trepidante',
+  description: 'Minijuegos de acción llenos de adrenalina. Juegos de disparos, peleas y defensa para diversión rápida.',
 };
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Action Mini Games",
+  "name": "Minijuegos de Acción",
   "description": metadata.description,
   "url": "https://minigameshub.org/es/mini-games/action",
   "mainEntity": {
@@ -22,7 +22,7 @@ const schema = {
       "item": {
         "@type": "VideoGame",
         "name": game.title,
-        "url": `https://minigameshub.org/game/${game.slug}`,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
         "image": game.thumbnail,
         "description": game.description,
         "genre": game.category,
@@ -37,13 +37,54 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/es/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Inicio
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/es/mini-games/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Minijuegos
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Acción</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
-      Action Mini Games
+      Minijuegos de Acción
     </h1>
     <p class="text-xl text-muted mb-8 text-center">
-      Fast-paced action, shooting, and combat games.
+      Acción trepidante, disparos y juegos de combate.
     </p>
     <GameGrid games={miniActionGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Acción Instantánea</h2>
+      <p>
+        Siente la emoción con nuestros minijuegos de acción. Diseñados para ráfagas rápidas de emoción, estos juegos te ponen directamente en el calor de la batalla sin largas introducciones ni tutoriales.
+      </p>
+      <h3>¿Por qué jugar acción rápida?</h3>
+      <ul>
+        <li><strong>Adrenalina Rápida:</strong> Emoción inmediata en sesiones cortas.</li>
+        <li><strong>Variedad de Combate:</strong> Desde disparos hasta peleas cuerpo a cuerpo.</li>
+        <li><strong>Desafío de Habilidad:</strong> Pon a prueba tus reflejos y precisión.</li>
+      </ul>
+    </div>
   </section>
 </Layout>
 

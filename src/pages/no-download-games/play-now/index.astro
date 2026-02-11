@@ -37,11 +37,34 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
-    <div class="text-sm text-gray-500 mb-4 text-center">
-      <a href="/" class="hover:text-primary">Home</a> &gt; 
-      <a href="/no-download-games" class="hover:text-primary">No Download Games</a> &gt; 
-      <span class="font-bold text-gray-700 dark:text-gray-300">Play Now</span>
-    </div>
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/no-download-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">No Download Games</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Play Now</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
 
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
       Play Now Games
@@ -61,5 +84,25 @@ const schema = {
     </div>
 
     <GameGrid games={noDownloadGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Click and Play: No Barriers to Fun</h2>
+      <p>
+        We believe that gaming should be accessible to everyone, instantly. That's why our "Play Now" section removes all the common barriers between you and the game.
+        No paywalls, no mandatory sign-ups, and no confusing setup wizards. Just pure, unadulterated gaming.
+      </p>
+      
+      <h3>Why Users Love Play Now Games</h3>
+      <ul>
+        <li><strong>Accessibility:</strong> Great for shared computers or public terminals where you can't install software.</li>
+        <li><strong>Variety:</strong> Try dozens of games in the time it would take to install just one AAA title.</li>
+        <li><strong>Privacy:</strong> Since you don't need an account, you can play anonymously.</li>
+      </ul>
+      
+      <h3>A World of Genres</h3>
+      <p>
+        Don't let the speed fool you; these aren't just simple clickers. You can find deep RPGs, complex strategy games, and skill-based arcade shooters that are all ready to play right now.
+      </p>
+    </div>
   </section>
 </Layout>

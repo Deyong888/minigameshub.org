@@ -4,14 +4,14 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import { mainRelaxGames } from '~/data/games';
 
 const metadata = {
-  title: 'Relax Games - Stress Relief & Calming',
-  description: 'Unwind with our collection of relax games. Peaceful, calming, and stress-free gaming.',
+  title: 'Juegos de Relajación - Alivio del Estrés y Calma',
+  description: 'Relájate con nuestra colección de juegos de relajación. Juegos pacíficos, calmantes y libres de estrés.',
 };
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Relax Games",
+  "name": "Juegos de Relajación",
   "description": metadata.description,
   "url": "https://minigameshub.org/es/relax-games",
   "mainEntity": {
@@ -37,21 +37,97 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/es/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Inicio
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Juegos de Relajación</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
-      Relax Games
+      Juegos de Relajación
     </h1>
     <p class="text-xl text-muted mb-8 text-center">
-      Peaceful games to help you unwind and destress.
+      Juegos tranquilos para ayudarte a desconectar y desestresarte.
     </p>
 
     <!-- Categories Cloud -->
     <div class="flex flex-wrap justify-center gap-2 mb-12">
-      <a href="/es/relax-games/stress-relief" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Stress Relief</a>
-      <a href="/es/relax-games/calming" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Calming</a>
-      <a href="/es/relax-games/casual" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Casual</a>
+      <a href="/es/relax-games/stress-relief" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Alivio del Estrés</a>
+      <a href="/es/relax-games/calming" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Calmantes</a>
+      <a href="/es/relax-games/casual" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Casuales</a>
+    </div>
+
+    <div class="mt-8 mb-12">
+      <h2 class="text-2xl font-bold mb-8 text-center">Explora Categorías de Relajación</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/es/relax-games/stress-relief" class="block p-6 bg-white dark:bg-slate-900 rounded-lg shadow hover:shadow-lg transition border border-gray-200 dark:border-gray-700 group">
+          <div class="flex items-center mb-4">
+            <div class="p-3 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 group-hover:bg-blue-600 group-hover:text-white transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="ml-4 text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition">Alivio del Estrés</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400">Libera tensión con mecánicas satisfactorias.</p>
+        </a>
+
+        <a href="/es/relax-games/calming" class="block p-6 bg-white dark:bg-slate-900 rounded-lg shadow hover:shadow-lg transition border border-gray-200 dark:border-gray-700 group">
+          <div class="flex items-center mb-4">
+            <div class="p-3 rounded-full bg-teal-100 dark:bg-teal-900 text-teal-600 dark:text-teal-300 group-hover:bg-teal-600 group-hover:text-white transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+              </svg>
+            </div>
+            <h3 class="ml-4 text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition">Calmantes</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400">Experiencias zen y atmósfera pacífica.</p>
+        </a>
+
+        <a href="/es/relax-games/casual" class="block p-6 bg-white dark:bg-slate-900 rounded-lg shadow hover:shadow-lg transition border border-gray-200 dark:border-gray-700 group">
+          <div class="flex items-center mb-4">
+            <div class="p-3 rounded-full bg-green-100 dark:bg-green-900 text-green-600 dark:text-green-300 group-hover:bg-green-600 group-hover:text-white transition">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="ml-4 text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary transition">Casuales</h3>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400">Juego relajado sin presión.</p>
+        </a>
+      </div>
     </div>
 
     <GameGrid games={mainRelaxGames} />
+    
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Encuentra Tu Paz Interior</h2>
+      <p>
+        En el mundo acelerado de hoy, tomarse un momento para relajarse es esencial. Nuestra colección de juegos de relajación está curada para proporcionar un escape pacífico del estrés diario. Ya sea que busques alivio satisfactorio del estrés o rompecabezas calmantes, aquí encontrarás tu santuario digital.
+      </p>
+      <h3>Beneficios de los Juegos Relajantes</h3>
+      <ul>
+        <li><strong>Reducción del Estrés:</strong> Mecánicas diseñadas para calmar la ansiedad.</li>
+        <li><strong>Atención Plena:</strong> Enfócate en el momento presente con un juego suave.</li>
+        <li><strong>Sin Presión:</strong> Sin límites de tiempo ni puntuaciones altas de las que preocuparse.</li>
+      </ul>
+    </div>
   </section>
 </Layout>
 

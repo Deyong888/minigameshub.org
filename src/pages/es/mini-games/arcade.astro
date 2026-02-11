@@ -4,14 +4,14 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import { miniArcadeGames } from '~/data/games';
 
 const metadata = {
-  title: 'Arcade Mini Games - Play Free Online',
-  description: 'Play the best arcade mini games online. Classic fun, instant play, no downloads.',
+  title: 'Minijuegos Arcade - Juega Gratis Online',
+  description: 'Juega los mejores minijuegos arcade online. Diversión clásica, juego instantáneo, sin descargas.',
 };
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Arcade Mini Games",
+  "name": "Minijuegos Arcade",
   "description": metadata.description,
   "url": "https://minigameshub.org/es/mini-games/arcade",
   "mainEntity": {
@@ -22,7 +22,7 @@ const schema = {
       "item": {
         "@type": "VideoGame",
         "name": game.title,
-        "url": `https://minigameshub.org/game/${game.slug}`,
+        "url": `https://minigameshub.org/es/game/${game.slug}`,
         "image": game.thumbnail,
         "description": game.description,
         "genre": game.category,
@@ -37,13 +37,54 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/es/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Inicio
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/es/mini-games/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Minijuegos
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Arcade</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
-      Arcade Mini Games
+      Minijuegos Arcade
     </h1>
     <p class="text-xl text-muted mb-8 text-center">
-      Classic and modern arcade style mini games.
+      Minijuegos de estilo arcade clásico y moderno.
     </p>
     <GameGrid games={miniArcadeGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Diversión Arcade en tu Bolsillo</h2>
+      <p>
+        Experimenta la emoción de los arcades clásicos sin necesidad de monedas. Nuestros minijuegos arcade capturan la esencia de los juegos retro y modernos en formatos rápidos.
+      </p>
+      <h3>Características Arcade</h3>
+      <ul>
+        <li><strong>Puntuaciones Altas:</strong> Compite por el primer puesto.</li>
+        <li><strong>Jugabilidad Simple:</strong> Controles fáciles, difícil de dominar.</li>
+        <li><strong>Acción Rápida:</strong> Perfecto para pausas cortas.</li>
+      </ul>
+    </div>
   </section>
 </Layout>
 

@@ -4,14 +4,14 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import { arcadeClassicGames } from '~/data/games';
 
 const metadata = {
-  title: 'Classic Arcade Games - Old School Fun',
-  description: 'Experience the classics. Pac-Man style, Space Invaders style, and more.',
+  title: 'Juegos Arcade Clásicos - Diversión de la Vieja Escuela',
+  description: 'Experimenta los clásicos. Estilo Pac-Man, Space Invaders y más.',
 };
 
 const schema = {
   "@context": "https://schema.org",
   "@type": "CollectionPage",
-  "name": "Classic Arcade Games",
+  "name": "Juegos Arcade Clásicos",
   "description": metadata.description,
   "url": "https://minigameshub.org/es/arcade-games/classic",
   "mainEntity": {
@@ -37,13 +37,58 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/es/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Inicio
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/es/arcade-games/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Juegos Arcade
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Clásicos</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
-      Classic Arcade Games
+      Juegos Arcade Clásicos
     </h1>
     <p class="text-xl text-muted mb-8 text-center">
-      Timeless classics that started it all.
+      Clásicos atemporales que lo iniciaron todo.
     </p>
     <GameGrid games={arcadeClassicGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Revive la Era Dorada de los Arcade</h2>
+      <p>
+        Los juegos arcade clásicos definieron una generación de entretenimiento. Con mecánicas simples pero desafiantes, estos juegos se centran en la habilidad pura, los reflejos rápidos y la búsqueda de la puntuación más alta.
+        Desde laberintos hasta disparos espaciales, nuestra colección clásica trae la experiencia de la sala de juegos directamente a tu pantalla.
+      </p>
+      <h3>Por Qué Amamos los Clásicos</h3>
+      <p>
+        Hay una razón por la que estos juegos han resistido la prueba del tiempo. Su diseño de juego "fácil de aprender, difícil de dominar" crea un ciclo adictivo que te hace volver por "una partida más".
+      </p>
+      <ul>
+        <li><strong>Jugabilidad Pura:</strong> Sin tutoriales largos ni tramas complejas, solo acción inmediata.</li>
+        <li><strong>Desafío de Puntuación:</strong> Compite contra ti mismo para superar tu mejor marca personal.</li>
+        <li><strong>Estilo Icónico:</strong> Disfruta de los gráficos y sonidos que sentaron las bases de los videojuegos modernos.</li>
+      </ul>
+    </div>
   </section>
 </Layout>
 

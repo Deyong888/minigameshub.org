@@ -37,6 +37,34 @@ const schema = {
 <Layout metadata={metadata}>
   <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Home
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/mini-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary md:ml-2 dark:text-gray-400 dark:hover:text-white">Mini Games</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Action</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
     <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
       Action Mini Games
     </h1>
@@ -44,5 +72,25 @@ const schema = {
       Fast-paced action, shooting, and combat games.
     </p>
     <GameGrid games={miniActionGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Fast-Paced Action Games for Adrenaline Junkies</h2>
+      <p>
+        Get your heart racing with our collection of action mini-games. Whether you love intense shooters, challenging platformers, or epic fighting games, we have something to test your reflexes and skills.
+        These games are designed for quick bursts of excitement, making them perfect for a short break or a long gaming session.
+      </p>
+      
+      <h3>Top Features of Our Action Games</h3>
+      <ul>
+        <li><strong>Instant Action:</strong> Jump straight into the gameplay with no long tutorials.</li>
+        <li><strong>Skill-Based Challenges:</strong> Master the controls and climb the leaderboards.</li>
+        <li><strong>Variety of Sub-Genres:</strong> From zombie survival to stickman combat.</li>
+      </ul>
+      
+      <h3>Why Play Action Mini Games?</h3>
+      <p>
+        Action games are great for improving hand-eye coordination and reaction time. They provide a satisfying release of energy and a fun way to challenge yourself.
+      </p>
+    </div>
   </section>
 </Layout>
