@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { miniPuzzleGames } from '~/data/games';
+
+const metadata = {
+  title: '益智迷你游戏 - 谜题与逻辑',
+  description: '通过我们的益智迷你游戏系列挑战你的思维。数独、2048、消除游戏等。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "益智迷你游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/mini-games/puzzle",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": miniPuzzleGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/zh/mini-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            迷你游戏
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">益智</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      益智迷你游戏
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      谜题、逻辑拼图与智力挑战。
+    </p>
+    <GameGrid games={miniPuzzleGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>训练你的大脑</h2>
+      <p>
+        通过我们的益智迷你游戏保持思维敏捷。从数学逻辑到模式识别，这些游戏提供了快速而有趣的心理训练。
+      </p>
+      <h3>益智游戏的好处</h3>
+      <ul>
+        <li><strong>脑力刺激：</strong> 提高专注力与记忆力。</li>
+        <li><strong>解决问题：</strong> 培养逻辑思维。</li>
+        <li><strong>高效放松：</strong> 在锻炼大脑的同时放松身心。</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

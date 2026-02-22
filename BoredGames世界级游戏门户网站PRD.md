@@ -117,17 +117,17 @@ minigameshub.org/                                    ← 首页（L1-L2关键词
     <meta name="twitter:description" content="5000+ free mini games, browser games, HTML5 games. No download!">
     
     <!-- Canonical -->
-    <link rel="canonical" href="https://minigameshub.org/">
+    <link rel="canonical" href="https://minigameshub.org">
     
     <!-- Hreflang（多语言） -->
     <link rel="alternate" hreflang="en" href="https://minigameshub.org/">
-    <link rel="alternate" hreflang="zh" href="https://minigameshub.org/zh/">
-    <link rel="alternate" hreflang="hi" href="https://minigameshub.org/hi/">
-    <link rel="alternate" hreflang="ja" href="https://minigameshub.org/ja/">
-    <link rel="alternate" hreflang="ru" href="https://minigameshub.org/ru/">
-    <link rel="alternate" hreflang="vi" href="https://minigameshub.org/vi/">
-    <link rel="alternate" hreflang="de" href="https://minigameshub.org/de/">
-    <link rel="alternate" hreflang="x-default" href="https://minigameshub.org/">
+    <link rel="alternate" hreflang="zh" href="https://minigameshub.org/zh">
+    <link rel="alternate" hreflang="hi" href="https://minigameshub.org/hi">
+    <link rel="alternate" hreflang="ja" href="https://minigameshub.org/ja">
+    <link rel="alternate" hreflang="ru" href="https://minigameshub.org/ru">
+    <link rel="alternate" hreflang="vi" href="https://minigameshub.org/vi">
+    <link rel="alternate" hreflang="de" href="https://minigameshub.org/de">
+    <link rel="alternate" hreflang="x-default" href="https://minigameshub.org">
     
     <!-- Schema.org -->
     <script type="application/ld+json">
@@ -775,7 +775,6 @@ const embedUrl = `${game.url}&sid=GM8A7`;  // 必须包含SID
     });
 </script>
 
-/* 用户交互脚本：收藏与历史记录 */
 <script>
     // 简单的本地存储管理
     const GAME_ID = document.querySelector('.game-player').dataset.gameId;

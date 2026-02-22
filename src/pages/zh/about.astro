@@ -1,0 +1,121 @@
+---
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: '关于我们',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="关于我们"
+    image={{
+      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'MiniGamesHub 图片',
+    }}
+  >
+    <Fragment slot="title">
+      用我们精彩的 <br />
+      <span class="text-accent dark:text-white"> 迷你游戏</span> 丰富您的闲暇时光
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      MiniGamesHub 是您对抗无聊的首选目的地。 
+      我们精选了最优秀的浏览器游戏、HTML5 游戏和迷你游戏， 
+      您无需下载即可立即畅玩。无论是在工作、学校还是在家中。
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="关于我们的统计数据"
+    stats={[
+      { title: '游戏数量', amount: '+5000' },
+      { title: '用户数量', amount: '1M+' },
+      { title: '分类数量', amount: '20+' },
+      { title: '乐趣指数', amount: '∞' },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="我们的主要分类"
+    subtitle="探索为各类玩家精心设计的丰富流派。"
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: '上班摸鱼',
+        description:
+          '隐蔽的游戏、快速谜题和策略游戏，非常适合 5 分钟的休息时间。',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: '学校娱乐',
+        description:
+          '可在 Chromebook 和学校网络上运行的教育类及解封游戏。',
+        icon: 'tabler:school',
+      },
+      {
+        title: '迷你游戏',
+        description:
+          '快速动作、街机和休闲游戏，带来即时乐趣。',
+        icon: 'tabler:device-gamepad',
+      },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    columns={3}
+    isAfterContent={true}
+    items={[
+      {
+        title: '无需下载',
+        description:
+          '告别冗长的安装过程。我们所有的游戏都可以直接在您的浏览器中运行。',
+        icon: 'tabler:cloud-download',
+      },
+      {
+        title: '移动端兼容',
+        description:
+          '随时随地通过手机或平板电脑享受您喜爱的游戏。',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: '永久免费',
+        description:
+          '免费无限次访问我们的整个游戏库，没有任何费用。',
+        icon: 'tabler:coin',
+      },
+    ]}
+  />
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="公司信息"
+    subtitle="MiniGamesHub.org 由 Synthflow Digital LTD 所有并运营。"
+    items={[
+      {
+        title: '注册地址',
+        description: 'Office 16430, 182-184 High Street North, East Ham, London, E6 2JA',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: '联系邮箱',
+        description: 'support@synthflowdigital.com',
+        icon: 'tabler:mail',
+      },
+    ]}
+  />
+</Layout>

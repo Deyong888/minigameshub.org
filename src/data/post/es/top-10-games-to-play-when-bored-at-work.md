@@ -47,6 +47,6 @@ Las investigaciones muestran que tomar "micro-descansos" cortos puede **mejorar 
 ¿Preocupado por que te atrapen? Todos los juegos en **BoredGames.work** vienen con una **Tecla del Jefe** incorporada. Simplemente presiona `ESC` y el juego desaparece instantáneamente, reemplazado por una página inofensiva.
 
 ## Conclusión
-No dejes que el aburrimiento agote tu energía. Marca [BoredGames.work](https://boredgames.work) como favorito y convierte tu tiempo de inactividad en tiempo de diversión.
+No dejes que el aburrimiento agote tu energía. Marca [BoredGames.work](https://minigameshub.org/es/bored-games) como favorito y convierte tu tiempo de inactividad en tiempo de diversión.
 
 *¡Feliz juego!*

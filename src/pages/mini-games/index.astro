@@ -13,7 +13,7 @@ const schema = {
   "@type": "CollectionPage",
   "name": "Mini Games",
   "description": metadata.description,
-  "url": "https://boredgames.work/mini-games",
+  "url": "https://minigameshub.org/mini-games",
   "mainEntity": {
     "@type": "ItemList",
     "itemListElement": miniGames.map((game, index) => ({
@@ -22,7 +22,7 @@ const schema = {
       "item": {
         "@type": "VideoGame",
         "name": game.title,
-        "url": `https://boredgames.work/game/${game.slug}`,
+        "url": `https://minigameshub.org/game/${game.id}-${game.slug}`,
         "image": game.thumbnail,
         "description": game.description,
         "genre": game.category,

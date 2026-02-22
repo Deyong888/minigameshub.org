@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { miniArcadeGames } from '~/data/games';
+
+const metadata = {
+  title: '街机迷你游戏 - 在线免费玩',
+  description: '玩最好的在线街机迷你游戏。经典乐趣，即点即玩，无需下载。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "街机迷你游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/mini-games/arcade",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": miniArcadeGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/zh/mini-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            迷你游戏
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">街机</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      街机迷你游戏
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      经典与现代风格的街机迷你游戏。
+    </p>
+    <GameGrid games={miniArcadeGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>口袋里的街机乐趣</h2>
+      <p>
+        无需投币，即可体验经典街机的快感。我们的街机迷你游戏以快节奏的形式捕捉了复古与现代游戏的精髓。
+      </p>
+      <h3>街机特色</h3>
+      <ul>
+        <li><strong>高分榜：</strong> 争夺榜首位置。</li>
+        <li><strong>简单玩法：</strong> 易于上手，难于精通。</li>
+        <li><strong>快节奏动作：</strong> 非常适合短时间休息。</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

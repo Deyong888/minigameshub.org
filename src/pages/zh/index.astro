@@ -1,0 +1,253 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import GameHero from '~/components/widgets/GameHero.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+import { 
+  // Mini Games
+  miniArcadeGames, miniPuzzleGames, miniActionGames,
+  // Small Games
+  smallCasualGames, smallQuickGames, smallShortGames,
+  // Relax Games
+  relaxStressReliefGames, relaxCalmingGames, relaxCasualGames,
+  // Bored Games
+  officeGames, unblockedGames, waitingInLineGames,
+  // Arcade Games
+  arcadeClassicGames, arcadeRetroGames, arcadeModernGames,
+  // Browser Games
+  browserHtml5Games, browserWebglGames, browserFlashGames,
+  // No Download Games
+  noDownloadInstantGames, noDownloadPlayNowGames, noDownloadZeroInstallGames,
+  // HTML5 Games
+  html5MobileGames, html5CrossPlatformGames, html5OfflineGames
+} from '~/data/games';
+
+const metadata = {
+  title: 'MiniGamesHub - 在线玩 5000+ 迷你游戏、小游戏和 HTML5 游戏',
+  ignoreTitleTemplate: true,
+  description: '上班或在学校感到无聊？在 MiniGamesHub 立即在线玩 5000+ 免费迷你游戏、网页游戏和 HTML5 游戏。无需下载，无需安装，点击即玩！',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+  <div class="py-6">
+    <div class="text-center mb-4">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-2 font-heading">
+        MiniGamesHub - 在线玩 5000+ 迷你游戏、小游戏和 HTML5 游戏
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-slate-400 tagline">
+        免费街机游戏、放松游戏以及无聊时玩的游戏。无需下载！
+      </p>
+    </div>
+    <GameHero />
+  </div>
+
+  <!-- 1. Mini Games (Core) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/mini-games" class="hover:text-primary transition">🎮 迷你游戏 - 快速乐趣</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        精选在线<strong>迷你游戏</strong>合集。短小精悍，极具成瘾性，非常适合茶余饭后快速放松。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">街机迷你游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">经典<strong>街机游戏</strong>的迷你版本。包含 Pac-Man、Tetris 等更多 <strong>HTML5 游戏</strong>。</p>
+        <GameGrid games={miniArcadeGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">益智迷你游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">挑战大脑的<strong>益智迷你游戏</strong> - 2048、数独、消除类及<strong>小游戏</strong>。</p>
+        <GameGrid games={miniPuzzleGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">动作迷你游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">快节奏的<strong>动作迷你游戏</strong>，为寻求刺激的玩家准备。</p>
+        <GameGrid games={miniActionGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 2. Small Games (Core) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-gray-50 dark:bg-slate-900/10">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/small-games" class="hover:text-primary transition">🎯 小游戏 - 轻松上手</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        发现乐趣无穷的<strong>小游戏</strong>。适用于任何设备的轻量级 <strong>HTML5 游戏</strong>。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">休闲小游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">轻松惬意的<strong>休闲小游戏</strong> - 释放压力的完美选择。</p>
+        <GameGrid games={smallCasualGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">快速小游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">5 分钟内的<strong>小游戏</strong> - 忙碌日程中的理想调剂。</p>
+        <GameGrid games={smallQuickGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">短时游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">短平快的游戏体验，带来即时满足感。</p>
+        <GameGrid games={smallShortGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 3. Relax Games (Emotional) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/relax-games" class="hover:text-primary transition">😌 放松游戏 - 缓解压力</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        在我们的<strong>放松游戏</strong>合集中放松身心。宁静、平和且具有疗愈感的<strong>迷你游戏</strong>。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">镇静放松游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">柔和的<strong>放松游戏</strong>，助您减少压力和焦虑。</p>
+        <GameGrid games={relaxCalmingGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">缓解压力</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">专为忘掉烦恼而设计的游戏。</p>
+        <GameGrid games={relaxStressReliefGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">休闲放松游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">无压力的<strong>放松游戏</strong>，享受宁静的游戏时光。</p>
+        <GameGrid games={relaxCasualGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 4. Bored Games (Scenario) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/bored-games" class="hover:text-primary transition">🥱 无聊必备游戏</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        用我们精心挑选的合集击退无聊。涵盖工作、学校和家庭等场景的<strong>无聊必备游戏</strong>。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">上班摸鱼</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">隐蔽性高的<strong>上班玩的游戏</strong>。包含老板键功能！</p>
+        <GameGrid games={officeGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">学校解闷</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc"><strong>学校玩的游戏</strong> - 已解除封锁，对 Chromebook 友好。</p>
+        <GameGrid games={unblockedGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">排队等候</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">轻松的<strong>排队等候游戏</strong> - 无需下载。</p>
+        <GameGrid games={waitingInLineGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 5. Arcade Games (Genre) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-green-50 dark:bg-slate-900/20">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/arcade-games" class="hover:text-primary transition">👾 街机游戏 - 怀旧乐趣</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        进入我们的虚拟街机厅！经典与现代<strong>街机游戏</strong> - 全部免费。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">经典街机游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">令人怀念的 80 和 90 年代<strong>街机游戏</strong>，通过 <strong>HTML5</strong> 技术重现。</p>
+        <GameGrid games={arcadeClassicGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">复古街机游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">像素艺术的完美呈现，老派游戏的挑战。 </p>
+        <GameGrid games={arcadeRetroGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">现代街机游戏</h3>
+        <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">拥有精美画面和成瘾玩法的全新<strong>街机游戏</strong>。</p>
+        <GameGrid games={arcadeModernGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 6. Browser Games (Tech - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/browser-games" class="hover:text-primary transition">🌐 网页游戏</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        直接在浏览器中玩。无需插件，告别烦恼。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">HTML5 网页游戏</h3>
+        <GameGrid games={browserHtml5Games} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">WebGL 3D 游戏</h3>
+        <GameGrid games={browserWebglGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">Flash 替代游戏</h3>
+        <GameGrid games={browserFlashGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <!-- 7. No Download Games (Feature - Integrated) -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-yellow-50 dark:bg-slate-900/10">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/zh/no-download-games" class="hover:text-primary transition">⚡ 无需下载游戏</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        即时乐趣，无需等待。
+      </p>
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">即时游戏</h3>
+        <GameGrid games={noDownloadInstantGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">立即开始</h3>
+        <GameGrid games={noDownloadPlayNowGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+        <h3 class="text-2xl font-bold mb-4">无需安装</h3>
+        <GameGrid games={noDownloadZeroInstallGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <FAQs />
+</Layout>

@@ -1,0 +1,109 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: '零安装游戏 - 无需配置 | MiniGamesHub',
+  description: '无需在您的电脑上安装任何程序，即可享受高质量游戏。零安装游戏保持您的设备整洁安全。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "零安装游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/no-download-games/zero-install",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/zh/no-download-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">无需下载</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">零安装</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      零安装游戏
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      保持您的设备整洁。即刻畅玩。
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>为什么选择零安装？</h3>
+      <p>安装游戏可能会导致硬盘杂乱并带来安全风险。零安装游戏完全在浏览器的沙箱中运行，既能保证您的电脑安全，又能腾出存储空间。</p>
+      <ul>
+        <li><strong>安全性：</strong> 系统中无需运行任何可执行文件。</li>
+        <li><strong>存储：</strong> 节省数 GB 的硬盘空间。</li>
+        <li><strong>整洁：</strong> 游戏结束时不会留下任何冗余文件或注册表项。</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>通过零安装游戏保持电脑整洁</h2>
+      <p>
+        随着时间的推移，您安装的每一款软件都会让电脑变慢。零安装游戏就是解决方案。它们完全在网络浏览器的安全环境中运行，一旦您关闭标签页，就不会在系统中留下任何痕迹。
+        这是在个人或办公电脑上享受游戏的最整洁、最安全的方式。
+      </p>
+      
+      <h3>安全性与性能优势</h3>
+      <ul>
+        <li><strong>沙箱环境：</strong> 网页游戏无法访问您的个人文件或系统设置。</li>
+        <li><strong>无后台进程：</strong> 与安装的游戏不同，这些游戏不会在后台运行更新程序或启动器。</li>
+        <li><strong>始终最新：</strong> 您玩到的始终是服务器上的最新版本，无需手动打补丁。</li>
+      </ul>
+      
+      <h3>低配硬件的理想选择</h3>
+      <p>
+        由于这些游戏依赖浏览器引擎，它们通常比独立应用程序轻量得多，非常适合旧款笔记本电脑或 Chromebook。
+      </p>
+    </div>
+  </section>
+</Layout>

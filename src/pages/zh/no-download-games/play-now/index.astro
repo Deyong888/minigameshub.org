@@ -1,0 +1,109 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: '现在就开始玩 - 网页即时游戏 | MiniGamesHub',
+  description: '点击即可立即畅玩。无需等待，无需加载屏幕，无需注册。纯粹的即时乐趣。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "现在就开始玩游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/no-download-games/play-now",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/zh/no-download-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">无需下载</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">现在就开始玩</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      现在就开始玩
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      为玩家提供即时的满足感。
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>即时游戏行动</h3>
+      <p>在充满大规模更新和漫长安装的世界里，有时您只想直接玩游戏。我们的“现在就开始玩”合集专注于那些能瞬间加载并让您在几秒钟内进入状态的游戏。</p>
+      <ul>
+        <li><strong>快速加载：</strong> 优化的资源确保快速启动。</li>
+        <li><strong>无需账户：</strong> 没有注册或登录的障碍。</li>
+        <li><strong>简单操作：</strong> 无需复杂的学习过程，直接上手。</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>即点即玩：乐趣无界限</h2>
+      <p>
+        我们相信游戏应该是触手可及的。这就是为什么我们的“现在就开始玩”板块消除了您与游戏之间所有常见的障碍。
+        没有付费墙，没有强制注册，也没有复杂的设置。只有纯粹、原汁原味的游戏体验。
+      </p>
+      
+      <h3>为什么用户喜欢“现在就开始玩”游戏</h3>
+      <ul>
+        <li><strong>可访问性：</strong> 非常适合无法安装软件的公共电脑或终端。</li>
+        <li><strong>多样性：</strong> 在安装一个大型游戏的时间里，您可以尝试几十个不同的游戏。</li>
+        <li><strong>隐私：</strong> 无需账户，您可以匿名畅玩。</li>
+      </ul>
+      
+      <h3>丰富多彩的游戏类型</h3>
+      <p>
+        不要被速度迷惑；这些不仅仅是简单的游戏。您可以在这里找到深度的 RPG、复杂的策略游戏以及极具挑战性的街机射击游戏，它们都已准备就绪，等您来战。
+      </p>
+    </div>
+  </section>
+</Layout>

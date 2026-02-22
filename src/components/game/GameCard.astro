@@ -14,7 +14,7 @@ const lang = getLangFromUrl(Astro.url);
 
 // Use slug from game data if available, otherwise generate from title
 const slug = game.slug || game.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-const gameUrl = lang === 'es' ? `/es/game/${game.id}-${slug}` : `/game/${game.id}-${slug}`;
+const gameUrl = lang === 'es' ? `/es/game/${game.id}-${slug}` : lang === 'zh' ? `/zh/game/${game.id}-${slug}` : `/game/${game.id}-${slug}`;
 
 // Generate keyword-rich alt text
 const altText = `${game.title} - ${game.category} game, play online free, no download`;

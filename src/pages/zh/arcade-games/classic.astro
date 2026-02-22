@@ -1,0 +1,96 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { arcadeClassicGames } from '~/data/games';
+
+const metadata = {
+  title: '经典街机游戏 - 老派乐趣',
+  description: '体验经典街机乐趣。吃豆人、小蜜蜂风格游戏及更多精彩内容。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "经典街机游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/arcade-games/classic",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": arcadeClassicGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/zh/arcade-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            街机游戏
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">经典</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      经典街机游戏
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      开启这一切的永恒经典。
+    </p>
+    <GameGrid games={arcadeClassicGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>重温街机黄金时代</h2>
+      <p>
+        经典街机游戏定义了一代人的娱乐方式。这些游戏拥有简单却极具挑战性的机制，
+        专注于纯粹的操作技巧、快速反应和对高分的追求。从迷宫探索到太空射击，
+        我们的经典合集将街机厅的体验直接带到您的屏幕前。
+      </p>
+      <h3>为什么我们热爱经典街机？</h3>
+      <p>
+        这些游戏之所以经久不衰，是因为其“易于上手、难于精通”的设计，
+        创造了一个让人欲罢不能的循环，让你总想“再来一局”。
+      </p>
+      <ul>
+        <li><strong>纯粹的游戏体验：</strong> 没有冗长教程或复杂剧情，只有即时开启的动作。</li>
+        <li><strong>分数挑战：</strong> 与自己竞争，不断刷新个人最高纪录。</li>
+        <li><strong>标志性风格：</strong> 欣赏为现代电子游戏奠定基础的经典画面和音效。</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

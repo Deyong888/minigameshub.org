@@ -1,0 +1,91 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { relaxCasualGames } from '~/data/games';
+
+const metadata = {
+  title: '休闲放松游戏 - 毫无压力的乐趣 | MiniGamesHub',
+  description: '享受轻松的休闲网页游戏。没有计时器，没有高分压力，只有纯粹的乐趣。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "休闲放松游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/relax-games/casual",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": relaxCasualGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/zh/relax-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            放松游戏
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">休闲游戏</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      休闲放松游戏
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      纯粹享受的轻松游戏体验。
+    </p>
+    <GameGrid games={relaxCasualGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>简单休闲的放松方式</h2>
+      <p>
+        我们的休闲放松游戏非常适合那些您只想简单玩玩、不愿费脑筋的时刻。无论是短时间的休息，还是结束忙碌的一天，这些游戏都结合了简单的操作机制与令人满足的体验。
+      </p>
+      <h3>无压力的乐趣</h3>
+      <ul>
+        <li><strong>易于上手：</strong> 直观的游戏机制，无需冗长的教程。</li>
+        <li><strong>灵活的时长：</strong> 玩 5 分钟或一小时，全由您决定。</li>
+        <li><strong>丰富的主题：</strong> 从虚拟园艺到空间整理，应有尽有。</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

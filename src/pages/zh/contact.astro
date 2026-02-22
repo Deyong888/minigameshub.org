@@ -1,0 +1,74 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: '联系我们',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="联系我们" title="让我们取得联系！" />
+
+  <ContactUs
+    id="form"
+    title="今天就给我们留言吧！"
+    subtitle="如需更快回复，请探索我们的常见问题部分。您可能会在那里找到所需的解决方案！如果没有，我们的支持团队将很乐意为您提供帮助。"
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: '姓名',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: '电子邮件',
+      },
+    ]}
+    textarea={{
+      label: '留言内容',
+    }}
+    disclaimer={{
+      label:
+        '提交此联系表单即表示您确认并同意收集您的个人信息。',
+    }}
+    description="我们的支持团队通常在 24 个工作小时内回复。"
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="我们随时为您提供帮助！"
+    items={[
+      {
+        title: '一般支持',
+        description: `与我们交流有关网站导航、游戏无法加载或关于网站功能的一般问题。`,
+      },
+      {
+        title: '举报游戏',
+        description:
+          '发现损坏或不当的游戏？请告知我们，以便我们尽快修复。',
+      },
+      {
+        title: '建议反馈',
+        description:
+          '有改进 MiniGamesHub 的想法？想看到特定的游戏？告诉我们！',
+      },
+      {
+        title: '电子邮件',
+        description: 'support@synthflowdigital.com',
+        icon: 'tabler:mail',
+      },
+      {
+        title: '公司位置',
+        description: 'Office 16430, 182-184 High Street North, East Ham, London, E6 2JA',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+</Layout>

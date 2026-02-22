@@ -2,6 +2,10 @@ import { getPermalink, getAsset } from './utils/permalinks';
 import { useTranslations } from './utils/i18n';
 
 const getLink = (path: string, lang: string) => {
+  if (path.startsWith('/blog')) {
+    return getPermalink(path);
+  }
+
   const prefix = lang === 'en' ? '' : `/${lang}`;
   return getPermalink(`${prefix}${path}`);
 };

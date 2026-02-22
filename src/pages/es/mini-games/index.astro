@@ -22,7 +22,7 @@ const schema = {
       "item": {
         "@type": "VideoGame",
         "name": game.title,
-        "url": `https://minigameshub.org/es/game/${game.slug}`,
+        "url": `https://minigameshub.org/es/game/${game.id}-${game.slug}`,
         "image": game.thumbnail,
         "description": game.description,
         "genre": game.category,
@@ -128,4 +128,3 @@ const schema = {
     </div>
   </section>
 </Layout>
-

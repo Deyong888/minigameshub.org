@@ -1,0 +1,95 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { boredAtSchoolGames } from '~/data/games';
+
+const metadata = {
+  title: '学校娱乐游戏 - 解封游戏系列',
+  description: '在学校玩解封游戏。有趣、益智且适合校园环境的安全游戏。',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "学校娱乐游戏",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/zh/bored-games/bored-at-school",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": boredAtSchoolGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/zh/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game",
+        "inLanguage": "zh"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/zh/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            首页
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/zh/bored-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            解闷游戏
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">学校解闷</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-8 md:mb-12 font-heading text-center">
+      学校娱乐游戏
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      适合学校使用的游戏，可在 Chromebook 和学校网络上流畅运行。
+    </p>
+
+    <GameGrid games={boredAtSchoolGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>适合学校的解封游戏</h2>
+      <p>
+        我们知道在学校的空闲时间有多无聊。我们精选的解封游戏系列旨在学校网络和 Chromebook 上运行，提供安全且具有教育意义的乐趣。
+        无论是在课间休息还是早早完成了作业，这些游戏都是消磨时间的完美方式。
+      </p>
+      <h3>为什么选择学校游戏？</h3>
+      <p>
+        专为学生和教育环境设计：
+      </p>
+      <ul>
+        <li><strong>解封：</strong> 针对常见的学校防火墙进行了优化。</li>
+        <li><strong>寓教于乐：</strong> 许多游戏可以提高逻辑、策略和解决问题的能力。</li>
+        <li><strong>无需安装：</strong> 直接在浏览器中玩，无需下载任何内容。</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
