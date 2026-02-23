@@ -2,7 +2,7 @@
 publishDate: 2026-02-23T00:00:00Z
 title: "Best Browser Games to Play When Bored in 2026 No Download Required"
 excerpt: "Discover the top 15 browser games to play when bored in 2026. No downloads needed - play instantly on any device. Perfect for school, work breaks, or relaxing at home."
-image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+image: https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?ixlib=rb-4.0.3&auto=format&fit=crop&w-800&q=80
 category: Bored at School
 tags:
   - unblocked games

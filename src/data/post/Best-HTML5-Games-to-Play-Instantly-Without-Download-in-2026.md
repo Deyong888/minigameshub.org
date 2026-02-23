@@ -1,12 +1,9 @@
 ---
 draft: false
-title: "Best HTML5 Games to Play Instantly Without Download in 2024"
+title: "Best HTML5 Games to Play Instantly Without Download in 2026"
 snippet: "Discover the top HTML5 games you can play instantly in your browser without any downloads. Perfect for work breaks, school Chromebooks, or when you're bored."
-image: {
-    src: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-    alt: "Colorful HTML5 games being played on multiple devices including laptop, tablet and phone"
-}
-publishDate: "2024-03-15 10:30"
+image: https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80
+publishDate: 2026-02-23T00:00:00Z
 category: "HTML5 Games"
 author: "SprunkiGames Editorial Team"
 tags: [html5 games, browser games, no download games, instant play games, work break games, chromebook games, mini games]
@@ -47,7 +44,7 @@ HTML5 games work seamlessly across all devices and operating systems. Whether yo
 ### Instant Loading Times
 Unlike traditional games that require lengthy loading screens, HTML5 games load almost instantly. This makes them perfect for short gaming sessions during breaks or while waiting for appointments.
 
-## Top HTML5 Games to Play in 2024
+## Top HTML5 Games to Play in 2026
 
 ### 1. Slither.io - The Modern Snake Game
 ![Slither.io gameplay screenshot](https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80)
