@@ -1,8 +1,8 @@
 ---
-publishDate: 2026-02-23T00:00:00Z
+publishDate: "2026-02-23T00:00:00Z"
 title: "Best Browser Games to Play When Bored in 2026 Free HTML5 Mini Games"
 excerpt: "Discover the top free HTML5 browser games for 2026 to instantly cure boredom. Play trending mini games online without downloads - perfect for school Chromebooks, work breaks, and quick entertainment."
-image: https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80
+image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
 category: Bored at School
 tags:
   - unblocked games
