@@ -23,8 +23,16 @@ import { Icon } from 'astro-icon/components';
     </div>
 </div>
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-<script src="/pagefind/pagefind-ui.js" is:inline></script>
+{import.meta.env.PROD && (
+  <>
+{import.meta.env.PROD && (
+  <>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script src="/pagefind/pagefind-ui.js"></script>
+  </>
+)}
+  </>
+)}
 
 <script is:inline>
   window.addEventListener('load', () => {

@@ -29,20 +29,28 @@ const zeroResults = t('search.noResults');
   </section>
 </Layout>
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-<script src="/pagefind/pagefind-ui.js" is:inline></script>
+{import.meta.env.PROD && (
+  <>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script src="/pagefind/pagefind-ui.js"></script>
+  </>
+)}
 
 <script is:inline define:vars={{ placeholder, zeroResults }}>
   window.addEventListener('DOMContentLoaded', () => {
-    new PagefindUI({ 
-        element: "#search", 
+    if (window.PagefindUI) {
+      new PagefindUI({
+        element: '#search',
         showSubResults: true,
         showImages: true,
         translations: {
-            placeholder: placeholder,
-            zero_results: zeroResults
-        }
-    });
+          placeholder: placeholder,
+          zero_results: zeroResults,
+        },
+      });
+    } else {
+      console.warn('PagefindUI not found. Search only works in production.');
+    }
   });
 </script>
 
