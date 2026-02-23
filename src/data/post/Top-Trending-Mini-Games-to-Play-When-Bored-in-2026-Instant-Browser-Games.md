@@ -1,8 +1,8 @@
 ---
-publishDate: 2026-02-23T00:00:00Z
+publishDate: 2026-02-19T00:00:00Z
 title: "Top Trending Mini Games to Play When Bored in 2026 Instant Browser Games"
 excerpt: "Discover the hottest trending mini games of 2026 to instantly cure boredom. Play free HTML5 browser games with no downloads required. Perfect for quick breaks at school or work."
-image: https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80
+image: https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80
 category: Bored at School
 tags:
   - unblocked games
