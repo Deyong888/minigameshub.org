@@ -21,7 +21,19 @@ const mapGamePixItem = (item: any): Game => ({
 const allGamePixGames = gamepixData.items.map(mapGamePixItem);
 
 // Categorization Logic
-export const featuredGames: Game[] = allGamePixGames.slice(0, 6); // Top 6 quality (assuming feed is sorted)
+// Find football/soccer games to feature for World Cup
+const footballGames = allGamePixGames.filter(g => 
+  g.title.toLowerCase().includes('football') || 
+  g.title.toLowerCase().includes('soccer') ||
+  g.title.toLowerCase().includes('goal') ||
+  g.title.toLowerCase().includes('foot chinko')
+).slice(0, 2);
+
+// Mix football games with other top quality games for featured section
+export const featuredGames: Game[] = [
+  ...footballGames,
+  ...allGamePixGames.filter(g => !footballGames.includes(g)).slice(0, 6)
+].slice(0, 8); // Total 8 games for trending section
 
 export const boredAtWorkGames: Game[] = allGamePixGames.filter(g => 
   ['puzzle', 'strategy', 'board', 'card', '2048', 'match-3', 'mahjong', 'solitaire', 'logic', 'simulation'].some(c => g.category.toLowerCase().includes(c))

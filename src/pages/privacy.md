@@ -3,11 +3,11 @@ title: 'Privacy Policy'
 layout: '~/layouts/MarkdownLayout.astro'
 ---
 
-_Last updated_: February 08, 2026
+_Last updated_: June 13, 2026
 
 This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.
 
-We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. This Privacy Policy is just a Demo.
+We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.
 
 ## Interpretation and Definitions
 
@@ -88,6 +88,56 @@ We use both Session and Persistent Cookies for the purposes set out below:
 
 For more information about the cookies we use and your choices regarding cookies, please visit our Cookies Policy or the Cookies section of our Privacy Policy.
 
+## Google AdSense and Third-Party Advertising
+
+We use Google AdSense to display advertisements on our Website. Google AdSense uses cookies to serve ads based on a user's prior visits to our website or other websites.
+
+### How Google Uses Cookies
+
+Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our sites and/or other sites on the Internet. You may opt out of personalized advertising by visiting [Google Ads Settings](https://www.google.com/settings/ads).
+
+### DART Cookies
+
+We use Google's DART cookies for ad serving through Google AdSense, which places a cookie on your computer when you are browsing the web and visit a site using AdSense advertising (including some of our advertisements). This cookie is used to serve ads to you based on your visit to our site and other sites on the Internet. You may opt out of the use of the DART cookie by visiting the [Google ad and content network privacy policy](https://policies.google.com/technologies/ads).
+
+### Third-Party Ad Servers
+
+Third-party ad servers or ad networks use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements and links that appear on our Website, which are sent directly to users' browser. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see on websites that you visit.
+
+Note that our Website has no access to or control over these cookies that are used by third-party advertisers.
+
+### Your Choices Regarding Advertising
+
+You can choose to disable cookies through your individual browser options. To know more detailed information about cookie management with specific web browsers, it can be found at the browsers' respective websites.
+
+Additionally, you can opt out of some third-party vendors' uses of cookies for personalized advertising by visiting [www.aboutads.info](https://www.aboutads.info/choices/), [www.networkadvertising.org](https://optout.networkadvertising.org/), or [www.youronlinechoices.eu](https://www.youronlinechoices.eu/).
+
+## California Consumer Privacy Act (CCPA) Rights
+
+If you are a California resident, you have certain rights regarding your personal information. The CCPA provides California consumers with the right to:
+
+- Request that a business disclose the categories and specific pieces of personal data that a business has collected about consumers.
+- Request that a business delete any personal data about the consumer that a business has collected.
+- Request that a business that sells a consumer's personal data, not sell the consumer's personal data.
+- If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.
+
+## General Data Protection Regulation (GDPR) Rights
+
+If you are a resident of the European Economic Area (EEA), you have certain data protection rights. We aim to take reasonable steps to allow you to correct, amend, delete, or limit the use of your Personal Data.
+
+If you wish to be informed what Personal Data we hold about you and if you want it to be removed from our systems, please contact us.
+
+In certain circumstances, you have the following data protection rights:
+
+- The right to access, update or to delete the information we have on you.
+- The right of rectification. You have the right to have your information rectified if that information is inaccurate or incomplete.
+- The right to object. You have the right to object to our processing of your Personal Data.
+- The right of restriction. You have the right to request that we restrict the processing of your personal information.
+- The right to data portability. You have the right to be provided with a copy of the information we have on you in a structured, machine-readable and commonly used format.
+- The right to withdraw consent. You also have the right to withdraw your consent at any time where we relied on your consent to process your personal information.
+
+Please note that we may ask you to verify your identity before responding to such requests.
+
 ## Use of Your Personal Data
 
 The Company may use Personal Data for the following purposes:
@@ -98,15 +148,6 @@ The Company may use Personal Data for the following purposes:
 - **To contact You:** To contact You by email, telephone calls, SMS, or other equivalent forms of electronic communication, such as a mobile application's push notifications regarding updates or informative communications related to the functionalities, products or contracted services, including the security updates, when necessary or reasonable for their implementation.
 - **To provide You** with news, special offers and general information about other goods, services and events which we offer that are similar to those that you have already purchased or enquired about unless You have opted not to receive such information.
 - **To manage Your requests:** To attend and manage Your requests to Us.
-
-## Contact Us
-
-If you have any questions about this Privacy Policy, You can contact us:
-
-- By email: support@synthflowdigital.com
-- By mail: Synthflow Digital LTD, Office 16430, 182-184 High Street North, East Ham, London, E6 2JA
-- **For business transfers:** We may use Your information to evaluate or conduct a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of some or all of Our assets, whether as a going concern or as part of bankruptcy, liquidation, or similar proceeding, in which Personal Data held by Us about our Service users is among the assets transferred.
-- **For other purposes**: We may use Your information for other purposes, such as data analysis, identifying usage trends, determining the effectiveness of our promotional campaigns and to evaluate and improve our Service, products, services, marketing and your experience.
 
 We may share Your personal information in the following situations:
 
@@ -189,4 +230,5 @@ You are advised to review this Privacy Policy periodically for any changes. Chan
 
 If you have any questions about this Privacy Policy, You can contact us:
 
-- By email: contact@minigameshub.org
+- By email: contact@synthflowdigital.com
+- By mail: Synthflow Digital LTD, Office 16430, 182-184 High Street North, East Ham, London, E6 2JA

@@ -1,0 +1,246 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Gaming Glossary - Learn Game Terms & Definitions',
+  description: 'A complete glossary of gaming terms, concepts, and vocabulary. Learn the language of games with clear definitions and examples.',
+};
+---
+
+<Layout metadata={metadata}>
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold font-heading mb-4">Gaming Glossary</h1>
+      <p class="text-xl text-muted">Learn the language of gaming with our complete, easy-to-understand glossary.</p>
+    </div>
+
+    <div class="prose dark:prose-invert max-w-none">
+      <!-- Introduction -->
+      <div class="mb-12 bg-slate-50 dark:bg-slate-900/30 p-6 rounded-lg">
+        <h2 class="text-2xl font-bold mb-4">About This Glossary</h2>
+        <p>
+          Welcome to the MiniGamesHub Gaming Glossary! This comprehensive guide explains gaming terms,
+          concepts, and vocabulary in simple, clear language. Whether you're a new player or just want
+          to better understand gaming culture, this is for you.
+        </p>
+        <p class="mt-4">
+          <strong>Quick tip:</strong> Use your browser's find feature (Ctrl+F or Cmd+F) to search for specific terms!
+        </p>
+      </div>
+
+      <!-- Alphabet Navigation -->
+      <div class="mb-12">
+        <h2 class="text-xl font-bold mb-4">Jump to Letter</h2>
+        <div class="flex flex-wrap gap-2">
+          <a href="#a" class="px-4 py-2 bg-accent text-white rounded-lg hover:opacity-90 transition">A</a>
+          <a href="#b" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">B</a>
+          <a href="#c" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">C</a>
+          <a href="#d" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">D</a>
+          <a href="#e" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">E</a>
+          <a href="#f" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">F</a>
+          <a href="#g" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">G</a>
+          <a href="#h" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">H</a>
+          <a href="#i" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">I</a>
+          <a href="#j" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">J</a>
+          <a href="#k" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">K</a>
+          <a href="#l" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">L</a>
+          <a href="#m" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">M</a>
+        </div>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <a href="#n" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">N</a>
+          <a href="#o" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">O</a>
+          <a href="#p" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">P</a>
+          <a href="#q" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">Q</a>
+          <a href="#r" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">R</a>
+          <a href="#s" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">S</a>
+          <a href="#t" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">T</a>
+          <a href="#u" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">U</a>
+          <a href="#v" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">V</a>
+          <a href="#w" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">W</a>
+          <a href="#x" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">X</a>
+          <a href="#y" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">Y</a>
+          <a href="#z" class="px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg hover:bg-slate-300 dark:hover:bg-slate-600 transition">Z</a>
+        </div>
+      </div>
+
+      <!-- Glossary Content -->
+
+      <h2 id="a" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">A</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Action Game</h3>
+          <p>A genre of video game that emphasizes physical challenges, including hand-eye coordination and reaction-time. Think of games where you're jumping, shooting, or dodging obstacles.</p>
+          <p class="text-sm text-muted mt-2"><strong>Example:</strong> Platformers, fighting games, and first-person shooters.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Arcade Game</h3>
+          <p>A coin-operated entertainment machine typically found in public places like malls, restaurants, and arcades. They usually feature simple, addictive gameplay.</p>
+          <p class="text-sm text-muted mt-2"><strong>Fun fact:</strong> Golden age of arcade games was late 1970s to early 1980s.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Achievement</h3>
+          <p>A meta-goal defined outside of a game's main objectives. Achievements are usually awarded for completing specific challenges or reaching milestones.</p>
+          <p class="text-sm text-muted mt-2"><strong>Example:</strong> "Reach level 10" or "Collect 100 coins without dying."</p>
+        </div>
+      </div>
+
+      <h2 id="b" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">B</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Boss</h3>
+          <p>A special, significantly more powerful non-player character (NPC), usually appearing at the end of a level or game. Beating a boss typically unlocks progress.</p>
+          <p class="text-sm text-muted mt-2"><strong>Also known as:</strong> Boss fight, end boss, final boss.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Browser Game</h3>
+          <p>A video game that is played using a web browser, requiring no download or installation. MiniGamesHub specializes in these!</p>
+          <p class="text-sm text-muted mt-2"><strong>Advantages:</strong> Instant play, works on any device, no downloads needed.</p>
+        </div>
+      </div>
+
+      <h2 id="c" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">C</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Cheat Code</h3>
+          <p>A hidden code or sequence of inputs that gives players advantages not intended by the main game design, like infinite lives or all weapons.</p>
+          <p class="text-sm text-muted mt-2"><strong>Classic example:</strong> The Konami Code (Up, Up, Down, Down, Left, Right, Left, Right, B, A, Start).</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Casual Game</h3>
+          <p>A video game targeted at a mass audience of casual players. Casual games typically have simple rules and require no special skills or time commitment.</p>
+          <p class="text-sm text-muted mt-2"><strong>Perfect for:</strong> Short breaks, waiting in line, or unwinding after a long day.</p>
+        </div>
+      </div>
+
+      <h2 id="d" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">D</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Download Game</h3>
+          <p>A game that requires downloading files to your device before playing, unlike browser games that load instantly.</p>
+          <p class="text-sm text-muted mt-2"><strong>MiniGamesHub difference:</strong> No downloads needed - play instantly in your browser!</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Difficulty</h3>
+          <p>How challenging a game is. Many games offer multiple difficulty levels like Easy, Normal, Hard.</p>
+          <p class="text-sm text-muted mt-2"><strong>Pro tip:</strong> Start on Normal! You can always increase difficulty later.</p>
+        </div>
+      </div>
+
+      <h2 id="e" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">E</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Endless Runner</h3>
+          <p>A subgenre of platform games where the player character is continuously moving forward, dodging obstacles and collecting items.</p>
+          <p class="text-sm text-muted mt-2"><strong>Popular examples:</strong> Temple Run, Canabalt, endless runners in general.</p>
+        </div>
+      </div>
+
+      <h2 id="f" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">F</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Free-to-Play</h3>
+          <p>Video games that give players access to a significant portion of their content without paying, sometimes with optional purchases.</p>
+          <p class="text-sm text-muted mt-2"><strong>MiniGamesHub promise:</strong> All games are 100% free, always.</p>
+        </div>
+      </div>
+
+      <h2 id="g" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">G</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Game Genre</h3>
+          <p>A category of games organized by gameplay characteristics, not visual or story elements. Action, puzzle, strategy, etc.</p>
+          <p class="text-sm text-muted mt-2"><strong>Browse genres:</strong> Check out <a href="/mini-games" class="text-accent hover:underline">our game categories</a>!</p>
+        </div>
+      </div>
+
+      <h2 id="h" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">H</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">High Score</h3>
+          <p>The highest logged score in a particular video game. High scores provide a simple goal and allow players to compete.</p>
+          <p class="text-sm text-muted mt-2"><strong>Arcade history:</strong> High scores became popular in arcade culture of the 1970s.</p>
+        </div>
+      </div>
+
+      <h2 id="i" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">I</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Instant Play</h3>
+          <p>Games that can be played immediately without downloads, sign-ups, or installations. Just click and play!</p>
+          <p class="text-sm text-muted mt-2"><strong>MiniGamesHub specialty:</strong> All games on our site feature instant play!</p>
+        </div>
+      </div>
+
+      <h2 id="l" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">L</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Level</h3>
+          <p>A section of a game designed as a discrete unit of gameplay. Completing a level usually unlocks the next one.</p>
+          <p class="text-sm text-muted mt-2"><strong>Also called:</strong> Stage, map, round, or world.</p>
+        </div>
+      </div>
+
+      <h2 id="m" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">M</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Mini Game</h3>
+          <p>A short, simple video game, often included as a bonus or diversion within a larger game, or as a standalone experience.</p>
+          <p class="text-sm text-muted mt-2"><strong>Our specialty!</strong> MiniGamesHub has thousands of great mini games!</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Multiplayer Game</h3>
+          <p>A video game played by more than one person, either locally or online.</p>
+          <p class="text-sm text-muted mt-2"><strong>Types:</strong> Competitive, cooperative, team-based, or free-for-all.</p>
+        </div>
+      </div>
+
+      <h2 id="p" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">P</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Puzzle Game</h3>
+          <p>A game genre emphasizing puzzle-solving, including logic, strategy, pattern recognition, sequence solving, and word completion.</p>
+          <p class="text-sm text-muted mt-2"><strong>Benefits:</strong> Improves problem-solving and logic skills!</p>
+        </div>
+      </div>
+
+      <h2 id="r" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">R</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Relax Game</h3>
+          <p>A game specifically designed to be calming, stress-reducing, and low-pressure.</p>
+          <p class="text-sm text-muted mt-2"><strong>Great for:</strong> Anxiety relief, unwinding before bed, or a mental break.</p>
+        </div>
+      </div>
+
+      <h2 id="s" class="text-2xl font-bold mb-6 pb-2 border-b border-slate-300 dark:border-slate-700">S</h2>
+      <div class="space-y-6 mb-8">
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Score</h3>
+          <p>A numerical representation of a player's performance in a game. Higher is usually better!</p>
+          <p class="text-sm text-muted mt-2"><strong>See also:</strong> High score, leaderboard.</p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
+          <h3 class="text-xl font-bold text-accent mb-2">Strategy Game</h3>
+          <p>A genre where the players' decision-making skills determine the outcome, requiring planning and tactical thinking.</p>
+          <p class="text-sm text-muted mt-2"><strong>Subgenres:</strong> Real-time strategy (RTS), turn-based strategy (TBS), and more.</p>
+        </div>
+      </div>
+
+      <!-- More to explore -->
+      <div class="mt-12 p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 rounded-lg text-center">
+        <h2 class="text-2xl font-bold mb-4">Want to Learn More?</h2>
+        <p class="text-lg mb-6">Check out our blog for more gaming guides, tips, and educational content!</p>
+        <a href="/blog" class="inline-block px-8 py-3 bg-accent text-white font-bold rounded-lg hover:opacity-90 transition">
+          Explore Our Blog
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

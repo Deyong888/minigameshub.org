@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: MiniGamesHub
+    default: MiniGamesHub — Play 5000+ Free Online Games Instantly
     template: '%s — MiniGamesHub'
-  description: "Play 5000+ free mini games, small games, and HTML5 games instantly on MiniGamesHub.org. No download, no installation - just click and play!"
+  description: "Discover and play 5000+ free online mini games, arcade games, puzzle games, and more on MiniGamesHub.org. Instant browser play, no download required! Perfect for work breaks, school free time, or anytime you're bored."
   robots:
     index: true
     follow: true
@@ -21,7 +21,9 @@ metadata:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
+        alt: MiniGamesHub — Free Online Games
     type: website
+    locale: en_US
   twitter:
     handle: '@MiniGamesHub'
     site: '@MiniGamesHub'

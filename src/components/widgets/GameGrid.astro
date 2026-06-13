@@ -55,7 +55,8 @@ const {
     <slot name="content" />
   </div>
 
-  <div class="grid gap-6 row-gap-5 md:grid-cols-3 lg:grid-cols-6 -mb-6">
+  <!-- 游戏网格 - 注意：如果添加广告位，请确保与可点击元素之间有至少 150px 的间距 -->
+  <div class="grid gap-6 md:gap-8 row-gap-5 md:grid-cols-3 lg:grid-cols-6 -mb-6">
     {games.map((game) => (
       <GameCard game={game} />
     ))}

@@ -12,62 +12,64 @@ const metadata = {
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText tagline="Contact" title="Get in Touch" />
 
   <ContactUs
     id="form"
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="Send us a message!"
+    subtitle="Have a question about our games or need help? We'd love to hear from you!"
     inputs={[
       {
         type: 'text',
         name: 'name',
-        label: 'Name',
+        label: 'Your Name',
       },
       {
         type: 'email',
         name: 'email',
-        label: 'Email',
+        label: 'Email Address',
       },
     ]}
     textarea={{
-      label: 'Message',
+      label: 'Your Message',
+      placeholder: 'Tell us what you think or need help with...',
     }}
     disclaimer={{
       label:
         'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
     }}
-    description="Our support team typically responds within 24 business hours."
+    button="Send Message"
+    description="Our team typically responds within 24-48 hours."
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="How can we help?"
     items={[
       {
-        title: 'General support',
-        description: `Chat with us for inquiries related to account management, website navigation, payment issues, accessing purchased templates or general questions about the website's functionality.`,
+        title: 'Game Issues',
+        description: `Having trouble loading a game, experiencing crashes, or finding something not working right? Let us know and we'll investigate.`,
       },
       {
-        title: 'Contact sales',
+        title: 'Game Suggestions',
         description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
+          'Know of a great game we should add? Or have ideas for new categories or features? Share your suggestions with us!',
       },
       {
-        title: 'Technical support',
+        title: 'Feedback',
         description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
+          'Love our site? Have ideas for improvement? We value all feedback - positive or constructive!',
+      },
+      {
+        title: 'Partnerships',
+        description:
+          'Interested in partnering with us, advertising, or submitting your own game? We\'re always open to collaboration!',
       },
       {
         title: 'Email',
-        description: 'support@synthflowdigital.com',
+        description: 'contact@minigameshub.org',
         icon: 'tabler:mail',
-      },
-      {
-        title: 'Location',
-        description: 'Office 16430, 182-184 High Street North, East Ham, London, E6 2JA',
-        icon: 'tabler:map-pin',
       },
     ]}
   />

@@ -1,0 +1,60 @@
+---
+// AdSense 广告位占位符组件
+// 重要：此组件确保广告与可点击内容之间有足够的安全间距（至少 150px）
+// 防止意外点击违规
+interface Props {
+  slot?: string;
+  format?: 'horizontal' | 'vertical' | 'rectangle';
+  size?: string;
+  id?: string;
+}
+
+const { 
+  slot = 'demo-slot', 
+  format = 'horizontal',
+  size = '728x90',
+  id = 'ad-slot'
+} = Astro.props;
+
+// 根据格式确定尺寸类
+const sizeClasses = {
+  'horizontal': 'w-full h-24',
+  'vertical': 'w-64 h-full',
+  'rectangle': 'w-80 h-64'
+};
+---
+
+<!-- 广告位容器 - 与可点击元素保持至少 150px 的安全间距 -->
+<div 
+  id={id}
+  class={`ad-slot ${sizeClasses[format]} mx-auto mt-12 mb-12 flex items-center justify-center bg-gray-100 dark:bg-gray-800 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-700`}
+  style="min-height: 100px; margin-top: 150px; margin-bottom: 150px;"
+  data-ad-slot={slot}
+>
+  <!-- 占位符内容 - 在实际部署时替换为 AdSense 代码 -->
+  <div class="text-center text-gray-500 dark:text-gray-400 p-4">
+    <div class="text-sm font-medium mb-1">Advertisement Placeholder</div>
+    <div class="text-xs">AdSense Slot: {slot} ({size})</div>
+    <div class="text-xs mt-1 text-green-600 dark:text-green-400">
+      ✅ Safe spacing: 150px from interactive content
+    </div>
+  </div>
+</div>
+
+<style>
+/* 确保广告与可点击内容之间有清晰的视觉区分 */
+.ad-slot {
+  transition: all 0.2s;
+}
+
+.ad-slot:hover {
+  border-color: #6366f1;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .ad-slot {
+    min-height: 80px;
+  }
+}
+</style>

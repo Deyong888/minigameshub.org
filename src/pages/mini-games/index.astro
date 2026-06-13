@@ -4,8 +4,13 @@ import GameGrid from '~/components/widgets/GameGrid.astro';
 import { miniGames } from '~/data/games';
 
 const metadata = {
-  title: 'Mini Games - Quick Fun Browser Games',
-  description: 'Instant fun with our collection of mini games. No install, no login, just play.',
+  title: 'Mini Games — Quick Fun Browser Games | MiniGamesHub.org',
+  description: 'Play thousands of free mini games online! Instant browser play with no downloads required. Enjoy arcade, puzzle, action, and relaxing games perfect for quick breaks.',
+  openGraph: {
+    type: 'website',
+    title: 'Mini Games — Quick Fun Browser Games | MiniGamesHub.org',
+    description: 'Play thousands of free mini games online! Instant browser play with no downloads required.'
+  }
 };
 
 const schema = {
@@ -63,6 +68,36 @@ const schema = {
     <p class="text-xl text-muted mb-8 text-center">
       Bite-sized entertainment for quick breaks.
     </p>
+
+    <!-- Introduction Content -->
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-12 text-gray-700 dark:text-gray-300">
+      <p>
+        Welcome to Mini Games Hub, your ultimate destination for quick, fun, and accessible browser-based gaming. 
+        Our collection of mini games is perfect for when you have just a few minutes to spare - whether you're 
+        taking a break from work, waiting for a friend, or just looking for a quick dose of entertainment.
+      </p>
+      
+      <h2 class="text-2xl font-bold mt-8 mb-4">Why Play Mini Games?</h2>
+      
+      <p>
+        Mini games are the perfect solution for modern life. They're designed to be played in short bursts, 
+        require no downloads or installations, and work on any device with a browser. From quick puzzle challenges 
+        to fast-paced action games, there's something for everyone in our collection.
+      </p>
+      
+      <p>
+        Our mini games are carefully curated to ensure quality, performance, and fun. Each game is tested on 
+        multiple devices to ensure it works perfectly whether you're playing on desktop, tablet, or mobile. 
+        No ads that ruin your experience, no sign-ups required - just pure gaming joy.
+      </p>
+      
+      <h2 class="text-2xl font-bold mt-8 mb-4">Our Mini Game Categories</h2>
+      
+      <p>
+        Explore our diverse categories to find exactly what you're looking for. Whether you're in the mood for 
+        classic arcade action, mind-bending puzzles, relaxing casual games, or high-octane adventures, we've got you covered.
+      </p>
+    </div>
 
     <!-- Categories Cloud -->
     <div class="flex flex-wrap justify-center gap-2 mb-12">

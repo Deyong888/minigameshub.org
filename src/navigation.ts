@@ -16,50 +16,28 @@ export const getHeaderData = (lang = 'en') => {
   return {
     links: [
       {
-        text: t('nav.miniGames'),
+        text: t('nav.games'),
         href: getLink('/mini-games', lang),
         links: [
-          { text: t('cat.arcade'), href: getLink('/mini-games/arcade', lang) },
-          { text: t('cat.puzzle'), href: getLink('/mini-games/puzzle', lang) },
-          { text: t('cat.action'), href: getLink('/mini-games/action', lang) },
-          { text: t('nav.relaxGames'), href: getLink('/mini-games/relax', lang) },
+          { text: t('nav.miniGames'), href: getLink('/mini-games', lang) },
+          { text: t('nav.smallGames'), href: getLink('/small-games', lang) },
+          { text: t('nav.arcadeGames'), href: getLink('/arcade-games', lang) },
+          { text: t('nav.browserGames'), href: getLink('/browser-games', lang) },
+          { text: t('nav.html5Games'), href: getLink('/html5-games', lang) },
+          { text: t('nav.noDownloadGames'), href: getLink('/no-download-games', lang) },
         ],
       },
       {
-        text: t('nav.smallGames'),
-        href: getLink('/small-games', lang),
-        links: [
-          { text: t('cat.casual'), href: getLink('/small-games/casual', lang) },
-          { text: t('nav.quickGames'), href: getLink('/small-games/quick', lang) },
-          { text: t('cat.short'), href: getLink('/small-games/short', lang) },
-        ],
-      },
-      {
-        text: t('nav.relaxGames'),
+        text: t('nav.lifestyle'),
         href: getLink('/relax-games', lang),
         links: [
-          { text: t('cat.stressRelief'), href: getLink('/relax-games/stress-relief', lang) },
-          { text: t('cat.calming'), href: getLink('/relax-games/calming', lang) },
-          { text: t('cat.casual'), href: getLink('/relax-games/casual', lang) },
+          { text: t('nav.relaxGames'), href: getLink('/relax-games', lang) },
+          { text: t('nav.boredGames'), href: getLink('/bored-games', lang) },
         ],
       },
       {
-        text: t('nav.boredGames'),
-        href: getLink('/bored-games', lang),
-        links: [
-          { text: t('nav.boredAtWork'), href: getLink('/bored-games/bored-at-work', lang) },
-          { text: t('nav.boredAtSchool'), href: getLink('/bored-games/bored-at-school', lang) },
-          { text: t('nav.waitingInLine'), href: getLink('/bored-games/waiting-in-line', lang) },
-        ],
-      },
-      {
-        text: t('nav.arcadeGames'),
-        href: getLink('/arcade-games', lang),
-        links: [
-          { text: t('cat.classic'), href: getLink('/arcade-games/classic', lang) },
-          { text: t('cat.retro'), href: getLink('/arcade-games/retro', lang) },
-          { text: t('cat.modern'), href: getLink('/arcade-games/modern', lang) },
-        ],
+        text: t('nav.blog'),
+        href: getLink('/blog', lang),
       },
     ],
     actions: [{ text: t('hero.surprise'), href: getLink('/surprise', lang), icon: 'tabler:gift' }],
@@ -72,16 +50,7 @@ export const getFooterData = (lang = 'en') => {
   return {
     links: [
       {
-        title: t('nav.boredGames'),
-        links: [
-          { text: t('nav.boredGames'), href: getLink('/bored-games', lang) },
-          { text: t('nav.boredAtWork'), href: getLink('/bored-games/bored-at-work', lang) },
-          { text: t('nav.boredAtSchool'), href: getLink('/bored-games/bored-at-school', lang) },
-          { text: t('nav.waitingInLine'), href: getLink('/bored-games/waiting-in-line', lang) },
-        ],
-      },
-      {
-        title: t('nav.miniGames'),
+        title: t('nav.games'),
         links: [
           { text: t('nav.miniGames'), href: getLink('/mini-games', lang) },
           { text: t('nav.smallGames'), href: getLink('/small-games', lang) },
@@ -92,12 +61,12 @@ export const getFooterData = (lang = 'en') => {
         ],
       },
       {
-        title: t('nav.relaxGames'),
+        title: t('nav.lifestyle'),
         links: [
           { text: t('nav.relaxGames'), href: getLink('/relax-games', lang) },
-          { text: t('cat.puzzle'), href: getLink('/mini-games/puzzle', lang) },
-          { text: t('cat.casual'), href: getLink('/small-games/casual', lang) },
-          { text: t('cat.classic'), href: getLink('/arcade-games/classic', lang) },
+          { text: t('nav.boredGames'), href: getLink('/bored-games', lang) },
+          { text: t('nav.boredAtWork'), href: getLink('/bored-games/bored-at-work', lang) },
+          { text: t('nav.boredAtSchool'), href: getLink('/bored-games/bored-at-school', lang) },
         ],
       },
       {

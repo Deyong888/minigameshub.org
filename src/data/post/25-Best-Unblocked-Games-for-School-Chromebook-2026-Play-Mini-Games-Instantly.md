@@ -1,5 +1,4 @@
 ---
----
 publishDate: 2026-05-15T08:00:00Z
 title: "25 Best Unblocked Games for School Chromebook 2026: Play Mini Games Instantly"
 excerpt: "Discover 25+ best unblocked games for school Chromebook in 2026. Play free HTML5 mini games online without download. Perfect games to play when bored at school."

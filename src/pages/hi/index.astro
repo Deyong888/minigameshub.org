@@ -1,0 +1,268 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+
+import GameHero from '~/components/widgets/GameHero.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+import { 
+  miniArcadeGames, miniPuzzleGames, miniActionGames,
+  smallCasualGames, smallQuickGames, smallShortGames,
+  relaxStressReliefGames, relaxCalmingGames, relaxCasualGames,
+  officeGames, unblockedGames, waitingInLineGames,
+  arcadeClassicGames, arcadeRetroGames, arcadeModernGames,
+  browserHtml5Games, browserWebglGames, browserFlashGames,
+  noDownloadInstantGames, noDownloadPlayNowGames, noDownloadZeroInstallGames,
+  html5MobileGames, html5CrossPlatformGames, html5OfflineGames
+} from '~/data/games';
+
+const metadata = {
+  title: 'MiniGamesHub - 5000+ मिनी गेम्स और HTML5 गेम्स ऑनलाइन खेलें',
+  ignoreTitleTemplate: true,
+  description: 'काम या स्कूल में बोर हो रहे हैं? MiniGamesHub पर 5000+ मुफ्त मिनी गेम्स, ब्राउज़र गेम्स और HTML5 गेम्स तुरंत ऑनलाइन खेलें। कोई डाउनलोड नहीं, कोई इंस्टॉल नहीं, बस क्लिक करें और खेलें।',
+};
+---
+
+<Layout metadata={metadata}>
+  <div class="py-6">
+    <div class="text-center mb-4">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter mb-2 font-heading">
+        MiniGamesHub - 5000+ मिनी गेम्स, छोटे गेम्स और HTML5 गेम्स
+      </h1>
+      <p class="text-xl text-gray-600 dark:text-slate-400 tagline">
+        मुफ्त आर्केड, रिलैक्स और बोरियत दूर करने वाले गेम्स। बिना डाउनलोड, सीधे ब्राउज़र में खेलें।
+      </p>
+    </div>
+    <GameHero />
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/mini-games" class="hover:text-primary transition">🎮 मिनी गेम्स - जल्दी मज़ा</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        चुने हुए ऑनलाइन <strong>मिनी गेम्स</strong> का कलेक्शन। छोटे लेकिन बेहद मज़ेदार, चाय के ब्रेक या खाली समय के लिए परफेक्ट।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">आर्केड मिनी गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        क्लासिक <strong>आर्केड गेम्स</strong> के मिनी वर्जन। Pac-Man, Tetris जैसे कई <strong>HTML5 गेम्स</strong> के साथ।
+      </p>
+      <GameGrid games={miniArcadeGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">पज़ल मिनी गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        दिमाग को चुनौती देने वाले <strong>पज़ल मिनी गेम्स</strong> - 2048, सुडोकू, मैच-3 और कई <strong>छोटे गेम्स</strong>।
+      </p>
+      <GameGrid games={miniPuzzleGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">एक्शन मिनी गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        तेज़ रफ्तार वाले <strong>एक्शन मिनी गेम्स</strong> जो एड्रेनालिन बढ़ा दें।
+      </p>
+      <GameGrid games={miniActionGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-gray-50 dark:bg-slate-900/10">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/small-games" class="hover:text-primary transition">🎯 छोटे गेम्स - आसान और हल्के</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        मज़ेदार और हल्के <strong>छोटे गेम्स</strong> खोजें। हर डिवाइस पर चलने वाले <strong>HTML5 गेम्स</strong>।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">कैज़ुअल छोटे गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        बिल्कुल आरामदायक <strong>कैज़ुअल गेम्स</strong> जो दिनभर का तनाव कम करें।
+      </p>
+      <GameGrid games={smallCasualGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">क्विक छोटे गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        5 मिनट में खत्म होने वाले <strong>क्विक गेम्स</strong> - व्यस्त शेड्यूल में छोटा सा ब्रेक।
+      </p>
+      <GameGrid games={smallQuickGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">शॉर्ट सेशन गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        छोटे-छोटे लेवल वाले गेम्स जो तुरंत संतुष्टि दें।
+      </p>
+      <GameGrid games={smallShortGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-blue-50 dark:bg-slate-900/20">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/relax-games" class="hover:text-primary transition">😌 रिलैक्स गेम्स - तनाव कम करें</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        हमारे <strong>रिलैक्स गेम्स</strong> कलेक्शन के साथ मन और दिमाग को शांत करें। सौम्य, शांत और हीलिंग फील वाले <strong>मिनी गेम्स</strong>।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">कैल्मिंग रिलैक्स गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        कोमल संगीत और विज़ुअल्स वाले <strong>रिलैक्स गेम्स</strong> जो तनाव और चिंता घटाएं।
+      </p>
+      <GameGrid games={relaxCalmingGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">स्ट्रेस रिलीफ गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        ऐसे गेम्स जो काम और पढ़ाई की टेंशन कुछ देर के लिए गायब कर दें।
+      </p>
+      <GameGrid games={relaxStressReliefGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">कैज़ुअल रिलैक्स गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        बिना किसी प्रेशर के खेले जाने वाले <strong>रिलैक्स गेम्स</strong> के साथ शांत समय बिताएं।
+      </p>
+      <GameGrid games={relaxCasualGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/bored-games" class="hover:text-primary transition">🥱 बोरियत दूर करने वाले गेम्स</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        काम, स्कूल या घर पर बोर हो रहे हैं? इन खास <strong>बोरियत दूर करने वाले गेम्स</strong> से तुरंत मूड बदलें।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">ऑफिस में बोर</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        <strong>ऑफिस में चुपचाप खेले जाने वाले गेम्स</strong>। कुछ में बॉस की अचानक एंट्री के लिए खास मोड भी है।
+      </p>
+      <GameGrid games={officeGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">स्कूल में बोर</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        <strong>स्कूल में खेले जाने वाले गेम्स</strong> - अनब्लॉक्ड और Chromebook के लिए फ्रेंडली।
+      </p>
+      <GameGrid games={unblockedGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">लाइन में इंतज़ार</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        <strong>लाइन में इंतज़ार करते हुए खेले जाने वाले गेम्स</strong> - जल्दी शुरू हों और जल्दी खत्म भी।
+      </p>
+      <GameGrid games={waitingInLineGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-green-50 dark:bg-slate-900/20">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/arcade-games" class="hover:text-primary transition">👾 आर्केड गेम्स - पुरानी यादें</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        हमारे वर्चुअल आर्केड में प्रवेश करें। क्लासिक और मॉडर्न दोनों तरह के <strong>आर्केड गेम्स</strong> - सब मुफ्त।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">क्लासिक आर्केड गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        80 और 90 के दशक के मशहूर <strong>आर्केड गेम्स</strong> अब <strong>HTML5</strong> के ज़रिए ब्राउज़र में।
+      </p>
+      <GameGrid games={arcadeClassicGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">रेट्रो आर्केड गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        पिक्सल आर्ट स्टाइल और पुरानी यादों से भरे गेम्स जो लंबे समय तक याद रहें।
+      </p>
+      <GameGrid games={arcadeRetroGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">मॉडर्न आर्केड गेम्स</h3>
+      <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
+        शानदार ग्राफिक्स और लत लगा देने वाले गेमप्ले वाले नए <strong>आर्केड गेम्स</strong>।
+      </p>
+      <GameGrid games={arcadeModernGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/browser-games" class="hover:text-primary transition">🌐 ब्राउज़र गेम्स</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        सीधे ब्राउज़र में खेलें। किसी प्लगइन या इंस्टॉल की ज़रूरत नहीं।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">HTML5 ब्राउज़र गेम्स</h3>
+      <GameGrid games={browserHtml5Games} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">WebGL 3D गेम्स</h3>
+      <GameGrid games={browserWebglGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">Flash के विकल्प गेम्स</h3>
+      <GameGrid games={browserFlashGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 bg-yellow-50 dark:bg-slate-900/10">
+    <div class="mb-8">
+      <h2 class="text-3xl md:text-4xl font-bold leading-tighter tracking-tighter font-heading mb-4">
+        <a href="/hi/no-download-games" class="hover:text-primary transition">⚡ बिना डाउनलोड वाले गेम्स</a>
+      </h2>
+      <p class="text-xl text-muted dark:text-slate-400 section-desc">
+        तुरंत शुरू होने वाला मज़ा, बिना किसी इंस्टॉल या अपडेट के।
+      </p>
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">इंस्टेंट प्ले गेम्स</h3>
+      <GameGrid games={noDownloadInstantGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">अभी खेलें गेम्स</h3>
+      <GameGrid games={noDownloadPlayNowGames} classes={{ container: '!py-0' }} />
+    </div>
+
+    <div class="mb-12">
+      <h3 class="text-2xl font-bold mb-4">बिना इंस्टॉल वाले गेम्स</h3>
+      <GameGrid games={noDownloadZeroInstallGames} classes={{ container: '!py-0' }} />
+    </div>
+  </div>
+
+  <FAQs />
+</Layout>
+

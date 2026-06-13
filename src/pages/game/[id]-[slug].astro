@@ -22,9 +22,28 @@ export interface Props {
 
 const { game, relatedGames } = Astro.props;
 
+// Generate category-specific how-to-play instructions
+const getHowToPlay = (category: string) => {
+  const lowerCategory = category.toLowerCase();
+  
+  if (lowerCategory.includes('puzzle') || lowerCategory.includes('sudoku') || lowerCategory.includes('match')) {
+    return 'Use your mouse or touch to interact. Think carefully and plan your moves ahead to solve the puzzle!';
+  } else if (lowerCategory.includes('arcade') || lowerCategory.includes('action') || lowerCategory.includes('shoot')) {
+    return 'Use arrow keys or WASD to move. Spacebar or click to jump or shoot. Avoid enemies and collect points!';
+  } else if (lowerCategory.includes('racing') || lowerCategory.includes('sports')) {
+    return 'Use arrow keys to control your vehicle or character. Collect power-ups and race to the finish line!';
+  } else if (lowerCategory.includes('casual') || lowerCategory.includes('relax') || lowerCategory.includes('idle')) {
+    return 'Click or tap to play. Relax and enjoy at your own pace - no pressure!';
+  } else {
+    return 'Use mouse, keyboard, or touch controls. Most games are intuitive and easy to learn - just start playing!';
+  }
+};
+
+const howToPlayText = getHowToPlay(game.category);
+
 const metadata = {
-  title: `Play ${game.title} - Free Online Game | MiniGamesHub.org`,
-  description: `Play ${game.title} online for free on MiniGamesHub.org. No download required. ${game.description}`,
+  title: `Play ${game.title} — Free Online Game | MiniGamesHub.org`,
+  description: `Play ${game.title} online for free on MiniGamesHub.org. No download required, instant browser play. ${game.description} Enjoy this ${game.category} game with ${game.plays?.toLocaleString() || 'many'} plays!`,
   openGraph: {
     type: 'video.other',
     images: [
@@ -32,7 +51,7 @@ const metadata = {
             url: game.thumbnail,
             width: 1200,
             height: 630,
-            alt: game.title
+            alt: `Play ${game.title} online`
         }
     ]
   },
@@ -100,10 +119,13 @@ const metadata = {
                 <>
                     <h3>About {game.title}</h3>
                     <p>{game.description}</p>
-                    <p>Play {game.title} online directly in your browser. No download required. This game is part of the {game.category} games category.</p>
+                    <p>Play {game.title} online directly in your browser. No download required. This game is part of our {game.category} games collection and has been played {game.plays?.toLocaleString() || 'many'} times!</p>
                     
-                    <h4>How to Play</h4>
-                    <p>Use keyboard arrows or WASD to control. Space to jump/action.</p>
+                    <h4>How to Play {game.title}</h4>
+                    <p>{howToPlayText}</p>
+                    
+                    <h4>Why Play on MiniGamesHub?</h4>
+                    <p>MiniGamesHub offers thousands of free online games with no downloads, no sign-ups, and instant play. Enjoy {game.title} and many more games across all categories!</p>
                 </>
             )}
         </div>
