@@ -1,7 +1,6 @@
 ---
 import type { Game } from '~/types/game';
 import { getLangFromUrl } from '~/utils/i18n';
-import { Image } from 'astro:assets';
 
 interface Props {
     game: Game;
@@ -24,7 +23,7 @@ const altText = `${game.title} - ${game.category} game, play online free, no dow
     <a href={gameUrl} class="block relative overflow-hidden rounded-xl bg-gray-800 transition-transform hover:scale-105">
         <!-- 缩略图 -->
         <div class="aspect-[4/3] relative overflow-hidden">
-            <Image
+            <img
                 src={game.thumbnail}
                 alt={altText}
                 width={variant === 'compact' ? 200 : 300}

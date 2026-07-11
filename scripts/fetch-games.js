@@ -28,25 +28,41 @@ const URLS = [
   'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=classic&pagination=96&page=1'
 ];
 
+async function fetchWithRetry(url, retries = 3, delayMs = 1000) {
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        console.error(`Failed to fetch ${url}: ${response.statusText}`);
+        if (attempt < retries) {
+          console.log(`  Retrying in ${delayMs}ms... (attempt ${attempt + 1}/${retries})`);
+          await new Promise(r => setTimeout(r, delayMs));
+          continue;
+        }
+        return null;
+      }
+      return await response.json();
+    } catch (error) {
+      console.error(`Error fetching ${url} (attempt ${attempt}/${retries}):`, error.message || error);
+      if (attempt < retries) {
+        console.log(`  Retrying in ${delayMs}ms... (attempt ${attempt + 1}/${retries})`);
+        await new Promise(r => setTimeout(r, delayMs));
+      }
+    }
+  }
+  return null;
+}
+
 async function fetchGames() {
   console.log('Starting game fetch...');
   let allItems = [];
 
   for (const url of URLS) {
-    try {
-      console.log(`Fetching: ${url}`);
-      const response = await fetch(url);
-      if (!response.ok) {
-        console.error(`Failed to fetch ${url}: ${response.statusText}`);
-        continue;
-      }
-      const data = await response.json();
-      if (data.items && Array.isArray(data.items)) {
-        console.log(`Found ${data.items.length} games.`);
-        allItems = allItems.concat(data.items);
-      }
-    } catch (error) {
-      console.error(`Error fetching ${url}:`, error);
+    console.log(`Fetching: ${url}`);
+    const data = await fetchWithRetry(url);
+    if (data && data.items && Array.isArray(data.items)) {
+      console.log(`Found ${data.items.length} games.`);
+      allItems = allItems.concat(data.items);
     }
   }
 
