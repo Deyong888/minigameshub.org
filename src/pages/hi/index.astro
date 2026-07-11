@@ -5,21 +5,35 @@ import GameHero from '~/components/widgets/GameHero.astro';
 import GameGrid from '~/components/widgets/GameGrid.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
-import { 
-  miniArcadeGames, miniPuzzleGames, miniActionGames,
-  smallCasualGames, smallQuickGames, smallShortGames,
-  relaxStressReliefGames, relaxCalmingGames, relaxCasualGames,
-  officeGames, unblockedGames, waitingInLineGames,
-  arcadeClassicGames, arcadeRetroGames, arcadeModernGames,
-  browserHtml5Games, browserWebglGames, browserFlashGames,
-  noDownloadInstantGames, noDownloadPlayNowGames, noDownloadZeroInstallGames,
-  html5MobileGames, html5CrossPlatformGames, html5OfflineGames
+import {
+  miniArcadeGames,
+  miniPuzzleGames,
+  miniActionGames,
+  smallCasualGames,
+  smallQuickGames,
+  smallShortGames,
+  relaxStressReliefGames,
+  relaxCalmingGames,
+  relaxCasualGames,
+  officeGames,
+  unblockedGames,
+  waitingInLineGames,
+  arcadeClassicGames,
+  arcadeRetroGames,
+  arcadeModernGames,
+  browserHtml5Games,
+  browserWebglGames,
+  browserFlashGames,
+  noDownloadInstantGames,
+  noDownloadPlayNowGames,
+  noDownloadZeroInstallGames,
 } from '~/data/games';
 
 const metadata = {
   title: 'MiniGamesHub - 5000+ मिनी गेम्स और HTML5 गेम्स ऑनलाइन खेलें',
   ignoreTitleTemplate: true,
-  description: 'काम या स्कूल में बोर हो रहे हैं? MiniGamesHub पर 5000+ मुफ्त मिनी गेम्स, ब्राउज़र गेम्स और HTML5 गेम्स तुरंत ऑनलाइन खेलें। कोई डाउनलोड नहीं, कोई इंस्टॉल नहीं, बस क्लिक करें और खेलें।',
+  description:
+    'काम या स्कूल में बोर हो रहे हैं? MiniGamesHub पर 5000+ मुफ्त मिनी गेम्स, ब्राउज़र गेम्स और HTML5 गेम्स तुरंत ऑनलाइन खेलें। कोई डाउनलोड नहीं, कोई इंस्टॉल नहीं, बस क्लिक करें और खेलें।',
 };
 ---
 
@@ -42,7 +56,8 @@ const metadata = {
         <a href="/hi/mini-games" class="hover:text-primary transition">🎮 मिनी गेम्स - जल्दी मज़ा</a>
       </h2>
       <p class="text-xl text-muted dark:text-slate-400 section-desc">
-        चुने हुए ऑनलाइन <strong>मिनी गेम्स</strong> का कलेक्शन। छोटे लेकिन बेहद मज़ेदार, चाय के ब्रेक या खाली समय के लिए परफेक्ट।
+        चुने हुए ऑनलाइन <strong>मिनी गेम्स</strong> का कलेक्शन। छोटे लेकिन बेहद मज़ेदार, चाय के ब्रेक या खाली समय के लिए
+        परफेक्ट।
       </p>
     </div>
 
@@ -57,7 +72,9 @@ const metadata = {
     <div class="mb-12">
       <h3 class="text-2xl font-bold mb-4">पज़ल मिनी गेम्स</h3>
       <p class="mb-4 text-gray-600 dark:text-slate-400 subsection-desc">
-        दिमाग को चुनौती देने वाले <strong>पज़ल मिनी गेम्स</strong> - 2048, सुडोकू, मैच-3 और कई <strong>छोटे गेम्स</strong>।
+        दिमाग को चुनौती देने वाले <strong>पज़ल मिनी गेम्स</strong> - 2048, सुडोकू, मैच-3 और कई <strong
+          >छोटे गेम्स</strong
+        >।
       </p>
       <GameGrid games={miniPuzzleGames} classes={{ container: '!py-0' }} />
     </div>
@@ -112,7 +129,9 @@ const metadata = {
         <a href="/hi/relax-games" class="hover:text-primary transition">😌 रिलैक्स गेम्स - तनाव कम करें</a>
       </h2>
       <p class="text-xl text-muted dark:text-slate-400 section-desc">
-        हमारे <strong>रिलैक्स गेम्स</strong> कलेक्शन के साथ मन और दिमाग को शांत करें। सौम्य, शांत और हीलिंग फील वाले <strong>मिनी गेम्स</strong>।
+        हमारे <strong>रिलैक्स गेम्स</strong> कलेक्शन के साथ मन और दिमाग को शांत करें। सौम्य, शांत और हीलिंग फील वाले <strong
+          >मिनी गेम्स</strong
+        >।
       </p>
     </div>
 
@@ -265,4 +284,3 @@ const metadata = {
 
   <FAQs />
 </Layout>
-

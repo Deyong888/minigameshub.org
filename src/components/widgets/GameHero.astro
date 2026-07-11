@@ -2,7 +2,7 @@
 import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import { featuredGames } from '~/data/games';
 import type { Game } from '~/types/game';
-import { useTranslations } from '~/utils/i18n';
+import { useTranslations, resolveLang } from '~/utils/i18n';
 
 interface Props {
   id?: string;
@@ -12,15 +12,15 @@ interface Props {
   initialGame?: Game;
 }
 
-const lang = Astro.currentLocale || 'en';
-const t = useTranslations(lang as any);
+const lang = resolveLang(Astro.currentLocale);
+const t = useTranslations(lang);
 
 const {
   id,
   isDark = false,
   classes = {},
   bg = await Astro.slots.render('bg'),
-  initialGame = featuredGames[0] // Default to first featured game
+  initialGame = featuredGames[0], // Default to first featured game
 } = Astro.props;
 
 const games = featuredGames.slice(0, 8);
@@ -31,37 +31,55 @@ const gameLinkPrefix = lang === 'es' ? '/es/game/' : '/game/';
   <div class="relative w-full aspect-video bg-gray-900 rounded-lg overflow-hidden shadow-2xl">
     <!-- Mystery Box Trigger -->
     <div class="absolute top-4 right-4 z-20">
-      <a href={lang === 'es' ? '/es/surprise' : '/surprise'} class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105 animate-bounce flex items-center gap-2 no-underline">
-        <span>🎁</span> <span class="hidden sm:inline">{t('hero.surprise')}</span>
+      <a
+        href={lang === 'es' ? '/es/surprise' : '/surprise'}
+        class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition transform hover:scale-105 animate-bounce flex items-center gap-2 no-underline"
+      >
+        <span>🎁</span>
+        <span class="hidden sm:inline">{t('hero.surprise')}</span>
       </a>
     </div>
 
     <!-- Game Container -->
-    <div 
-      class="w-full h-full flex flex-col relative" 
+    <div
+      class="w-full h-full flex flex-col relative"
       id="heroGameContainer"
       data-game-link-prefix={gameLinkPrefix}
       data-now-playing-text={t('hero.nowPlaying')}
       data-initial-slug={initialGame?.slug}
       data-initial-id={initialGame?.id}
     >
-      <iframe 
+      <iframe
         id="heroFrame"
-        src={initialGame?.url || 'https://games.gamepix.com/play/slither-io?sid=GM8A7'} 
+        src={initialGame?.url || 'https://games.gamepix.com/play/slither-io?sid=GM8A7'}
         title={initialGame?.title || 'Game'}
         class="w-full flex-grow border-none"
         allowfullscreen
-        sandbox="allow-scripts allow-same-origin allow-popups"
-      ></iframe>
-      
+        sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+
       <!-- Controls Bar -->
       <div class="bg-gray-800 p-3 flex justify-between items-center text-white z-20 relative">
-        <span id="currentGameTitle" class="font-bold ml-2 truncate max-w-[50%]">{t('hero.nowPlaying')} {initialGame?.title || 'Loading...'}</span>
+        <span id="currentGameTitle" class="font-bold ml-2 truncate max-w-[50%]"
+          >{t('hero.nowPlaying')} {initialGame?.title || 'Loading...'}</span
+        >
         <div class="flex gap-2 shrink-0">
-          <button id="heroFavoriteBtn" class="px-3 py-1 bg-pink-600 rounded hover:bg-pink-700 text-sm" title="Add to Favorites">❤️</button>
-          <a id="gameDetailsLink" href={`${gameLinkPrefix}${initialGame ? `${initialGame.id}-${initialGame.slug}` : '#'}`} class="px-3 py-1 bg-green-600 rounded hover:bg-green-700 text-sm hidden sm:inline-block no-underline text-white" title="Game Details">ℹ️ {t('hero.details')}</a>
-          <button id="bossKey" class="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm" title="Boss Key (ESC)">🚨 {t('hero.bossKey')} (ESC)</button>
-          <button id="fullscreenBtn" class="px-3 py-1 bg-blue-600 rounded hover:bg-blue-700 text-sm" title="Fullscreen">⛶ {t('hero.fullscreen')}</button>
+          <button
+            id="heroFavoriteBtn"
+            class="px-3 py-1 bg-pink-600 rounded hover:bg-pink-700 text-sm"
+            title="Add to Favorites">❤️</button
+          >
+          <a
+            id="gameDetailsLink"
+            href={`${gameLinkPrefix}${initialGame ? `${initialGame.id}-${initialGame.slug}` : '#'}`}
+            class="px-3 py-1 bg-green-600 rounded hover:bg-green-700 text-sm hidden sm:inline-block no-underline text-white"
+            title="Game Details">ℹ️ {t('hero.details')}</a
+          >
+          <button id="bossKey" class="px-3 py-1 bg-red-600 rounded hover:bg-red-700 text-sm" title="Boss Key (ESC)"
+            >🚨 {t('hero.bossKey')} (ESC)</button
+          >
+          <button id="fullscreenBtn" class="px-3 py-1 bg-blue-600 rounded hover:bg-blue-700 text-sm" title="Fullscreen"
+            >⛶ {t('hero.fullscreen')}</button
+          >
         </div>
       </div>
     </div>
@@ -71,20 +89,24 @@ const gameLinkPrefix = lang === 'es' ? '/es/game/' : '/game/';
   <div class="mt-4 overflow-x-auto p-4 bg-gray-900 rounded-lg scrollbar-hide">
     <h3 class="text-white text-sm mb-2 font-bold">{t('hero.trending')}</h3>
     <div class="flex gap-2 pb-2 justify-between">
-        {games.map((game) => (
-            <div 
-                class="flex-1 h-20 bg-gray-700 rounded cursor-pointer hover:opacity-80 transition relative overflow-hidden group game-thumb"
-                data-url={game.url}
-                data-title={game.title}
-                data-slug={game.slug}
-                data-id={game.id}
-            >
-                <img src={game.thumbnail} alt={game.title} class="w-full h-full object-cover" loading="lazy" />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition flex items-center justify-center">
-                    <span class="text-white opacity-0 group-hover:opacity-100 font-bold text-xs px-1 text-center shadow-black drop-shadow-md">{game.title}</span>
-                </div>
+      {
+        games.map((game) => (
+          <div
+            class="flex-1 h-20 bg-gray-700 rounded cursor-pointer hover:opacity-80 transition relative overflow-hidden group game-thumb"
+            data-url={game.url}
+            data-title={game.title}
+            data-slug={game.slug}
+            data-id={game.id}
+          >
+            <img src={game.thumbnail} alt={game.title} class="w-full h-full object-cover" loading="lazy" />
+            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition flex items-center justify-center">
+              <span class="text-white opacity-0 group-hover:opacity-100 font-bold text-xs px-1 text-center shadow-black drop-shadow-md">
+                {game.title}
+              </span>
             </div>
-        ))}
+          </div>
+        ))
+      }
     </div>
   </div>
 </WidgetWrapper>
@@ -102,7 +124,7 @@ const gameLinkPrefix = lang === 'es' ? '/es/game/' : '/game/';
     const gameThumbs = document.querySelectorAll('.game-thumb');
     const gameTitle = document.getElementById('currentGameTitle');
     const detailsLink = document.getElementById('gameDetailsLink') as HTMLAnchorElement | null;
-    
+
     if (!heroGameContainer) return;
 
     const { gameLinkPrefix, nowPlayingText, initialSlug } = (heroGameContainer as HTMLElement).dataset;
@@ -112,7 +134,7 @@ const gameLinkPrefix = lang === 'es' ? '/es/game/' : '/game/';
 
     // Boss Key
     const activateBossKey = () => {
-        window.location.href = 'https://google.com';
+      window.location.href = 'https://google.com';
     };
 
     document.onkeydown = (e) => {
@@ -122,16 +144,16 @@ const gameLinkPrefix = lang === 'es' ? '/es/game/' : '/game/';
     };
 
     if (bossKeyBtn) {
-        bossKeyBtn.onclick = activateBossKey;
+      bossKeyBtn.onclick = activateBossKey;
     }
 
     // Fullscreen
     if (fullscreenBtn && heroFrame) {
-        fullscreenBtn.onclick = () => {
-            if (heroFrame.requestFullscreen) {
-                heroFrame.requestFullscreen();
-            }
-        };
+      fullscreenBtn.onclick = () => {
+        if (heroFrame.requestFullscreen) {
+          heroFrame.requestFullscreen();
+        }
+      };
     }
 
     // Favorite Logic
@@ -143,32 +165,32 @@ const gameLinkPrefix = lang === 'es' ? '/es/game/' : '/game/';
     };
 
     if (heroFavoriteBtn) {
-        heroFavoriteBtn.onclick = () => {
-            toggleFavorite(currentSlug);
-            updateFavoriteBtn();
-        };
+      heroFavoriteBtn.onclick = () => {
+        toggleFavorite(currentSlug);
+        updateFavoriteBtn();
+      };
     }
 
     // Quick Play
-    gameThumbs.forEach(thumb => {
+    gameThumbs.forEach((thumb) => {
       (thumb as HTMLElement).onclick = () => {
-          const url = thumb.getAttribute('data-url');
-          const title = thumb.getAttribute('data-title');
-          const slug = thumb.getAttribute('data-slug');
-          const id = thumb.getAttribute('data-id');
-          
-          if (heroFrame && url && slug) {
-              heroFrame.src = url;
-              currentSlug = slug;
-              if (gameTitle) gameTitle.textContent = `${nowPlayingText} ${title}`;
-              if (detailsLink) detailsLink.href = `${gameLinkPrefix}${id}-${slug}`;
-              
-              addToHistory(slug);
-              updateFavoriteBtn();
-          }
+        const url = thumb.getAttribute('data-url');
+        const title = thumb.getAttribute('data-title');
+        const slug = thumb.getAttribute('data-slug');
+        const id = thumb.getAttribute('data-id');
+
+        if (heroFrame && url && slug) {
+          heroFrame.src = url;
+          currentSlug = slug;
+          if (gameTitle) gameTitle.textContent = `${nowPlayingText} ${title}`;
+          if (detailsLink) detailsLink.href = `${gameLinkPrefix}${id}-${slug}`;
+
+          addToHistory(slug);
+          updateFavoriteBtn();
+        }
       };
     });
-    
+
     // Initial Check
     updateFavoriteBtn();
   };

@@ -6,6 +6,17 @@ export const languages = {
 
 export const defaultLang = 'en';
 
+export type Lang = keyof typeof ui;
+
+export function resolveLang(locale?: string | null): Lang {
+  if (locale && locale in ui) return locale as Lang;
+  return defaultLang;
+}
+
+export function translateDynamic(t: ReturnType<typeof useTranslations>, key: string): string | undefined {
+  return (t as (key: string) => string | undefined)(key);
+}
+
 export const ui = {
   en: {
     'nav.home': 'Home',
@@ -37,7 +48,8 @@ export const ui = {
     'game.share': 'Share',
     'game.plays': 'Plays',
     'game.about': 'About',
-    'game.description': 'Play {0} online directly in your browser. No download required. This game is part of the {1} games category.',
+    'game.description':
+      'Play {0} online directly in your browser. No download required. This game is part of the {1} games category.',
     'game.howToPlay': 'How to Play',
     'game.similar': 'Similar Games',
     'game.youMightLike': 'You Might Also Like',
@@ -47,7 +59,7 @@ export const ui = {
     'myGames.history': 'History',
     'myGames.loading': 'Loading your games...',
     'myGames.noFavorites': "You haven't favorited any games yet.",
-    'myGames.noHistory': "No play history yet.",
+    'myGames.noHistory': 'No play history yet.',
     'myGames.browse': 'Browse Games',
     'myGames.remove': 'Remove',
     'myGames.playAgain': 'Play Again',
@@ -91,7 +103,8 @@ export const ui = {
     'cat.modern': 'Modern',
     'blog.title': 'Blog',
     'blog.page': 'Page',
-    'blog.subtitle': 'Discover the best games to play when bored at work or school. Game reviews, top lists, and hidden gems.',
+    'blog.subtitle':
+      'Discover the best games to play when bored at work or school. Game reviews, top lists, and hidden gems.',
     'blog.headline': 'MiniGamesHub Blog',
     'blog.back': 'Back to Blog',
     'blog.related': 'Related Posts',
@@ -105,6 +118,7 @@ export const ui = {
     'search.description': 'Find your favorite games...',
     'search.placeholder': 'Search games...',
     'search.noResults': 'No games found for [SEARCH_TERM]',
+    'search.devOnly': 'Search is available after running npm run build && npm run preview.',
     'cookie.title': 'Cookies & Privacy',
     'cookie.description': 'We use cookies to ensure you get the best experience on our website.',
     'cookie.accept': 'Accept',
@@ -141,7 +155,8 @@ export const ui = {
     'game.share': 'Compartir',
     'game.plays': 'Jugadas',
     'game.about': 'Sobre',
-    'game.description': 'Juega a {0} online directamente en tu navegador. Sin descargas. Este juego es parte de la categoría de juegos de {1}.',
+    'game.description':
+      'Juega a {0} online directamente en tu navegador. Sin descargas. Este juego es parte de la categoría de juegos de {1}.',
     'game.howToPlay': 'Cómo Jugar',
     'game.similar': 'Juegos Similares',
     'game.youMightLike': 'También te puede gustar',
@@ -150,8 +165,8 @@ export const ui = {
     'myGames.favorites': 'Favoritos',
     'myGames.history': 'Historial',
     'myGames.loading': 'Cargando tus juegos...',
-    'myGames.noFavorites': "Aún no has guardado ningún juego.",
-    'myGames.noHistory': "Aún no hay historial de juego.",
+    'myGames.noFavorites': 'Aún no has guardado ningún juego.',
+    'myGames.noHistory': 'Aún no hay historial de juego.',
     'myGames.browse': 'Explorar Juegos',
     'myGames.remove': 'Eliminar',
     'myGames.playAgain': 'Jugar de Nuevo',
@@ -195,7 +210,8 @@ export const ui = {
     'cat.modern': 'Moderno',
     'blog.title': 'Blog',
     'blog.page': 'Página',
-    'blog.subtitle': 'Descubre los mejores juegos para jugar cuando estás aburrido en el trabajo o la escuela. Reseñas de juegos, listas top y joyas ocultas.',
+    'blog.subtitle':
+      'Descubre los mejores juegos para jugar cuando estás aburrido en el trabajo o la escuela. Reseñas de juegos, listas top y joyas ocultas.',
     'blog.headline': 'Blog de MiniGamesHub',
     'blog.back': 'Volver al Blog',
     'blog.related': 'Publicaciones Relacionadas',
@@ -209,6 +225,7 @@ export const ui = {
     'search.description': 'Encuentra tus juegos favoritos...',
     'search.placeholder': 'Buscar juegos...',
     'search.noResults': 'No se encontraron juegos para [SEARCH_TERM]',
+    'search.devOnly': 'La búsqueda está disponible después de ejecutar npm run build && npm run preview.',
     'cookie.title': 'Cookies y Privacidad',
     'cookie.description': 'Utilizamos cookies para asegurar la mejor experiencia en nuestro sitio web.',
     'cookie.accept': 'Aceptar',
@@ -254,8 +271,8 @@ export const ui = {
     'myGames.favorites': '收藏夹',
     'myGames.history': '最近播放',
     'myGames.loading': '正在加载您的游戏...',
-    'myGames.noFavorites': "您还没有收藏任何游戏。",
-    'myGames.noHistory': "暂无播放记录。",
+    'myGames.noFavorites': '您还没有收藏任何游戏。',
+    'myGames.noHistory': '暂无播放记录。',
     'myGames.browse': '浏览游戏',
     'myGames.remove': '移除',
     'myGames.playAgain': '再玩一次',
@@ -313,6 +330,7 @@ export const ui = {
     'search.description': '寻找您最喜欢的游戏...',
     'search.placeholder': '搜索游戏...',
     'search.noResults': '未找到关于 [SEARCH_TERM] 的游戏',
+    'search.devOnly': '搜索功能需先运行 npm run build && npm run preview 后可用。',
     'cookie.title': 'Cookie 与隐私',
     'cookie.description': '我们使用 Cookie 来确保您在我们的网站上获得最佳体验。',
     'cookie.accept': '接受',
@@ -349,7 +367,8 @@ export const ui = {
     'game.share': 'शेयर करें',
     'game.plays': 'खेलने की संख्या',
     'game.about': 'के बारे में',
-    'game.description': 'अपने ब्राउज़र में सीधे ऑनलाइन {0} खेलें। कोई डाउनलोड नहीं। यह गेम {1} गेम्स श्रेणी का हिस्सा है।',
+    'game.description':
+      'अपने ब्राउज़र में सीधे ऑनलाइन {0} खेलें। कोई डाउनलोड नहीं। यह गेम {1} गेम्स श्रेणी का हिस्सा है।',
     'game.howToPlay': 'कैसे खेलें',
     'game.similar': 'समान गेम्स',
     'game.youMightLike': 'ये भी आपको पसंद आ सकते हैं',
@@ -402,7 +421,8 @@ export const ui = {
     'cat.modern': 'मॉडर्न',
     'blog.title': 'ब्लॉग',
     'blog.page': 'पेज',
-    'blog.subtitle': 'जब आप काम या स्कूल में बोर हों, खेलने के लिए सबसे अच्छे गेम्स खोजें। गेम रिव्यू, टॉप लिस्ट और छिपे हुए रत्न।',
+    'blog.subtitle':
+      'जब आप काम या स्कूल में बोर हों, खेलने के लिए सबसे अच्छे गेम्स खोजें। गेम रिव्यू, टॉप लिस्ट और छिपे हुए रत्न।',
     'blog.headline': 'MiniGamesHub ब्लॉग',
     'blog.back': 'ब्लॉग पर वापस जाएं',
     'blog.related': 'संबंधित पोस्ट',
@@ -416,6 +436,7 @@ export const ui = {
     'search.description': 'अपने पसंदीदा गेम्स ढूंढें...',
     'search.placeholder': 'गेम्स खोजें...',
     'search.noResults': '[SEARCH_TERM] के लिए कोई गेम नहीं मिला',
+    'search.devOnly': 'खोज npm run build && npm run preview चलाने के बाद उपलब्ध है।',
     'cookie.title': 'कुकीज़ और प्राइवेसी',
     'cookie.description': 'हम कुकीज़ का उपयोग करते हैं ताकि आपको हमारी वेबसाइट पर सबसे अच्छा अनुभव मिले।',
     'cookie.accept': 'स्वीकार करें',
@@ -431,15 +452,15 @@ export function getLangFromUrl(url: URL) {
 }
 
 export function useTranslations(lang: keyof typeof ui) {
-  return function t(key: keyof typeof ui[typeof defaultLang], params?: (string | number)[]): string {
+  return function t(key: keyof (typeof ui)[typeof defaultLang], params?: (string | number)[]): string {
     let text: string = ui[lang][key] || ui[defaultLang][key];
     if (params && params.length > 0) {
-        params.forEach((param, index) => {
-            text = text.replace(new RegExp(`\\{${index}\\}`, 'g'), String(param));
-        });
+      params.forEach((param, index) => {
+        text = text.replace(new RegExp(`\\{${index}\\}`, 'g'), String(param));
+      });
     }
     return text;
-  }
+  };
 }
 
 export function getRouteFromUrl(url: URL): string {

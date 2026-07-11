@@ -26,23 +26,36 @@ const zeroResults = t('search.noResults');
     </div>
 
     <div id="search" class="w-full min-h-[500px]"></div>
+    {
+      !import.meta.env.PROD && (
+        <p class="text-center text-yellow-600 dark:text-yellow-400 py-4">{t('search.devOnly')}</p>
+      )
+    }
   </section>
 </Layout>
 
-<link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
-<script src="/pagefind/pagefind-ui.js" is:inline></script>
+{
+  import.meta.env.PROD && (
+    <>
+      <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+      <script src="/pagefind/pagefind-ui.js" is:inline />
+    </>
+  )
+}
 
-<script is:inline define:vars={{ placeholder, zeroResults }}>
+<script is:inline define:vars={{ placeholder, zeroResults, isProd: import.meta.env.PROD }}>
   window.addEventListener('DOMContentLoaded', () => {
-    new PagefindUI({ 
-        element: "#search", 
+    if (isProd && window.PagefindUI) {
+      new PagefindUI({
+        element: '#search',
         showSubResults: true,
         showImages: true,
         translations: {
-            placeholder: placeholder,
-            zero_results: zeroResults
-        }
-    });
+          placeholder: placeholder,
+          zero_results: zeroResults,
+        },
+      });
+    }
   });
 </script>
 
@@ -68,9 +81,9 @@ const zeroResults = t('search.noResults');
     --pagefind-ui-border: #374151;
     --pagefind-ui-tag: #374151;
   }
-  
+
   .pagefind-ui__result-thumb {
-      object-fit: cover;
-      background-color: #1f2937;
+    object-fit: cover;
+    background-color: #1f2937;
   }
 </style>

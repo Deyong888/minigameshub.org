@@ -1,5 +1,5 @@
 import { getPermalink, getAsset } from './utils/permalinks';
-import { useTranslations } from './utils/i18n';
+import { useTranslations, resolveLang } from './utils/i18n';
 
 const getLink = (path: string, lang: string) => {
   if (path.startsWith('/blog')) {
@@ -11,8 +11,8 @@ const getLink = (path: string, lang: string) => {
 };
 
 export const getHeaderData = (lang = 'en') => {
-  const t = useTranslations(lang as any);
-  
+  const t = useTranslations(resolveLang(lang));
+
   return {
     links: [
       {
@@ -45,8 +45,8 @@ export const getHeaderData = (lang = 'en') => {
 };
 
 export const getFooterData = (lang = 'en') => {
-  const t = useTranslations(lang as any);
-  
+  const t = useTranslations(resolveLang(lang));
+
   return {
     links: [
       {

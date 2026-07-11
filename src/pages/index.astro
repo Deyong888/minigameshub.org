@@ -3,25 +3,28 @@ import Layout from '~/layouts/PageLayout.astro';
 import { Icon } from 'astro-icon/components';
 
 import GameHero from '~/components/widgets/GameHero.astro';
-import GameGrid from '~/components/widgets/GameGrid.astro';
 import GameCard from '~/components/game/GameCard.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
-import { 
+import {
   // Mini Games
-  miniArcadeGames, miniPuzzleGames, miniActionGames,
+  miniArcadeGames,
+  miniPuzzleGames,
+  miniActionGames,
   // Small Games
-  smallCasualGames, smallQuickGames, smallShortGames,
+  smallCasualGames,
+  smallQuickGames,
+  smallShortGames,
   // Relax Games
-  relaxStressReliefGames, relaxCalmingGames, relaxCasualGames,
+  relaxStressReliefGames,
+  relaxCalmingGames,
+  relaxCasualGames,
   // Bored Games
-  officeGames, unblockedGames, waitingInLineGames,
-  // Arcade Games
-  arcadeModernGames,
+  officeGames,
+  unblockedGames,
+  waitingInLineGames,
   // Browser Games
   browserHtml5Games,
-  // No Download Games
-  noDownloadInstantGames,
   // HTML5 Games
   html5MobileGames,
 } from '~/data/games';
@@ -29,10 +32,12 @@ import {
 const metadata = {
   title: 'MiniGamesHub — Play 5000+ Free Games | World Cup Football Games Online',
   ignoreTitleTemplate: true,
-  description: 'Play 5000+ free games online including World Cup football games, soccer games, mini games, arcade games and more. Instant browser play, no download required!',
+  description:
+    'Play 5000+ free games online including World Cup football games, soccer games, mini games, arcade games and more. Instant browser play, no download required!',
 };
 
-const sectionLinkClass = 'inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold text-sm transition-colors';
+const sectionLinkClass =
+  'inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold text-sm transition-colors';
 const sectionBg = {
   default: '',
   muted: 'bg-gray-50 dark:bg-slate-900/10',
@@ -44,17 +49,26 @@ const sectionBg = {
 
 <Layout metadata={metadata}>
   <!-- HERO SECTION -->
-  <div class="py-8 md:py-12 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950">
+  <div
+    class="py-8 md:py-12 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950"
+  >
     <div class="text-center mb-8 max-w-4xl mx-auto px-4">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium mb-6 animate-fade-in shadow-md">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium mb-6 animate-fade-in shadow-md"
+      >
         <Icon name="tabler:device-gamepad-2" class="w-4 h-4" />
         🔥 World Cup Football Games Now Live!
       </div>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4 font-heading animate-slide-up">
-        Play <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">5,000+</span> Free Games Instantly
+        Play <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">5,000+</span> Free Games
+        Instantly
       </h1>
-      <p class="text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-2xl mx-auto animate-slide-up animate-delay-100">
-        Arcade classics, brain-teasing puzzles, relaxing escapes — all playable in your browser. <span class="font-semibold text-gray-800 dark:text-gray-200">No downloads, no sign-ups, just fun.</span>
+      <p
+        class="text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-2xl mx-auto animate-slide-up animate-delay-100"
+      >
+        Arcade classics, brain-teasing puzzles, relaxing escapes — all playable in your browser. <span
+          class="font-semibold text-gray-800 dark:text-gray-200">No downloads, no sign-ups, just fun.</span
+        >
       </p>
     </div>
     <div class="animate-fade-in animate-delay-200">
@@ -65,25 +79,49 @@ const sectionBg = {
   <!-- CATEGORY QUICK NAV -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
     <div class="flex flex-wrap justify-center gap-3">
-      <a href="/mini-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5">
+      <a
+        href="/mini-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5"
+      >
         <Icon name="tabler:device-gamepad-2" class="w-4 h-4 group-hover:scale-110 transition-transform" /> Mini Games
       </a>
-      <a href="/small-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
-        <Icon name="tabler:target-arrow" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Small Games
+      <a
+        href="/small-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <Icon name="tabler:target-arrow" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Small
+        Games
       </a>
-      <a href="/relax-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
-        <Icon name="tabler:mood-heart" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Relax Games
+      <a
+        href="/relax-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <Icon name="tabler:mood-heart" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Relax
+        Games
       </a>
-      <a href="/bored-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+      <a
+        href="/bored-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      >
         <Icon name="tabler:dice-5" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Bored Games
       </a>
-      <a href="/arcade-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
-        <Icon name="tabler:device-gamepad-2" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Arcade
+      <a
+        href="/arcade-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      >
+        <Icon name="tabler:device-gamepad-2" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" />
+        Arcade
       </a>
-      <a href="/browser-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+      <a
+        href="/browser-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      >
         <Icon name="tabler:browser" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> Browser
       </a>
-      <a href="/html5-games" class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+      <a
+        href="/html5-games"
+        class="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+      >
         <Icon name="tabler:code" class="w-4 h-4 text-gray-500 group-hover:text-primary transition-colors" /> HTML5
       </a>
     </div>
@@ -118,9 +156,7 @@ const sectionBg = {
         </h3>
         <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Classic arcade fun in mini format.</p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {miniArcadeGames.slice(0, 6).map((game) => (
-            <GameCard game={game} />
-          ))}
+          {miniArcadeGames.slice(0, 6).map((game) => <GameCard game={game} />)}
         </div>
       </div>
       <div>
@@ -129,9 +165,7 @@ const sectionBg = {
         </h3>
         <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Brain-teasing challenges to keep your mind sharp.</p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {miniPuzzleGames.slice(0, 6).map((game) => (
-            <GameCard game={game} />
-          ))}
+          {miniPuzzleGames.slice(0, 6).map((game) => <GameCard game={game} />)}
         </div>
       </div>
       <div>
@@ -140,9 +174,7 @@ const sectionBg = {
         </h3>
         <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Fast-paced excitement for adrenaline seekers.</p>
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-          {miniActionGames.slice(0, 6).map((game) => (
-            <GameCard game={game} />
-          ))}
+          {miniActionGames.slice(0, 6).map((game) => <GameCard game={game} />)}
         </div>
       </div>
     </div>
@@ -167,9 +199,7 @@ const sectionBg = {
           <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
             <a href="/small-games" class="hover:text-primary transition-colors">Big Fun in Small Packages</a>
           </h2>
-          <p class="mt-1 text-gray-600 dark:text-slate-400">
-            Lightweight HTML5 games that run smoothly on any device.
-          </p>
+          <p class="mt-1 text-gray-600 dark:text-slate-400">Lightweight HTML5 games that run smoothly on any device.</p>
         </div>
         <a href="/small-games" class={sectionLinkClass}>
           View All <Icon name="tabler:arrow-right" class="w-4 h-4" />
@@ -183,9 +213,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Relaxing small games for unwinding.</p>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-            {smallCasualGames.slice(0, 6).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {smallCasualGames.slice(0, 6).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div>
@@ -194,9 +222,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Games under 5 minutes for busy schedules.</p>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-            {smallQuickGames.slice(0, 6).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {smallQuickGames.slice(0, 6).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div>
@@ -205,9 +231,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Instant gratification in every session.</p>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-            {smallShortGames.slice(0, 6).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {smallShortGames.slice(0, 6).map((game) => <GameCard game={game} />)}
           </div>
         </div>
       </div>
@@ -228,9 +252,7 @@ const sectionBg = {
           <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
             <a href="/relax-games" class="hover:text-primary transition-colors">Unwind and De-stress</a>
           </h2>
-          <p class="mt-1 text-gray-600 dark:text-slate-400">
-            Calm, therapeutic games to melt your stress away.
-          </p>
+          <p class="mt-1 text-gray-600 dark:text-slate-400">Calm, therapeutic games to melt your stress away.</p>
         </div>
         <a href="/relax-games" class={sectionLinkClass}>
           View All <Icon name="tabler:arrow-right" class="w-4 h-4" />
@@ -244,9 +266,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Soothing games to reduce anxiety.</p>
           <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-            {relaxCalmingGames.slice(0, 2).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {relaxCalmingGames.slice(0, 2).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div>
@@ -255,9 +275,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Games designed to melt away worries.</p>
           <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-            {relaxStressReliefGames.slice(0, 2).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {relaxStressReliefGames.slice(0, 2).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div>
@@ -266,9 +284,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Low-pressure games for peaceful sessions.</p>
           <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-            {relaxCasualGames.slice(0, 2).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {relaxCasualGames.slice(0, 2).map((game) => <GameCard game={game} />)}
           </div>
         </div>
       </div>
@@ -315,9 +331,7 @@ const sectionBg = {
             </div>
           </div>
           <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-            {officeGames.slice(0, 2).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {officeGames.slice(0, 2).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900/50">
@@ -331,9 +345,7 @@ const sectionBg = {
             </div>
           </div>
           <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-            {unblockedGames.slice(0, 2).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {unblockedGames.slice(0, 2).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900/50">
@@ -347,9 +359,7 @@ const sectionBg = {
             </div>
           </div>
           <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
-            {waitingInLineGames.slice(0, 2).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {waitingInLineGames.slice(0, 2).map((game) => <GameCard game={game} />)}
           </div>
         </div>
       </div>
@@ -361,32 +371,60 @@ const sectionBg = {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-10">
         <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">Explore More Categories</h2>
-        <p class="mt-2 text-gray-600 dark:text-slate-400">
-          Thousands of games organized just for you.
-        </p>
+        <p class="mt-2 text-gray-600 dark:text-slate-400">Thousands of games organized just for you.</p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-        <a href="/arcade-games" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-600 via-purple-600 to-violet-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-1">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
-          <Icon name="tabler:device-gamepad-2" class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform" />
+        <a
+          href="/arcade-games"
+          class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-600 via-purple-600 to-violet-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-1"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"
+          >
+          </div>
+          <Icon
+            name="tabler:device-gamepad-2"
+            class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform"
+          />
           <h3 class="text-white font-bold text-xl group-hover:underline">Arcade Games</h3>
           <p class="text-white/80 text-sm">Classic & modern arcade action</p>
         </a>
-        <a href="/browser-games" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-cyan-600 to-blue-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-1">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
+        <a
+          href="/browser-games"
+          class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 via-cyan-600 to-blue-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-blue-500/30 hover:-translate-y-1"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"
+          >
+          </div>
           <Icon name="tabler:browser" class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform" />
           <h3 class="text-white font-bold text-xl group-hover:underline">Browser Games</h3>
           <p class="text-white/80 text-sm">Play in Chrome, Firefox, Safari</p>
         </a>
-        <a href="/no-download-games" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-1">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
-          <Icon name="tabler:download-off" class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform" />
+        <a
+          href="/no-download-games"
+          class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-emerald-600 via-teal-600 to-emerald-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-1"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"
+          >
+          </div>
+          <Icon
+            name="tabler:download-off"
+            class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform"
+          />
           <h3 class="text-white font-bold text-xl group-hover:underline">No Download Games</h3>
           <p class="text-white/80 text-sm">Instant play, zero waiting</p>
         </a>
-        <a href="/html5-games" class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-600 via-rose-600 to-orange-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"></div>
+        <a
+          href="/html5-games"
+          class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-orange-600 via-rose-600 to-orange-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-orange-500/30 hover:-translate-y-1"
+        >
+          <div
+            class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform"
+          >
+          </div>
           <Icon name="tabler:code" class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform" />
           <h3 class="text-white font-bold text-xl group-hover:underline">HTML5 Games</h3>
           <p class="text-white/80 text-sm">Modern tech, smooth gameplay</p>
@@ -401,9 +439,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Modern games for any device.</p>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {browserHtml5Games.slice(0, 6).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {browserHtml5Games.slice(0, 6).map((game) => <GameCard game={game} />)}
           </div>
         </div>
         <div>
@@ -412,9 +448,7 @@ const sectionBg = {
           </h3>
           <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">Optimized for touch screens.</p>
           <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {html5MobileGames.slice(0, 6).map((game) => (
-              <GameCard game={game} />
-            ))}
+            {html5MobileGames.slice(0, 6).map((game) => <GameCard game={game} />)}
           </div>
         </div>
       </div>
@@ -422,32 +456,42 @@ const sectionBg = {
   </section>
 
   <!-- FEATURES BANNER -->
-  <section class="bg-gradient-to-r from-primary via-purple-600 to-primary dark:from-primary/90 dark:via-purple-700 dark:to-primary/90 py-14 md:py-16">
+  <section
+    class="bg-gradient-to-r from-primary via-purple-600 to-primary dark:from-primary/90 dark:via-purple-700 dark:to-primary/90 py-14 md:py-16"
+  >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
         <div class="group">
-          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform"
+          >
             <Icon name="tabler:device-gamepad-2" class="w-7 h-7 text-white" />
           </div>
           <div class="text-3xl font-extrabold text-white mb-1">5,000+</div>
           <div class="text-white/80 text-sm md:text-base">Free Games</div>
         </div>
         <div class="group">
-          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform"
+          >
             <Icon name="tabler:tags" class="w-7 h-7 text-white" />
           </div>
           <div class="text-3xl font-extrabold text-white mb-1">20+</div>
           <div class="text-white/80 text-sm md:text-base">Categories</div>
         </div>
         <div class="group">
-          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform"
+          >
             <Icon name="tabler:browser" class="w-7 h-7 text-white" />
           </div>
           <div class="text-3xl font-extrabold text-white mb-1">No Download</div>
           <div class="text-white/80 text-sm md:text-base">Instant Play</div>
         </div>
         <div class="group">
-          <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
+          <div
+            class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform"
+          >
             <Icon name="tabler:device-mobile" class="w-7 h-7 text-white" />
           </div>
           <div class="text-3xl font-extrabold text-white mb-1">All Devices</div>
@@ -461,13 +505,27 @@ const sectionBg = {
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="prose dark:prose-invert max-w-none">
       <h2>Discover the Best Free Mini Games Online</h2>
-      <p>Welcome to <strong>MiniGamesHub</strong>, your premier destination for <strong>free online mini games</strong> and small games that deliver big fun in small packages. With over 5,000 <strong>HTML5 games</strong> in our collection, you'll never run out of exciting games to play directly in your browser — no downloads, no installations, and no sign-ups required!</p>
+      <p>
+        Welcome to <strong>MiniGamesHub</strong>, your premier destination for <strong>free online mini games</strong> and
+        small games that deliver big fun in small packages. With over 5,000 <strong>HTML5 games</strong> in our collection,
+        you'll never run out of exciting games to play directly in your browser — no downloads, no installations, and no
+        sign-ups required!
+      </p>
 
       <h3>⚽ World Cup Football Games</h3>
-      <p>Celebrate the excitement of the <strong>World Cup</strong> with our curated collection of <strong>free football games</strong> and <strong>soccer games</strong>! Play exciting matches, score goals, and experience the thrill of the world's most popular sport right in your browser. Our selection includes everything from casual kickabouts to competitive football tournaments.</p>
+      <p>
+        Celebrate the excitement of the <strong>World Cup</strong> with our curated collection of <strong
+          >free football games</strong
+        > and <strong>soccer games</strong>! Play exciting matches, score goals, and experience the thrill of the
+        world's most popular sport right in your browser. Our selection includes everything from casual kickabouts to
+        competitive football tournaments.
+      </p>
 
       <h3>Why Choose Mini Games?</h3>
-      <p><strong>Mini games</strong> and <strong>small games</strong> are designed for short bursts of 5–15 minutes, making them ideal for:</p>
+      <p>
+        <strong>Mini games</strong> and <strong>small games</strong> are designed for short bursts of 5–15 minutes, making
+        them ideal for:
+      </p>
       <ul>
         <li>Quick work breaks to recharge your brain</li>
         <li>Free time at school between classes</li>
@@ -476,8 +534,7 @@ const sectionBg = {
       </ul>
 
       <h3>🎮 Football & Soccer Games Collection</h3>
-      <p>Looking for the perfect <strong>football game online</strong>? Our sports category features:
-      </p>
+      <p>Looking for the perfect <strong>football game online</strong>? Our sports category features:</p>
       <ul>
         <li>World Cup themed soccer games</li>
         <li>Penalty shootout challenges</li>
@@ -496,108 +553,120 @@ const sectionBg = {
     items={[
       {
         title: 'What are mini games?',
-        description: "Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They are perfect for busy people who want quick entertainment without commitment.",
+        description:
+          'Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They are perfect for busy people who want quick entertainment without commitment.',
       },
       {
-        title: "What is the difference between mini games and small games?",
-        description: "Mini games emphasize short play time, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both — quick to play and light on storage!",
+        title: 'What is the difference between mini games and small games?',
+        description:
+          'Mini games emphasize short play time, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both — quick to play and light on storage!',
       },
       {
         title: 'What are HTML5 games?',
-        description: "HTML5 games are browser-based games built with modern web technology. They run on any device with a browser — no apps, no downloads, instant play!",
+        description:
+          'HTML5 games are browser-based games built with modern web technology. They run on any device with a browser — no apps, no downloads, instant play!',
       },
       {
         title: 'Can I play arcade games for free?',
-        description: "Yes! All arcade games on MiniGamesHub are 100% free. Play classic and modern arcade games instantly in your browser.",
+        description:
+          'Yes! All arcade games on MiniGamesHub are 100% free. Play classic and modern arcade games instantly in your browser.',
       },
       {
         title: 'What are relax games?',
-        description: "Relax games are designed to reduce stress and provide a calming experience. They are peaceful, pressure-free games perfect for unwinding after a long day."
+        description:
+          'Relax games are designed to reduce stress and provide a calming experience. They are peaceful, pressure-free games perfect for unwinding after a long day.',
       },
       {
         title: 'What are the best games to play when bored?',
-        description: "The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!"
+        description:
+          'The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!',
       },
       {
         title: 'Do you have football games for the World Cup?',
-        description: "Yes! We have an amazing collection of free football games and soccer games perfect for the World Cup season. Play penalty shootouts, football matches, and soccer tournaments directly in your browser!"
+        description:
+          'Yes! We have an amazing collection of free football games and soccer games perfect for the World Cup season. Play penalty shootouts, football matches, and soccer tournaments directly in your browser!',
       },
       {
         title: 'Can I play soccer games for free?',
-        description: "Absolutely! All soccer and football games on MiniGamesHub are 100% free. No downloads, no sign-ups, just instant football fun right in your browser!"
-      }
+        description:
+          'Absolutely! All soccer and football games on MiniGamesHub are 100% free. No downloads, no sign-ups, just instant football fun right in your browser!',
+      },
     ]}
   />
 
   <!-- JSON-LD: FAQPage -->
-  <script is:inline type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: [
         {
-          "@type": "Question",
-          "name": "What are mini games?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They are perfect for busy people who want quick entertainment without commitment."
-          }
+          '@type': 'Question',
+          name: 'What are mini games?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Mini games are short, casual games designed for quick play sessions, typically 5-10 minutes. They are perfect for busy people who want quick entertainment without commitment.',
+          },
         },
         {
-          "@type": "Question",
-          "name": "What is the difference between mini games and small games?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Mini games emphasize short play time, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both — quick to play and light on storage!"
-          }
+          '@type': 'Question',
+          name: 'What is the difference between mini games and small games?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Mini games emphasize short play time, while small games refer to lightweight games with small file sizes. At MiniGamesHub, we offer both — quick to play and light on storage!',
+          },
         },
         {
-          "@type": "Question",
-          "name": "What are HTML5 games?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "HTML5 games are browser-based games built with modern web technology. They run on any device with a browser — no apps, no downloads, instant play!"
-          }
+          '@type': 'Question',
+          name: 'What are HTML5 games?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'HTML5 games are browser-based games built with modern web technology. They run on any device with a browser — no apps, no downloads, instant play!',
+          },
         },
         {
-          "@type": "Question",
-          "name": "Can I play arcade games for free?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes! All arcade games on MiniGamesHub are 100% free. Play classic and modern arcade games instantly in your browser."
-          }
+          '@type': 'Question',
+          name: 'Can I play arcade games for free?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes! All arcade games on MiniGamesHub are 100% free. Play classic and modern arcade games instantly in your browser.',
+          },
         },
         {
-          "@type": "Question",
-          "name": "What are relax games?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Relax games are designed to reduce stress and provide a calming experience. They are peaceful, pressure-free games perfect for unwinding after a long day."
-          }
+          '@type': 'Question',
+          name: 'What are relax games?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Relax games are designed to reduce stress and provide a calming experience. They are peaceful, pressure-free games perfect for unwinding after a long day.',
+          },
         },
         {
-          "@type": "Question",
-          "name": "What are the best games to play when bored?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!"
-          }
+          '@type': 'Question',
+          name: 'What are the best games to play when bored?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!',
+          },
         },
         {
-          "@type": "Question",
-          "name": "Do you have football games for the World Cup?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes! We have an amazing collection of free football games and soccer games perfect for the World Cup season. Play penalty shootouts, football matches, and soccer tournaments directly in your browser!"
-          }
+          '@type': 'Question',
+          name: 'Do you have football games for the World Cup?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes! We have an amazing collection of free football games and soccer games perfect for the World Cup season. Play penalty shootouts, football matches, and soccer tournaments directly in your browser!',
+          },
         },
         {
-          "@type": "Question",
-          "name": "Can I play soccer games for free?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Absolutely! All soccer and football games on MiniGamesHub are 100% free. No downloads, no sign-ups, just instant football fun right in your browser!"
-          }
-        }
-      ]
-    })} />
+          '@type': 'Question',
+          name: 'Can I play soccer games for free?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Absolutely! All soccer and football games on MiniGamesHub are 100% free. No downloads, no sign-ups, just instant football fun right in your browser!',
+          },
+        },
+      ],
+    })}
+  />
 </Layout>
