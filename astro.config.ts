@@ -90,7 +90,7 @@ export default defineConfig({
   },
 
   image: {
-    domains: ['cdn.pixabay.com', 'img.gamepix.com'],
+    domains: ['cdn.pixabay.com', 'img.gamepix.com', 'images.unsplash.com', 'plus.unsplash.com'],
   },
 
   markdown: {
