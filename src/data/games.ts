@@ -35,23 +35,25 @@ const mapGamePixItem = (item: GamePixItem): Game => ({
 
 const allGamePixGames = (gamepixData.items as GamePixItem[]).map(mapGamePixItem);
 
-// Categorization Logic
-// Find football/soccer games to feature for World Cup
-const footballGames = allGamePixGames
-  .filter(
-    (g) =>
-      g.title.toLowerCase().includes('football') ||
-      g.title.toLowerCase().includes('soccer') ||
-      g.title.toLowerCase().includes('goal') ||
-      g.title.toLowerCase().includes('foot chinko')
-  )
-  .slice(0, 2);
+// Curated list of popular game slugs for the hero/trending section
+const popularSlugs = [
+  'moto-x3m-spooky-land',
+  'penalty-kick-wiz',
+  'basketball-stars',
+  'worm-hunt-snake-game-io-zone',
+  'funny-shooter-2',
+  'stickman-warriors-1',
+  'gelatino',
+  'demolition-derby-life',
+];
 
-// Mix football games with other top quality games for featured section
-export const featuredGames: Game[] = [
-  ...footballGames,
-  ...allGamePixGames.filter((g) => !footballGames.includes(g)).slice(0, 6),
-].slice(0, 8); // Total 8 games for trending section
+// Categorization Logic
+// Featured games: curated popular games, fallback to top games from feed
+export const featuredGames: Game[] = popularSlugs
+  .map((slug) => allGamePixGames.find((g) => g.slug === slug))
+  .filter((g): g is Game => Boolean(g))
+  .concat(allGamePixGames.slice(0, 8))
+  .slice(0, 8); // Total 8 games for trending section
 
 export const boredAtWorkGames: Game[] = allGamePixGames
   .filter((g) =>
