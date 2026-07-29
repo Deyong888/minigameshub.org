@@ -22,28 +22,62 @@ export interface Props {
 
 const { game, relatedGames } = Astro.props;
 
-// Generate category-specific how-to-play instructions
-const getHowToPlay = (category: string) => {
+// Generate personalized how-to-play instructions based on game details
+const getHowToPlay = (title: string, category: string, description: string) => {
+  const lowerTitle = title.toLowerCase();
   const lowerCategory = category.toLowerCase();
-  
-  if (lowerCategory.includes('puzzle') || lowerCategory.includes('sudoku') || lowerCategory.includes('match')) {
-    return 'Use your mouse or touch to interact. Think carefully and plan your moves ahead to solve the puzzle!';
-  } else if (lowerCategory.includes('arcade') || lowerCategory.includes('action') || lowerCategory.includes('shoot')) {
-    return 'Use arrow keys or WASD to move. Spacebar or click to jump or shoot. Avoid enemies and collect points!';
-  } else if (lowerCategory.includes('racing') || lowerCategory.includes('sports')) {
-    return 'Use arrow keys to control your vehicle or character. Collect power-ups and race to the finish line!';
-  } else if (lowerCategory.includes('casual') || lowerCategory.includes('relax') || lowerCategory.includes('idle')) {
-    return 'Click or tap to play. Relax and enjoy at your own pace - no pressure!';
-  } else {
-    return 'Use mouse, keyboard, or touch controls. Most games are intuitive and easy to learn - just start playing!';
+  const lowerDesc = description.toLowerCase();
+
+  // Puzzle / Sudoku / Match games
+  if (lowerCategory.includes('puzzle') || lowerCategory.includes('sudoku') || lowerCategory.includes('match') || lowerTitle.includes('puzzle') || lowerTitle.includes('sudoku')) {
+    if (lowerDesc.includes('drag') || lowerDesc.includes('click')) {
+      return 'Click and drag pieces to solve the puzzle. Think strategically and plan your moves ahead to beat your best score!';
+    }
+    return 'Use your mouse or touch to click and interact with the pieces. Plan your moves carefully to solve each level faster!';
   }
+
+  // Shooting / Action / Arcade games
+  if (lowerCategory.includes('shoot') || lowerCategory.includes('action') || lowerCategory.includes('arcade') || lowerTitle.includes('shooter') || lowerTitle.includes('gun')) {
+    if (lowerDesc.includes('aim') || lowerDesc.includes('mouse')) {
+      return 'Aim with your mouse and click to shoot. Use WASD or arrow keys to move. Dodge enemy attacks and survive as long as you can!';
+    }
+    return 'Use arrow keys or WASD to move, spacebar to jump, and mouse to aim or shoot. Collect power-ups and defeat enemies!';
+  }
+
+  // Racing / Sports / Driving
+  if (lowerCategory.includes('racing') || lowerCategory.includes('sports') || lowerCategory.includes('driving') || lowerTitle.includes('race') || lowerTitle.includes('drive')) {
+    if (lowerDesc.includes('bike') || lowerDesc.includes('motorcycle')) {
+      return 'Use arrow keys to steer your motorcycle. Up to accelerate, down to brake. Balance carefully on ramps and avoid crashing!';
+    }
+    return 'Use arrow keys to control your vehicle. Up to accelerate, down to brake, left/right to steer. Collect power-ups and reach the finish line first!';
+  }
+
+  // Casual / Relax / Idle / Clicker
+  if (lowerCategory.includes('casual') || lowerCategory.includes('relax') || lowerCategory.includes('idle') || lowerTitle.includes('clicker') || lowerTitle.includes('idle')) {
+    return 'Simply click or tap to play. Sit back, relax, and enjoy at your own pace — no rush, no pressure!';
+  }
+
+  // Strategy / Tower Defense / Board
+  if (lowerCategory.includes('strategy') || lowerCategory.includes('defense') || lowerCategory.includes('board') || lowerTitle.includes('tower') || lowerTitle.includes('defense')) {
+    return 'Click or tap to place units and build your strategy. Manage resources wisely and defend your territory from waves of enemies!';
+  }
+
+  // Default: general instruction based on description hints
+  if (lowerDesc.includes('keyboard') || lowerDesc.includes('arrow') || lowerDesc.includes('wasd')) {
+    return 'Use your keyboard (arrow keys or WASD) to move, and spacebar or click to perform actions. Follow the on-screen instructions for specific controls.';
+  }
+  if (lowerDesc.includes('mouse') || lowerDesc.includes('click') || lowerDesc.includes('drag')) {
+    return 'Use your mouse to click, drag, and interact with game elements. Most actions are intuitive — just start playing!';
+  }
+
+  return 'Use mouse, keyboard, or touch controls to play. The game is easy to pick up — just start and have fun!';
 };
 
-const howToPlayText = getHowToPlay(game.category);
+const howToPlayText = getHowToPlay(game.title, game.category, game.description);
 
 const metadata = {
-  title: `Play ${game.title} — Free Online Game | MiniGamesHub.org`,
-  description: `Play ${game.title} online for free on MiniGamesHub.org. No download required, instant browser play. ${game.description} Enjoy this ${game.category} game with ${game.plays?.toLocaleString() || 'many'} plays!`,
+  title: `${game.title} - Play Free Online | No Download | MiniGamesHub`,
+  description: `Play ${game.title} free online. ${game.category} game, no download required, instant play in your browser. Enjoy this ${game.category} game on MiniGamesHub!`,
   openGraph: {
     type: 'video.other',
     images: [
@@ -117,14 +151,14 @@ const metadata = {
         <div class="prose dark:prose-invert max-w-none bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
             {game.rich_content ? <div set:html={game.rich_content} /> : (
                 <>
-                    <h3>About {game.title}</h3>
+                    <h2>About {game.title}</h2>
                     <p>{game.description}</p>
                     <p>Play {game.title} online directly in your browser. No download required. This game is part of our {game.category} games collection and has been played {game.plays?.toLocaleString() || 'many'} times!</p>
                     
-                    <h4>How to Play {game.title}</h4>
+                    <h2>How to Play {game.title}</h2>
                     <p>{howToPlayText}</p>
                     
-                    <h4>Why Play on MiniGamesHub?</h4>
+                    <h2>Why Play on MiniGamesHub?</h2>
                     <p>MiniGamesHub offers thousands of free online games with no downloads, no sign-ups, and instant play. Enjoy {game.title} and many more games across all categories!</p>
                 </>
             )}
@@ -178,6 +212,30 @@ const metadata = {
       "bestRating": "5",
       "worstRating": "1"
     }
+  })} />
+
+  <script is:inline type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://minigameshub.org/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": game.category,
+        "item": `https://minigameshub.org/${game.category.toLowerCase().replace(/\s+/g, '-')}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": game.title
+      }
+    ]
   })} />
 
   <script>

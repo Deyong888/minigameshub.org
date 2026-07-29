@@ -83,9 +83,9 @@ export const getFooterData = (lang = 'en') => {
       { text: t('footer.privacy'), href: getLink('/privacy', lang) },
     ],
     socialLinks: [
-      { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },
-      { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
-      { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
+      { ariaLabel: 'X', icon: 'tabler:brand-x', href: 'https://x.com/MiniGamesHub' },
+      { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://instagram.com/minigameshub' },
+      { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://facebook.com/MiniGamesHub' },
       { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
     ],
     footNote: `

@@ -6,8 +6,8 @@ import Steps2 from '~/components/widgets/Steps2.astro';
 import Layout from '~/layouts/PageLayout.astro';
 
 const metadata = {
-  title: 'About Us - Meet the MiniGamesHub Team',
-  description: 'Learn about MiniGamesHub - our mission, team, and how we curate 5,000+ free games. Meet the gaming experts behind your favorite platform.',
+  title: 'About Us - MiniGamesHub | Free Online Games Platform',
+  description: 'Learn about MiniGamesHub — an AI-powered free online games platform by Synthflow Digital LTD. 1,400+ browser games, no downloads, instant play.',
 };
 ---
 
@@ -27,7 +27,7 @@ const metadata = {
     </Fragment>
 
     <Fragment slot="subtitle">
-      Founded in 2023, MiniGamesHub.org is the premier destination for free online games. Our passionate team of gaming enthusiasts, professional reviewers, and industry veterans has curated a collection of over 5,000+ high-quality games. Every game is personally tested - no downloads, no installations, just pure gaming joy.
+      MiniGamesHub is a free online games platform operated by Synthflow Digital LTD — an AI-native company building the next generation of digital entertainment. We leverage automation and AI to curate, maintain, and deliver 1,400+ high-quality browser games to players worldwide. No downloads, no installations, just pure gaming joy.
     </Fragment>
   </Hero>
 
@@ -36,10 +36,10 @@ const metadata = {
   <Stats
     title="By the Numbers"
     stats={[
-      { title: 'Games Curated', amount: '5,000+' },
-      { title: 'Games Tested', amount: '10,000+' },
-      { title: 'Monthly Players', amount: '1.2M+' },
-      { title: 'Years in Operation', amount: '3+' },
+      { title: 'Games Available', amount: '1,400+' },
+      { title: 'Game Categories', amount: '20+' },
+      { title: 'Languages', amount: '3' },
+      { title: 'Founded', amount: '2025' },
     ]}
   />
 
@@ -52,10 +52,10 @@ const metadata = {
     isBeforeContent={true}
     items={[
       {
-        title: 'Quality First',
+        title: 'AI-Powered Curation',
         description:
-          'Every single game is personally tested by our team for at least 15 minutes before being listed. We check for performance, safety, accessibility, and - most importantly - fun.',
-        icon: 'tabler:star',
+          'We use AI and automation to continuously discover, categorize, and maintain our game collection. This allows us to offer a growing library while keeping operational costs minimal.',
+        icon: 'tabler:robot',
       },
       {
         title: 'Always Free',
@@ -72,76 +72,46 @@ const metadata = {
     ]}
   />
 
-  <!-- Team Introduction Section -->
+  <!-- How We Operate Section -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-slate-50 dark:bg-slate-900/30 rounded-lg mt-8">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 font-heading">Meet Our Expert Team</h2>
-    <p class="text-center text-muted mb-12">The gaming industry veterans behind MiniGamesHub</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 font-heading">How We Operate</h2>
+    <p class="text-center text-muted mb-12">An AI-native approach to game curation and platform management</p>
 
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Team Member 1 -->
       <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-        <div class="text-5xl mb-4 text-accent">👨‍💻</div>
-        <h3 class="text-xl font-bold mb-2">Alex Chen</h3>
-        <p class="text-muted mb-4 font-medium">Founder & Lead Game Curator</p>
-        <p class="text-sm">15+ years in game development. Former lead designer at Zynga. Has played over 10,000 games. Manages our curation process.</p>
-        <div class="mt-4 text-sm text-muted">
-          <strong>Credentials:</strong> GDC Speaker 2022, B.S. Computer Science
-        </div>
+        <div class="text-5xl mb-4">🤖</div>
+        <h3 class="text-xl font-bold mb-2">Automated Discovery</h3>
+        <p class="text-sm">Our systems continuously scan and discover new HTML5 games from trusted sources, using AI to evaluate quality and categorize games automatically.</p>
       </div>
 
-      <!-- Team Member 2 -->
       <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-        <div class="text-5xl mb-4 text-accent">👩‍🔬</div>
-        <h3 class="text-xl font-bold mb-2">Dr. Sarah Kim</h3>
-        <p class="text-muted mb-4 font-medium">Head of Content & Research</p>
-        <p class="text-sm">PhD in Game Studies. Former game journalist at IGN. Writes our educational content and guides. 10+ years experience.</p>
-        <div class="mt-4 text-sm text-muted">
-          <strong>Credentials:</strong> PhD, Game Studies Journal contributor
-        </div>
+        <div class="text-5xl mb-4">⚡</div>
+        <h3 class="text-xl font-bold mb-2">Instant Updates</h3>
+        <p class="text-sm">When new games are added to our sources, they appear on MiniGamesHub within hours — no manual curation delays. Our n8n automation pipeline handles everything.</p>
       </div>
 
-      <!-- Team Member 3 -->
       <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-        <div class="text-5xl mb-4 text-accent">👨‍🎨</div>
-        <h3 class="text-xl font-bold mb-2">Marcus Johnson</h3>
-        <p class="text-muted mb-4 font-medium">Lead UX & Accessibility</p>
-        <p class="text-sm">8+ years in accessibility design. Ensures our site works for everyone, including screen reader users and people with disabilities.</p>
-        <div class="mt-4 text-sm text-muted">
-          <strong>Credentials:</strong> Certified Web Accessibility Specialist
-        </div>
+        <div class="text-5xl mb-4">🌍</div>
+        <h3 class="text-xl font-bold mb-2">Multi-Language</h3>
+        <p class="text-sm">We serve players worldwide with content in English, Spanish, and Chinese. AI-assisted localization ensures quality across all languages.</p>
       </div>
 
-      <!-- Team Member 4 -->
       <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-        <div class="text-5xl mb-4 text-accent">👩‍🎮</div>
-        <h3 class="text-xl font-bold mb-2">Jessica Rodriguez</h3>
-        <p class="text-muted mb-4 font-medium">Senior Game Reviewer</p>
-        <p class="text-sm">Professional game reviewer with 12+ years experience. Former editor at Kotaku. Has personally reviewed 5,000+ games for our site.</p>
-        <div class="mt-4 text-sm text-muted">
-          <strong>Credentials:</strong> Award-winning game journalist
-        </div>
+        <div class="text-5xl mb-4">🔧</div>
+        <h3 class="text-xl font-bold mb-2">Built With Modern Tech</h3>
+        <p class="text-sm">Our platform runs on Astro (static site generation), Tailwind CSS, and TypeScript — delivering lightning-fast page loads and excellent Core Web Vitals.</p>
       </div>
 
-      <!-- Team Member 5 -->
       <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-        <div class="text-5xl mb-4 text-accent">👨‍🔧</div>
-        <h3 class="text-xl font-bold mb-2">David Park</h3>
-        <p class="text-muted mb-4 font-medium">Tech Lead & Security</p>
-        <p class="text-sm">Ensures our platform is fast, secure, and always working. Former security engineer at Google. 10+ years experience.</p>
-        <div class="mt-4 text-sm text-muted">
-          <strong>Credentials:</strong> Certified Information Systems Security Professional
-        </div>
+        <div class="text-5xl mb-4">🔄</div>
+        <h3 class="text-xl font-bold mb-2">Continuous Improvement</h3>
+        <p class="text-sm">We use AI-assisted development tools (Cursor, Claude Code, Code Buddy) to continuously improve the platform — from SEO optimization to user experience.</p>
       </div>
 
-      <!-- Team Member 6 -->
       <div class="bg-white dark:bg-slate-800 rounded-lg p-6 shadow-sm">
-        <div class="text-5xl mb-4 text-accent">👩‍💼</div>
-        <h3 class="text-xl font-bold mb-2">Emily Watson</h3>
-        <p class="text-muted mb-4 font-medium">Community Manager</p>
-        <p class="text-sm">Loves hearing from our players! Manages feedback, suggestions, and ensures community needs are met. 5+ years in community management.</p>
-        <div class="mt-4 text-sm text-muted">
-          <strong>Contact:</strong> emily@minigameshub.org
-        </div>
+        <div class="text-5xl mb-4">🎯</div>
+        <h3 class="text-xl font-bold mb-2">Player-First Design</h3>
+        <p class="text-sm">No pop-ups, no deceptive ads, no forced sign-ups. We design for players who just want to click and play. Your time and experience come first.</p>
       </div>
     </div>
   </section>
@@ -150,27 +120,27 @@ const metadata = {
 
   <Features3
     title="Our Content Standards"
-    subtitle="How we ensure every game meets our high bar"
+    subtitle="How we maintain a quality game collection"
     columns={3}
     isAfterContent={true}
     items={[
       {
-        title: '15+ Minutes Testing',
+        title: 'Automated Screening',
         description:
-          'Every game is personally played for at least 15 minutes by a team member before being listed. No automated systems - human approval only.',
-        icon: 'tabler:clock-hour-4',
+          'Our AI pipeline screens games for basic quality signals — proper loading, responsive design, and appropriate content — before they appear on the site.',
+        icon: 'tabler:filter',
       },
       {
-        title: '5-Point Checklist',
+        title: 'Regular Updates',
         description:
-          'Safety, performance, fun factor, accessibility, and mobile-friendliness. All five must pass our minimum standards.',
-        icon: 'tabler:clipboard-check',
-      },
-      {
-        title: 'Ongoing Monitoring',
-        description:
-          'Games are re-checked monthly. Broken or outdated games are removed or updated. Our users can also report issues.',
+          'Our automation continuously syncs with game sources to add new games and remove broken ones. The collection stays fresh without manual effort.',
         icon: 'tabler:refresh',
+      },
+      {
+        title: 'Player Feedback',
+        description:
+          'We monitor game popularity and user engagement to surface the best games. Underperforming or broken games are automatically flagged for review.',
+        icon: 'tabler:chart-bar',
       },
     ]}
   />
@@ -178,28 +148,28 @@ const metadata = {
   <!-- Steps2 Widget ****************** -->
 
   <Steps2
-    title="Our 4-Step Curation Process"
-    subtitle="How we ensure only quality games make it to our collection"
+    title="How Our Platform Works"
+    subtitle="From discovery to your screen — powered by automation"
     items={[
       {
-        title: 'Step 1: Discovery & Screening',
-        description: 'Our team finds potential games through developer submissions, our own research, and trusted industry sources. We first check for basic safety.',
+        title: 'Step 1: Game Discovery',
+        description: 'Our systems continuously scan trusted game sources via APIs and RSS feeds to discover new HTML5 games from developers worldwide.',
         icon: 'tabler:search',
       },
       {
-        title: 'Step 2: Full Review & Testing',
-        description: 'A team member spends at least 15 minutes playing the game, checks all features, tests on multiple devices, and evaluates our 5-point checklist.',
-        icon: 'tabler:checklist',
+        title: 'Step 2: Automated Processing',
+        description: 'AI evaluates each game\'s metadata, screenshots, and technical specs. Games are automatically categorized, tagged, and prepared for listing.',
+        icon: 'tabler:robot',
       },
       {
-        title: 'Step 3: Categorization & Metadata',
-        description: 'Games that pass get carefully categorized, tagged, and described. We write original descriptions - never copied from other sites.',
-        icon: 'tabler:tags',
+        title: 'Step 3: Multi-Language Publishing',
+        description: 'Game descriptions and metadata are localized into English, Spanish, and Chinese. The site is rebuilt automatically via CI/CD when new games are added.',
+        icon: 'tabler:language',
       },
       {
-        title: 'Step 4: Publication & Monitoring',
-        description: 'The game goes live! We monitor play data, user feedback, and technical performance monthly, updating or removing as needed.',
-        icon: 'tabler:rocket',
+        title: 'Step 4: Continuous Optimization',
+        description: 'We monitor game performance, user engagement, and SEO metrics. AI-assisted tools help us continuously improve the platform and player experience.',
+        icon: 'tabler:trending-up',
       },
     ]}
   />
@@ -210,28 +180,22 @@ const metadata = {
     
     <div class="prose dark:prose-invert max-w-none">
       <p>
-        <strong>It all started in 2023</strong> when Alex Chen, our founder, got frustrated with the state of free online games.
-        Every site was loaded with pop-ups, low-quality games, and deceptive download buttons. He thought there had to be a better way.
+        <strong>MiniGamesHub was created by Synthflow Digital LTD</strong>, an AI-native company on a mission to build autonomous digital businesses. 
+        Rather than hiring a large team of game curators, we built automated systems that discover, organize, and deliver browser games at scale.
       </p>
 
       <p>
-        With $5,000 in savings, an old gaming laptop, and a dream to create the best free games platform,
-        <strong>MiniGamesHub was born in a small apartment in London</strong>. The first version had just 50 games, all personally tested by Alex.
+        The idea was simple: <strong>use AI and automation to do what would traditionally require a team of 20+ people</strong> — game discovery, categorization, 
+        content writing, SEO optimization, and platform maintenance. This approach lets us offer a growing collection of games while keeping the platform free for everyone.
       </p>
 
       <p>
-        Players noticed the difference. <strong>By month three, we had 10,000 monthly players</strong>. By year one, 100,000.
-        People loved the clean design, no pop-ups, and quality experience.
+        <strong>We believe in radical transparency.</strong> Unlike many game sites that inflate their numbers or fabricate team pages, we're upfront about 
+        how we operate. MiniGamesHub is an AI-powered platform, and we're proud of the efficiency and scale that enables.
       </p>
 
       <p>
-        <strong>In 2024, we brought on our full team</strong>, expanding from just Alex to the dedicated professionals you see above.
-        We passed 1,000 games, then 2,000, then 5,000.
-      </p>
-
-      <p>
-        <strong>Today in 2026, over 1.2 million players per month</strong> trust MiniGamesHub for their gaming needs.
-        But we've never forgotten our roots: quality first, always free, player-focused.
+        Our goal is simple: <strong>build the best free browser games platform on the internet</strong>, powered by automation, loved by players.
       </p>
 
       <hr class="my-8" />
@@ -240,7 +204,7 @@ const metadata = {
 
       <ul>
         <li><strong>Legal Name:</strong> Synthflow Digital LTD</li>
-        <li><strong>Registration:</strong> United Kingdom, Company #14567890</li>
+        <li><strong>Registration:</strong> United Kingdom</li>
         <li><strong>Address:</strong> Office 16430, 182-184 High Street North, East Ham, London, E6 2JA</li>
         <li><strong>Contact Email:</strong> contact@minigameshub.org</li>
         <li><strong>Press Inquiries:</strong> press@minigameshub.org</li>
@@ -275,28 +239,25 @@ const metadata = {
     </div>
   </section>
 
-  <!-- Press & Recognition -->
+  <!-- Technology Stack -->
   <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 font-heading">Press & Recognition</h2>
-    <p class="text-center text-muted mb-12">What the industry says about MiniGamesHub</p>
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-2 font-heading">Technology Stack</h2>
+    <p class="text-center text-muted mb-12">The tools and platforms that power MiniGamesHub</p>
 
     <div class="grid md:grid-cols-3 gap-6">
       <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
-        <div class="text-lg italic mb-4">"The best free games site on the internet - our team checks it daily."</div>
-        <div class="font-bold">— Gaming Monthly Magazine</div>
-        <div class="text-sm text-muted mt-1">March 2026 Edition</div>
+        <div class="text-lg font-bold mb-2">Frontend</div>
+        <p class="text-muted">Astro 5 (SSG), Tailwind CSS 3.4, TypeScript 5.8. Static site generation for blazing-fast page loads and excellent SEO.</p>
       </div>
 
       <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
-        <div class="text-lg italic mb-4">"Sets the bar for what a free games site should be. Quality over quantity."</div>
-        <div class="font-bold">— Tech Insider Reviews</div>
-        <div class="text-sm text-muted mt-1">Top Rating, 2025</div>
+        <div class="text-lg font-bold mb-2">Automation</div>
+        <p class="text-muted">n8n workflow automation, AI-assisted content generation, CI/CD pipelines for continuous deployment.</p>
       </div>
 
       <div class="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm">
-        <div class="text-lg italic mb-4">"The accessibility standards here should be the industry standard."</div>
-        <div class="font-bold">— Accessibility First Organization</div>
-        <div class="text-sm text-muted mt-1">2026 Gold Award</div>
+        <div class="text-lg font-bold mb-2">AI & Development</div>
+        <p class="text-muted">Cursor, Claude Code, Code Buddy for AI-assisted development. DeepSeek API for content generation and localization.</p>
       </div>
     </div>
   </section>
@@ -332,10 +293,10 @@ const metadata = {
   <!-- Footer Note -->
   <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
     <p class="text-muted">
-      Thank you for being part of the MiniGamesHub community. We couldn't do this without players like you.
+      Thank you for being part of the MiniGamesHub community. We're constantly improving the platform with better games and smarter automation.
     </p>
     <p class="text-muted mt-2 font-bold">
-      — The MiniGamesHub Team
+      — Synthflow Digital LTD
     </p>
   </section>
 </Layout>
