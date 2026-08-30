@@ -28,6 +28,11 @@ if (!game) {
 }
 const relatedGames = getRelatedGames(game, 12);
 
+// Cache the rendered game page at Vercel's edge for 24h (serve stale up to 7d
+// while revalidating). Without this every visit would invoke the serverless
+// function, negating the build-time win with cold-start latency.
+Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+
 // Enriched, category-aware body content (P0 SEO fix) — generated in src/utils/gameContent.ts
 const howToPlay = getHowToPlay(game);
 const tips = getTips(game);

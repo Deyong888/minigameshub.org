@@ -26,6 +26,11 @@ if (!game) {
   );
 }
 const relatedGames = getRelatedGames(game, 12);
+
+// 在 Vercel 边缘缓存 24 小时（过期后 7 天内继续提供旧内容并后台刷新），
+// 避免每次访问都触发 serverless 冷启动。
+Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 

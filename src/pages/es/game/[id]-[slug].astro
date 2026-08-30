@@ -23,6 +23,11 @@ if (!game) {
   );
 }
 const relatedGames = getRelatedGames(game, 12);
+
+// Cache the rendered page at Vercel's edge for 24h (stale up to 7d while
+// revalidating) so visits don't each trigger a serverless cold start.
+Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 

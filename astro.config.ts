@@ -43,12 +43,14 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   site: 'https://minigameshub.org',
-  // Hybrid rendering: only a few hundred "static" pages (home, categories, blog,
-  // hub, about, editorial, sitemap) are pre-rendered at build time. The ~21k
-  // game pages are rendered on-demand by Vercel serverless functions and cached
-  // at the edge — this is what keeps the build under Vercel's 45-min limit.
-  output: 'hybrid',
-  adapter: vercel(),
+  // Astro 5 removed `output: 'hybrid'` — `static` + an adapter now supports
+  // per-route opt-out via `export const prerender = false`, which is exactly
+  // what we use. Only a few hundred pages (home, categories, blog, hub, about,
+  // editorial) are pre-rendered at build; the ~21k game pages render on-demand
+  // via Vercel serverless + edge cache. This keeps the build far under Vercel's
+  // 45-minute limit.
+  output: 'static',
+  adapter: vercel({ webAnalytics: { enabled: false } }),
   redirects: {
     '/games-to-play-when-bored': '/bored-games',
     '/bored-at-work': '/bored-games/bored-at-work',
