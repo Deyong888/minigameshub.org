@@ -25,6 +25,7 @@ export const getHeaderData = (lang = 'en') => {
           { text: t('nav.browserGames'), href: getLink('/browser-games', lang) },
           { text: t('nav.html5Games'), href: getLink('/html5-games', lang) },
           { text: t('nav.noDownloadGames'), href: getLink('/no-download-games', lang) },
+          { text: t('nav.newGames'), href: getLink('/new-games', lang) },
         ],
       },
       {
@@ -58,6 +59,7 @@ export const getFooterData = (lang = 'en') => {
           { text: t('nav.browserGames'), href: getLink('/browser-games', lang) },
           { text: t('nav.html5Games'), href: getLink('/html5-games', lang) },
           { text: t('nav.noDownloadGames'), href: getLink('/no-download-games', lang) },
+          { text: t('nav.newGames'), href: getLink('/new-games', lang) },
         ],
       },
       {

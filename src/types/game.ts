@@ -10,6 +10,7 @@ export interface Game {
   height?: number;
   category: string;
   tags: string[];
+  datePublished?: string;
   rating?: number;
   plays?: number;
   isHot?: boolean;

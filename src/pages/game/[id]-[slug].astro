@@ -23,10 +23,11 @@ export interface Props {
 const { game, relatedGames } = Astro.props;
 
 // Generate personalized how-to-play instructions based on game details
-const getHowToPlay = (title: string, category: string, description: string) => {
-  const lowerTitle = title.toLowerCase();
-  const lowerCategory = category.toLowerCase();
-  const lowerDesc = description.toLowerCase();
+const getHowToPlay = (title?: string, category?: string, description?: string) => {
+  // GamePix 数据里部分游戏缺 category / description，需做空值兜底
+  const lowerTitle = (title ?? '').toLowerCase();
+  const lowerCategory = (category ?? '').toLowerCase();
+  const lowerDesc = (description ?? '').toLowerCase();
 
   // Puzzle / Sudoku / Match games
   if (lowerCategory.includes('puzzle') || lowerCategory.includes('sudoku') || lowerCategory.includes('match') || lowerTitle.includes('puzzle') || lowerTitle.includes('sudoku')) {
@@ -75,9 +76,13 @@ const getHowToPlay = (title: string, category: string, description: string) => {
 
 const howToPlayText = getHowToPlay(game.title, game.category, game.description);
 
+// GamePix 部分游戏缺 category，统一兜底为 'Games'，避免 undefined.toLowerCase() 崩溃
+const gameCategory = game.category ?? 'Games';
+const categorySlug = gameCategory.toLowerCase().replace(/\s+/g, '-');
+
 const metadata = {
   title: `${game.title} - Play Free Online | No Download | MiniGamesHub`,
-  description: `Play ${game.title} free online. ${game.category} game, no download required, instant play in your browser. Enjoy this ${game.category} game on MiniGamesHub!`,
+  description: `Play ${game.title} free online. ${gameCategory} game, no download required, instant play in your browser. Enjoy this ${gameCategory} game on MiniGamesHub!`,
   openGraph: {
     type: 'video.other',
     images: [
@@ -112,7 +117,7 @@ const metadata = {
             <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
               <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
             </svg>
-            <a href={`/category/${game.category.toLowerCase().replace(/\s+/g, '-')}`} class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">{game.category}</a>
+            <a href={`/category/${categorySlug}`} class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">{gameCategory}</a>
           </div>
         </li>
         <li aria-current="page">
@@ -153,7 +158,7 @@ const metadata = {
                 <>
                     <h2>About {game.title}</h2>
                     <p>{game.description}</p>
-                    <p>Play {game.title} online directly in your browser. No download required. This game is part of our {game.category} games collection and has been played {game.plays?.toLocaleString() || 'many'} times!</p>
+                    <p>Play {game.title} online directly in your browser. No download required. This game is part of our {gameCategory} games collection and has been played {game.plays?.toLocaleString() || 'many'} times!</p>
                     
                     <h2>How to Play {game.title}</h2>
                     <p>{howToPlayText}</p>
@@ -198,8 +203,8 @@ const metadata = {
     "@context": "https://schema.org",
     "@type": "VideoGame",
     "name": game.title,
-    "description": game.description,
-    "genre": [game.category],
+    "description": game.description ?? '',
+    "genre": [gameCategory],
     "url": Astro.url.href,
     "image": game.thumbnail,
     "playMode": "SinglePlayer",
@@ -227,8 +232,8 @@ const metadata = {
       {
         "@type": "ListItem",
         "position": 2,
-        "name": game.category,
-        "item": `https://minigameshub.org/${game.category.toLowerCase().replace(/\s+/g, '-')}`
+        "name": gameCategory,
+        "item": `https://minigameshub.org/category/${categorySlug}`
       },
       {
         "@type": "ListItem",

@@ -14,26 +14,43 @@ interface GamePixItem {
   height?: number;
   category: string;
   orientation?: string;
+  date_published?: string;
+  date_modified?: string;
 }
 
+// 近 N 天内发布的游戏视为"新游戏"，触发卡片 NEW 角标
+const NEW_GAME_WINDOW_DAYS = 120;
+
 // Helper to map GamePix item to our Game interface
-const mapGamePixItem = (item: GamePixItem): Game => ({
-  id: item.id,
-  slug: item.namespace || item.id, // Use namespace if available for cleaner URLs
-  title: item.title,
-  description: item.description,
-  rich_content: item.rich_content,
-  thumbnail: item.banner_image || item.image || '',
-  url: item.url,
-  width: item.width,
-  height: item.height,
-  category: item.category,
-  tags: [item.category, item.orientation].filter((tag): tag is string => Boolean(tag)),
-  rating: 4.5, // Default rating as not in feed (or could use quality_score * 5)
-  plays: Math.floor(Math.random() * 50000) + 10000, // Mock plays for now
-});
+const mapGamePixItem = (item: GamePixItem): Game => {
+  const tags = [item.category, item.orientation].filter((tag): tag is string => Boolean(tag));
+  const published = item.date_published ? new Date(item.date_published).getTime() : NaN;
+  const isNew = !isNaN(published) && published > Date.now() - NEW_GAME_WINDOW_DAYS * 86400000;
+  if (isNew && !tags.includes('new')) tags.push('new');
+  return {
+    id: item.id,
+    slug: item.namespace || item.id, // Use namespace if available for cleaner URLs
+    title: item.title,
+    description: item.description,
+    rich_content: item.rich_content,
+    thumbnail: item.banner_image || item.image || '',
+    url: item.url,
+    width: item.width,
+    height: item.height,
+    category: item.category,
+    tags,
+    datePublished: item.date_published,
+    rating: 4.5, // Default rating as not in feed (or could use quality_score * 5)
+    plays: Math.floor(Math.random() * 50000) + 10000, // Mock plays for now
+  };
+};
 
 const allGamePixGames = (gamepixData.items as GamePixItem[]).map(mapGamePixItem);
+
+// 最近上新：按 date_published 倒序（新游戏在前）
+export const newGames: Game[] = [...allGamePixGames]
+  .filter((g) => g.datePublished)
+  .sort((a, b) => new Date(b.datePublished!).getTime() - new Date(a.datePublished!).getTime());
 
 // Curated list of popular game slugs for the hero/trending section
 const popularSlugs = [

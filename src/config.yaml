@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: MiniGamesHub — Play 1,400+ Free Online Games Instantly
+    default: MiniGamesHub — Play 3,900+ Free Online Games Instantly
     template: '%s — MiniGamesHub'
-  description: "Discover and play 1,400+ free online mini games, arcade games, puzzle games, and more on MiniGamesHub.org. Instant browser play, no download required! Perfect for work breaks, school free time, or anytime you're bored."
+  description: "Discover and play 3,900+ free online mini games, arcade games, puzzle games, and more on MiniGamesHub.org. Instant browser play, no download required! Perfect for work breaks, school free time, or anytime you're bored."
   robots:
     index: true
     follow: true
@@ -68,7 +68,8 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      id: 'G-P13CNRCFEP' # GA4 衡量ID (账号 291989547 / 数据流 13588627413)
+      partytown: true # 通过 Web Worker 加载，避免阻塞主线程 (Core Web Vitals)
 
 ui:
   theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"

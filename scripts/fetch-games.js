@@ -5,28 +5,31 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_FILE = path.join(__dirname, '../src/data/gamepix.json');
 
-const URLS = [
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&pagination=96&page=2',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&pagination=96&page=3',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&pagination=96&page=4',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=2048&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=match-3&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=simulation&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=stickman&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=arcade&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=arcade&pagination=96&page=2',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=puzzle&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=puzzle&pagination=96&page=2',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=sports&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=strategy&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=board&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=action&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=adventure&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=driving&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=junior&pagination=96&page=1',
-  'https://feeds.gamepix.com/v2/json?sid=GM8A7&category=classic&pagination=96&page=1'
+const SID = 'GM8A7';
+const PER_PAGE = 96;
+
+// 配置：通用 feed 抓取多少页（按质量排序，新游戏高质量排在 page1 顶部）
+const GENERAL_PAGES = 25;
+// 各分类抓取多少页（补充长尾/分类多样性）
+const CATEGORIES = [
+  '2048', 'match-3', 'simulation', 'stickman', 'arcade', 'puzzle',
+  'sports', 'strategy', 'board', 'action', 'adventure', 'driving',
+  'junior', 'classic',
 ];
+const CAT_PAGES = 3;
+
+function buildUrls() {
+  const urls = [];
+  for (let p = 1; p <= GENERAL_PAGES; p++) {
+    urls.push(`https://feeds.gamepix.com/v2/json?sid=${SID}&pagination=${PER_PAGE}&page=${p}`);
+  }
+  for (const cat of CATEGORIES) {
+    for (let p = 1; p <= CAT_PAGES; p++) {
+      urls.push(`https://feeds.gamepix.com/v2/json?sid=${SID}&category=${cat}&pagination=${PER_PAGE}&page=${p}`);
+    }
+  }
+  return urls;
+}
 
 async function fetchWithRetry(url, retries = 3, delayMs = 1000) {
   for (let attempt = 1; attempt <= retries; attempt++) {
@@ -36,7 +39,7 @@ async function fetchWithRetry(url, retries = 3, delayMs = 1000) {
         console.error(`Failed to fetch ${url}: ${response.statusText}`);
         if (attempt < retries) {
           console.log(`  Retrying in ${delayMs}ms... (attempt ${attempt + 1}/${retries})`);
-          await new Promise(r => setTimeout(r, delayMs));
+          await new Promise((r) => setTimeout(r, delayMs));
           continue;
         }
         return null;
@@ -46,7 +49,7 @@ async function fetchWithRetry(url, retries = 3, delayMs = 1000) {
       console.error(`Error fetching ${url} (attempt ${attempt}/${retries}):`, error.message || error);
       if (attempt < retries) {
         console.log(`  Retrying in ${delayMs}ms... (attempt ${attempt + 1}/${retries})`);
-        await new Promise(r => setTimeout(r, delayMs));
+        await new Promise((r) => setTimeout(r, delayMs));
       }
     }
   }
@@ -54,49 +57,53 @@ async function fetchWithRetry(url, retries = 3, delayMs = 1000) {
 }
 
 async function fetchGames() {
-  console.log('Starting game fetch...');
+  console.log('Starting expanded game fetch...');
+  const url = buildUrls();
+  console.log(`Total feed requests to make: ${url.length}`);
   let allItems = [];
+  let done = 0;
 
-  for (const url of URLS) {
-    console.log(`Fetching: ${url}`);
-    const data = await fetchWithRetry(url);
+  for (const u of url) {
+    const data = await fetchWithRetry(u);
     if (data && data.items && Array.isArray(data.items)) {
-      console.log(`Found ${data.items.length} games.`);
       allItems = allItems.concat(data.items);
     }
+    done++;
+    if (done % 10 === 0) console.log(`Progress: ${done}/${url.length} requests, ${allItems.length} raw items`);
   }
 
-  // Deduplicate
+  // 去重：以 game id 为准，保留首次出现（通用 feed 质量排序优先）
   const uniqueGamesMap = new Map();
-  allItems.forEach(game => {
-    // Prefer higher quality score or newer modification date if duplicate?
-    // For now, first come first serve or just overwrite.
-    // Let's stick with the first one found, but maybe the main feed (GM8A7) should take precedence.
-    // Since GM8A7 is first in URLS, it will be added first.
-    if (!uniqueGamesMap.has(game.id)) {
+  allItems.forEach((game) => {
+    if (game && game.id && !uniqueGamesMap.has(game.id)) {
       uniqueGamesMap.set(game.id, game);
     }
   });
 
   const uniqueGames = Array.from(uniqueGamesMap.values());
-  
+  // 确保日期字段存在（用于"上新"排序兜底）
+  uniqueGames.forEach((g) => {
+    if (!g.date_published) g.date_published = g.date_modified || new Date(0).toUTCString();
+  });
+
   console.log(`Total unique games: ${uniqueGames.length}`);
 
-  // Construct the final JSON structure (similar to original feed wrapper)
   const finalData = {
-    version: "https://jsonfeed.org/version/1.1",
-    title: "MiniGamesHub Aggregated Feed",
-    home_page_url: "https://minigameshub.org/",
-    feed_url: "https://minigameshub.org/feed.json",
+    version: 'https://jsonfeed.org/version/1.1',
+    title: 'MiniGamesHub Aggregated Feed',
+    home_page_url: 'https://minigameshub.org/',
+    feed_url: 'https://minigameshub.org/feed.json',
     modified: new Date().toISOString(),
-    items: uniqueGames
+    items: uniqueGames,
   };
 
   try {
-    await fs.writeFile(OUTPUT_FILE, JSON.stringify(finalData, null, 2));
-    console.log(`Successfully wrote to ${OUTPUT_FILE}`);
+    // compact 写入以减少文件体积与解析耗时
+    await fs.writeFile(OUTPUT_FILE, JSON.stringify(finalData));
+    console.log(`Successfully wrote ${uniqueGames.length} games to ${OUTPUT_FILE}`);
   } catch (error) {
     console.error('Error writing file:', error);
+    process.exit(1);
   }
 }
 

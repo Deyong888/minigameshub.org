@@ -79,6 +79,7 @@ export const ui = {
     'nav.html5Games': 'HTML5 Games',
     'nav.noDownloadGames': 'No Download Games',
     'nav.gameTypes': 'Game Types',
+    'nav.newGames': 'New Games',
     'nav.contact': 'Contact',
     // Categories
     'cat.arcade': 'Arcade',
@@ -186,6 +187,7 @@ export const ui = {
     'nav.html5Games': 'Juegos HTML5',
     'nav.noDownloadGames': 'Juegos Sin Descarga',
     'nav.gameTypes': 'Tipos de Juego',
+    'nav.newGames': 'Juegos Nuevos',
     'nav.contact': 'Contacto',
     // Categories
     'cat.arcade': 'Arcade',
@@ -292,6 +294,7 @@ export const ui = {
     'nav.html5Games': 'HTML5 游戏',
     'nav.noDownloadGames': '无需下载游戏',
     'nav.gameTypes': '游戏类型',
+    'nav.newGames': '上新游戏',
     'nav.contact': '联系我们',
     // Categories
     'cat.arcade': '街机',
@@ -398,6 +401,7 @@ export const ui = {
     'nav.html5Games': 'HTML5 गेम्स',
     'nav.noDownloadGames': 'बिना डाउनलोड वाले गेम्स',
     'nav.gameTypes': 'गेम टाइप्स',
+    'nav.newGames': 'नए गेम्स',
     'nav.contact': 'संपर्क करें',
     'cat.arcade': 'आर्केड',
     'cat.puzzle': 'पज़ल',

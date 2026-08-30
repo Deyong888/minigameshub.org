@@ -211,6 +211,26 @@ const getBreakpoints = ({
   return [];
 };
 
+/**
+ * 远程图片在构建期必须先下载才能优化。img.gamepix.com 在大量并发请求下会偶发
+ * 10s 连接超时（Connect Timeout Error），单张图片失败就会中断整个构建。
+ * 这里做指数退避重试；仍失败则退回原始远程 URL，保证页面正常显示而非构建崩溃。
+ */
+async function getImageWithRetry(options: Parameters<typeof getImage>[0], attempts = 3): Promise<Awaited<ReturnType<typeof getImage>>> {
+  let lastError: unknown;
+  for (let i = 0; i < attempts; i++) {
+    try {
+      return await getImage(options);
+    } catch (error) {
+      lastError = error;
+      if (i < attempts - 1) {
+        await new Promise((resolve) => setTimeout(resolve, 500 * 2 ** i));
+      }
+    }
+  }
+  throw lastError;
+}
+
 /* ** */
 export const astroAssetsOptimizer: ImagesOptimizer = async (
   image,
@@ -225,13 +245,27 @@ export const astroAssetsOptimizer: ImagesOptimizer = async (
 
   return Promise.all(
     breakpoints.map(async (w: number) => {
-      const result = await getImage({ src: image, width: w, inferSize: true, ...(format ? { format: format } : {}) });
+      try {
+        const result = await getImageWithRetry({
+          src: image,
+          width: w,
+          inferSize: true,
+          ...(format ? { format: format } : {}),
+        });
 
-      return {
-        src: result?.src,
-        width: result?.attributes?.width ?? w,
-        height: result?.attributes?.height,
-      };
+        return {
+          src: result?.src,
+          width: result?.attributes?.width ?? w,
+          height: result?.attributes?.height,
+        };
+      } catch {
+        // 优化失败：退回原始远程 URL（未优化但可用），避免构建中断
+        return {
+          src: typeof image === 'string' ? image : image.src,
+          width: w,
+          height: undefined,
+        };
+      }
     })
   );
 };
