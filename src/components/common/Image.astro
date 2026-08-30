@@ -5,6 +5,7 @@ import {
   getImagesOptimized,
   astroAssetsOptimizer,
   unpicOptimizer,
+  gamepixOptimizer,
   isUnpicCompatible,
   type ImageProps,
 } from '~/utils/images-optimization';
@@ -41,7 +42,12 @@ const _image = await findImage(props.src);
 
 let image: ImageType | undefined = undefined;
 
-if (
+const isGamepix = typeof _image === 'string' && _image.includes('img.gamepix.com');
+
+if (isGamepix) {
+  // 游戏封面走 GamePix CDN，直接生成响应式 srcset，不在构建期下载
+  image = await getImagesOptimized(_image, props, gamepixOptimizer);
+} else if (
   typeof _image === 'string' &&
   (_image.startsWith('http://') || _image.startsWith('https://')) &&
   isUnpicCompatible(_image)

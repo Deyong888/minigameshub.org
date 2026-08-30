@@ -1,0 +1,152 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import FaqSection from '~/components/common/FaqSection.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+
+const metadata = {
+  title: 'Editorial Guidelines & How We Review Games | MiniGamesHub',
+  description:
+    'How MiniGamesHub discovers, screens, tests, and reviews every free online game. Our editorial standards, transparency about AI-assisted process, and commitment to player safety.',
+};
+
+const faq = [
+  {
+    q: 'How does MiniGamesHub choose which games to list?',
+    a: 'We source games from trusted HTML5 game providers via their official APIs and feeds. Every candidate is screened automatically for loadability, responsive design, and appropriate content before it is ever published to the site.',
+  },
+  {
+    q: 'Do real people review the games?',
+    a: 'Yes. While discovery and categorization are assisted by automation, our editorial team defines the quality bar, reviews flagged titles, and maintains the standards described on this page. We do not publish games we cannot stand behind.',
+  },
+  {
+    q: 'Are the games safe for children?',
+    a: 'We filter for age-appropriate content and never include deceptive "download" buttons or misleading pop-ups. All games run directly in the browser. For younger players we recommend our junior and classic categories.',
+  },
+  {
+    q: 'Why do some articles mention AI-assisted writing?',
+    a: 'To keep the library fresh and free, parts of our game descriptions and blog content are generated with AI and then reviewed by our editorial team for accuracy. We are transparent about this and prioritize correct, helpful information over volume.',
+  },
+  {
+    q: 'How can I report a broken or unsafe game?',
+    a: 'Email us at contact@minigameshub.org with the game name and the issue. Reported games are reviewed promptly and removed if they fail our standards.',
+  },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'MiniGamesHub Editorial Guidelines',
+  url: 'https://minigameshub.org/editorial-guidelines',
+  description:
+    'How MiniGamesHub discovers, screens, tests, and reviews every free online game, and the editorial standards we hold ourselves to.',
+  publisher: {
+    '@type': 'Organization',
+    name: 'MiniGamesHub',
+    parentOrganization: {
+      '@type': 'Organization',
+      name: 'Synthflow Digital LTD',
+    },
+  },
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+  <!-- Hero -->
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl text-center">
+    <p class="text-primary font-bold mb-2 uppercase tracking-wide text-sm">Editorial Standards</p>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4">
+      How We Review &amp; Test Games
+    </h1>
+    <p class="text-xl text-muted">
+      We believe trust is earned through transparency. Here is exactly how a game goes from
+      "discovered" to "playable" on MiniGamesHub — and the standards we hold every title to.
+    </p>
+  </section>
+
+  <!-- Process -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+    <Steps2
+      title="From Discovery to Your Screen"
+      subtitle="A consistent, repeatable review process for every game"
+      items={[
+        {
+          title: '1. Sourced from Trusted Providers',
+          description:
+            'Games come from established HTML5 game platforms via official APIs and feeds — not unverified uploads. This keeps the supply chain accountable.',
+          icon: 'tabler:api',
+        },
+        {
+          title: '2. Automated Safety & Quality Screen',
+          description:
+            'Each title is checked for loadability, responsive layout, and content appropriateness. Titles that fail are held back before publication.',
+          icon: 'tabler:shield-check',
+        },
+        {
+          title: '3. Editorial Review',
+          description:
+            'Our editorial team defines the quality bar and reviews flagged or featured titles. We confirm the game actually loads and plays as described.',
+          icon: 'tabler:writing',
+        },
+        {
+          title: '4. Categorized & Published',
+          description:
+            'Approved games are tagged by genre, controls, and player type, then published with accurate metadata and a real cover image.',
+          icon: 'tabler:tag',
+        },
+      ]}
+    />
+  </section>
+
+  <!-- Standards -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6 font-heading">Our Editorial Standards</h2>
+    <div class="prose dark:prose-invert max-w-none prose-headings:font-heading prose-a:text-primary">
+      <ul>
+        <li>
+          <strong>Accuracy over volume.</strong> Game descriptions reflect what the game actually is.
+          We correct metadata when it is wrong rather than publishing blindly.
+        </li>
+        <li>
+          <strong>Player safety first.</strong> No deceptive download buttons, no misleading pop-ups,
+          and age-appropriate content only. What you click is what you get.
+        </li>
+        <li>
+          <strong>Transparency about AI.</strong> Some descriptions and blog posts are AI-assisted,
+          but every published item is reviewed by a person on our team before it goes live.
+        </li>
+        <li>
+          <strong>Freshness.</strong> New games are added continuously and broken ones are removed
+          promptly when reported or detected.
+        </li>
+        <li>
+          <strong>No pay-to-rank.</strong> Games are listed based on quality and relevance, not
+          advertising deals. We do not sell placement.
+        </li>
+      </ul>
+
+      <h3>Corrections &amp; Takedowns</h3>
+      <p>
+        If a game is broken, unsafe, or miscategorized, email
+        <a href="mailto:contact@minigameshub.org">contact@minigameshub.org</a>. We review reports and
+        act quickly. Our goal is a library you can trust.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQ (FAQPage JSON-LD) -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <FaqSection items={faq} heading="Frequently Asked Questions" />
+  </section>
+
+  <!-- CTA -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-center">
+    <a
+      href="/about"
+      class="inline-block px-8 py-3 bg-accent text-white font-bold rounded-lg hover:opacity-90 transition"
+    >
+      Learn more about us
+    </a>
+  </section>
+</Layout>

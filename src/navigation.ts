@@ -76,6 +76,7 @@ export const getFooterData = (lang = 'en') => {
         links: [
           { text: t('footer.about'), href: getLink('/about', lang) },
           { text: t('nav.blog'), href: getLink('/blog', lang) },
+          { text: 'Editorial Guidelines', href: '/editorial-guidelines' },
           { text: t('nav.contact'), href: getLink('/contact', lang) },
         ],
       },

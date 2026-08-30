@@ -306,6 +306,29 @@ export const unpicOptimizer: ImagesOptimizer = async (image, breakpoints, width,
 };
 
 /* ** */
+/**
+ * 游戏封面图（img.gamepix.com）本身就是 CDN，且支持 `?w=` 按宽度实时缩放。
+ * 直接在该 CDN 侧生成响应式 srcset，避免 Astro 在构建期把每张图下载到本地
+ * （原 astroAssetsOptimizer 在大量并发下偶发 10s 连接超时，拖慢整个构建）。
+ * 仅对 img.gamepix.com 生效，其它图片仍走原有 unpic / astro 优化链路。
+ */
+export const gamepixOptimizer: ImagesOptimizer = async (image, breakpoints, _width, _height, format = undefined) => {
+  if (!image || typeof image !== 'string' || !image.includes('img.gamepix.com')) {
+    return [];
+  }
+  return breakpoints.map((w: number) => {
+    const u = new URL(image);
+    u.searchParams.set('w', String(w));
+    if (format) u.searchParams.set('format', format);
+    return {
+      src: u.toString(),
+      width: w,
+      height: undefined,
+    };
+  });
+};
+
+/* ** */
 export async function getImagesOptimized(
   image: ImageMetadata | string,
   {

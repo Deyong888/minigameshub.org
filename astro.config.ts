@@ -13,9 +13,28 @@ import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
 
+import gamepixData from './src/data/gamepix.json';
+
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// P0 SEO: protect crawl budget by excluding "thin" game pages (no description AND
+// no rich_content) from the sitemap. They still render & are reachable internally,
+// but we stop telling Google to crawl ~7k near-empty URLs. Real content lives on
+// category / hub / blog / home pages, which stay fully indexed.
+const gamepixItems: { id: string; namespace?: string; description?: string; rich_content?: string }[] = (
+  gamepixData as { items?: { id: string; namespace?: string; description?: string; rich_content?: string }[] }
+).items ?? [];
+const thinGameSuffixes = new Set(
+  gamepixItems
+    .filter(
+      (g) =>
+        !(g.description && String(g.description).trim()) &&
+        !(g.rich_content && String(g.rich_content).length > 80)
+    )
+    .map((g) => `${g.id}-${g.namespace || g.id}`)
+);
 
 const hasExternalScripts = true;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -38,7 +57,19 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap(),
+    sitemap({
+      // Exclude thin game pages across all locales (en/es/zh) to focus crawl budget
+      // on quality URLs. Page format: /game/{id}-{slug} (slug = namespace || id).
+      filter: (page: string) => {
+        const pathname = page
+          .replace(/^https?:\/\/[^/]+/, '')
+          .replace(/^\/(es|zh)(?=\/)/, '');
+        if (pathname.startsWith('/game/') && thinGameSuffixes.has(pathname.slice('/game/'.length))) {
+          return false;
+        }
+        return true;
+      },
+    }),
     mdx(),
     icon({
       include: {

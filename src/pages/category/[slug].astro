@@ -1,7 +1,9 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import GameGrid from '~/components/widgets/GameGrid.astro';
+import FaqSection from '~/components/common/FaqSection.astro';
 import { getUniqueCategories, getGamesByCategory } from '~/data/games';
+import { getCategoryFaq } from '~/utils/gameContent';
 
 export async function getStaticPaths() {
   const categories = getUniqueCategories();
@@ -13,9 +15,11 @@ export async function getStaticPaths() {
 }
 
 const { category, games } = Astro.props;
+const otherCategories = getUniqueCategories().filter((c) => c !== category).sort();
+const faq = getCategoryFaq(category);
 
-const title = `${category} Games - Play Free Online`;
-const description = `Play the best ${category} games for free on MiniGamesHub.org. No download required. Instant play browser games.`;
+const title = `Best ${category} Games - Play Free Online (No Download)`;
+const description = `Play the best free ${category} games instantly in your browser on MiniGamesHub.org. No download, no sign-up — hundreds of ${category} games ready to play on PC, Chromebook, and mobile.`;
 
 const metadata = {
   title: title,
@@ -73,9 +77,9 @@ const jsonLd = [
         {category} Games
       </h1>
       <p class="text-xl text-muted">
-        Play the best free online <strong>{category} games</strong>.
+        Play the best free online <strong>{category} games</strong> — browser-based, no download, instant fun.
         <br/>
-        Browser-based, no download, instant fun.
+        Every title below embeds the real playable game with its official cover, so you can start playing in one click.
       </p>
     </div>
     
@@ -84,5 +88,19 @@ const jsonLd = [
     </div>
 
     <GameGrid games={games} />
+
+    <FaqSection items={faq} heading="Frequently Asked Questions" />
+
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-4">More Game Categories</h2>
+      <div class="flex flex-wrap gap-2">
+        {otherCategories.map((c) => (
+          <a
+            href={`/category/${c.toLowerCase().replace(/\s+/g, '-')}`}
+            class="px-3 py-1.5 rounded-full bg-gray-100 dark:bg-slate-800 text-sm hover:bg-primary hover:text-white transition-colors"
+          >{c}</a>
+        ))}
+      </div>
+    </div>
   </section>
 </Layout>

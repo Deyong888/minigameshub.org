@@ -1,6 +1,7 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import GameGrid from '~/components/widgets/GameGrid.astro';
+import FaqSection from '~/components/common/FaqSection.astro';
 import { boredAtWorkGames } from '~/data/games';
 
 const metadata = {
@@ -93,5 +94,27 @@ const schema = {
         Studies show that taking short, engaging breaks can actually improve focus and productivity in the long run. So go ahead, play a quick round—it's for work!
       </p>
     </div>
+
+    <FaqSection
+      heading="Bored at Work — FAQs"
+      items={[
+        {
+          q: 'What are the best games to play when bored at work?',
+          a: 'The hand-picked titles above are quiet, quick to pause, and easy to hide — perfect for a discreet office break. Every game runs in your browser with no download.',
+        },
+        {
+          q: 'Will these games make noise and get me caught?',
+          a: 'No. Our bored-at-work picks are muted by default and Alt-Tab friendly, so you can minimize or close them instantly if someone walks by.',
+        },
+        {
+          q: 'Do I need to install anything to play at work?',
+          a: 'No. These are browser games — they load in one click with no download, plugin, or installation, and work on any office laptop or Chromebook.',
+        },
+        {
+          q: 'Can I play these games on a locked-down work computer?',
+          a: 'Yes. Because they run in the browser with no install, they work on most managed work machines and school Chromebooks where app installs are blocked.',
+        },
+      ]}
+    />
   </section>
 </Layout>

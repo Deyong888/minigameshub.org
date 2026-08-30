@@ -9,14 +9,19 @@ const SID = 'GM8A7';
 const PER_PAGE = 96;
 
 // 配置：通用 feed 抓取多少页（按质量排序，新游戏高质量排在 page1 顶部）
-const GENERAL_PAGES = 25;
+// 上调以扩大收录的游戏覆盖（Programmatic SEO：更多可索引的游戏/分类页）。
+// 注意：GamePix 全量约 1.3 万款，逐页抓取会显著增大 gamepix.json 与构建产物，
+// 这里取一个兼顾收录广度和构建成本的折中值。
+const GENERAL_PAGES = 50;
 // 各分类抓取多少页（补充长尾/分类多样性）
 const CATEGORIES = [
   '2048', 'match-3', 'simulation', 'stickman', 'arcade', 'puzzle',
   'sports', 'strategy', 'board', 'action', 'adventure', 'driving',
-  'junior', 'classic',
+  'junior', 'classic', 'racing', 'shooter', 'casual', 'animal',
+  'games-for-girls', 'ball', 'monster', 'fun', 'fighting', 'mahjong',
+  'solitaire', 'logic', 'card', 'defense', 'basketball', 'soccer',
 ];
-const CAT_PAGES = 3;
+const CAT_PAGES = 4;
 
 function buildUrls() {
   const urls = [];

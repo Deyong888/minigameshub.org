@@ -27,25 +27,29 @@ const {
 const currentLocale = Astro.currentLocale || I18N?.language || 'en';
 const currentPath = Astro.url.pathname;
 
-// Simple logic to generate hreflang links for core pages
-// This assumes parallel structure for most pages
+// Generate hreflang alternates for every configured locale + x-default.
+// Locales mirror astro.config.ts i18n.locales (en/es/zh); default locale has no path prefix.
+// 注意：astrowind 的 I18N 配置没有 locales 字段，且 Astro 全局类型无 Astro.locales，
+// 故直接对齐 astro.config.ts 的硬编码列表。
+const locales: string[] = ['en', 'es', 'zh'];
 const getAlternates = () => {
     const alternates: { href: string; hreflang: string }[] = [];
-    const isEs = currentPath.startsWith('/es/') || currentPath === '/es';
-    
-    // EN URL
-    const enPath = isEs 
-        ? (currentPath === '/es' ? '/' : currentPath.replace(/^\/es/, '')) 
-        : currentPath;
-        
-    // ES URL
-    const esPath = isEs 
-        ? currentPath 
-        : (currentPath === '/' ? '/es' : `/es${currentPath}`);
 
-    alternates.push({ href: String(getCanonical(enPath)), hreflang: 'en' });
-    alternates.push({ href: String(getCanonical(esPath)), hreflang: 'es' });
-    
+    // Strip any existing locale prefix to get the language-neutral base path.
+    const basePath = currentPath.replace(/^\/(?:es|zh)(?=\/|$)/, '') || '/';
+
+    const getLocalePath = (locale: string) => {
+        if (locale === 'en') return basePath === '/' ? '/' : basePath;
+        const prefix = `/${locale}`;
+        return basePath === '/' ? prefix : `${prefix}${basePath}`;
+    };
+
+    for (const locale of locales) {
+        alternates.push({ href: String(getCanonical(getLocalePath(locale))), hreflang: locale });
+    }
+    // x-default points to the canonical (English) version
+    alternates.push({ href: String(getCanonical(basePath === '/' ? '/' : basePath)), hreflang: 'x-default' });
+
     return alternates;
 };
 

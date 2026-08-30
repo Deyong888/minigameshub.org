@@ -1,0 +1,48 @@
+---
+interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  items: FaqItem[];
+  heading?: string;
+  jsonLd?: boolean;
+}
+
+const { items, heading = 'Frequently Asked Questions', jsonLd = true } = Astro.props;
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: items.map((it) => ({
+    '@type': 'Question',
+    name: it.q,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: it.a,
+    },
+  })),
+};
+---
+
+<section class="prose dark:prose-invert max-w-none bg-white dark:bg-slate-800 p-6 rounded-lg shadow-sm mt-6">
+  <h2>{heading}</h2>
+  <div class="faq-list space-y-2">
+    {
+      items.map((it) => (
+        <details class="faq-item group border-b border-gray-200 dark:border-gray-700 pb-2 last:border-0">
+          <summary class="font-semibold cursor-pointer list-none flex items-center justify-between py-2 marker:hidden">
+            <span>{it.q}</span>
+            <span class="text-primary transition-transform group-open:rotate-45 text-xl leading-none">+</span>
+          </summary>
+          <p class="mt-1 mb-2 text-muted">{it.a}</p>
+        </details>
+      ))
+    }
+  </div>
+</section>
+
+{jsonLd && (
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+)}

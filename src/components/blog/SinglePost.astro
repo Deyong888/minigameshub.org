@@ -18,6 +18,27 @@ export interface Props {
 const { post, url } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+// E-E-A-T: always show a byline; fall back to the editorial team when a post
+// has no explicit author (most auto-generated posts).
+const authorName = post.author || 'MiniGamesHub Editorial Team';
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  ...(post.excerpt ? { description: post.excerpt } : {}),
+  ...(post.image ? { image: post.image } : {}),
+  datePublished: post.publishDate ? post.publishDate.toISOString() : undefined,
+  dateModified: post.updateDate ? post.updateDate.toISOString() : post.publishDate ? post.publishDate.toISOString() : undefined,
+  author: { '@type': 'Organization', name: authorName },
+  publisher: {
+    '@type': 'Organization',
+    name: 'MiniGamesHub',
+    parentOrganization: { '@type': 'Organization', name: 'Synthflow Digital LTD' },
+  },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': String(url) },
+};
 ---
 
 <section class="py-8 sm:py-16 lg:py-20 mx-auto">
@@ -32,13 +53,11 @@ const t = useTranslations(lang);
           <Icon name="tabler:clock" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
           <time datetime={String(post.publishDate)} class="inline-block">{post.publishDate.toLocaleDateString(lang, { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' })}</time>
           {
-            post.author && (
-              <>
-                {' '}
-                · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
-                <span class="inline-block">{post.author}</span>
-              </>
-            )
+            <>
+              {' '}
+              · <Icon name="tabler:user" class="w-4 h-4 inline-block -mt-0.5 dark:text-gray-400" />
+              <span class="inline-block">{authorName}</span>
+            </>
           }
           {
             post.category && (
@@ -101,5 +120,23 @@ const t = useTranslations(lang);
       <PostTags tags={post.tags} class="mr-5 rtl:mr-0 rtl:ml-5" />
       <SocialShare url={url} text={post.title} class="mt-5 sm:mt-1 align-middle text-gray-500 dark:text-slate-600" />
     </div>
+
+    <!-- E-E-A-T: editorial trust block -->
+    <div class="mx-auto px-6 sm:px-6 max-w-3xl mt-10">
+      <div class="flex items-start gap-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/40 p-5">
+        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent/10 text-accent">
+          <Icon name="tabler:edit" class="h-6 w-6" />
+        </div>
+        <div class="text-sm text-muted">
+          <p class="font-semibold text-slate-800 dark:text-slate-100">{authorName}</p>
+          <p class="mt-1">
+            Content reviewed by the MiniGamesHub editorial team for accuracy and player safety.
+            <a href="/editorial-guidelines" class="text-primary hover:underline">Read our editorial guidelines</a>.
+          </p>
+        </div>
+      </div>
+    </div>
   </article>
 </section>
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(articleJsonLd)} />

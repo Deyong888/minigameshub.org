@@ -28,26 +28,53 @@ const {
     returnToGame: 'Press ESC to return to game...',
   },
 } = Astro.props;
-const embedUrl = `${game.url}&sid=GM8A7`; // 必须包含SID
+// game.url 已经包含必需的 SID（形如 .../embed?sid=GM8A7），不要再拼接 &sid=
+// 否则会产生 ?sid=GM8A7&sid=GM8A7 的「双 sid」导致 GamePix 拒绝加载。
+const embedUrl = game.url.includes('sid=')
+  ? game.url
+  : `${game.url}${game.url.includes('?') ? '&' : '?'}sid=GM8A7`;
 ---
 
 <div class="game-player" data-game-id={game.id}>
-  <!-- Game iframe container -->
+  <!-- Game iframe container (lazy-loaded: poster + click-to-play) -->
   <div class="game-frame-wrapper relative">
     <iframe
       id={`game-frame-${game.id}`}
-      src={embedUrl}
+      data-src={embedUrl}
       title={`${game.title} - Play Online Free`}
       width="100%"
-      height="600"
+      height="100%"
       allowfullscreen
       allow="autoplay; fullscreen; clipboard-write"
       sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-      loading="eager"
-      class="rounded-lg shadow-2xl"></iframe>
+      loading="lazy"
+      tabindex="-1"
+      aria-hidden="true"
+      class="game-frame rounded-lg shadow-2xl opacity-0"></iframe>
 
-    <!-- Loading state -->
-    <div class="loading-overlay absolute inset-0 flex items-center justify-center bg-gray-900 rounded-lg">
+    <!-- Poster + click-to-play (defers the heavy GamePix iframe → better LCP / CWV) -->
+    <button
+      type="button"
+      id={`poster-${game.id}`}
+      class="game-poster absolute inset-0 flex items-center justify-center bg-gray-900 rounded-lg border-0 p-0"
+      aria-label={`Play ${game.title} now`}
+    >
+      <img
+        src={game.thumbnail}
+        alt={`${game.title} — game cover`}
+        width="960"
+        height="540"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute inset-0 w-full h-full object-cover rounded-lg"
+      />
+      <span class="play-badge relative z-10 flex items-center justify-center w-20 h-20 rounded-full bg-white/90 text-primary shadow-xl">
+        <svg viewBox="0 0 24 24" class="w-9 h-9 ml-1" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+      </span>
+    </button>
+
+    <!-- Loading state (shown only after the user starts the game) -->
+    <div class="loading-overlay absolute inset-0 flex items-center justify-center bg-gray-900 rounded-lg hidden">
       <div class="text-center">
         <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
         <p class="mt-4 text-white">{labels.loading} {game.title}...</p>
@@ -145,9 +172,23 @@ const embedUrl = `${game.url}&sid=GM8A7`; // 必须包含SID
 <script is:inline define:vars={{ gameId: game.id, gameTitle: game.title, labels }}>
   // 老板键功能
   let isBossMode = false;
+  let started = false;
   const bossOverlay = document.getElementById('boss-overlay');
   const bossBtn = document.getElementById('boss-key-btn');
+  const poster = document.getElementById(`poster-${gameId}`);
   const gameFrame = document.getElementById(`game-frame-${gameId}`);
+
+  // Click-to-play: defer the heavy GamePix iframe until the user wants it (Core Web Vitals)
+  function startGame() {
+    if (started) return;
+    started = true;
+    const loading = document.querySelector('.loading-overlay');
+    if (loading) loading.classList.remove('hidden');
+    if (gameFrame && gameFrame.dataset.src) {
+      gameFrame.src = gameFrame.dataset.src;
+    }
+  }
+  poster?.addEventListener('click', startGame);
 
   function toggleBossMode() {
     isBossMode = !isBossMode;
@@ -194,6 +235,7 @@ const embedUrl = `${game.url}&sid=GM8A7`; // 必须包含SID
       e.preventDefault();
       toggleBossMode();
     }
+    if (!started) return;
     if (e.key === 'm' || e.key === 'M') {
       toggleMute();
     }
@@ -247,10 +289,12 @@ const embedUrl = `${game.url}&sid=GM8A7`; // 必须包含SID
 
   fullscreenBtn?.addEventListener('click', toggleFullscreen);
 
-  // iframe加载完成后隐藏loading
+  // iframe加载完成后：隐藏loading与海报，显示真实游戏画面
   gameFrame?.addEventListener('load', () => {
     const loading = document.querySelector('.loading-overlay');
     if (loading) loading.classList.add('hidden');
+    gameFrame.classList.remove('opacity-0');
+    poster?.classList.add('hidden');
   });
 </script>
 
@@ -306,6 +350,24 @@ const embedUrl = `${game.url}&sid=GM8A7`; // 必须包含SID
 
   .boss-overlay {
     animation: fadeIn 0.1s ease-in;
+  }
+
+  .game-frame {
+    transition: opacity 0.2s ease;
+  }
+
+  .game-poster {
+    appearance: none;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .game-poster .play-badge {
+    transition: transform 0.15s ease;
+  }
+
+  .game-poster:hover .play-badge {
+    transform: scale(1.08);
   }
 
   @keyframes fadeIn {
