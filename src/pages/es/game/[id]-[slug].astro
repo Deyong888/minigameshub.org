@@ -7,21 +7,22 @@ import { getUniqueGames, getRelatedGames } from '~/data/games';
 import { getLangFromUrl, useTranslations, translateDynamic } from '~/utils/i18n';
 import type { Game } from '~/types/game';
 
-export async function getStaticPaths() {
-  const games = getUniqueGames();
+// Hybrid rendering: game pages render on-demand on Vercel (cached at edge).
+export const prerender = false;
 
-  return games.map((game) => ({
-    params: { id: game.id.toString(), slug: game.slug },
-    props: { game, relatedGames: getRelatedGames(game, 12) },
-  }));
+const gameLookup = new Map(getUniqueGames().map((g) => [`${g.id}-${g.slug}`, g]));
+const game = gameLookup.get(`${Astro.params.id}-${Astro.params.slug}`);
+if (!game) {
+  return new Response(
+    '<!doctype html><html lang="es"><head><meta charset="utf-8">' +
+      '<title>Juego no encontrado | MiniGamesHub</title><meta name="robots" content="noindex"></head>' +
+      '<body style="font-family:sans-serif;text-align:center;padding:80px">' +
+      '<h1>Juego no encontrado</h1><p>El juego que buscas ya no está disponible.</p>' +
+      '<p><a href="/es/">Volver a MiniGamesHub</a></p></body></html>',
+    { status: 404, headers: { 'content-type': 'text/html; charset=utf-8' } }
+  );
 }
-
-export interface Props {
-  game: Game;
-  relatedGames: Game[];
-}
-
-const { game, relatedGames } = Astro.props;
+const relatedGames = getRelatedGames(game, 12);
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 

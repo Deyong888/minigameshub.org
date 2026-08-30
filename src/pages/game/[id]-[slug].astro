@@ -8,21 +8,25 @@ import { getUniqueGames, getRelatedGames } from '~/data/games';
 import type { Game } from '~/types/game';
 import { getHowToPlay, getTips, getGameDetails, getGameFaq } from '~/utils/gameContent';
 
-export async function getStaticPaths() {
-  const games = getUniqueGames();
-  
-  return games.map((game) => ({
-    params: { id: game.id.toString(), slug: game.slug },
-    props: { game, relatedGames: getRelatedGames(game, 12) },
-  }));
-}
+// Hybrid rendering: game pages are NOT pre-rendered at build time (there are
+// ~7k of them × 3 languages). They render on-demand on Vercel and are cached
+// at the edge, which is what keeps the build under Vercel's 45-minute limit.
+export const prerender = false;
 
-export interface Props {
-  game: Game;
-  relatedGames: Game[];
+// Lookup map built once per serverless instance (module scope).
+const gameLookup = new Map(getUniqueGames().map((g) => [`${g.id}-${g.slug}`, g]));
+const game = gameLookup.get(`${Astro.params.id}-${Astro.params.slug}`);
+if (!game) {
+  return new Response(
+    '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
+      '<title>Game not found | MiniGamesHub</title><meta name="robots" content="noindex"></head>' +
+      '<body style="font-family:sans-serif;text-align:center;padding:80px">' +
+      '<h1>Game not found</h1><p>The game you are looking for is no longer available.</p>' +
+      '<p><a href="/">Back to MiniGamesHub</a></p></body></html>',
+    { status: 404, headers: { 'content-type': 'text/html; charset=utf-8' } }
+  );
 }
-
-const { game, relatedGames } = Astro.props;
+const relatedGames = getRelatedGames(game, 12);
 
 // Enriched, category-aware body content (P0 SEO fix) — generated in src/utils/gameContent.ts
 const howToPlay = getHowToPlay(game);

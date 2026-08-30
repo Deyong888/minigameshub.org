@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 
 import { defineConfig } from 'astro/config';
 
+import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
@@ -42,7 +43,12 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   site: 'https://minigameshub.org',
-  output: 'static',
+  // Hybrid rendering: only a few hundred "static" pages (home, categories, blog,
+  // hub, about, editorial, sitemap) are pre-rendered at build time. The ~21k
+  // game pages are rendered on-demand by Vercel serverless functions and cached
+  // at the edge — this is what keeps the build under Vercel's 45-min limit.
+  output: 'hybrid',
+  adapter: vercel(),
   redirects: {
     '/games-to-play-when-bored': '/bored-games',
     '/bored-at-work': '/bored-games/bored-at-work',

@@ -4,7 +4,6 @@ import Logo from '~/components/Logo.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import ToggleMenu from '~/components/common/ToggleMenu.astro';
 import LanguagePicker from '~/components/common/LanguagePicker.astro';
-import Search from '~/components/common/Search.astro';
 import Button from '~/components/ui/Button.astro';
 
 import { getHomePermalink } from '~/utils/permalinks';
@@ -153,7 +152,6 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
               </a>
             )
           }
-          <Search />
         </div>
         {
           actions?.length ? (
