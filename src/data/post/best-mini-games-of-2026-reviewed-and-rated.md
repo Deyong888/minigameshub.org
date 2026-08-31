@@ -1,5 +1,5 @@
 ---
-publishDate: 2026-09-25T00:00:00Z
+publishDate: 2026-08-25T00:00:00Z
 title: Best Mini Games of 2026 — Reviewed and Rated
 excerpt: 12 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
 image: https://img.gamepix.com/games/buba-jumpe/cover/buba-jumpe.png?w=320
