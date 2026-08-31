@@ -63,11 +63,19 @@ ${urls.join('\n')}
 </urlset>
 `;
 
-fs.writeFileSync(path.join(ROOT, 'dist/sitemap-games.xml'), sitemap);
-console.log(`[sitemap] wrote dist/sitemap-games.xml with ${games.length} game URLs (en/es/zh).`);
+// With an adapter (Vercel) Astro emits client assets into `dist/client`, and
+// only that directory is uploaded — writing to `dist/` would never be deployed
+// (sitemap-games.xml came back 404 because of this). Fall back to `dist/` for
+// plain static builds with no adapter.
+const DIST = path.join(ROOT, 'dist');
+const CLIENT = fs.existsSync(path.join(DIST, 'client')) ? path.join(DIST, 'client') : DIST;
+const rel = path.relative(ROOT, CLIENT).replace(/\\/g, '/');
+
+fs.writeFileSync(path.join(CLIENT, 'sitemap-games.xml'), sitemap);
+console.log(`[sitemap] wrote ${rel}/sitemap-games.xml with ${games.length} game URLs (en/es/zh).`);
 
 // Register the games sitemap in the index produced by @astrojs/sitemap.
-const indexFile = path.join(ROOT, 'dist/sitemap-index.xml');
+const indexFile = path.join(CLIENT, 'sitemap-index.xml');
 if (fs.existsSync(indexFile)) {
   let index = fs.readFileSync(indexFile, 'utf-8');
   const entry = `  <sitemap><loc>${SITE}/sitemap-games.xml</loc></sitemap>\n`;
@@ -79,5 +87,5 @@ if (fs.existsSync(indexFile)) {
     console.log('[sitemap] sitemap-games.xml already registered; skipped.');
   }
 } else {
-  console.warn('[sitemap] dist/sitemap-index.xml not found — index not patched.');
+  console.warn(`[sitemap] ${rel}/sitemap-index.xml not found — index not patched.`);
 }
