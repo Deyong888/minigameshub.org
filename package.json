@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node scripts/generate-game-sitemap.mjs",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "fetch-games": "node scripts/fetch-games.js",

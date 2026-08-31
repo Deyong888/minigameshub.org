@@ -15,6 +15,7 @@ import type { AstroIntegration } from 'astro';
 import astrowind from './vendor/integration';
 
 import gamepixData from './src/data/gamepix.json';
+import gameSitemap from './src/integrations/game-sitemap';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 
@@ -78,6 +79,10 @@ export default defineConfig({
         return true;
       },
     }),
+    // Must run as an integration: the Vercel adapter copies dist/client into
+    // .vercel/output/static after all integration hooks, so a post-build script
+    // would write too late and never reach the deployment.
+    gameSitemap(),
     mdx(),
     icon({
       include: {
