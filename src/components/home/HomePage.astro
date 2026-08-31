@@ -1,0 +1,472 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+
+import GameHero from '~/components/widgets/GameHero.astro';
+import GameCard from '~/components/game/GameCard.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+import {
+  // Mini Games
+  miniArcadeGames,
+  miniPuzzleGames,
+  miniActionGames,
+  // Small Games
+  smallCasualGames,
+  smallQuickGames,
+  smallShortGames,
+  // Relax Games
+  relaxStressReliefGames,
+  relaxCalmingGames,
+  relaxCasualGames,
+  // Bored Games
+  officeGames,
+  unblockedGames,
+  waitingInLineGames,
+  // Browser Games
+  browserHtml5Games,
+  // HTML5 Games
+  html5MobileGames,
+  // New Games
+  newGames,
+} from '~/data/games';
+
+import { home, type Lang } from '~/i18n/home';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const copy = home[lang];
+
+// Localized link prefix. EN is the root locale (no prefix); zh/es add a segment.
+// The new-games page has no localized variant, so it always points to /new-games.
+const prefix = lang === 'en' ? '' : `/${lang}`;
+function href(route: string): string {
+  return route === 'new-games' ? '/new-games' : `${prefix}/${route}`;
+}
+
+// Map the data arrays in the same visual order they appear per section.
+const miniArrays = [miniArcadeGames, miniPuzzleGames, miniActionGames];
+const smallArrays = [smallCasualGames, smallQuickGames, smallShortGames];
+const relaxArrays = [relaxCalmingGames, relaxStressReliefGames, relaxCasualGames];
+const boredArrays = [officeGames, unblockedGames, waitingInLineGames];
+const featuredArrays = [browserHtml5Games, html5MobileGames];
+
+// Icons are language-independent; map by route / position.
+const NAV_ICONS: Record<string, string> = {
+  'mini-games': 'tabler:device-gamepad-2',
+  'small-games': 'tabler:target-arrow',
+  'relax-games': 'tabler:mood-heart',
+  'bored-games': 'tabler:dice-5',
+  'arcade-games': 'tabler:device-gamepad-2',
+  'browser-games': 'tabler:browser',
+  'html5-games': 'tabler:code',
+  'new-games': 'tabler:sparkles',
+};
+const SHOWCASE_ICONS: Record<string, string> = {
+  'arcade-games': 'tabler:device-gamepad-2',
+  'browser-games': 'tabler:browser',
+  'no-download-games': 'tabler:download-off',
+  'html5-games': 'tabler:code',
+};
+const BORED_ICONS = ['tabler:briefcase', 'tabler:backpack', 'tabler:clock-hour-4'];
+const FEATURE_ICONS = ['tabler:device-gamepad-2', 'tabler:tags', 'tabler:browser', 'tabler:device-mobile'];
+
+const sectionLinkClass =
+  'inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold text-sm transition-colors';
+const sectionBg = {
+  default: '',
+  muted: 'bg-gray-50 dark:bg-slate-900/10',
+  cool: 'bg-blue-50/50 dark:bg-slate-900/20',
+  warm: 'bg-amber-50/50 dark:bg-slate-900/15',
+  subtle: 'bg-violet-50/30 dark:bg-slate-900/10',
+};
+
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: copy.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.title,
+    acceptedAnswer: { '@type': 'Answer', text: item.description },
+  })),
+};
+---
+
+<Layout metadata={copy.metadata}>
+  <!-- HERO SECTION -->
+  <div
+    class="py-8 md:py-12 bg-gradient-to-b from-white via-blue-50/30 to-white dark:from-slate-950 dark:via-slate-900/50 dark:to-slate-950"
+  >
+    <div class="text-center mb-8 max-w-4xl mx-auto px-4">
+      <div
+        class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-medium mb-6 animate-fade-in shadow-md"
+      >
+        <Icon name="tabler:device-gamepad-2" class="w-4 h-4" />
+        {copy.hero.badge}
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4 font-heading animate-slide-up">
+        {copy.hero.titleLead}<span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-600">{copy.hero.count}</span
+        >{copy.hero.titleTrail}
+      </h1>
+      <p
+        class="text-lg md:text-xl text-gray-600 dark:text-slate-400 max-w-2xl mx-auto animate-slide-up animate-delay-100"
+        set:html={copy.hero.subtext}
+      >
+      </p>
+    </div>
+    <div class="animate-fade-in animate-delay-200">
+      <GameHero />
+    </div>
+  </div>
+
+  <!-- CATEGORY QUICK NAV -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+    <div class="flex flex-wrap justify-center gap-3">
+      {
+        copy.nav.map((item, i) => {
+          const isAccent = item.route === 'new-games';
+          const isPrimary = i === 0;
+          const cls = isAccent
+            ? 'group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 text-white text-sm font-semibold hover:shadow-lg hover:shadow-green-500/30 transition-all duration-300 hover:-translate-y-0.5'
+            : isPrimary
+              ? 'group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-r from-primary to-purple-600 text-white text-sm font-medium hover:shadow-lg hover:shadow-primary/30 transition-all duration-300 hover:-translate-y-0.5'
+              : 'group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 text-gray-700 dark:text-gray-300 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 dark:hover:bg-primary/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md';
+          return (
+            <a href={href(item.route)} class={cls}>
+              <Icon name={NAV_ICONS[item.route]} class="w-4 h-4 group-hover:scale-110 transition-transform" />
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- NEW GAMES HIGHLIGHT BANNER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2">
+    <div
+      class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 px-6 py-10 md:px-12 md:py-12 shadow-xl shadow-green-500/20"
+    >
+      <div
+        class="absolute -top-16 -right-10 w-64 h-64 bg-white/10 rounded-full blur-2xl group-hover:scale-110 transition-transform"
+      >
+      </div>
+      <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <div class="max-w-xl">
+          <div
+            class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3"
+          >
+            <Icon name="tabler:sparkles" class="w-4 h-4" /> {copy.newBanner.badge}
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-white font-heading">
+            {copy.newBanner.title}
+          </h2>
+          <p class="mt-2 text-white/90 text-base md:text-lg" set:html={copy.newBanner.text}>
+          </p>
+        </div>
+        <a
+          href="/new-games"
+          class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-green-700 font-bold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+        >
+          {copy.newBanner.cta} <Icon name="tabler:arrow-right" class="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW GAMES GRID -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+    <div class="flex items-end justify-between mb-6">
+      <div>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center">
+            <Icon name="tabler:sparkles" class="w-5 h-5 text-green-600" />
+          </div>
+          <span class="text-sm font-semibold tracking-wide text-green-600 uppercase">{copy.newGrid.eyebrow}</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
+          <a href="/new-games" class="hover:text-green-600 transition-colors">{copy.newGrid.title}</a>
+        </h2>
+        <p class="mt-1 text-gray-600 dark:text-slate-400">{copy.newGrid.subtitle}</p>
+      </div>
+      <a href="/new-games" class={sectionLinkClass}>
+        {copy.newGrid.viewAll} <Icon name="tabler:arrow-right" class="w-4 h-4" />
+      </a>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+      {newGames.slice(0, 12).map((game) => <GameCard game={game} />)}
+    </div>
+  </section>
+
+  <!-- 1. Mini Games -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <div class="flex items-center gap-3 mb-2">
+          <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+            <Icon name="tabler:device-gamepad-2" class="w-5 h-5 text-primary" />
+          </div>
+          <span class="text-sm font-semibold tracking-wide text-primary uppercase">{copy.mini.label}</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
+          <a href={href('mini-games')} class="hover:text-primary transition-colors">{copy.mini.title}</a>
+        </h2>
+        <p class="mt-1 text-gray-600 dark:text-slate-400">{copy.mini.subtitle}</p>
+      </div>
+      <a href={href('mini-games')} class={sectionLinkClass}>
+        {copy.mini.viewAll} <Icon name="tabler:arrow-right" class="w-4 h-4" />
+      </a>
+    </div>
+
+    <div class="space-y-10">
+      {
+        copy.mini.subs.map((sub, i) => (
+          <div>
+            <h3 class="text-lg font-bold mb-1 flex items-center gap-2">
+              <Icon name="tabler:stars" class="w-4 h-4 text-primary" /> {sub.heading}
+            </h3>
+            <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">{sub.desc}</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+              {miniArrays[i].slice(0, 6).map((game) => <GameCard game={game} />)}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <hr class="border-gray-200 dark:border-gray-800" />
+  </div>
+
+  <!-- 2. Small Games -->
+  <section class={[sectionBg.muted, 'py-10 lg:py-14'].join(' ')}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Icon name="tabler:target-arrow" class="w-5 h-5 text-primary" />
+            </div>
+            <span class="text-sm font-semibold tracking-wide text-primary uppercase">{copy.small.label}</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
+            <a href={href('small-games')} class="hover:text-primary transition-colors">{copy.small.title}</a>
+          </h2>
+          <p class="mt-1 text-gray-600 dark:text-slate-400">{copy.small.subtitle}</p>
+        </div>
+        <a href={href('small-games')} class={sectionLinkClass}>
+          {copy.small.viewAll} <Icon name="tabler:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+
+      <div class="space-y-10">
+        {
+          copy.small.subs.map((sub, i) => (
+            <div>
+              <h3 class="text-lg font-bold mb-1 flex items-center gap-2">
+                <Icon name="tabler:mood-smile" class="w-4 h-4 text-primary" /> {sub.heading}
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">{sub.desc}</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+                {smallArrays[i].slice(0, 6).map((game) => <GameCard game={game} />)}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Relax Games -->
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Icon name="tabler:mood-heart" class="w-5 h-5 text-primary" />
+            </div>
+            <span class="text-sm font-semibold tracking-wide text-primary uppercase">{copy.relax.label}</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
+            <a href={href('relax-games')} class="hover:text-primary transition-colors">{copy.relax.title}</a>
+          </h2>
+          <p class="mt-1 text-gray-600 dark:text-slate-400">{copy.relax.subtitle}</p>
+        </div>
+        <a href={href('relax-games')} class={sectionLinkClass}>
+          {copy.relax.viewAll} <Icon name="tabler:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {
+          copy.relax.subs.map((sub, i) => (
+            <div>
+              <h3 class="text-lg font-bold mb-1 flex items-center gap-2">
+                <Icon name="tabler:wind" class="w-4 h-4 text-primary" /> {sub.heading}
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">{sub.desc}</p>
+              <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+                {relaxArrays[i].slice(0, 2).map((game) => <GameCard game={game} />)}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Divider -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <hr class="border-gray-200 dark:border-gray-800" />
+  </div>
+
+  <!-- 4. Bored Games (Scenario) -->
+  <section class={[sectionBg.muted, 'py-10 lg:py-14'].join(' ')}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Icon name="tabler:dice-5" class="w-5 h-5 text-primary" />
+            </div>
+            <span class="text-sm font-semibold tracking-wide text-primary uppercase">{copy.bored.label}</span>
+          </div>
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">
+            <a href={href('bored-games')} class="hover:text-primary transition-colors">{copy.bored.title}</a>
+          </h2>
+          <p class="mt-1 text-gray-600 dark:text-slate-400">{copy.bored.subtitle}</p>
+        </div>
+        <a href={href('bored-games')} class={sectionLinkClass}>
+          {copy.bored.viewAll} <Icon name="tabler:arrow-right" class="w-4 h-4" />
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {
+          copy.bored.cards.map((card, i) => (
+            <div class="p-6 rounded-xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-slate-900/50">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-10 h-10 rounded-lg bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
+                  <Icon name={BORED_ICONS[i]} class="w-5 h-5 text-amber-600 dark:text-amber-400" />
+                </div>
+                <div>
+                  <h3 class="font-bold">{card.title}</h3>
+                  <p class="text-xs text-gray-500">{card.note}</p>
+                </div>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-1 gap-4">
+                {boredArrays[i].slice(0, 2).map((game) => <GameCard game={game} />)}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE CATEGORIES: compact grid showcase -->
+  <section class="py-10 lg:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tighter font-heading">{copy.more.heading}</h2>
+        <p class="mt-2 text-gray-600 dark:text-slate-400">{copy.more.subtitle}</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+        {
+          copy.more.cards.map((card) => (
+            <a
+              href={href(card.route)}
+              class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-violet-600 via-purple-600 to-violet-700 p-6 md:p-8 min-h-[180px] flex flex-col justify-end transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/30 hover:-translate-y-1"
+            >
+              <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform">
+              </div>
+              <Icon name={SHOWCASE_ICONS[card.route]} class="w-10 h-10 text-white/90 mb-3 group-hover:scale-110 transition-transform" />
+              <h3 class="text-white font-bold text-xl group-hover:underline">{card.title}</h3>
+              <p class="text-white/80 text-sm">{card.desc}</p>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- featured samples -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {
+          copy.more.featured.map((block, i) => (
+            <div>
+              <h3 class="text-lg font-bold mb-1 flex items-center gap-2">
+                <Icon name="tabler:device-desktop" class="w-4 h-4 text-primary" /> {block.heading}
+              </h3>
+              <p class="text-sm text-gray-500 dark:text-slate-400 mb-4">{block.desc}</p>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {featuredArrays[i].slice(0, 6).map((game) => <GameCard game={game} />)}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES BANNER -->
+  <section
+    class="bg-gradient-to-r from-primary via-purple-600 to-primary dark:from-primary/90 dark:via-purple-700 dark:to-primary/90 py-14 md:py-16"
+  >
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 text-center">
+        {
+          copy.features.map((stat, i) => (
+            <div class="group">
+              <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
+                <Icon name={FEATURE_ICONS[i]} class="w-7 h-7 text-white" />
+              </div>
+              <div class="text-3xl font-extrabold text-white mb-1">{stat.value}</div>
+              <div class="text-white/80 text-sm md:text-base">{stat.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Content -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="prose dark:prose-invert max-w-none">
+      <h2>{copy.seo.hero.h2}</h2>
+      <p set:html={copy.seo.hero.p}></p>
+
+      <h3>{copy.seo.worldCup.h3}</h3>
+      <p set:html={copy.seo.worldCup.p}></p>
+
+      <h3>{copy.seo.why.h3}</h3>
+      <p set:html={copy.seo.why.p}></p>
+      <ul>
+        {copy.seo.why.list.map((li) => <li>{li}</li>)}
+      </ul>
+
+      <h3>{copy.seo.football.h3}</h3>
+      <p set:html={copy.seo.football.p}></p>
+      <ul>
+        {copy.seo.football.list.map((li) => <li>{li}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <FAQs
+    title={copy.faq.title}
+    subtitle={copy.faq.subtitle}
+    tagline={copy.faq.tagline}
+    classes={{ container: 'max-w-6xl' }}
+    items={copy.faq.items}
+  />
+
+  <!-- JSON-LD: FAQPage (derived from the same copy.faq.items) -->
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</Layout>
