@@ -3,6 +3,9 @@ dist/
 dist-verify/
 tmp/
 .output/
+# Vercel build artifacts (generated fresh by `astro build` on Vercel;
+# committing this dir pollutes the repo and breaks deployments)
+.vercel/
 
 # dependencies
 node_modules/
