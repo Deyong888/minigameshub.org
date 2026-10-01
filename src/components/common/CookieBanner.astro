@@ -10,7 +10,7 @@ const {
   acceptText = t('cookie.accept'),
   declineText = t('cookie.decline'),
   policyText = t('cookie.policy'),
-  policyLink = lang === 'es' ? '/es/privacy' : '/privacy',
+  policyLink = lang === 'es' ? '/es/privacy' : lang === 'zh' ? '/zh/privacy' : '/privacy',
 } = Astro.props;
 ---
 
@@ -46,7 +46,7 @@ const {
     const cookieBanner = document.getElementById('cookie-banner');
     const acceptBtn = document.getElementById('cookie-accept');
     const declineBtn = document.getElementById('cookie-decline');
-    const STORAGE_KEY = 'boredgames_cookie_consent';
+    const STORAGE_KEY = 'minigameshub_cookie_consent';
 
     if (!cookieBanner) return;
 
