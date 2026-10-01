@@ -60,6 +60,56 @@ Usamos Cookies y tecnologías de rastreo similares para rastrear la actividad en
 
 Las Cookies pueden ser Cookies "Persistentes" o de "Sesión". Las Cookies Persistentes permanecen en Su computadora personal o dispositivo móvil cuando se desconecta, mientras que las Cookies de Sesión se eliminan tan pronto como cierra Su navegador web.
 
+## Google AdSense y Publicidad de Terceros
+
+Utilizamos Google AdSense para mostrar anuncios en nuestro Sitio Web. Google AdSense utiliza cookies para publicar anuncios basados en las visitas anteriores de un usuario a nuestro sitio web o a otros sitios web.
+
+### Cómo Google Utiliza las Cookies
+
+El uso de cookies publicitarias por parte de Google permite que Google y sus socios le muestren anuncios basados en su visita a nuestros sitios y/u otros sitios en Internet. Puede optar por no recibir publicidad personalizada visitando la [Configuración de Anuncios de Google](https://www.google.com/settings/ads).
+
+### Cookies DART
+
+Utilizamos las cookies DART de Google para la publicación de anuncios a través de Google AdSense, que coloca una cookie en su computadora cuando navega por la web y visita un sitio que utiliza publicidad de AdSense (incluidos algunos de nuestros anuncios). Esta cookie se utiliza para mostrarle anuncios basados en su visita a nuestro sitio y a otros sitios en Internet. Puede optar por no utilizar la cookie DART visitando la [política de privacidad de la red de anuncios y contenido de Google](https://policies.google.com/technologies/ads).
+
+### Servidores de Anuncios de Terceros
+
+Los servidores de anuncios de terceros o redes publicitarias utilizan tecnologías como cookies, JavaScript o balizas web en sus respectivos anuncios y enlaces que aparecen en nuestro Sitio Web, que se envían directamente al navegador de los usuarios. Reciben automáticamente su dirección IP cuando esto ocurre. Estas tecnologías se utilizan para medir la eficacia de sus campañas publicitarias y/o para personalizar el contenido publicitario que ve en los sitios web que visita.
+
+Tenga en cuenta que nuestro Sitio Web no tiene acceso ni control sobre estas cookies utilizadas por anunciantes de terceros.
+
+### Sus Opciones Respecto a la Publicidad
+
+Puede optar por desactivar las cookies a través de las opciones de su navegador individual. Para obtener información más detallada sobre la gestión de cookies en navegadores web específicos, puede consultarla en los sitios web respectivos de los navegadores.
+
+Además, puede optar por no permitir que algunos proveedores externos utilicen cookies para publicidad personalizada visitando [www.aboutads.info](https://www.aboutads.info/choices/), [www.networkadvertising.org](https://optout.networkadvertising.org/) o [www.youronlinechoices.eu](https://www.youronlinechoices.eu/).
+
+## Derechos de la Ley de Privacidad del Consumidor de California (CCPA)
+
+Si es residente de California, tiene ciertos derechos con respecto a su información personal. La CCPA otorga a los consumidores de California el derecho a:
+
+- Solicitar que una empresa divulgue las categorías y los datos personales específicos que ha recopilado sobre los consumidores.
+- Solicitar que una empresa elimine cualquier dato personal sobre el consumidor que haya recopilado.
+- Solicitar que una empresa que vende los datos personales de un consumidor no venda dichos datos.
+- Si realiza una solicitud, tenemos un mes para responderle. Si desea ejercer alguno de estos derechos, contáctenos.
+
+## Derechos del Reglamento General de Protección de Datos (GDPR)
+
+Si es residente del Espacio Económico Europeo (EEE), tiene ciertos derechos de protección de datos. Nuestro objetivo es tomar medidas razonables para permitirle corregir, modificar, eliminar o limitar el uso de sus Datos Personales.
+
+Si desea saber qué Datos Personales tenemos sobre usted y si desea que se eliminen de nuestros sistemas, contáctenos.
+
+En determinadas circunstancias, tiene los siguientes derechos de protección de datos:
+
+- Derecho de acceso, actualización o eliminación de la información que tenemos sobre usted.
+- Derecho de rectificación. Tiene derecho a que se rectifique su información si es inexacta o está incompleta.
+- Derecho de oposición. Tiene derecho a oponerse a nuestro procesamiento de sus Datos Personales.
+- Derecho de restricción. Tiene derecho a solicitar que restrinjamos el procesamiento de su información personal.
+- Derecho a la portabilidad de los datos. Tiene derecho a recibir una copia de la información que tenemos sobre usted en un formato estructurado, legible por máquina y de uso común.
+- Derecho a retirar el consentimiento. También tiene derecho a retirar su consentimiento en cualquier momento cuando hayamos basado el procesamiento de su información personal en su consentimiento.
+
+Tenga en cuenta que es posible que le pidamos que verifique su identidad antes de responder a dichas solicitudes.
+
 ## Uso de Sus Datos Personales
 
 La Compañía puede utilizar los Datos Personales para los siguientes propósitos:
@@ -107,4 +157,4 @@ Podemos actualizar Nuestra Política de Privacidad de vez en cuando. Le notifica
 
 Si tiene alguna pregunta sobre esta Política de Privacidad, puede contactarnos:
 
-- Por correo electrónico: contact@minigameshub.org
+- Por correo electrónico: contact@synthflowdigital.com

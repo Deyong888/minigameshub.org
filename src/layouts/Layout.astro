@@ -10,6 +10,7 @@ import ApplyColorMode from '~/components/common/ApplyColorMode.astro';
 import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
+import AdSense from '~/components/common/AdSense.astro';
 import CookieBanner from '~/components/common/CookieBanner.astro';
 import PWAInstallPrompt from '~/components/common/PWAInstallPrompt.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
@@ -38,6 +39,7 @@ const currentLang = Astro.currentLocale || language;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <AdSense />
 
     <!-- Comment the line below to disable View Transitions -->
     <ClientRouter fallback="swap" />
