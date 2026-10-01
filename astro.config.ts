@@ -53,6 +53,7 @@ export default defineConfig({
   output: 'static',
   adapter: vercel({ webAnalytics: { enabled: false } }),
   redirects: {
+    '/sitemap.xml': '/sitemap-index.xml',
     '/games-to-play-when-bored': '/bored-games',
     '/bored-at-work': '/bored-games/bored-at-work',
     '/bored-at-school': '/bored-games/bored-at-school',
@@ -60,6 +61,41 @@ export default defineConfig({
     '/es/bored-at-school': '/es/bored-games/bored-at-school',
     '/es/bored-at-work': '/es/bored-games/bored-at-work',
     '/es/waiting-in-line': '/es/bored-games/waiting-in-line',
+    // 2026-10-01: consolidate near-duplicate listicles (drafted) into canonical posts (301)
+    // -> /25-best-unblocked-games-for-school-chromebook-2026
+    '/25-best-games-to-play-when-bored-at-school-unblocked-for-chromebook-in-2026': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/25-best-unblocked-games-for-school-chromebook-2026-instant-play-no-download': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/25-best-unblocked-games-for-school-chromebook-2026-play-mini-games-instantly': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/25-best-unblocked-mini-games-for-school-chromebook-in-2026': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/30-best-unblocked-games-for-school-chromebook-2026-that-actually-work': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/best-unblocked-games-2026-play-free-mini-games-on-school-chromebook': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/best-unblocked-games-for-school-chromebook-2026-play-instantly': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/best-unblocked-games-for-school-chromebooks-2026-play-instantly': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/games-to-play-when-bored-at-school-2026-best-unblocked-browser-games-for-chromebook-no-download': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/top-trending-unblocked-games-2026-for-school-chromebooks-free-play': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/top-unblocked-games-2026-play-free-on-school-chromebooks': '/25-best-unblocked-games-for-school-chromebook-2026',
+    '/top-10-unblocked-games-for-school': '/25-best-unblocked-games-for-school-chromebook-2026',
+    // -> /30-best-games-to-play-when-bored-at-school-unblocked-in-2026-no-download-needed
+    '/15-best-games-to-play-when-bored-at-school-in-2026-unblocked-and-free': '/30-best-games-to-play-when-bored-at-school-unblocked-in-2026-no-download-needed',
+    '/20-best-games-to-play-when-bored-at-school-in-2026': '/30-best-games-to-play-when-bored-at-school-unblocked-in-2026-no-download-needed',
+    '/25-best-games-to-play-when-bored-at-school-in-2026-free-no-download': '/30-best-games-to-play-when-bored-at-school-unblocked-in-2026-no-download-needed',
+    '/top-15-games-to-play-when-bored-at-school-in-2026': '/30-best-games-to-play-when-bored-at-school-unblocked-in-2026-no-download-needed',
+    // -> /best-browser-games-2026-play-instantly-when-bored
+    '/25-best-free-browser-games-no-download-2026-play-instantly-when-bored': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-browser-games-2026-top-mini-games-to-play-when-bored': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-browser-games-to-play-when-bored-2026-no-download-instant-play': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-browser-games-to-play-when-bored-in-2026-free-html5-mini-games': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-browser-games-to-play-when-bored-in-2026-no-download-instant-fun': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-browser-games-to-play-when-bored-in-2026-no-download-instant-play': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-browser-games-to-play-when-bored-in-2026-no-download-required': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-games-to-play-when-bored-no-download-browser-games-2026': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-games-to-play-when-bored-in-2026-top-html5-browser-games-for-school-and-work': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-html5-browser-games-to-play-when-bored-in-2026': '/best-browser-games-2026-play-instantly-when-bored',
+    '/best-html5-games-to-play-instantly-without-download-in-2026': '/best-browser-games-2026-play-instantly-when-bored',
+    // -> /top-25-trending-html5-mini-games-to-play-when-bored-in-2026
+    '/top-trending-mini-games-2026-best-html5-browser-games-to-play-when-bored': '/top-25-trending-html5-mini-games-to-play-when-bored-in-2026',
+    '/top-trending-mini-games-to-play-when-bored-in-2026-instant-browser-games': '/top-25-trending-html5-mini-games-to-play-when-bored-in-2026',
+  },
   },
 
   integrations: [

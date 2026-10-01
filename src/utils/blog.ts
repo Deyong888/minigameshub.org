@@ -107,13 +107,49 @@ const getNormalizedPost = async (post: CollectionEntry<'post'>): Promise<Post> =
   };
 };
 
+// 2026-10-01 (AdSense review readiness): consolidated near-duplicate listicles.
+// These slugs are superseded by 4 canonical posts and 301-redirected in
+// astro.config.ts. Source .md files are kept in git; remove a slug here to
+// re-publish it.
+const CONSOLIDATED_LISTICLE_SLUGS = new Set<string>([
+  "25-best-games-to-play-when-bored-at-school-unblocked-for-chromebook-in-2026",,
+  "25-best-unblocked-games-for-school-chromebook-2026-instant-play-no-download",,
+  "25-best-unblocked-games-for-school-chromebook-2026-play-mini-games-instantly",,
+  "25-best-unblocked-mini-games-for-school-chromebook-in-2026",,
+  "30-best-unblocked-games-for-school-chromebook-2026-that-actually-work",,
+  "best-unblocked-games-2026-play-free-mini-games-on-school-chromebook",,
+  "best-unblocked-games-for-school-chromebook-2026-play-instantly",,
+  "best-unblocked-games-for-school-chromebooks-2026-play-instantly",,
+  "games-to-play-when-bored-at-school-2026-best-unblocked-browser-games-for-chromebook-no-download",,
+  "top-trending-unblocked-games-2026-for-school-chromebooks-free-play",,
+  "top-unblocked-games-2026-play-free-on-school-chromebooks",,
+  "top-10-unblocked-games-for-school",,
+  "15-best-games-to-play-when-bored-at-school-in-2026-unblocked-and-free",,
+  "20-best-games-to-play-when-bored-at-school-in-2026",,
+  "25-best-games-to-play-when-bored-at-school-in-2026-free-no-download",,
+  "top-15-games-to-play-when-bored-at-school-in-2026",,
+  "25-best-free-browser-games-no-download-2026-play-instantly-when-bored",,
+  "best-browser-games-2026-top-mini-games-to-play-when-bored",,
+  "best-browser-games-to-play-when-bored-2026-no-download-instant-play",,
+  "best-browser-games-to-play-when-bored-in-2026-free-html5-mini-games",,
+  "best-browser-games-to-play-when-bored-in-2026-no-download-instant-fun",,
+  "best-browser-games-to-play-when-bored-in-2026-no-download-instant-play",,
+  "best-browser-games-to-play-when-bored-in-2026-no-download-required",,
+  "best-games-to-play-when-bored-no-download-browser-games-2026",,
+  "best-games-to-play-when-bored-in-2026-top-html5-browser-games-for-school-and-work",,
+  "best-html5-browser-games-to-play-when-bored-in-2026",,
+  "best-html5-games-to-play-instantly-without-download-in-2026",,
+  "top-trending-mini-games-2026-best-html5-browser-games-to-play-when-bored",,
+  "top-trending-mini-games-to-play-when-bored-in-2026-instant-browser-games",
+]);
+
 const load = async function (): Promise<Array<Post>> {
   const posts = await getCollection('post');
   const normalizedPosts = posts.map(async (post) => await getNormalizedPost(post));
 
   const results = (await Promise.all(normalizedPosts))
     .sort((a, b) => b.publishDate.valueOf() - a.publishDate.valueOf())
-    .filter((post) => !post.draft);
+    .filter((post) => !post.draft && !CONSOLIDATED_LISTICLE_SLUGS.has(post.slug));
 
   return results;
 };
