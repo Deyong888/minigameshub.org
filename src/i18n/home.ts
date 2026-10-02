@@ -66,12 +66,12 @@ export interface HomeCopy {
 export const home: Record<Lang, HomeCopy> = {
   en: {
     metadata: {
-      title: 'MiniGamesHub — Play 3,900+ Free Games | World Cup Football Games Online',
+      title: 'MiniGamesHub — Play 3,900+ Free Games',
       description:
-        'Play 3,900+ free games online including World Cup football games, soccer games, mini games, arcade games and more. Instant browser play, no download required!',
+        'Play 3,900+ free games online including soccer games, mini games, arcade games and more. Instant browser play, no download required!',
     },
     hero: {
-      badge: '🔥 World Cup Football Games Now Live!',
+      badge: '🆕 New Games Added Weekly',
       titleLead: 'Play ',
       count: '3,900+',
       titleTrail: ' Free Games Instantly',
@@ -167,7 +167,7 @@ export const home: Record<Lang, HomeCopy> = {
     seo: {
       hero: {
         h2: 'Discover the Best Free Mini Games Online',
-        p: 'Welcome to <strong>MiniGamesHub</strong>, your premier destination for <strong>free online mini games</strong> and small games that deliver big fun in small packages. With over 1,400 <strong>HTML5 games</strong> in our collection, you’ll never run out of exciting games to play directly in your browser — no downloads, no installations, and no sign-ups required!',
+        p: 'Welcome to <strong>MiniGamesHub</strong>, your premier destination for <strong>free online mini games</strong> and small games that deliver big fun in small packages. With over 3,900 <strong>HTML5 games</strong> in our collection, you’ll never run out of exciting games to play directly in your browser — no downloads, no installations, and no sign-ups required!',
       },
       worldCup: {
         h3: '⚽ World Cup Football Games',
@@ -426,12 +426,12 @@ export const home: Record<Lang, HomeCopy> = {
 
   zh: {
     metadata: {
-      title: 'MiniGamesHub — 畅玩 3,900+ 免费游戏 | 世界杯足球游戏在线',
+      title: 'MiniGamesHub — 畅玩 3,900+ 免费游戏',
       description:
-        '在线畅玩 3,900+ 款免费游戏，包括世界杯足球游戏、soccer 足球游戏、迷你游戏、街机游戏等。浏览器即开即玩，无需下载！',
+        '在线畅玩 3,900+ 款免费游戏，包括足球游戏、迷你游戏、街机游戏等。浏览器即开即玩，无需下载！',
     },
     hero: {
-      badge: '🔥 世界杯足球游戏现已上线！',
+      badge: '🆕 每周上新游戏',
       titleLead: '立即畅玩 ',
       count: '3,900+',
       titleTrail: ' 免费游戏',
@@ -527,7 +527,7 @@ export const home: Record<Lang, HomeCopy> = {
     seo: {
       hero: {
         h2: '发现最佳免费在线迷你游戏',
-        p: '欢迎来到 <strong>MiniGamesHub</strong>，您畅玩<strong>免费在线迷你游戏</strong>与小游戏的首选之地，小体积也能带来大乐趣。我们的合集拥有超过 1,400 款 <strong>HTML5 游戏</strong>，您永远不缺可在浏览器中直接畅玩的精彩游戏——无需下载、无需安装、无需注册！',
+        p: '欢迎来到 <strong>MiniGamesHub</strong>，您畅玩<strong>免费在线迷你游戏</strong>与小游戏的首选之地，小体积也能带来大乐趣。我们的合集拥有 3,900+ 款 <strong>HTML5 游戏</strong>，您永远不缺可在浏览器中直接畅玩的精彩游戏——无需下载、无需安装、无需注册！',
       },
       worldCup: {
         h3: '⚽ 世界杯足球游戏',
