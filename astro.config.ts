@@ -96,7 +96,6 @@ export default defineConfig({
     '/top-trending-mini-games-2026-best-html5-browser-games-to-play-when-bored': '/top-25-trending-html5-mini-games-to-play-when-bored-in-2026',
     '/top-trending-mini-games-to-play-when-bored-in-2026-instant-browser-games': '/top-25-trending-html5-mini-games-to-play-when-bored-in-2026',
   },
-  },
 
   integrations: [
     tailwind({
