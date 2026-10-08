@@ -7,6 +7,7 @@ import FaqSection from '~/components/common/FaqSection.astro';
 import { getUniqueGames, getRelatedGames } from '~/data/games';
 import type { Game } from '~/types/game';
 import { getHowToPlay, getTips, getGameDetails, getGameFaq } from '~/utils/gameContent';
+import { isGameIndexable } from '~/utils/gameSeo';
 
 // Hybrid rendering: game pages are NOT pre-rendered at build time (there are
 // ~7k of them × 3 languages). They render on-demand on Vercel and are cached
@@ -46,6 +47,8 @@ const categorySlug = gameCategory.toLowerCase().replace(/\s+/g, '-');
 const metadata = {
   title: `${game.title} - Play Free Online | No Download | MiniGamesHub`,
   description: `Play ${game.title} free online. ${gameCategory} game, no download required, instant play in your browser. Enjoy this ${gameCategory} game on MiniGamesHub!`,
+  // AdSense 合规:thin-content 游戏页 noindex(服务端经 Layout→Metadata→AstroSeo 渲染进 head)
+  robots: { index: isGameIndexable(game), follow: true },
   openGraph: {
     type: 'video.other',
     images: [
@@ -104,10 +107,6 @@ const metadata = {
         <div class="flex items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm mb-6 mt-4">
             <div>
                 <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{game.title}</h1>
-                <div class="text-sm text-gray-500">
-                    <span class="mr-3">Plays: {game.plays?.toLocaleString()}</span>
-                    <span>Rating: {game.rating}/5</span>
-                </div>
             </div>
             <div class="flex gap-2">
                  <button id="favoriteBtn" data-slug={game.slug} class="btn-secondary px-3 py-1.5 text-sm rounded border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">🤍 Favorite</button>
@@ -201,14 +200,7 @@ const metadata = {
     "image": game.thumbnail,
     "playMode": "SinglePlayer",
     "applicationCategory": "Browser Game",
-    "operatingSystem": "Any",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": game.rating,
-      "ratingCount": 100,
-      "bestRating": "5",
-      "worstRating": "1"
-    }
+    "operatingSystem": "Any"
   })} />
 
   <script is:inline type="application/ld+json" set:html={JSON.stringify({

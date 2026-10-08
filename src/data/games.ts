@@ -40,8 +40,6 @@ const mapGamePixItem = (item: GamePixItem): Game => {
     category: item.category,
     tags,
     datePublished: item.date_published,
-    rating: 4.5, // Default rating as not in feed (or could use quality_score * 5)
-    plays: Math.floor(Math.random() * 50000) + 10000, // Mock plays for now
   };
 };
 

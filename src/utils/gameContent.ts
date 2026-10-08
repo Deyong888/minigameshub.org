@@ -6,8 +6,12 @@ import type { Game } from '~/types/game';
  * Goal: turn the ~115-word templated fallback (used by 100% of pages today,
  * since GamePix provides no `rich_content`) into ~400-600 words of mostly
  * original, accurate, structured copy derived from each game's REAL attributes
- * (category / title / tags / date / plays). This is the P0 organic-traffic fix:
+ * (category / title / tags / date). This is the P0 organic-traffic fix:
  * give every game page unique, helpful content instead of duplicated boilerplate.
+ *
+ * NOTE(2026-10-08, AdSense 合规整改):plays/rating 曾为伪造数据
+ * (games.ts 硬编码 rating 4.5、Math.random() 生成 plays),已从数据源与展示层
+ * 全部下架,此处不再引用 plays。
  *
  * Content is generated per category group and interpolates the game title, so
  * each page reads as its own article (not a spun template).
@@ -167,7 +171,6 @@ export const getGameDetails = (game: Game): GameDetailRow[] => {
         value: d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }),
       });
   }
-  if (game.plays) rows.push({ label: 'Plays', value: game.plays.toLocaleString() });
   return rows;
 };
 
@@ -264,7 +267,6 @@ export const getGameDetailsZh = (game: Game): GameDetailRow[] => {
         value: d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' }),
       });
   }
-  if (game.plays) rows.push({ label: '游玩次数', value: game.plays.toLocaleString() });
   return rows;
 };
 

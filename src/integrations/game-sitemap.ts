@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import type { AstroIntegration } from 'astro';
 
 import gamepixData from '../data/gamepix.json';
+import { isGameIndexable } from '../utils/gameSeo';
 
 const SITE = 'https://minigameshub.org';
 
@@ -25,11 +26,8 @@ type GamepixItem = {
   rich_content?: string;
 };
 
-// Mirrors astro.config.ts: a game is "thin" (kept out of the sitemap) when it has
-// neither a description nor meaningful rich_content.
-const isThin = (g: GamepixItem) =>
-  !(g.description && String(g.description).trim()) &&
-  !(g.rich_content && String(g.rich_content).length > 80);
+// AdSense 合规整改:与游戏页 robots 共用唯一判定源 isGameIndexable。
+// 不可索引(thin-content)的游戏页永不进入 sitemap-games.xml。
 
 const escapeXml = (s: string) =>
   String(s)
@@ -51,7 +49,7 @@ export default function gameSitemap(): AstroIntegration {
         const items: GamepixItem[] = Array.isArray((gamepixData as { items?: GamepixItem[] }).items)
           ? (gamepixData as { items: GamepixItem[] }).items
           : [];
-        const games = items.filter((g) => !isThin(g));
+        const games = items.filter(isGameIndexable);
 
         const urls = games.map((g) => {
           const id = g.id;

@@ -18,24 +18,19 @@ import gamepixData from './src/data/gamepix.json';
 import gameSitemap from './src/integrations/game-sitemap';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
+import { isGameIndexable } from './src/utils/gameSeo';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// P0 SEO: protect crawl budget by excluding "thin" game pages (no description AND
-// no rich_content) from the sitemap. They still render & are reachable internally,
-// but we stop telling Google to crawl ~7k near-empty URLs. Real content lives on
-// category / hub / blog / home pages, which stay fully indexed.
+// AdSense 合规整改:thin-content 游戏页全量 noindex,保护抓取预算。
+// 与游戏页 robots、game-sitemap 共用唯一判定源 isGameIndexable。
+// noindex 页仍可渲染、可内链到达,但不再告诉 Google 抓取 ~7k 近空 URL。
+// 真实内容在分类 / 聚合 / 博客 / 首页,保持完全索引。
 const gamepixItems: { id: string; namespace?: string; description?: string; rich_content?: string }[] = (
   gamepixData as { items?: { id: string; namespace?: string; description?: string; rich_content?: string }[] }
 ).items ?? [];
-const thinGameSuffixes = new Set(
-  gamepixItems
-    .filter(
-      (g) =>
-        !(g.description && String(g.description).trim()) &&
-        !(g.rich_content && String(g.rich_content).length > 80)
-    )
-    .map((g) => `${g.id}-${g.namespace || g.id}`)
+const noindexGameSuffixes = new Set(
+  gamepixItems.filter((g) => !isGameIndexable(g)).map((g) => `${g.id}-${g.namespace || g.id}`)
 );
 
 const hasExternalScripts = true;
@@ -102,13 +97,13 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap({
-      // Exclude thin game pages across all locales (en/es/zh) to focus crawl budget
+      // Exclude noindex game pages across all locales (en/es/zh) to focus crawl budget
       // on quality URLs. Page format: /game/{id}-{slug} (slug = namespace || id).
       filter: (page: string) => {
         const pathname = page
           .replace(/^https?:\/\/[^/]+/, '')
           .replace(/^\/(es|zh)(?=\/)/, '');
-        if (pathname.startsWith('/game/') && thinGameSuffixes.has(pathname.slice('/game/'.length))) {
+        if (pathname.startsWith('/game/') && noindexGameSuffixes.has(pathname.slice('/game/'.length))) {
           return false;
         }
         return true;

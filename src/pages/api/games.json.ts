@@ -8,9 +8,7 @@ export const GET: APIRoute = async () => {
     slug: game.slug,
     title: game.title,
     thumbnail: game.thumbnail,
-    category: game.category,
-    rating: game.rating,
-    plays: game.plays
+    category: game.category
   }));
 
   return new Response(JSON.stringify(lightweightGames), {

@@ -7,6 +7,8 @@ import FaqSection from '~/components/common/FaqSection.astro';
 import { getUniqueGames, getRelatedGames } from '~/data/games';
 import { getLangFromUrl, useTranslations, translateDynamic } from '~/utils/i18n';
 import { getHowToPlayZh, getTipsZh, getGameDetailsZh, getGameFaqZh } from '~/utils/gameContent';
+import { isGameIndexable } from '~/utils/gameSeo';
+import { getCanonical } from '~/utils/permalinks';
 import type { Game } from '~/types/game';
 
 // Hybrid rendering: game pages render on-demand on Vercel (cached at edge).
@@ -52,6 +54,9 @@ const faqZh = getGameFaqZh(game);
 const metadata = {
   title: `玩 ${game.title} - 免费在线游戏 | MiniGamesHub.org`,
   description: `在 MiniGamesHub.org 免费在线玩 ${game.title}。无需下载。${game.description}`,
+  // AdSense 合规:thin-content 游戏页 noindex;canonical 指回英文原版(避免三语言重复内容)
+  robots: { index: isGameIndexable(game), follow: true },
+  canonical: String(getCanonical(`/game/${game.id}-${game.slug}`)),
   openGraph: {
     type: 'video.other',
     images: [
@@ -173,10 +178,6 @@ const playerLabels = {
         <div class="flex items-center justify-between bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm mb-6 mt-4">
           <div>
             <h1 class="text-2xl font-bold text-gray-900 dark:text-white">{game.title}</h1>
-            <div class="text-sm text-gray-500">
-              <span class="mr-3">{t('game.plays')}: {game.plays?.toLocaleString()}</span>
-              <span>{t('game.rating')}: {game.rating}/5</span>
-            </div>
           </div>
           <div class="flex gap-2">
             <button
@@ -245,7 +246,7 @@ const playerLabels = {
                   <div>
                     <div class="font-bold text-sm group-hover:text-primary transition">{related.title}</div>
                     <div class="text-xs text-gray-500">
-                      {getTranslatedCategory(related.category)} • ⭐ {related.rating}
+                      {getTranslatedCategory(related.category)}
                     </div>
                   </div>
                 </a>
@@ -275,13 +276,6 @@ const playerLabels = {
       playMode: 'SinglePlayer',
       applicationCategory: 'Browser Game',
       operatingSystem: 'Any',
-      aggregateRating: {
-        '@type': 'AggregateRating',
-        ratingValue: game.rating,
-        ratingCount: 100,
-        bestRating: '5',
-        worstRating: '1',
-      },
       inLanguage: 'zh',
     })}
   />
