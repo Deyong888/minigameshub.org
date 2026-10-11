@@ -1,5 +1,6 @@
 import type { Game } from '~/types/game';
 import gamepixData from './gamepix.json';
+import { withRichContentOverride } from '~/utils/richContentOverrides';
 
 interface GamePixItem {
   id: string;
@@ -32,7 +33,8 @@ const mapGamePixItem = (item: GamePixItem): Game => {
     slug: item.namespace || item.id, // Use namespace if available for cleaner URLs
     title: item.title,
     description: item.description,
-    rich_content: item.rich_content,
+    // 人工富内容回填(2026-10-11 质量审计):覆盖 GamePix 的空 rich_content,refetch 安全
+    rich_content: withRichContentOverride({ id: item.id, rich_content: item.rich_content }).rich_content,
     thumbnail: item.banner_image || item.image || '',
     url: item.url,
     width: item.width,

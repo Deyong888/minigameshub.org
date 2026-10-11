@@ -19,6 +19,7 @@ import gameSitemap from './src/integrations/game-sitemap';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
 import { isGameIndexable } from './src/utils/gameSeo';
+import { withRichContentOverride } from './src/utils/richContentOverrides';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -30,7 +31,8 @@ const gamepixItems: { id: string; namespace?: string; description?: string; rich
   gamepixData as { items?: { id: string; namespace?: string; description?: string; rich_content?: string }[] }
 ).items ?? [];
 const noindexGameSuffixes = new Set(
-  gamepixItems.filter((g) => !isGameIndexable(g)).map((g) => `${g.id}-${g.namespace || g.id}`)
+  // 人工富内容回填(2026-10-11 质量审计):与游戏页 robots、game-sitemap 共用同一合并逻辑
+  gamepixItems.map(withRichContentOverride).filter((g) => !isGameIndexable(g)).map((g) => `${g.id}-${g.namespace || g.id}`)
 );
 
 const hasExternalScripts = true;
