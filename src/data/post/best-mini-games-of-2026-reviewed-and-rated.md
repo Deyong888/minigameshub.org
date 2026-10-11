@@ -1,6 +1,6 @@
 ---
 publishDate: 2026-08-25T00:00:00Z
-title: Best Mini Games of 2026 — Reviewed and Rated
+title: Best Mini Games of 2026 — Reviewed & Hand-Picked
 excerpt: 12 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
 image: https://img.gamepix.com/games/buba-jumpe/cover/buba-jumpe.png?w=320
 category: Mini Games
@@ -10,11 +10,11 @@ tags:
   - rated games
   - best games 2026
 metadata:
-  title: Best Mini Games of 2026 — Reviewed and Rated | MiniGamesHub
+  title: Best Mini Games of 2026 — Reviewed & Hand-Picked | MiniGamesHub
   description: 12 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
 ---
 
-When you've got a few minutes to spare, MiniGamesHub has you covered with over 1,400 free HTML5 games that load instantly in your browser. Below are 12 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.
+When you've got a few minutes to spare, MiniGamesHub has you covered with 3,900+ free HTML5 games that load instantly in your browser. Below are 12 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.
 
 ## 1. Buba Jump
 

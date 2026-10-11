@@ -1,20 +1,20 @@
 ---
 publishDate: 2026-02-04T00:00:00Z
-title: How Relax Games Improve Mental Health and Reduce Stress
+title: Best Relaxing Browser Games to Unwind in 2026
 excerpt: 8 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
 image: https://img.gamepix.com/games/paint-sponges/cover/paint-sponges.png?w=320
 category: Relax Games
 tags:
   - relax games
-  - mental health
+  - calming games
   - stress relief
   - casual games
 metadata:
-  title: How Relax Games Improve Mental Health and Reduce Stress | MiniGamesHub
+  title: Best Relaxing Browser Games to Unwind in 2026 | MiniGamesHub
   description: 8 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
 ---
 
-When you've got a few minutes to spare, MiniGamesHub has you covered with over 1,400 free HTML5 games that load instantly in your browser. Below are 8 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.
+When you've got a few minutes to spare, MiniGamesHub has you covered with 3,900+ free HTML5 games that load instantly in your browser. Below are 8 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.
 
 ## 1. Paint Sponges Puzzle
 
