@@ -46,7 +46,7 @@ const categorySlug = gameCategory.toLowerCase().replace(/\s+/g, '-');
 
 const metadata = {
   title: `${game.title} - Play Free Online | No Download | MiniGamesHub`,
-  description: `Play ${game.title} free online. ${gameCategory} game, no download required, instant play in your browser. Enjoy this ${gameCategory} game on MiniGamesHub!`,
+  description: `Play ${game.title} free in your browser — no download, no sign-up. A ${gameCategory} game on MiniGamesHub, playable instantly on desktop, Chromebook, and mobile.`,
   // AdSense 合规:thin-content 游戏页 noindex(服务端经 Layout→Metadata→AstroSeo 渲染进 head)
   robots: { index: isGameIndexable(game), follow: true },
   openGraph: {

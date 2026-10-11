@@ -34,30 +34,33 @@ const categoryGroup = (category?: string, title?: string): CatGroup => {
 };
 
 const controlsFor = (group: CatGroup): string => {
+  // 质量审计 2026-10-11:操作方式为按分类的推测(未经逐款实测),措辞必须 hedging,
+  // 不得写成对该游戏的确定性断言。
   switch (group) {
     case 'action':
     case 'racing':
-      return 'Keyboard (WASD / arrow keys) + Mouse';
+      return 'Usually: keyboard (WASD / arrow keys) + mouse';
     case 'strategy':
-      return 'Mouse + Keyboard';
+      return 'Usually: mouse + keyboard';
     case 'puzzle':
     case 'casual':
     default:
-      return 'Mouse / Touch';
+      return 'Usually: mouse / touch';
   }
 };
 
 const controlsForZh = (group: CatGroup): string => {
+  // 同上,中文 hedging。
   switch (group) {
     case 'action':
     case 'racing':
-      return '键盘（WASD / 方向键）+ 鼠标';
+      return '通常支持：键盘（WASD / 方向键）+ 鼠标';
     case 'strategy':
-      return '鼠标 + 键盘';
+      return '通常支持：鼠标 + 键盘';
     case 'puzzle':
     case 'casual':
     default:
-      return '鼠标 / 触屏';
+      return '通常支持：鼠标 / 触屏';
   }
 };
 
@@ -68,31 +71,33 @@ const controlsForZh = (group: CatGroup): string => {
 export const getHowToPlay = (game: Game): string => {
   const group = categoryGroup(game.category, game.title);
   const desc = (game.description ?? '').toLowerCase();
+  // 质量审计 2026-10-11:以下均为按分类/描述关键词的"推测",措辞一律 hedging
+  // ("usually"/"in this style"),不得写成对该游戏的确定性操作断言。
   switch (group) {
     case 'puzzle':
       if (desc.includes('drag') || desc.includes('click'))
-        return `Click and drag the pieces to solve the puzzle. Think a few moves ahead and plan your line to beat your best score in ${game.title}.`;
-      return `Use your mouse or touch to click and interact with the pieces. Study the board, then make deliberate moves to clear each level faster.`;
+        return `In puzzle games like this one, you usually click and drag the pieces to solve the puzzle. Think a few moves ahead and plan your line to beat your best score in ${game.title}.`;
+      return `Puzzle games in this style are usually played with mouse or touch: click and interact with the pieces. Study the board, then make deliberate moves to clear each level faster.`;
     case 'action':
       if (desc.includes('aim') || desc.includes('mouse'))
-        return `Aim with your mouse and click to shoot. Move with WASD or the arrow keys, dodge incoming fire, and survive as long as you can in ${game.title}.`;
-      return `Move with the arrow keys or WASD, jump with spacebar, and aim or shoot with your mouse. Grab power-ups and take down enemies to push forward.`;
+        return `In action games like this one, you typically aim with the mouse and click to shoot, move with WASD or the arrow keys, and dodge incoming fire to survive as long as you can in ${game.title}.`;
+      return `Most action games in this style use the arrow keys or WASD to move, spacebar to jump, and the mouse to aim or shoot. Grab power-ups and take down enemies to push forward.`;
     case 'racing':
       if (desc.includes('bike') || desc.includes('motorcycle'))
-        return `Steer your bike with the arrow keys — up to accelerate, down to brake. Keep your balance on the ramps and avoid wiping out.`;
-      return `Control your vehicle with the arrow keys: up to accelerate, down to brake, left/right to steer. Collect boosts and cross the finish line first.`;
+        return `Bike games like this one are usually steered with the arrow keys — up to accelerate, down to brake. Keep your balance on the ramps and avoid wiping out.`;
+      return `Racing games in this style are usually controlled with the arrow keys: up to accelerate, down to brake, left/right to steer. Collect boosts and cross the finish line first.`;
     case 'casual':
-      return `Just click or tap to play. Take it at your own pace — no timers, no pressure. Perfect for a quick, relaxing break.`;
+      return `Casual games like this one are usually played with a simple click or tap. Take it at your own pace — no timers, no pressure. Perfect for a quick, relaxing break.`;
     case 'strategy':
-      return `Click or tap to place units and build your strategy. Manage your resources carefully and hold the line against waves of enemies.`;
+      return `Strategy games like this one are usually played by clicking or tapping to place units and build your strategy. Manage your resources carefully and hold the line against waves of enemies.`;
     case 'adventure':
-      return `Move with the arrow keys or WASD and interact with the world. Explore each level, dodge the hazards, and reach the goal.`;
+      return `Adventure platformers like this one usually use the arrow keys or WASD to move. Explore each level, dodge the hazards, and reach the goal.`;
     default:
       if (desc.includes('keyboard') || desc.includes('arrow') || desc.includes('wasd'))
-        return `Move with your keyboard (arrow keys or WASD) and use spacebar or click for actions. Follow the on-screen prompts for any special controls.`;
+        return `Many browser games in this style use the keyboard (arrow keys or WASD) to move and spacebar or click for actions. Follow the on-screen prompts for any special controls.`;
       if (desc.includes('mouse') || desc.includes('click') || desc.includes('drag'))
-        return `Use your mouse to click, drag, and interact with the game. Most actions are intuitive — jump in and start playing.`;
-      return `Play with your mouse, keyboard, or touch — ${game.title} is easy to pick up. Just start and have fun!`;
+        return `This kind of game is usually played with the mouse: click, drag, and interact. Most actions are intuitive — jump in and start playing.`;
+      return `Most games like ${game.title} work with mouse, keyboard, or touch and are easy to pick up. Just start and have fun!`;
   }
 };
 
@@ -180,21 +185,22 @@ export const getGameDetails = (game: Game): GameDetailRow[] => {
 
 export const getHowToPlayZh = (game: Game): string => {
   const group = categoryGroup(game.category, game.title);
+  // 质量审计 2026-10-11:同英文版,措辞 hedging("通常"/"一般"),不做确定性断言。
   switch (group) {
     case 'puzzle':
-      return `用鼠标或触屏点击、拖拽方块来解开谜题。先观察整个盘面，再有计划地落子，更快通关。`;
+      return `这类解谜游戏通常用鼠标或触屏操作：点击、拖拽方块来解开谜题。先观察整个盘面，再有计划地落子，更快通关。`;
     case 'action':
-      return `用鼠标瞄准并点击射击，用 WASD 或方向键移动，躲避攻击并尽可能存活更久。`;
+      return `这类动作游戏一般用鼠标瞄准并点击射击，用 WASD 或方向键移动，躲避攻击并尽可能存活更久。`;
     case 'racing':
-      return `用方向键控制车辆：上加速、下刹车、左右转向。收集加速道具，率先冲过终点。`;
+      return `这类竞速游戏一般用方向键控制车辆：上加速、下刹车、左右转向。收集加速道具，率先冲过终点。`;
     case 'casual':
-      return `点击或轻触即可游玩，节奏轻松、没有时间压力，适合随时来一局。`;
+      return `这类休闲游戏通常点击或轻触即可游玩，节奏轻松、没有时间压力，适合随时来一局。`;
     case 'strategy':
-      return `点击或轻触布置单位、制定策略，合理分配资源，守住一波波敌人。`;
+      return `这类策略游戏通常通过点击或轻触布置单位、制定策略，合理分配资源，守住一波波敌人。`;
     case 'adventure':
-      return `用方向键或 WASD 移动并与场景互动，探索关卡、躲避危险、抵达终点。`;
+      return `这类冒险游戏一般用方向键或 WASD 移动并与场景互动，探索关卡、躲避危险、抵达终点。`;
     default:
-      return `使用鼠标、键盘或触屏即可游玩，上手简单，直接开始玩就好！`;
+      return `这类游戏一般支持鼠标、键盘或触屏操作，上手简单，直接开始玩就好！`;
   }
 };
 

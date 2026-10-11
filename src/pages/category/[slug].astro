@@ -19,7 +19,9 @@ const otherCategories = getUniqueCategories().filter((c) => c !== category).sort
 const faq = getCategoryFaq(category);
 
 const title = `Best ${category} Games - Play Free Online (No Download)`;
-const description = `Play the best free ${category} games instantly in your browser on MiniGamesHub.org. No download, no sign-up — hundreds of ${category} games ready to play on PC, Chromebook, and mobile.`;
+// 质量审计 2026-10-11:用分类真实游戏数替代写死的 "hundreds of"(games 来自 getGamesByCategory 已过滤)
+const countNoun = games.length === 1 ? 'game' : 'games';
+const description = `Play the best free ${category} games instantly in your browser on MiniGamesHub.org. No download, no sign-up — play all ${games.length} ${category} ${countNoun} on PC, Chromebook, and mobile.`;
 
 const metadata = {
   title: title,

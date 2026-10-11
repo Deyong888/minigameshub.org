@@ -16,6 +16,7 @@ import type { AstroIntegration } from 'astro';
 
 import gamepixData from '../data/gamepix.json';
 import { isGameIndexable } from '../utils/gameSeo';
+import { withRichContentOverride } from '../utils/richContentOverrides';
 
 const SITE = 'https://minigameshub.org';
 
@@ -49,7 +50,8 @@ export default function gameSitemap(): AstroIntegration {
         const items: GamepixItem[] = Array.isArray((gamepixData as { items?: GamepixItem[] }).items)
           ? (gamepixData as { items: GamepixItem[] }).items
           : [];
-        const games = items.filter(isGameIndexable);
+        // 人工富内容回填(2026-10-11 质量审计):与游戏页 robots 共用同一合并逻辑
+        const games = items.map(withRichContentOverride).filter(isGameIndexable);
 
         const urls = games.map((g) => {
           const id = g.id;
