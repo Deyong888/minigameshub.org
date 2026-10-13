@@ -75,3 +75,5 @@ Team up with real players in a top-down arena shooter and mow down zombie waves 
 ## Still hungry for scares?
 
 That's our 2026 Halloween shortlist — 12 free scary games, zero downloads, playable on Chromebook and anything with a browser. We'll keep adding spooky titles all through October, so bookmark this page. Want more? Browse the full library: 3,900+ free HTML5 games, no sign-up, new games added weekly.
+
+**Halloween bonus for Subway Surfers fans:** the <a href="https://subwaysurf.org/blog/subway-surfers-transylvania-2026-halloween-guide">Subway Surfers Transylvania 2026</a> Halloween update is live (Oct 5 – Nov 1) with new characters, boards, and Trick or Treat events — our fan-site guide breaks it all down.
