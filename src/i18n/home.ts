@@ -56,7 +56,6 @@ export interface HomeCopy {
   features: FeatureStat[];
   seo: {
     hero: { h2: string; p: string };
-    worldCup: SeoList;
     why: SeoList;
     football: SeoList;
   };
@@ -169,11 +168,6 @@ export const home: Record<Lang, HomeCopy> = {
         h2: 'Discover the Best Free Mini Games Online',
         p: 'Welcome to <strong>MiniGamesHub</strong>, your premier destination for <strong>free online mini games</strong> and small games that deliver big fun in small packages. With over 3,900 <strong>HTML5 games</strong> in our collection, you’ll never run out of exciting games to play directly in your browser — no downloads, no installations, and no sign-ups required!',
       },
-      worldCup: {
-        h3: '⚽ World Cup Football Games',
-        p: 'Celebrate the excitement of the <strong>World Cup</strong> with our curated collection of <strong>free football games</strong> and <strong>soccer games</strong>! Play exciting matches, score goals, and experience the thrill of the world’s most popular sport right in your browser. Our selection includes everything from casual kickabouts to competitive football tournaments.',
-        list: [],
-      },
       why: {
         h3: 'Why Choose Mini Games?',
         p: '<strong>Mini games</strong> and <strong>small games</strong> are designed for short bursts of 5–15 minutes, making them ideal for:',
@@ -188,7 +182,7 @@ export const home: Record<Lang, HomeCopy> = {
         h3: '🎮 Football & Soccer Games Collection',
         p: 'Looking for the perfect <strong>football game online</strong>? Our sports category features:',
         list: [
-          'World Cup themed soccer games',
+          'Football tournament challenges',
           'Penalty shootout challenges',
           'Football manager simulations',
           'Arcade-style soccer matches',
@@ -231,11 +225,6 @@ export const home: Record<Lang, HomeCopy> = {
             'The best games to play when bored depend on your situation! For work: quick mini games with boss key. For home: immersive arcade games. For stress: calming relax games. Browse our categories to find your perfect match!',
         },
         {
-          title: 'Do you have football games for the World Cup?',
-          description:
-            'Yes! We have an amazing collection of free football games and soccer games perfect for the World Cup season. Play penalty shootouts, football matches, and soccer tournaments directly in your browser!',
-        },
-        {
           title: 'Can I play soccer games for free?',
           description:
             'Absolutely! All soccer and football games on MiniGamesHub are 100% free. No downloads, no sign-ups, just instant football fun right in your browser!',
@@ -246,12 +235,12 @@ export const home: Record<Lang, HomeCopy> = {
 
   es: {
     metadata: {
-      title: 'MiniGamesHub — Juega +3.900 Juegos Gratis | Juegos de Fútbol del Mundial en Línea',
+      title: 'MiniGamesHub — Juega +3.900 Juegos Gratis',
       description:
-        'Juega +3.900 juegos gratis en línea, incluyendo juegos de fútbol del Mundial, juegos de soccer, minijuegos, juegos arcade y más. Juego instantáneo en el navegador, ¡sin descargas!',
+        'Juega +3.900 juegos gratis en línea, incluyendo juegos de fútbol, juegos de soccer, minijuegos, juegos arcade y más. Juego instantáneo en el navegador, ¡sin descargas!',
     },
     hero: {
-      badge: '🔥 ¡Juegos de Fútbol del Mundial Ya Disponibles!',
+      badge: '🆕 Nuevos Juegos Cada Semana',
       titleLead: 'Juega ',
       count: '+3.900',
       titleTrail: ' Juegos Gratis al Instante',
@@ -349,11 +338,6 @@ export const home: Record<Lang, HomeCopy> = {
         h2: 'Descubre los Mejores Minijuegos Gratis en Línea',
         p: 'Bienvenido a <strong>MiniGamesHub</strong>, tu destino principal para <strong>minijuegos gratis en línea</strong> y juegos pequeños que ofrecen gran diversión en paquetes pequeños. Con más de 1.400 <strong>juegos HTML5</strong> en nuestra colección, nunca te faltarán juegos emocionantes para jugar directamente en tu navegador: ¡sin descargas, sin instalaciones y sin registros!',
       },
-      worldCup: {
-        h3: '⚽ Juegos de Fútbol del Mundial',
-        p: '¡Celebra la emoción del <strong>Mundial</strong> con nuestra colección curada de <strong>juegos de fútbol gratis</strong> y <strong>juegos de soccer</strong>! Juega partidos emocionantes, marca goles y vive la emoción del deporte más popular del mundo justo en tu navegador. Nuestra selección incluye desde partidos casuales hasta torneos de fútbol competitivos.',
-        list: [],
-      },
       why: {
         h3: '¿Por qué Elegir Minijuegos?',
         p: 'Los <strong>minijuegos</strong> y <strong>juegos pequeños</strong> están diseñados para rachas cortas de 5 a 15 minutos, lo que los hace ideales para:',
@@ -368,7 +352,7 @@ export const home: Record<Lang, HomeCopy> = {
         h3: '🎮 Colección de Juegos de Fútbol y Soccer',
         p: '¿Buscas el <strong>juego de fútbol en línea</strong> perfecto? Nuestra categoría de deportes incluye:',
         list: [
-          'Juegos de soccer con tema del Mundial',
+          'Desafíos de torneos de fútbol',
           'Desafíos de penales',
           'Simulaciones de manager de fútbol',
           'Partidos de fútbol estilo arcade',
@@ -409,11 +393,6 @@ export const home: Record<Lang, HomeCopy> = {
           title: '¿Cuáles son los mejores juegos para jugar cuando estás aburrido?',
           description:
             '¡Los mejores juegos para cuando estás aburrido dependen de tu situación! Para el trabajo: minijuegos rápidos con tecla de jefe. Para casa: juegos arcade inmersivos. Para el estrés: juegos de relax calmantes. ¡Explora nuestras categorías para encontrar tu juego perfecto!',
-        },
-        {
-          title: '¿Tienen juegos de fútbol para el Mundial?',
-          description:
-            '¡Sí! Tenemos una increíble colección de juegos de fútbol gratis y juegos de soccer perfectos para la temporada del Mundial. ¡Juega penales, partidos de fútbol y torneos de soccer directamente en tu navegador!',
         },
         {
           title: '¿Puedo jugar juegos de soccer gratis?',
@@ -529,11 +508,6 @@ export const home: Record<Lang, HomeCopy> = {
         h2: '发现最佳免费在线迷你游戏',
         p: '欢迎来到 <strong>MiniGamesHub</strong>，您畅玩<strong>免费在线迷你游戏</strong>与小游戏的首选之地，小体积也能带来大乐趣。我们的合集拥有 3,900+ 款 <strong>HTML5 游戏</strong>，您永远不缺可在浏览器中直接畅玩的精彩游戏——无需下载、无需安装、无需注册！',
       },
-      worldCup: {
-        h3: '⚽ 世界杯足球游戏',
-        p: '用我们精心挑选的<strong>免费足球游戏</strong>与 <strong>soccer 足球游戏</strong>一起，共庆<strong>世界杯</strong>的激情！踢精彩比赛、射门得分，在浏览器中尽情体验全球最受欢迎运动的魅力。我们的选集从休闲踢球到竞技足球锦标赛一应俱全。',
-        list: [],
-      },
       why: {
         h3: '为什么要选择迷你游戏？',
         p: '<strong>迷你游戏</strong>与<strong>小游戏</strong>专为 5–15 分钟的碎片时间设计，非常适合：',
@@ -542,7 +516,7 @@ export const home: Record<Lang, HomeCopy> = {
       football: {
         h3: '🎮 足球与 Soccer 游戏合集',
         p: '想找完美的<strong>在线足球游戏</strong>？我们的体育分类包含：',
-        list: ['世界杯主题足球游戏', '点球大战挑战', '足球经理模拟', '街机风格足球对战'],
+        list: ['足球锦标赛挑战', '点球大战挑战', '足球经理模拟', '街机风格足球对战'],
       },
     },
     faq: {
@@ -577,11 +551,6 @@ export const home: Record<Lang, HomeCopy> = {
           title: '无聊时最适合玩什么游戏？',
           description:
             '无聊时最适合玩的游戏取决于你的场景！工作时：带老板键的快捷迷你游戏。居家：沉浸式街机游戏。解压：舒缓的放松游戏。浏览我们的分类，找到最适合你的那款！',
-        },
-        {
-          title: '你们有世界杯主题的足球游戏吗？',
-          description:
-            '有！我们拥有超棒的免费足球游戏与 soccer 足球游戏合集，非常适合世界杯赛季。在浏览器中直接踢点球大战、足球比赛与足球锦标赛！',
         },
         {
           title: '足球游戏可以免费玩吗？',
