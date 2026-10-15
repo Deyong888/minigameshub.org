@@ -8,9 +8,9 @@ tags:
   - car games
   - free browser games
   - unblocked games
-  - 2026
+  - "2026"
 metadata:
-  title: Best Free Racing Browser Games to Play in 2026 — No Download | MiniGamesHub
+  title: Best Free Racing Browser Games to Play in 2026 — No Download
   description: Play the best free racing browser games of 2026 — arcade racers, stunt bikes, demolition derbies and police chases. No downloads, Chromebook-ready.
 ---
 
