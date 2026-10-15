@@ -65,7 +65,7 @@ export interface HomeCopy {
 export const home: Record<Lang, HomeCopy> = {
   en: {
     metadata: {
-      title: 'MiniGamesHub — Play 3,900+ Free Games',
+      title: 'Play 3,900+ Free Games',
       description:
         'Play 3,900+ free games online including soccer games, mini games, arcade games and more. Instant browser play, no download required!',
     },
@@ -182,7 +182,7 @@ export const home: Record<Lang, HomeCopy> = {
         h3: '🎮 Football & Soccer Games Collection',
         p: 'Looking for the perfect <strong>football game online</strong>? Our sports category features:',
         list: [
-          'Football tournament challenges',
+          'International tournament soccer games',
           'Penalty shootout challenges',
           'Football manager simulations',
           'Arcade-style soccer matches',
@@ -235,9 +235,9 @@ export const home: Record<Lang, HomeCopy> = {
 
   es: {
     metadata: {
-      title: 'MiniGamesHub — Juega +3.900 Juegos Gratis',
+      title: 'Juega +3.900 Juegos Gratis en Línea',
       description:
-        'Juega +3.900 juegos gratis en línea, incluyendo juegos de fútbol, juegos de soccer, minijuegos, juegos arcade y más. Juego instantáneo en el navegador, ¡sin descargas!',
+        'Juega +3.900 juegos gratis en línea, incluyendo juegos de fútbol, minijuegos, juegos arcade y más. Juego instantáneo en el navegador, ¡sin descargas!',
     },
     hero: {
       badge: '🆕 Nuevos Juegos Cada Semana',
@@ -336,7 +336,7 @@ export const home: Record<Lang, HomeCopy> = {
     seo: {
       hero: {
         h2: 'Descubre los Mejores Minijuegos Gratis en Línea',
-        p: 'Bienvenido a <strong>MiniGamesHub</strong>, tu destino principal para <strong>minijuegos gratis en línea</strong> y juegos pequeños que ofrecen gran diversión en paquetes pequeños. Con más de 1.400 <strong>juegos HTML5</strong> en nuestra colección, nunca te faltarán juegos emocionantes para jugar directamente en tu navegador: ¡sin descargas, sin instalaciones y sin registros!',
+        p: 'Bienvenido a <strong>MiniGamesHub</strong>, tu destino principal para <strong>minijuegos gratis en línea</strong> y juegos pequeños que ofrecen gran diversión en paquetes pequeños. Con más de +3.900 <strong>juegos HTML5</strong> en nuestra colección, nunca te faltarán juegos emocionantes para jugar directamente en tu navegador: ¡sin descargas, sin instalaciones y sin registros!',
       },
       why: {
         h3: '¿Por qué Elegir Minijuegos?',
@@ -352,7 +352,7 @@ export const home: Record<Lang, HomeCopy> = {
         h3: '🎮 Colección de Juegos de Fútbol y Soccer',
         p: '¿Buscas el <strong>juego de fútbol en línea</strong> perfecto? Nuestra categoría de deportes incluye:',
         list: [
-          'Desafíos de torneos de fútbol',
+          'Juegos de soccer de torneos internacionales',
           'Desafíos de penales',
           'Simulaciones de manager de fútbol',
           'Partidos de fútbol estilo arcade',
@@ -405,7 +405,7 @@ export const home: Record<Lang, HomeCopy> = {
 
   zh: {
     metadata: {
-      title: 'MiniGamesHub — 畅玩 3,900+ 免费游戏',
+      title: '畅玩 3,900+ 免费游戏',
       description:
         '在线畅玩 3,900+ 款免费游戏，包括足球游戏、迷你游戏、街机游戏等。浏览器即开即玩，无需下载！',
     },
@@ -516,7 +516,7 @@ export const home: Record<Lang, HomeCopy> = {
       football: {
         h3: '🎮 足球与 Soccer 游戏合集',
         p: '想找完美的<strong>在线足球游戏</strong>？我们的体育分类包含：',
-        list: ['足球锦标赛挑战', '点球大战挑战', '足球经理模拟', '街机风格足球对战'],
+        list: ['国际锦标赛足球游戏', '点球大战挑战', '足球经理模拟', '街机风格足球对战'],
       },
     },
     faq: {
