@@ -1,7 +1,7 @@
 ---
 publishDate: 2026-10-14T00:00:00Z
 title: Free Horror Games to Claim Before Halloween 2026 (Epic + Prime Giveaways)
-excerpt: Out of Sight is free on Epic until Oct 15, and Prime members can grab Five Nights at Freddy's: Into the Pit, DOOM, Conarium and more. Claim deadlines inside.
+excerpt: "Out of Sight is free on Epic until Oct 15, and Prime members can grab Five Nights at Freddy's: Into the Pit, DOOM, Conarium and more. Claim deadlines inside."
 category: Browser Games
 tags:
   - halloween games
