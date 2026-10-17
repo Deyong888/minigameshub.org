@@ -10,8 +10,8 @@ tags:
   - free games
   - unblocked games
 metadata:
-  title: 12 Scary Browser Games to Play Free This Halloween (2026) | MiniGamesHub
-  description: Play 12 free scary Halloween browser games — jump-scares, zombies, haunted escape rooms. No downloads, Chromebook-ready, unblocked. Updated for Halloween 2026.
+  title: 12 Free Online Halloween Games 2026 — Scary Browser Games, No Download
+  description: Play 12 free online Halloween games for 2026 — scary browser games with jump-scares, zombies, haunted escapes. No downloads, Chromebook-ready, unblocked.
 ---
 
 Halloween is the best excuse of the year to get scared on purpose — and you don't need downloads, installs, or a gaming PC. These 12 free horror browser games run instantly in Chrome, on Chromebooks, and anywhere with a browser. Jump-scares, zombie sieges, haunted escape rooms — and one game where YOU are the monster. Pick your poison below. If you dare.
@@ -77,3 +77,17 @@ Team up with real players in a top-down arena shooter and mow down zombie waves 
 That's our 2026 Halloween shortlist — 12 free scary games, zero downloads, playable on Chromebook and anything with a browser. We'll keep adding spooky titles all through October, so bookmark this page. Want more? Browse the full library: 3,900+ free HTML5 games, no sign-up, new games added weekly.
 
 **Halloween bonus for Subway Surfers fans:** the <a href="https://subwaysurf.org/blog/subway-surfers-transylvania-2026-halloween-guide">Subway Surfers Transylvania 2026</a> Halloween update is live (Oct 5 – Nov 1) with new characters, boards, and Trick or Treat events — our fan-site guide breaks it all down.
+
+## Free Online Halloween Games — FAQ
+
+**What are the best free online Halloween games for 2026?**
+The 12 games above are our top picks for 2026 — all free, all playable instantly in your browser with no downloads. Slendrina Must Die and Eyes are the scariest; Dead Zed 2 and Zombie Hunters Arena are best for action fans.
+
+**Can I play these Halloween games on a Chromebook?**
+Yes. Every game on this page is HTML5 and Chromebook-ready. They also work on school computers — most are unblocked.
+
+**Are these Halloween games really free?**
+Yes, 100% free. No sign-up, no downloads, no hidden costs. Just click and play.
+
+**Do I need to download anything?**
+No. These are browser games — they run instantly in Chrome, Edge, Firefox, or Safari.
