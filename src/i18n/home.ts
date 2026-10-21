@@ -67,7 +67,7 @@ export const home: Record<Lang, HomeCopy> = {
     metadata: {
       title: 'Play 3,900+ Free Games',
       description:
-        'Play 3,900+ free games online including soccer games, mini games, arcade games and more. Instant browser play, no download required!',
+        'Play 3,900+ free online games instantly in your browser — arcade, puzzle, racing, sports and more. No downloads, no sign-ups. New games added weekly.',
     },
     hero: {
       badge: '🆕 New Games Added Weekly',
@@ -237,7 +237,7 @@ export const home: Record<Lang, HomeCopy> = {
     metadata: {
       title: 'Juega +3.900 Juegos Gratis en Línea',
       description:
-        'Juega +3.900 juegos gratis en línea, incluyendo juegos de fútbol, minijuegos, juegos arcade y más. Juego instantáneo en el navegador, ¡sin descargas!',
+        'Juega +3.900 juegos gratis en línea, al instante en tu navegador: arcade, puzles, carreras, deportes y más. Sin descargas, sin registros. ¡Juegos nuevos cada semana!',
     },
     hero: {
       badge: '🆕 Nuevos Juegos Cada Semana',
@@ -407,7 +407,7 @@ export const home: Record<Lang, HomeCopy> = {
     metadata: {
       title: '畅玩 3,900+ 免费游戏',
       description:
-        '在线畅玩 3,900+ 款免费游戏，包括足球游戏、迷你游戏、街机游戏等。浏览器即开即玩，无需下载！',
+        '在线畅玩 3,900+ 款免费游戏：街机、益智、竞速、体育等一应俱全。浏览器即开即玩，无需下载、无需注册，每周上新！',
     },
     hero: {
       badge: '🆕 每周上新游戏',
