@@ -15,6 +15,7 @@ import { fileURLToPath } from 'node:url';
 import type { AstroIntegration } from 'astro';
 
 import gamepixData from '../data/gamepix.json';
+import gamepixBatchData from '../data/gamepix-batch-2026-10-21.json';
 import { isGameIndexable } from '../utils/gameSeo';
 import { withRichContentOverride } from '../utils/richContentOverrides';
 
@@ -47,9 +48,21 @@ export default function gameSitemap(): AstroIntegration {
     hooks: {
       'astro:build:done': async ({ dir, logger }) => {
         const outDir = typeof dir === 'string' ? dir : fileURLToPath(dir);
-        const items: GamepixItem[] = Array.isArray((gamepixData as { items?: GamepixItem[] }).items)
+        const baseItems: GamepixItem[] = Array.isArray((gamepixData as { items?: GamepixItem[] }).items)
           ? (gamepixData as { items: GamepixItem[] }).items
           : [];
+        // 2026-10-21 上新批次:与 games.ts 相同的增量合并(批次排在基础之后,按 id 去重保留基础版本)
+        const seenIds = new Set(baseItems.map((item) => item.id));
+        const batchItems: GamepixItem[] = (
+          Array.isArray((gamepixBatchData as { items?: GamepixItem[] }).items)
+            ? (gamepixBatchData as { items: GamepixItem[] }).items
+            : []
+        ).filter((item) => {
+          if (seenIds.has(item.id)) return false;
+          seenIds.add(item.id);
+          return true;
+        });
+        const items: GamepixItem[] = [...baseItems, ...batchItems];
         // 人工富内容回填(2026-10-11 质量审计):与游戏页 robots 共用同一合并逻辑
         const games = items.map(withRichContentOverride).filter(isGameIndexable);
 

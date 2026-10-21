@@ -1,5 +1,6 @@
 import type { Game } from '~/types/game';
 import gamepixData from './gamepix.json';
+import gamepixBatchData from './gamepix-batch-2026-10-21.json';
 import { withRichContentOverride } from '~/utils/richContentOverrides';
 
 interface GamePixItem {
@@ -45,7 +46,16 @@ const mapGamePixItem = (item: GamePixItem): Game => {
   };
 };
 
-const allGamePixGames = (gamepixData.items as GamePixItem[]).map(mapGamePixItem);
+// 2026-10-21 上新批次(20 款):增量并入基础 feed,批次条目排在基础条目之后,不改变既有 curated 数组的 slice 兜底顺序;
+// 按 id 去重(与基础重复时保留基础版本)。fetch-games 全量刷新后可将批次并回主 feed 并删除 gamepix-batch-2026-10-21.json。
+const baseGamePixItems = gamepixData.items as GamePixItem[];
+const seenGamePixIds = new Set(baseGamePixItems.map((item) => item.id));
+const batchGamePixItems = ((gamepixBatchData as { items?: GamePixItem[] }).items ?? []).filter((item) => {
+  if (seenGamePixIds.has(item.id)) return false;
+  seenGamePixIds.add(item.id);
+  return true;
+});
+const allGamePixGames = [...baseGamePixItems, ...batchGamePixItems].map(mapGamePixItem);
 
 // 最近上新：按 date_published 倒序（新游戏在前）
 export const newGames: Game[] = [...allGamePixGames]
@@ -54,14 +64,14 @@ export const newGames: Game[] = [...allGamePixGames]
 
 // Curated list of popular game slugs for the hero/trending section
 const popularSlugs = [
-  'moto-x3m-spooky-land',
-  'penalty-kick-wiz',
+  'ancient-armies-vs-modern-weapons',
   'basketball-stars',
-  'worm-hunt-snake-game-io-zone',
+  'moto-x3m-spooky-land',
+  'block-craft-3d-2',
+  'penalty-kick-wiz',
+  'red-stickman-vs-craftmans-2',
   'funny-shooter-2',
-  'stickman-warriors-1',
-  'gelatino',
-  'demolition-derby-life',
+  'worm-hunt-snake-game-io-zone',
 ];
 
 // Categorization Logic
