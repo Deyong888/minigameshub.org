@@ -15,10 +15,25 @@ export async function getStaticPaths() {
 }
 
 const { category, games } = Astro.props;
+const initialGames = games.slice(0, 48);
+const remainingGames = games.slice(48);
+const remainingDataJson = JSON.stringify(
+  remainingGames.map((g) => ({
+    id: g.id,
+    slug: g.slug,
+    title: g.title,
+    category: g.category,
+    thumbnail: g.thumbnail,
+  }))
+).replace(/</g, '\\u003c');
+const sortedGames = [...games].sort((a, b) => a.title.localeCompare(b.title));
 const otherCategories = getUniqueCategories().filter((c) => c !== category).sort();
 const faq = getCategoryFaq(category);
 
-const title = `Best ${category} Games - Play Free Online (No Download)`;
+// 显示用首字母大写（slug 本身小写，如 racing → Racing）
+const categoryName = category.charAt(0).toUpperCase() + category.slice(1);
+
+const title = `Best ${categoryName} Games - Play Free Online (No Download)`;
 // 质量审计 2026-10-11:用分类真实游戏数替代写死的 "hundreds of"(games 来自 getGamesByCategory 已过滤)
 const countNoun = games.length === 1 ? 'game' : 'games';
 const description = `Play the best free ${category} games instantly in your browser on MiniGamesHub.org. No download, no sign-up — play all ${games.length} ${category} ${countNoun} on PC, Chromebook, and mobile.`;
@@ -76,7 +91,7 @@ const jsonLd = [
   <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
     <div class="text-center mb-12">
       <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 capitalize">
-        {category} Games
+        {categoryName} Games
       </h1>
       <p class="text-xl text-muted">
         Play the best free online <strong>{category} games</strong> — browser-based, no download, instant fun.
@@ -89,7 +104,42 @@ const jsonLd = [
         <a href="/mini-games" class="text-primary hover:underline">← Back to All Games</a>
     </div>
 
-    <GameGrid games={games} />
+    <div id="category-grid-wrap">
+      <GameGrid games={initialGames} />
+    </div>
+
+    {
+      remainingGames.length > 0 && (
+        <>
+          <script type="application/json" id="more-games-data" set:html={remainingDataJson} />
+          <div class="text-center mt-8">
+            <button
+              id="load-more-games"
+              type="button"
+              class="rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-8 py-3 transition-colors"
+            >
+              Load more games ({remainingGames.length} more)
+            </button>
+          </div>
+        </>
+      )
+    }
+
+    <details class="mt-12">
+      <summary class="cursor-pointer font-semibold text-lg">All {categoryName} games (A–Z)</summary>
+      <p class="mt-4 text-xs leading-6 text-gray-500 dark:text-slate-400">
+        {
+          sortedGames.map((g, i) => (
+            <>
+              <a href={`/game/${g.id}-${g.slug}`} class="hover:underline hover:text-primary">
+                {g.title}
+              </a>
+              {i < sortedGames.length - 1 ? ', ' : ''}
+            </>
+          ))
+        }
+      </p>
+    </details>
 
     <FaqSection items={faq} heading="Frequently Asked Questions" />
 
@@ -105,4 +155,104 @@ const jsonLd = [
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    (function () {
+      var btn = document.getElementById('load-more-games');
+      var dataEl = document.getElementById('more-games-data');
+      if (!btn || !dataEl) return;
+      var remaining = [];
+      try {
+        remaining = JSON.parse(dataEl.textContent || '[]');
+      } catch (e) {
+        return;
+      }
+      if (!remaining.length) {
+        btn.style.display = 'none';
+        return;
+      }
+      function findGrid() {
+        var wrap = document.getElementById('category-grid-wrap');
+        var scope = wrap || document;
+        var divs = scope.querySelectorAll('div');
+        for (var i = 0; i < divs.length; i++) {
+          var cls = divs[i].className || '';
+          if (typeof cls === 'string' && cls.indexOf('grid') !== -1 && cls.indexOf('lg:grid-cols-6') !== -1) {
+            return divs[i];
+          }
+        }
+        return scope.querySelector('div.grid');
+      }
+      function createCard(game) {
+        var article = document.createElement('article');
+        article.className = 'game-card group';
+        article.setAttribute('data-game-id', String(game.id));
+        article.setAttribute('data-category', String(game.category || ''));
+        var link = document.createElement('a');
+        link.href = '/game/' + game.id + '-' + game.slug;
+        link.className = 'block relative overflow-hidden rounded-xl bg-gray-800 transition-transform hover:scale-105';
+        var thumbWrap = document.createElement('div');
+        thumbWrap.className = 'aspect-[4/3] relative overflow-hidden';
+        var img = document.createElement('img');
+        img.src = game.thumbnail || '';
+        img.alt = game.title || '';
+        img.width = 300;
+        img.height = 225;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.className = 'w-full h-full object-cover transition-transform group-hover:scale-110';
+        thumbWrap.appendChild(img);
+        link.appendChild(thumbWrap);
+        var info = document.createElement('div');
+        info.className = 'p-3';
+        var h3 = document.createElement('h3');
+        h3.className = 'text-white font-semibold truncate group-hover:text-green-400 transition-colors';
+        h3.textContent = game.title || '';
+        info.appendChild(h3);
+        var meta = document.createElement('div');
+        meta.className = 'flex items-center justify-between mt-2 text-sm text-gray-400';
+        var cat = document.createElement('span');
+        cat.className = 'capitalize';
+        cat.textContent = game.category || '';
+        meta.appendChild(cat);
+        info.appendChild(meta);
+        link.appendChild(info);
+        article.appendChild(link);
+        return article;
+      }
+      var offset = 0;
+      var BATCH = 48;
+      function loadMore() {
+        var grid = findGrid();
+        if (!grid) return;
+        var batch = remaining.slice(offset, offset + BATCH);
+        offset += batch.length;
+        var frag = document.createDocumentFragment();
+        batch.forEach(function (g) {
+          frag.appendChild(createCard(g));
+        });
+        grid.appendChild(frag);
+        if (offset >= remaining.length) {
+          btn.style.display = 'none';
+        } else {
+          btn.textContent = 'Load more games (' + (remaining.length - offset) + ' more)';
+        }
+      }
+      btn.addEventListener('click', loadMore);
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                observer.disconnect();
+                loadMore();
+              }
+            });
+          },
+          { rootMargin: '600px 0px' }
+        );
+        observer.observe(btn);
+      }
+    })();
+  </script>
 </Layout>

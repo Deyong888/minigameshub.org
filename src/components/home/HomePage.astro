@@ -123,6 +123,26 @@ const faqJsonLd = {
         set:html={copy.hero.subtext}
       >
       </p>
+      <form action="/search" method="get" class="max-w-xl mx-auto mt-8 animate-slide-up animate-delay-100" role="search">
+        <div
+          class="flex items-center gap-2 rounded-full bg-white dark:bg-slate-800 shadow-lg ring-1 ring-gray-200 dark:ring-slate-700 px-2 py-2"
+        >
+          <input
+            name="q"
+            type="search"
+            placeholder="Search 3,900+ free games…"
+            autocomplete="off"
+            aria-label="Search games"
+            class="flex-1 min-w-0 bg-transparent px-4 py-2 text-base text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none"
+          />
+          <button
+            type="submit"
+            class="shrink-0 rounded-full bg-primary hover:bg-primary/90 text-white font-semibold px-6 py-2.5 transition-colors"
+          >
+            Search
+          </button>
+        </div>
+      </form>
     </div>
     <div class="animate-fade-in animate-delay-200">
       <GameHero />

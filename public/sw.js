@@ -1,59 +1,86 @@
-const CACHE_NAME = 'minigameshub-v1';
-const ASSETS_TO_CACHE = [
-  '/',
-  '/manifest.json',
-  '/favicon.svg',
-  '/404'
-];
+const CACHE_NAME = 'minigameshub-v2';
+const RUNTIME_CACHE = 'minigameshub-runtime-v2';
+const ASSETS_TO_CACHE = ['/', '/search', '/manifest.json', '/favicon.svg', '/404'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE);
-    })
+    (async () => {
+      const cache = await caches.open(CACHE_NAME);
+      await Promise.allSettled(ASSETS_TO_CACHE.map((url) => cache.add(url)));
+      await self.skipWaiting();
+    })()
   );
-});
-
-self.addEventListener('fetch', (event) => {
-  // Navigation requests: Network first, fall back to cache
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(event.request);
-      })
-    );
-    return;
-  }
-
-  // Static assets: Cache first
-  if (event.request.destination === 'style' || event.request.destination === 'script' || event.request.destination === 'image') {
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        return response || fetch(event.request).then((response) => {
-          return caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, response.clone());
-            return response;
-          });
-        });
-      })
-    );
-    return;
-  }
-  
-  // Default: Network only
-  // event.respondWith(fetch(event.request));
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
+    (async () => {
+      const cacheNames = await caches.keys();
+      await Promise.all(
         cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
+          if (cacheName !== CACHE_NAME && cacheName !== RUNTIME_CACHE) {
             return caches.delete(cacheName);
           }
+          return Promise.resolve();
         })
       );
-    })
+      await self.clients.claim();
+    })()
   );
+});
+
+self.addEventListener('fetch', (event) => {
+  const { request } = event;
+  if (request.method !== 'GET') return;
+  let url;
+  try {
+    url = new URL(request.url);
+  } catch (e) {
+    return;
+  }
+  if (url.protocol !== 'http:' && url.protocol !== 'https:') return;
+
+  // Navigation requests: network first, fall back to cache / 404
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      (async () => {
+        try {
+          const response = await fetch(request);
+          const cache = await caches.open(CACHE_NAME);
+          cache.put(request, response.clone());
+          return response;
+        } catch (e) {
+          const cached = await caches.match(request);
+          if (cached) return cached;
+          const fallback = await caches.match('/404');
+          if (fallback) return fallback;
+          throw e;
+        }
+      })()
+    );
+    return;
+  }
+
+  // Static assets (including cross-origin game thumbnails): stale-while-revalidate
+  const dest = request.destination;
+  if (dest === 'style' || dest === 'script' || dest === 'image' || dest === 'font') {
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(RUNTIME_CACHE);
+        const cached = await cache.match(request);
+        const networkPromise = fetch(request)
+          .then((response) => {
+            if (response && (response.ok || response.type === 'opaque')) {
+              cache.put(request, response.clone());
+            }
+            return response;
+          })
+          .catch(() => cached);
+        return cached || networkPromise;
+      })()
+    );
+    return;
+  }
+
+  // Everything else: network only (not intercepted)
 });

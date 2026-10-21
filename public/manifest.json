@@ -1,7 +1,14 @@
 {
   "name": "MiniGamesHub",
   "short_name": "MiniGamesHub",
-  "description": "Games to play when bored at work or school. 5000+ free mini games, browser games, HTML5 games.",
+  "description": "Play 3,900+ free games online — no downloads, no sign-ups. Instant browser games for work, school and downtime.",
+  "id": "/",
+  "scope": "/",
+  "lang": "en",
+  "categories": [
+    "games",
+    "entertainment"
+  ],
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -11,7 +18,31 @@
     {
       "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/APP%20icon.png",
+      "sizes": "2048x2048",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "New Games",
+      "short_name": "New Games",
+      "url": "/new-games"
+    },
+    {
+      "name": "My Games",
+      "short_name": "My Games",
+      "url": "/my-games"
+    },
+    {
+      "name": "Surprise Me",
+      "short_name": "Surprise Me",
+      "url": "/surprise"
     }
   ]
 }
