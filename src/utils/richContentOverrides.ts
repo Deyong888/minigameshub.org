@@ -6,14 +6,23 @@
  * 之所以不用直接改 gamepix.json: `npm run fetch-games` 会整体覆写该文件,
  * 独立文件 + 三处合并才能在 refetch 后存活。
  *
+ * 分片规则(Top500 分批放行,2026-10-21 起):基础文件保持不动,后续批次
+ * 依次写入 `src/data/rich-content-overrides-b1.json`、`-b2.json` ……,
+ * 并在下方登记导入合并。合并时分片同 key 覆盖基础(正常情况下各批次
+ * 选品不重复,不会发生覆盖)。新增批次时只需加一个分片文件 + 一行导入。
+ *
  * 合并点(三处必须一致,与 gameSeo.ts 的注释对应):
  * 1. src/data/games.ts —— 游戏页/全站取数的唯一 Game 映射
  * 2. src/integrations/game-sitemap.ts —— sitemap-games.xml 的收录判定
  * 3. astro.config.ts —— @astrojs/sitemap filter 的排除判定
  */
-import overrides from '../data/rich-content-overrides.json';
+import baseOverrides from '../data/rich-content-overrides.json';
+import batch1Overrides from '../data/rich-content-overrides-b1.json';
 
-const table = overrides as Record<string, string>;
+const table: Record<string, string> = {
+  ...(baseOverrides as Record<string, string>),
+  ...(batch1Overrides as Record<string, string>),
+};
 
 /** 返回某游戏的人工回填 rich_content(去空白后),没有则返回 undefined。 */
 export const getRichContentOverride = (id: string): string | undefined => {
