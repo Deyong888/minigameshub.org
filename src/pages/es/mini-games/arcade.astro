@@ -6,6 +6,10 @@ import { miniArcadeGames } from '~/data/games';
 const metadata = {
   title: 'Minijuegos Arcade - Juega Gratis Online',
   description: 'Juega los mejores minijuegos arcade online. Diversión clásica, juego instantáneo, sin descargas.',
+  // 与 /es/arcade-games 意图重复,canonical 收敛到主枢纽页,避免站内关键词蚕食
+  canonical: 'https://minigameshub.org/es/arcade-games',
+  // canonical 已指向他页,不再输出 hreflang(避免信号冲突)
+  skipHreflang: true,
 };
 
 const schema = {

@@ -46,6 +46,8 @@ const categorySlug = gameCategory.toLowerCase().replace(/\s+/g, '-');
 
 const metadata = {
   title: `${game.title} - Play Free Online | No Download | MiniGamesHub`,
+  // 标题已自带品牌后缀,跳过全局 titleTemplate,避免 "…| MiniGamesHub — MiniGamesHub" 双品牌超长
+  ignoreTitleTemplate: true,
   description: `Play ${game.title} free in your browser — no download, no sign-up. A ${gameCategory} game on MiniGamesHub, playable instantly on desktop, Chromebook, and mobile.`,
   // AdSense 合规:thin-content 游戏页 noindex(服务端经 Layout→Metadata→AstroSeo 渲染进 head)
   robots: { index: isGameIndexable(game), follow: true },

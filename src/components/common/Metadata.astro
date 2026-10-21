@@ -17,6 +17,7 @@ export interface Props extends MetaData {
 const {
   title,
   ignoreTitleTemplate = false,
+  skipHreflang = false,
   canonical = String(getCanonical(String(Astro.url.pathname))),
   robots = {},
   description,
@@ -26,6 +27,10 @@ const {
 
 const currentLocale = Astro.currentLocale || I18N?.language || 'en';
 const currentPath = Astro.url.pathname;
+
+// og:locale 必须与页面语言一致(此前被 config 中硬编码的 en_US 覆盖)
+const ogLocaleMap: Record<string, string> = { en: 'en_US', es: 'es_ES', zh: 'zh_CN' };
+const ogLocale = ogLocaleMap[currentLocale] || 'en_US';
 
 // Generate hreflang alternates for every configured locale + x-default.
 // Locales mirror astro.config.ts i18n.locales (en/es/zh); default locale has no path prefix.
@@ -73,7 +78,8 @@ const seoProps: AstroSeoProps = merge(
     twitter: {
       cardType: openGraph?.images?.length ? 'summary_large_image' : 'summary',
     },
-    languageAlternates: languageAlternates,
+    // canonical 收敛到他页时不输出 hreflang,避免"自认语言版本"与 canonical 信号冲突
+    languageAlternates: skipHreflang ? [] : languageAlternates,
   },
   {
     title: METADATA?.title?.default,
@@ -91,7 +97,8 @@ const seoProps: AstroSeoProps = merge(
     noindex: typeof robots?.index !== 'undefined' ? !robots.index : undefined,
     nofollow: typeof robots?.follow !== 'undefined' ? !robots.follow : undefined,
     description: description,
-    openGraph: { url: canonical, ...openGraph },
+    // locale 以当前页面语言为准,覆盖 config 中硬编码的 en_US;页面仍可通过 openGraph.locale 显式覆盖
+    openGraph: { url: canonical, locale: ogLocale, ...openGraph },
     twitter: twitter,
   }
 );

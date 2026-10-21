@@ -11,7 +11,7 @@ metadata:
   title:
     default: MiniGamesHub — Play 3,900+ Free Online Games Instantly
     template: '%s — MiniGamesHub'
-  description: "Discover and play 3,900+ free online mini games, arcade games, puzzle games, and more on MiniGamesHub.org. Instant browser play, no download required! Perfect for work breaks, school free time, or anytime you're bored."
+  description: "Play 3,900+ free online mini games on MiniGamesHub.org — arcade, puzzle, racing & more. Instant browser play, no downloads, no sign-ups."
   robots:
     index: true
     follow: true

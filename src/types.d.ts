@@ -52,6 +52,8 @@ export interface Taxonomy {
 export interface MetaData {
   title?: string;
   ignoreTitleTemplate?: boolean;
+  // 为 true 时不输出 hreflang(用于 canonical 收敛到他页的页面)
+  skipHreflang?: boolean;
 
   canonical?: string;
 

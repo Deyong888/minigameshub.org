@@ -15,8 +15,9 @@ const lang = getLangFromUrl(Astro.url);
 const slug = game.slug || game.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 const gameUrl = lang === 'es' ? `/es/game/${game.id}-${slug}` : lang === 'zh' ? `/zh/game/${game.id}-${slug}` : `/game/${game.id}-${slug}`;
 
-// Generate keyword-rich alt text
-const altText = `${game.title} - ${game.category} game, play online free, no download`;
+// Alt text: keep it to the game title — the surrounding heading and link
+// already provide context, avoiding template-repeated keyword phrases.
+const altText = `${game.title}`;
 ---
 
 <article class="game-card group" data-game-id={game.id} data-category={game.category}>
@@ -58,28 +59,11 @@ const altText = `${game.title} - ${game.category} game, play online free, no dow
             <div class="flex items-center justify-between mt-2 text-sm text-gray-400">
                 <span class="capitalize">{game.category}</span>
             </div>
-            
-            <!-- SEO关键词标签（视觉隐藏但SEO可见） -->
-            <div class="sr-only">
-                Play {game.title} online free. {game.category} game, no download required, instant play.
-            </div>
         </div>
     </a>
 </article>
 
 <style>
-    .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
-    }
-
     /* 盲盒特效样式 */
     .mystery-overlay {
         animation: bounceIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);

@@ -6,6 +6,10 @@ import { miniArcadeGames } from '~/data/games';
 const metadata = {
   title: 'Arcade Mini Games - Play Free Online',
   description: 'Play the best arcade mini games online. Classic fun, instant play, no downloads.',
+  // 与 /arcade-games 意图重复,canonical 收敛到主枢纽页,避免站内关键词蚕食
+  canonical: 'https://minigameshub.org/arcade-games',
+  // canonical 已指向他页,不再输出 hreflang(避免信号冲突)
+  skipHreflang: true,
 };
 
 const schema = {

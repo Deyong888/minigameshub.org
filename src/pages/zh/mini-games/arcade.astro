@@ -6,6 +6,10 @@ import { miniArcadeGames } from '~/data/games';
 const metadata = {
   title: '街机迷你游戏 - 在线免费玩',
   description: '玩最好的在线街机迷你游戏。经典乐趣，即点即玩，无需下载。',
+  // 与 /zh/arcade-games 意图重复,canonical 收敛到主枢纽页,避免站内关键词蚕食
+  canonical: 'https://minigameshub.org/zh/arcade-games',
+  // canonical 已指向他页,不再输出 hreflang(避免信号冲突)
+  skipHreflang: true,
 };
 
 const schema = {
