@@ -1,7 +1,7 @@
 ---
 publishDate: 2026-10-24T00:00:00Z
 title: "How to Play Diablo 2: Resurrected Natively on iPhone & Android"
-excerpt: There is no official D2R mobile app — but an open-source compatibility layer called D2R Mobile runs your own Switch copy of Diablo II: Resurrected natively on iPhone, iPad and Android at 60 fps. Here's what you need and exactly how to set it up.
+excerpt: "There is no official D2R mobile app — but an open-source compatibility layer called D2R Mobile runs your own Switch copy of Diablo II: Resurrected natively on iPhone, iPad and Android at 60 fps. Here's what you need and exactly how to set it up."
 image: https://github.com/jhaizhou-ops/d2r-mobile/releases/download/assets/hero_en.jpg
 category: Browser Games
 tags:
