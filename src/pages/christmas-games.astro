@@ -1,0 +1,191 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import {
+  christmasAllGames,
+  christmasSantaGames,
+  christmasPuzzleGames,
+  winterSportsGames,
+  christmasHubGames,
+} from '~/data/games';
+
+const metadata = {
+  title: 'Christmas Games - Free Santa & Winter Games Online',
+  description:
+    'Play the best free Christmas games online — Santa adventures, festive puzzles and match-3, plus snow & winter sports. No downloads, no sign-up, instant play.',
+};
+
+const faqs = [
+  {
+    question: 'What are the best free Christmas games to play online in 2026?',
+    answer:
+      'Our top picks for the 2026 holiday season are Santabalt and Santa Snow Runner for action fans, Jewel Christmas Mania and Mahjong At Home - Xmas Edition for puzzle lovers, and Ski King 2022 plus Snowball Rush 3D for winter sports. Every game on this page is free and plays instantly in your browser.',
+  },
+  {
+    question: 'Are these Christmas games really free? Do I need to download anything?',
+    answer:
+      'Yes — 100% free, with no downloads, installs, or sign-up. These are HTML5 browser games, so they run instantly in Chrome, Edge, Firefox, or Safari on any device.',
+  },
+  {
+    question: 'Can I play these Christmas games on a Chromebook or at school?',
+    answer:
+      'Yes. All of the games above are lightweight HTML5 titles that run well on Chromebooks and school or work computers — just open the page and play, no plugins required.',
+  },
+  {
+    question: 'Do you have Christmas games that are good for kids and families?',
+    answer:
+      'Plenty. Bff Christmas Cookie Challenge, Santa Gift Matching, and the dress-up and matching titles in the Santa & Christmas favorites section are gentle, family-friendly picks, and the puzzle section is great for playing together.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: 'Christmas Games',
+      description: metadata.description,
+      url: 'https://minigameshub.org/christmas-games',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: christmasHubGames.map((game, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'VideoGame',
+            name: game.title,
+            url: `https://minigameshub.org/game/${game.id}-${game.slug}`,
+            image: game.thumbnail,
+            description: game.description,
+            genre: game.category,
+            playMode: 'SinglePlayer',
+            applicationCategory: 'Game',
+          },
+        })),
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a
+            href="/"
+            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white"
+          >
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+            </svg>
+            Home
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Christmas Games</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 text-center">
+      Christmas Games
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Santa adventures, festive puzzles, and snowy winter sports — free to play in your browser, no downloads.
+    </p>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-12 text-gray-700 dark:text-gray-300">
+      <p>
+        The holidays are peak gaming season, and you don't need a console, downloads, or a gaming PC to get in on it.
+        This hub collects the best free Christmas games on MiniGamesHub for 2026: help Santa deliver gifts in fast
+        arcade runners, settle in with cozy Christmas puzzles and mahjong, or hit the slopes in snow and winter
+        sports titles. Every game below runs instantly in your browser — on desktop, Chromebook, tablet, or phone.
+      </p>
+      <p>
+        Our catalog holds {christmasAllGames.length} Christmas games in total; the picks below are the ones we'd
+        hand to a friend first. Want the full shelf? Browse the complete
+        <a href="/category/christmas" class="text-primary hover:underline">Christmas category</a>, keep things calm
+        with <a href="/relax-games" class="text-primary hover:underline">Relax Games</a>, or explore thousands more
+        titles in <a href="/mini-games" class="text-primary hover:underline">Mini Games</a>.
+      </p>
+    </div>
+
+    <!-- Section quick links -->
+    <div class="flex flex-wrap justify-center gap-2 mb-4">
+      <a href="#santa-games" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Santa &amp; Christmas Favorites</a>
+      <a href="#christmas-puzzle-games" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Christmas Puzzle &amp; Match</a>
+      <a href="#winter-sports-games" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Snow &amp; Winter Sports</a>
+      <a href="/category/christmas" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">All Christmas Games</a>
+    </div>
+
+    <GameGrid
+      id="santa-games"
+      title="Santa & Christmas Favorites"
+      subtitle="Runners, gift runs, and dress-up parties starring the big man himself"
+      games={christmasSantaGames}
+    />
+
+    <GameGrid
+      id="christmas-puzzle-games"
+      title="Christmas Puzzle & Match Games"
+      subtitle="Cozy match-3, mahjong, and brain teasers with a holiday twist"
+      games={christmasPuzzleGames}
+    />
+
+    <GameGrid
+      id="winter-sports-games"
+      title="Snow & Winter Sports Games"
+      subtitle="Skiing, snowboarding, and snowball chaos for the winter break"
+      games={winterSportsGames}
+    />
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-8">Christmas Games — FAQ</h2>
+      <div class="space-y-6 text-gray-700 dark:text-gray-300">
+        {faqs.map((faq) => (
+          <div>
+            <p class="font-bold text-gray-900 dark:text-white mb-1">{faq.question}</p>
+            <p>{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <h2 class="text-2xl font-bold text-center mb-8">Keep Playing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/category/christmas" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">All Christmas Games</h3>
+          <p class="text-sm text-gray-500">The full Christmas category — every festive title in the catalog.</p>
+        </a>
+        <a href="/new-games" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">New Games</h3>
+          <p class="text-sm text-gray-500">Freshly added browser games, updated as new titles land.</p>
+        </a>
+        <a href="/arcade-games" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">Arcade Games</h3>
+          <p class="text-sm text-gray-500">Classic, retro, and modern arcade hits for quick sessions.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

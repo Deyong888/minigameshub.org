@@ -282,3 +282,42 @@ export const getRelatedGames = (game: Game, limit: number = 6): Game[] => {
   // Simple related logic: same category
   return allGames.filter((g) => g.id !== game.id && g.category === game.category).slice(0, limit);
 };
+
+// 8. Christmas & Winter Games (seasonal hub: /christmas-games/, evergreen URL)
+// Picks are filtered from the live GamePix feed by title/category, so a game
+// only renders while it actually exists in the catalog — no dead links.
+const christmasTitlePattern = /\b(christmas|xmas|santa|santas|reindeer|grinch)\b/i;
+export const christmasAllGames: Game[] = allGamePixGames.filter(
+  (g) => g.category.toLowerCase() === 'christmas' || christmasTitlePattern.test(g.title)
+);
+
+const christmasPuzzleCategories = ['puzzle', 'match-3', 'board', 'jewel', 'brain', 'card'];
+export const christmasPuzzleGames: Game[] = christmasAllGames
+  .filter((g) => christmasPuzzleCategories.some((c) => g.category.toLowerCase().includes(c)))
+  .slice(0, 8);
+
+const christmasPuzzleIds = new Set(christmasPuzzleGames.map((g) => g.id));
+export const christmasSantaGames: Game[] = christmasAllGames
+  .filter((g) => !christmasPuzzleIds.has(g.id))
+  .slice(0, 8);
+
+const winterTitlePattern = /\b(snow\w*|winter|ski|skiing|snowboard\w*)\b/i;
+const christmasGameIds = new Set(christmasAllGames.map((g) => g.id));
+export const winterSportsGames: Game[] = allGamePixGames
+  .filter(
+    (g) =>
+      !christmasGameIds.has(g.id) &&
+      winterTitlePattern.test(g.title) &&
+      !/jet ski/i.test(g.title) &&
+      ['sports', 'racing', 'runner', 'arcade', 'adventure', 'casual'].some((c) =>
+        g.category.toLowerCase().includes(c)
+      )
+  )
+  .slice(0, 8);
+
+// Combined picks for the hub page schema (Santa + puzzle + winter)
+export const christmasHubGames: Game[] = [
+  ...christmasSantaGames,
+  ...christmasPuzzleGames,
+  ...winterSportsGames,
+];
