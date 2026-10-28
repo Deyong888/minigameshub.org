@@ -70,14 +70,12 @@ export default function gameSitemap(): AstroIntegration {
           const id = g.id;
           const slug = g.namespace || g.id;
           const en = loc('', id, slug);
-          const es = loc('es', id, slug);
-          const zh = loc('zh', id, slug);
+          // 游戏页 canonical 收敛到英文版(2026-10-28 审计):sitemap 只输出 en + x-default,
+          // 不再输出 es/zh hreflang,避免与 canonical 信号冲突(与 HTML 的 skipHreflang 对齐)
           return (
             `  <url>\n` +
             `    <loc>${escapeXml(en)}</loc>\n` +
             `    <xhtml:link rel="alternate" hreflang="en" href="${escapeXml(en)}"/>\n` +
-            `    <xhtml:link rel="alternate" hreflang="es" href="${escapeXml(es)}"/>\n` +
-            `    <xhtml:link rel="alternate" hreflang="zh" href="${escapeXml(zh)}"/>\n` +
             `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeXml(en)}"/>\n` +
             `  </url>`
           );
@@ -91,7 +89,7 @@ ${urls.join('\n')}
 `;
 
         fs.writeFileSync(path.join(outDir, 'sitemap-games.xml'), sitemap);
-        logger.info(`Wrote sitemap-games.xml with ${games.length} game URLs (en/es/zh).`);
+        logger.info(`Wrote sitemap-games.xml with ${games.length} game URLs (en).`);
 
         // Register it in the index produced by @astrojs/sitemap.
         const indexFile = path.join(outDir, 'sitemap-index.xml');

@@ -39,8 +39,8 @@ No test framework is configured. CI runs `build` and `check`; `npm test` is unus
 ## i18n
 
 - 3 locales: `en` (default, no prefix), `es`, `zh`
-- Translation map: `src/utils/i18n.ts` (UI strings keyed by `en/es/zh/hi`)
-- Route pages under `src/pages/es/`, `src/pages/zh/`, `src/pages/hi/`
+- Translation map: `src/utils/i18n.ts` (UI strings keyed by `en/es/zh`)
+- Route pages under `src/pages/es/`, `src/pages/zh/`
 
 ## Tooling
 

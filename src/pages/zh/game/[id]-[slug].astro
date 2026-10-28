@@ -9,7 +9,6 @@ import { getLangFromUrl, useTranslations, translateDynamic } from '~/utils/i18n'
 import { getHowToPlayZh, getTipsZh, getGameDetailsZh, getGameFaqZh } from '~/utils/gameContent';
 import { isGameIndexable } from '~/utils/gameSeo';
 import { getCanonical } from '~/utils/permalinks';
-import type { Game } from '~/types/game';
 
 // Hybrid rendering: game pages render on-demand on Vercel (cached at edge).
 // See src/pages/game/[id]-[slug].astro for rationale.
@@ -55,8 +54,12 @@ const metadata = {
   title: `玩 ${game.title} - 免费在线游戏 | MiniGamesHub.org`,
   description: `在 MiniGamesHub.org 免费在线玩 ${game.title}。无需下载。${game.description}`,
   // AdSense 合规:thin-content 游戏页 noindex;canonical 指回英文原版(避免三语言重复内容)
+  // canonical 已收敛到英文版时不再输出 hreflang,避免 hreflang/canonical 信号冲突
+  // 标题已含 | MiniGamesHub.org,关掉 title 模板避免追加 — MiniGamesHub 造成双品牌
   robots: { index: isGameIndexable(game), follow: true },
   canonical: String(getCanonical(`/game/${game.id}-${game.slug}`)),
+  skipHreflang: true,
+  ignoreTitleTemplate: true,
   openGraph: {
     type: 'video.other',
     images: [
