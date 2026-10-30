@@ -8,8 +8,9 @@
  *
  * 分片规则(Top500 分批放行,2026-10-21 起):基础文件保持不动,后续批次
  * 依次写入 `src/data/rich-content-overrides-b1.json`、`-b2.json` ……,
- * 并在下方登记导入合并。合并时分片同 key 覆盖基础(正常情况下各批次
- * 选品不重复,不会发生覆盖)。新增批次时只需加一个分片文件 + 一行导入。
+ * 并在下方登记导入合并。合并顺序:基础 < b1 < b2 < b3 < b4(同 key 时后者
+ * 覆盖前者;正常情况下各批次选品不重复,不会发生覆盖)。新增批次时只需
+ * 加一个分片文件 + 一行导入。
  *
  * 合并点(三处必须一致,与 gameSeo.ts 的注释对应):
  * 1. src/data/games.ts —— 游戏页/全站取数的唯一 Game 映射
@@ -18,10 +19,13 @@
  */
 import baseOverrides from '../data/rich-content-overrides.json';
 import batch1Overrides from '../data/rich-content-overrides-b1.json';
+import batch2Overrides from '../data/rich-content-overrides-b2.json';
+// b3/b4 在下方步骤 2/3 登记时再加导入,避免中间态远程构建缺文件。
 
 const table: Record<string, string> = {
   ...(baseOverrides as Record<string, string>),
   ...(batch1Overrides as Record<string, string>),
+  ...(batch2Overrides as Record<string, string>),
 };
 
 /** 返回某游戏的人工回填 rich_content(去空白后),没有则返回 undefined。 */
