@@ -20,12 +20,14 @@
 import baseOverrides from '../data/rich-content-overrides.json';
 import batch1Overrides from '../data/rich-content-overrides-b1.json';
 import batch2Overrides from '../data/rich-content-overrides-b2.json';
-// b3/b4 在下方步骤 2/3 登记时再加导入,避免中间态远程构建缺文件。
+import batch3Overrides from '../data/rich-content-overrides-b3.json';
+// b4 在步骤 3 登记时再加导入,避免中间态远程构建缺文件。
 
 const table: Record<string, string> = {
   ...(baseOverrides as Record<string, string>),
   ...(batch1Overrides as Record<string, string>),
   ...(batch2Overrides as Record<string, string>),
+  ...(batch3Overrides as Record<string, string>),
 };
 
 /** 返回某游戏的人工回填 rich_content(去空白后),没有则返回 undefined。 */
