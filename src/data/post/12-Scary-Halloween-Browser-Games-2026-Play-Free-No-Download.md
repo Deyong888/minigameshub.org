@@ -22,11 +22,11 @@ _Updated October 28, 2026 — added 3 new 2026 games, now 15 total._
 
 ### 1. Slendrina Must Die: The Forest
 
-Grab a gun and hunt for 7 keys in a pitch-black forest while Slendrina and her family hunt you. The rare browser horror that flips jump-scares into full firefights. <a href="https://www.silvergames.com/en/slendrina-must-die-the-forest" rel="nofollow" target="_blank">Play now →</a>
+Grab a gun and hunt for 7 keys in a pitch-black forest while Slendrina and her family hunt you. The rare browser horror that flips jump-scares into full firefights. <a href="/category/horror">Play now →</a>
 
 ### 2. Eyes – The Horror Game
 
-Creep through an abandoned house grabbing loot while a faceless ghost stalks your every footstep. No weapons — just hide, run, and pray. <a href="https://www.y8.com/games/eyes_the_horror_game" rel="nofollow" target="_blank">Play now →</a>
+Creep through an abandoned house grabbing loot while a faceless ghost stalks your every footstep. No weapons — just hide, run, and pray. <a href="/category/horror">Play now →</a>
 
 ### 3. Scary Maze Game
 
@@ -36,25 +36,25 @@ Guide your cursor through razor-thin mazes without touching the walls. The inter
 
 ### 4. Granny: Chapter Two
 
-Escape a locked house in 5 days while Granny hears everything and Grandpa hits like a truck. Two hunters, opposite senses, zero room for mistakes. <a href="https://www.gimori.com/game/granny-chapter-two" rel="nofollow" target="_blank">Play now →</a>
+Escape a locked house in 5 days while Granny hears everything and Grandpa hits like a truck. Two hunters, opposite senses, zero room for mistakes. <a href="/game/25SC3U-granny-house-escape">Play now →</a>
 
 ### 5. The Baby in Yellow
 
-Babysitting should be easy. It is not. Finish your nightly chores while a demonic infant escalates from creepy to full nightmare. <a href="https://superkidgames.com/game/the-baby-in-yellow" rel="nofollow" target="_blank">Play now →</a>
+Babysitting should be easy. It is not. Finish your nightly chores while a demonic infant escalates from creepy to full nightmare. <a href="/category/horror">Play now →</a>
 
 ### 6. Creepy Granny Scream: Scary Freddy
 
-Five nights in a 3D manor with a masked killer on your tail. Solve puzzles, grab weapons, and never let him corner you. <a href="https://yaksgames.com/games/creepy-granny-scream-scary-freddy/G061315807/amp" rel="nofollow" target="_blank">Play now →</a>
+Five nights in a 3D manor with a masked killer on your tail. Solve puzzles, grab weapons, and never let him corner you. <a href="/game/FDEFF6-freddy-at-playroom-of-fear">Play now →</a>
 
 ## Point-and-Click Psychological Horror
 
 ### 7. Forgotten Hill: Fall
 
-A hand-drawn escape-room nightmare: explore the haunted house, combine items, solve riddles. Dread here comes from atmosphere, not reflexes. <a href="https://www.y8.com/games/forgotten_hill_fall" rel="nofollow" target="_blank">Play now →</a>
+A hand-drawn escape-room nightmare: explore the haunted house, combine items, solve riddles. Dread here comes from atmosphere, not reflexes. <a href="/category/horror">Play now →</a>
 
 ### 8. Exmortis
 
-Wake up in the woods, take shelter in a strange house, and piece together its violent past document by document. A slow burn with a legendary jump-scare. <a href="https://kbhgames.com/game/exmortis" rel="nofollow" target="_blank">Play now →</a>
+Wake up in the woods, take shelter in a strange house, and piece together its violent past document by document. A slow burn with a legendary jump-scare. <a href="/category/horror">Play now →</a>
 
 ### 9. The Visitor
 
@@ -64,29 +64,29 @@ The twist: you ARE the monster. Crash-land as an alien, eat a frog, then a bird,
 
 ### 10. Dead Zed 2
 
-Hold the line against the undead with snipers, shotguns, and a rage meter that wipes the whole screen when it fills. <a href="https://www.crazygames.com/game/dead-zed-2" rel="nofollow" target="_blank">Play now →</a>
+Hold the line against the undead with snipers, shotguns, and a rage meter that wipes the whole screen when it fills. <a href="/game/TO670T-the-last-stand-zombies">Play now →</a>
 
 ### 11. The Last Stand: Union City
 
-A full zombie RPG in your browser: scavenge a ruined city, manage hunger and health, recruit companions, and find your missing spouse. <a href="https://www.kongregate.com/en/games/conartists/the-last-stand-union-city" rel="nofollow" target="_blank">Play now →</a>
+A full zombie RPG in your browser: scavenge a ruined city, manage hunger and health, recruit companions, and find your missing spouse. <a href="/game/TO670T-the-last-stand-zombies">Play now →</a>
 
 ### 12. Zombie Hunters Arena
 
-Team up with real players in a top-down arena shooter and mow down zombie waves together. Chainsaws included. <a href="https://www.games.co.uk/game/zombie-hunters-arena" rel="nofollow" target="_blank">Play now →</a>
+Team up with real players in a top-down arena shooter and mow down zombie waves together. Chainsaws included. <a href="/category/zombie">Play now →</a>
 
 ## New for 2026 — Fresh Halloween Games
 
 ### 13. Mod Curse 🆕
 
-Free, five minutes, all in your browser. You're the CEO of a game studio, and every mod is cursed: balance five studio meters through 100+ scenarios and chase one of six endings without collapsing the company. <a href="https://modcurse.com" rel="nofollow" target="_blank">Play now →</a>
+Free, five minutes, all in your browser. You're the CEO of a game studio, and every mod is cursed: balance five studio meters through 100+ scenarios and chase one of six endings without collapsing the company. <a href="/category/simulation">Play now →</a>
 
 ### 14. BooDash 🆕
 
-A friendly Halloween candy chase: collect every sweet before time runs out, dodge the hunters, and unlock little characters with their own skills. Free in your browser, no download, no account. <a href="https://slowden.com/games/boodash-2tumi/" rel="nofollow" target="_blank">Play now →</a>
+A friendly Halloween candy chase: collect every sweet before time runs out, dodge the hunters, and unlock little characters with their own skills. Free in your browser, no download, no account. <a href="/category/casual">Play now →</a>
 
 ### 15. Pumpkin Swarm 🆕
 
-Arcade survival: you're a jack-o'-lantern, your candle shoots on its own, and the graveyard wants you dead. Short sessions, global leaderboard, free in your browser. <a href="https://deadgamefactory.com/" rel="nofollow" target="_blank">Play now →</a>
+Arcade survival: you're a jack-o'-lantern, your candle shoots on its own, and the graveyard wants you dead. Short sessions, global leaderboard, free in your browser. <a href="/category/horror">Play now →</a>
 
 ## Still hungry for scares?
 
