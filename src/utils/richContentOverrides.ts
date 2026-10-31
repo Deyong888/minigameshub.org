@@ -26,6 +26,7 @@ import batch5Overrides from '../data/rich-content-overrides-b5.json';
 import batch6Overrides from '../data/rich-content-overrides-b6.json';
 import batch7Overrides from '../data/rich-content-overrides-b7.json';
 import batch8Overrides from '../data/rich-content-overrides-b8.json';
+import batch9Overrides from '../data/rich-content-overrides-b9.json';
 
 const table: Record<string, string> = {
   ...(baseOverrides as Record<string, string>),
@@ -37,6 +38,7 @@ const table: Record<string, string> = {
   ...(batch6Overrides as Record<string, string>),
   ...(batch7Overrides as Record<string, string>),
   ...(batch8Overrides as Record<string, string>),
+  ...(batch9Overrides as Record<string, string>),
 };
 
 /** 返回某游戏的人工回填 rich_content(去空白后),没有则返回 undefined。 */
