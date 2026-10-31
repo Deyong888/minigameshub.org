@@ -7,8 +7,8 @@
  * 独立文件 + 三处合并才能在 refetch 后存活。
  *
  * 分片规则(Top500 分批放行,2026-10-21 起):基础文件保持不动,后续批次
- * 依次写入 `src/data/rich-content-overrides-b1.json`、`-b2.json` ……,
- * 并在下方登记导入合并。合并顺序:基础 < b1 < b2 < b3 < b4(同 key 时后者
+ * 依次写入 `src/data/rich-content-overrides-b1.json`、`-b2.json` ……`-b9.json`,
+ * 并在下方登记导入合并。合并顺序:基础 < b1 < … < b8 < b9(同 key 时后者
  * 覆盖前者;正常情况下各批次选品不重复,不会发生覆盖)。新增批次时只需
  * 加一个分片文件 + 一行导入。
  *
@@ -22,6 +22,7 @@ import batch1Overrides from '../data/rich-content-overrides-b1.json';
 import batch2Overrides from '../data/rich-content-overrides-b2.json';
 import batch3Overrides from '../data/rich-content-overrides-b3.json';
 import batch4Overrides from '../data/rich-content-overrides-b4.json';
+import batch5Overrides from '../data/rich-content-overrides-b5.json';
 
 const table: Record<string, string> = {
   ...(baseOverrides as Record<string, string>),
@@ -29,6 +30,7 @@ const table: Record<string, string> = {
   ...(batch2Overrides as Record<string, string>),
   ...(batch3Overrides as Record<string, string>),
   ...(batch4Overrides as Record<string, string>),
+  ...(batch5Overrides as Record<string, string>),
 };
 
 /** 返回某游戏的人工回填 rich_content(去空白后),没有则返回 undefined。 */
