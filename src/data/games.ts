@@ -321,3 +321,59 @@ export const christmasHubGames: Game[] = [
   ...christmasPuzzleGames,
   ...winterSportsGames,
 ];
+// 9. Thanksgiving & Harvest Games (seasonal hub: /thanksgiving-games/, evergreen URL)
+// Curated by GamePix ID (all 28 verified live on minigameshub.org 2026-11-02).
+// pickMany drops IDs missing from the feed, so a game only renders while it
+// actually exists in the catalog — no dead links, same guarantee as the
+// Christmas pattern above.
+const pickGameById = (id: string): Game | undefined => allGamePixGames.find((g) => g.id === id);
+const pickGamesByIds = (ids: string[]): Game[] =>
+  ids.map(pickGameById).filter((g): g is Game => Boolean(g));
+
+export const thanksgivingHarvestGames: Game[] = pickGamesByIds([
+  'TDR5Y7', // Turkey Adventure Runner
+  'I70S0', // Thanksgiving Squad Style
+  'TPROT', // Solitaire TriPeaks Harvest
+  '4IRTR', // Autumn Solitaire Tripeaks
+  'EET319', // Hoppy Harvest
+  'NA2TP0', // Pumpkin Feast
+  '11IPU', // Fall Pumpkin
+  'U0PIK', // Flappy Pumpkin
+]);
+
+export const thanksgiving2PlayerGames: Game[] = pickGamesByIds([
+  'UR833', // Drunken Duel
+  '2M6AAL', // Red Hands - 2 Player Game
+  '14B43', // Block vs Block II
+  'S33A3', // 12 MiniBattles - Two Players
+  'N9964', // TankBattle 2 Player
+  'A1A7E', // 4 Games For 2 Player
+]);
+
+export const thanksgivingCookingGames: Game[] = pickGamesByIds([
+  '6N76M6', // Cooking Madness
+  '67ANOO', // Cooking Fast 4: Steak
+  'K4576', // Pizza Maker food Cooking Games
+  'OP1Z01', // Cooking Blaze Pro
+  'TCCC44', // Taste City
+  'OMAH5M', // Marmot Diner Dash
+]);
+
+export const thanksgivingClassicsGames: Game[] = pickGamesByIds([
+  '1EE7L', // Ludo Legend
+  '77A7L', // 4 Colors Multiplayer
+  '75C06', // Checkers Legend
+  'HECE6', // Chess Master 3D
+  'PARUP', // Tic Tac Toe Multiplayer X O
+  'NNNN2U', // UNO Online
+  '1', // 2048
+  'IE2IIN', // Bubble Shooter
+]);
+
+// Combined picks for the hub page schema (harvest + 2-player + cooking + classics)
+export const thanksgivingHubGames: Game[] = [
+  ...thanksgivingHarvestGames,
+  ...thanksgiving2PlayerGames,
+  ...thanksgivingCookingGames,
+  ...thanksgivingClassicsGames,
+];
