@@ -1,7 +1,7 @@
 ---
 publishDate: 2026-11-04T00:00:00Z
 title: 10 Cozy Christmas Browser Games to Play in December 2026 (Free, No Download)
-excerpt: The 10 coziest free Christmas browser games for December 2026 — Santa runners, gift-matching puzzles, holiday dress-up, and snowy arcade fun. Every game plays instantly in your browser: no downloads, no sign-up, Chromebook-ready.
+excerpt: "The 10 coziest free Christmas browser games for December 2026 — Santa runners, gift-matching puzzles, holiday dress-up, and snowy arcade fun. Every game plays instantly in your browser: no downloads, no sign-up, Chromebook-ready."
 category: Browser Games
 tags:
   - christmas games
