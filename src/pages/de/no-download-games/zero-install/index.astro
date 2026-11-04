@@ -1,0 +1,107 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Spiele ohne Installation – Keine Einrichtung nötig | MiniGamesHub',
+  description: 'Genieße hochwertige Spiele, ohne etwas auf deinem Computer zu installieren. Spiele ohne Installation halten dein Gerät sauber und sicher.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Spiele ohne Installation",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/de/no-download-games/zero-install",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/de/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/de/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Start
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/de/no-download-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">Ohne Download</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Ohne Installation</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Spiele ohne Installation
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Halte dein Gerät sauber. Spiel einfach.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Warum ohne Installation wählen?</h3>
+      <p>Installierte Spiele müllen deine Festplatte voll und bergen Sicherheitsrisiken. Spiele ohne Installation laufen komplett in der Sandbox deines Browsers – dein Computer bleibt sicher und dein Speicher frei.</p>
+      <ul>
+        <li><strong>Sicherheit:</strong> Keine ausführbaren Dateien auf deinem System.</li>
+        <li><strong>Speicher:</strong> Spare Gigabytes auf deiner Festplatte.</li>
+        <li><strong>Sauber:</strong> Keine Dateireste oder Registry-Einträge, wenn du fertig bist.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Halte deinen PC sauber mit Spielen ohne Installation</h2>
+      <p>
+        Jede Software, die du installierst, macht deinen Computer mit der Zeit langsamer. Spiele ohne Installation sind die Lösung. Sie laufen komplett in der sicheren Umgebung deines Webbrowsers und hinterlassen keine Spuren auf deinem System, sobald du den Tab schließt. Das ist die sauberste und sicherste Art, Spiele auf deinem privaten oder Arbeitscomputer zu genießen.
+      </p>
+      
+      <h3>Sicherheits- und Performance-Vorteile</h3>
+      <ul>
+        <li><strong>Sandbox-Umgebung:</strong> Browser-Spiele können nicht auf deine persönlichen Dateien oder Systemeinstellungen zugreifen.</li>
+        <li><strong>Keine Hintergrundprozesse:</strong> Anders als installierte Spiele starten diese keine Updater oder Launcher im Hintergrund.</li>
+        <li><strong>Immer aktuell:</strong> Du spielst immer die neueste Version vom Server – ganz ohne manuelle Patches.</li>
+      </ul>
+      
+      <h3>Ideal für schwache Hardware</h3>
+      <p>
+        Da diese Spiele auf der Browser-Engine laufen, sind sie oft deutlich leichter als eigenständige Apps – perfekt für ältere Laptops oder Chromebooks.
+      </p>
+    </div>
+  </section>
+</Layout>

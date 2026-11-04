@@ -1,0 +1,105 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Jogos instantâneos – Sem download, sem espera',
+  description: 'Pule direto para a ação com nossos jogos instantâneos. Sem download, sem instalação, é só clicar e jogar. Perfeito para pausas rápidas.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jogos instantâneos",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/pt/no-download-games/instant-play",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/pt/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/pt/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/pt/no-download-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">Jogos sem download</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Jogo instantâneo</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Jogos instantâneos
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Zero tempo de espera. Diversão máxima. Clique e jogue na hora.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-green-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>O que são os jogos instantâneos?</h3>
+      <p>Os jogos instantâneos foram feitos para a velocidade. Carregam em segundos e não precisam de nenhuma instalação nem espaço em disco. Você tendo 5 minutos ou uma hora, esses jogos estão prontos quando você estiver.</p>
+      <ul>
+        <li><strong>Clique e jogue:</strong> Não precisa de cadastro nem configuração.</li>
+        <li><strong>Economize armazenamento:</strong> Mantenha seu dispositivo limpo e rápido.</li>
+        <li><strong>Jogue em qualquer lugar:</strong> Acesse seus jogos favoritos de qualquer computador.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>A melhor experiência de jogo instantâneo</h2>
+      <p>
+        Tempo é ouro, e a gente acha que você não deveria desperdiçá-lo olhando para barras de progresso. Nossos jogos instantâneos são escolhidos para diversão imediata. Aproveitando a transmissão web moderna e o carregamento eficiente de recursos, esses jogos começam quase assim que você clica no link.
+      </p>
+      
+      <h3>Perfeito para pausas rápidas</h3>
+      <p>
+        Tem cinco minutos antes de uma reunião? Esperando terminar uma renderização? Os jogos instantâneos são a forma perfeita de preencher aqueles buraquinhos do seu dia com algo divertido e envolvente.
+      </p>
+      <ul>
+        <li><strong>Baixa latência:</strong> Otimizado para tempos de resposta rápidos.</li>
+        <li><strong>Cache do navegador:</strong> Os jogos que você mais joga carregam ainda mais rápido.</li>
+        <li><strong>Sem compromisso:</strong> Jogue alguns minutos e feche a aba sem culpa.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
