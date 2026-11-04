@@ -1,6 +1,12 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    { "source": "/es/zh/:path*", "destination": "/zh/:path*", "permanent": true },
+    { "source": "/zh/es/:path*", "destination": "/es/:path*", "permanent": true },
+    { "source": "/game/body-drop-3d", "destination": "/game/36DO1-body-drop-3d", "permanent": true },
+    { "source": "/game/stickman-hook-online", "destination": "/game/I5S7H-stickman-hook-online", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",
