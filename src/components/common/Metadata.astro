@@ -29,19 +29,19 @@ const currentLocale = Astro.currentLocale || I18N?.language || 'en';
 const currentPath = Astro.url.pathname;
 
 // og:locale 必须与页面语言一致(此前被 config 中硬编码的 en_US 覆盖)
-const ogLocaleMap: Record<string, string> = { en: 'en_US', es: 'es_ES', zh: 'zh_CN' };
+const ogLocaleMap: Record<string, string> = { en: 'en_US', es: 'es_ES', zh: 'zh_CN', de: 'de_DE', pt: 'pt_BR' };
 const ogLocale = ogLocaleMap[currentLocale] || 'en_US';
 
 // Generate hreflang alternates for every configured locale + x-default.
-// Locales mirror astro.config.ts i18n.locales (en/es/zh); default locale has no path prefix.
+// Locales mirror astro.config.ts i18n.locales (en/es/zh/de/pt); default locale has no path prefix.
 // 注意：astrowind 的 I18N 配置没有 locales 字段，且 Astro 全局类型无 Astro.locales，
 // 故直接对齐 astro.config.ts 的硬编码列表。
-const locales: string[] = ['en', 'es', 'zh'];
+const locales: string[] = ['en', 'es', 'zh', 'de', 'pt'];
 const getAlternates = () => {
     const alternates: { href: string; hreflang: string }[] = [];
 
     // Strip any existing locale prefix to get the language-neutral base path.
-    const basePath = currentPath.replace(/^\/(?:es|zh)(?=\/|$)/, '') || '/';
+    const basePath = currentPath.replace(/^\/(?:es|zh|de|pt)(?=\/|$)/, '') || '/';
 
     const getLocalePath = (locale: string) => {
         if (locale === 'en') return basePath === '/' ? '/' : basePath;

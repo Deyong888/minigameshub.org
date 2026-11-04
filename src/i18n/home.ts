@@ -2,7 +2,7 @@
 // Structure is defined once in src/components/home/HomePage.astro; only the
 // strings below differ per language. Edit copy here to update all locales at once.
 
-export type Lang = 'en' | 'es' | 'zh';
+export type Lang = 'en' | 'es' | 'zh' | 'de' | 'pt';
 
 export interface FaqItem {
   title: string;
@@ -398,6 +398,346 @@ export const home: Record<Lang, HomeCopy> = {
           title: '¿Puedo jugar juegos de soccer gratis?',
           description:
             '¡Absolutamente! Todos los juegos de soccer y fútbol en MiniGamesHub son 100% gratis. Sin descargas, sin registros, ¡solo diversión de fútbol instantánea en tu navegador!',
+        },
+      ],
+    },
+  },
+
+  de: {
+    metadata: {
+      title: 'Spiele +3.900 Gratis-Spiele online',
+      description:
+        'Spiele +3.900 Gratis-Spiele online sofort in deinem Browser – Arcade, Puzzle, Rennspiele, Sport und mehr. Keine Downloads, keine Registrierungen. Jede Woche neue Spiele.',
+    },
+    hero: {
+      badge: '🆕 Neue Spiele jede Woche',
+      titleLead: 'Spiele ',
+      count: '+3.900',
+      titleTrail: ' Gratis-Spiele sofort',
+      subtext:
+        'Arcade-Klassiker, Gehirn-Puzzles, entspannende Auszeiten: alles spielbar in deinem Browser. <strong>Keine Downloads, keine Registrierungen, nur Spaß.</strong>',
+    },
+    nav: [
+      { route: 'mini-games', label: 'Minispiele' },
+      { route: 'small-games', label: 'Kleine Spiele' },
+      { route: 'relax-games', label: 'Entspannungsspiele' },
+      { route: 'bored-games', label: 'Spiele gegen Langeweile' },
+      { route: 'arcade-games', label: 'Arcade' },
+      { route: 'browser-games', label: 'Browser' },
+      { route: 'html5-games', label: 'HTML5' },
+      { route: 'new-games', label: '🆕 Neue Spiele' },
+    ],
+    newBanner: {
+      badge: 'Frisch hinzugefügt',
+      title: '🆕 Neue Spiele jede Woche',
+      text: 'Wir haben auf <strong>+3.900 Gratis-Spiele</strong> erweitert – die neuesten Titel ganz oben! Tauch ein in die frischesten Releases, alle gratis und sofort in deinem Browser spielbar.',
+      cta: 'Neue Spiele ansehen',
+    },
+    newGrid: {
+      eyebrow: 'Frisch hinzugefügt',
+      title: 'Neueste Releases',
+      subtitle: 'Die frischesten Gratis-Spiele, regelmäßig aktualisiert.',
+      viewAll: 'Alle Neuen ansehen',
+    },
+    mini: {
+      label: 'Minispiele',
+      title: 'Schneller Spaß jederzeit',
+      subtitle: 'Kurze, süchtig machende Spiele – perfekt für Pausen und schnelle Sessions.',
+      viewAll: 'Alle ansehen',
+      subs: [
+        { heading: 'Arcade', desc: 'Arcade-Spaß im Mini-Format.' },
+        { heading: 'Puzzle', desc: 'Mentale Herausforderungen, die deinen Kopf fit halten.' },
+        { heading: 'Action', desc: 'Rasante Action für Adrenalin-Junkies.' },
+      ],
+    },
+    small: {
+      label: 'Kleine Spiele',
+      title: 'Großer Spaß in kleinen Paketen',
+      subtitle: 'Leichte HTML5-Spiele, die auf jedem Gerät problemlos laufen.',
+      viewAll: 'Alle ansehen',
+      subs: [
+        { heading: 'Casual', desc: 'Entspannende kleine Spiele zum Abschalten.' },
+        { heading: 'Schnell', desc: 'Spiele unter 5 Minuten für volle Terminkalender.' },
+        { heading: 'Kurz', desc: 'Sofortige Befriedigung in jeder Session.' },
+      ],
+    },
+    relax: {
+      label: 'Entspannungsspiele',
+      title: 'Entspann dich und bau Stress ab',
+      subtitle: 'Ruhige, therapeutische Spiele, die deinen Stress schmelzen lassen.',
+      viewAll: 'Alle ansehen',
+      subs: [
+        { heading: 'Beruhigend', desc: 'Entspannende Spiele gegen Ängste.' },
+        { heading: 'Stressabbau', desc: 'Spiele, gemacht um Sorgen schmelzen zu lassen.' },
+        { heading: 'Casual', desc: 'Druckfreie Spiele für friedliche Sessions.' },
+      ],
+    },
+    bored: {
+      label: 'Spiele gegen Langeweile',
+      title: 'Besiege Langeweile jederzeit',
+      subtitle: 'Kuratierte Sammlungen für jede Lage: Arbeit, Schule oder Zuhause.',
+      viewAll: 'Alle ansehen',
+      cards: [
+        { title: 'Langeweile bei der Arbeit', note: 'Chef-Taste inklusive' },
+        { title: 'Langeweile in der Schule', note: 'Entsperrt und Chromebook-ready' },
+        { title: 'Warten in der Schlange', note: 'Schneller Handyspaß' },
+      ],
+    },
+    more: {
+      heading: 'Entdecke mehr Kategorien',
+      subtitle: 'Tausende Spiele, nur für dich sortiert.',
+      cards: [
+        { route: 'arcade-games', title: 'Arcade-Spiele', desc: 'Klassische und moderne Arcade-Action' },
+        { route: 'browser-games', title: 'Browser-Spiele', desc: 'Spiel in Chrome, Firefox, Safari' },
+        { route: 'no-download-games', title: 'Spiele ohne Download', desc: 'Instant-Spiel, null Wartezeit' },
+        { route: 'html5-games', title: 'HTML5-Spiele', desc: 'Moderne Technik, flüssiges Gameplay' },
+      ],
+      featured: [
+        { heading: 'HTML5-Browser-Spiele', desc: 'Moderne Spiele für jedes Gerät.' },
+        { heading: 'Mobilfreundlich', desc: 'Optimiert für Touchscreens.' },
+      ],
+    },
+    features: [
+      { value: '+3.900', label: 'Gratis-Spiele' },
+      { value: '+20', label: 'Kategorien' },
+      { value: 'Kein Download', label: 'Instant-Spiel' },
+      { value: 'Alle Geräte', label: 'Desktop & Mobil' },
+    ],
+    seo: {
+      hero: {
+        h2: 'Entdecke die besten gratis Minispiele online',
+        p: 'Willkommen bei <strong>MiniGamesHub</strong>, deinem Top-Ziel für <strong>gratis Online-Minispiele</strong> und kleine Spiele, die großen Spaß in kleinen Paketen liefern. Mit über +3.900 <strong>HTML5-Spielen</strong> in unserer Sammlung gehen dir die spannenden Spiele für direkt in deinem Browser nie aus: keine Downloads, keine Installationen, keine Registrierungen!',
+      },
+      why: {
+        h3: 'Warum Minispiele wählen?',
+        p: '<strong>Minispiele</strong> und <strong>kleine Spiele</strong> sind für kurze 5- bis 15-Minuten-Sessions gemacht – ideal für:',
+        list: [
+          'Schnelle Arbeitspausen, um deinen Kopf aufzuladen',
+          'Freizeit in der Schule zwischen den Stunden',
+          'Warten in Schlangen oder unterwegs',
+          'Abschalten nach einem langen, stressigen Tag',
+        ],
+      },
+      football: {
+        h3: '🎮 Fußball- und Soccer-Spiel-Sammlung',
+        p: 'Suchst du das perfekte <strong>Online-Fußballspiel</strong>? Unsere Sport-Kategorie enthält:',
+        list: [
+          'Soccer-Spiele internationaler Turniere',
+          'Elfmeter-Herausforderungen',
+          'Fußballmanager-Simulationen',
+          'Fußballspiele im Arcade-Stil',
+        ],
+      },
+    },
+    faq: {
+      title: 'Häufige Fragen',
+      subtitle: 'Über Minispiele, Browser-Spiele und wie die Plattform funktioniert',
+      tagline: 'FAQs',
+      items: [
+        {
+          title: 'Was sind Minispiele?',
+          description:
+            'Minispiele sind kurze Casual-Spiele für schnelle Sessions, typischerweise 5–10 Minuten. Perfekt für alle mit wenig Zeit, die schnelles Entertainment ohne Verpflichtungen wollen.',
+        },
+        {
+          title: 'Was ist der Unterschied zwischen Minispielen und kleinen Spielen?',
+          description:
+            'Minispiele betonen kurze Spielzeit, während kleine Spiele leichte Spiele mit kleinen Dateien meinen. Bei MiniGamesHub bekommst du beides: schnell zu spielen und sparsam im Speicher!',
+        },
+        {
+          title: 'Was sind HTML5-Spiele?',
+          description:
+            'HTML5-Spiele sind Browser-Spiele auf Basis moderner Webtechnik. Sie laufen auf jedem Gerät mit Browser: keine Apps, keine Downloads, Instant-Spiel!',
+        },
+        {
+          title: 'Kann ich Arcade-Spiele gratis spielen?',
+          description:
+            'Ja! Alle Arcade-Spiele auf MiniGamesHub sind 100 % gratis. Spiele klassische und moderne Arcade-Spiele sofort in deinem Browser.',
+        },
+        {
+          title: 'Was sind Entspannungsspiele?',
+          description:
+            'Entspannungsspiele sind gemacht, um Stress abzubauen und ein beruhigendes Erlebnis zu bieten. Friedliche, druckfreie Spiele – perfekt, um nach einem langen Tag abzuschalten.',
+        },
+        {
+          title: 'Was sind die besten Spiele gegen Langeweile?',
+          description:
+            'Die besten Spiele gegen Langeweile hängen von deiner Lage ab! Für die Arbeit: schnelle Minispiele mit Chef-Taste. Für Zuhause: immersive Arcade-Spiele. Gegen Stress: beruhigende Entspannungsspiele. Entdecke unsere Kategorien und finde dein perfektes Spiel!',
+        },
+        {
+          title: 'Kann ich Soccer-Spiele gratis spielen?',
+          description:
+            'Absolut! Alle Soccer- und Fußballspiele auf MiniGamesHub sind 100 % gratis. Keine Downloads, keine Registrierungen – nur sofortiger Fußballspaß in deinem Browser!',
+        },
+      ],
+    },
+  },
+
+  pt: {
+    metadata: {
+      title: 'Jogue +3.900 Jogos Grátis Online',
+      description:
+        'Jogue +3.900 jogos grátis online, na hora no seu navegador: arcade, quebra-cabeças, corrida, esportes e mais. Sem downloads, sem cadastro. Jogos novos toda semana!',
+    },
+    hero: {
+      badge: '🆕 Jogos Novos Toda Semana',
+      titleLead: 'Jogue ',
+      count: '+3.900',
+      titleTrail: ' Jogos Grátis na Hora',
+      subtext:
+        'Clássicos arcade, quebra-cabeças para o cérebro, escapes relaxantes: tudo jogável no seu navegador. <strong>Sem downloads, sem cadastro, só diversão.</strong>',
+    },
+    nav: [
+      { route: 'mini-games', label: 'Minijogos' },
+      { route: 'small-games', label: 'Jogos Pequenos' },
+      { route: 'relax-games', label: 'Jogos Relaxantes' },
+      { route: 'bored-games', label: 'Jogos contra o Tédio' },
+      { route: 'arcade-games', label: 'Arcade' },
+      { route: 'browser-games', label: 'Navegador' },
+      { route: 'html5-games', label: 'HTML5' },
+      { route: 'new-games', label: '🆕 Jogos Novos' },
+    ],
+    newBanner: {
+      badge: 'Adicionados Recentemente',
+      title: '🆕 Jogos Novos Toda Semana',
+      text: 'Acabamos de expandir para <strong>+3.900 jogos grátis</strong>, com os títulos mais novos no topo! Mergulhe nos lançamentos mais recentes, todos grátis e jogáveis na hora no seu navegador.',
+      cta: 'Ver Jogos Novos',
+    },
+    newGrid: {
+      eyebrow: 'Adicionados Recentemente',
+      title: 'Últimos Lançamentos',
+      subtitle: 'Os jogos grátis mais fresquinhos, atualizados regularmente.',
+      viewAll: 'Ver Todos os Novos',
+    },
+    mini: {
+      label: 'Minijogos',
+      title: 'Diversão Rápida a Qualquer Hora',
+      subtitle: 'Jogos curtos e viciantes, perfeitos para pausas e sessões rápidas.',
+      viewAll: 'Ver Todos',
+      subs: [
+        { heading: 'Arcade', desc: 'Diversão arcade clássica em formato mini.' },
+        { heading: 'Puzzle', desc: 'Desafios mentais para manter sua mente afiada.' },
+        { heading: 'Ação', desc: 'Emoção em ritmo acelerado para caçadores de adrenalina.' },
+      ],
+    },
+    small: {
+      label: 'Jogos Pequenos',
+      title: 'Diversão Grande em Pacotes Pequenos',
+      subtitle: 'Jogos HTML5 leves que rodam lisos em qualquer dispositivo.',
+      viewAll: 'Ver Todos',
+      subs: [
+        { heading: 'Casual', desc: 'Jogos pequenos relaxantes para desligar.' },
+        { heading: 'Rápido', desc: 'Jogos de menos de 5 minutos para agendas lotadas.' },
+        { heading: 'Curto', desc: 'Gratificação instantânea em cada sessão.' },
+      ],
+    },
+    relax: {
+      label: 'Jogos Relaxantes',
+      title: 'Relaxe e Alivie o Estresse',
+      subtitle: 'Jogos calmos e terapêuticos para derreter seu estresse.',
+      viewAll: 'Ver Todos',
+      subs: [
+        { heading: 'Calmantes', desc: 'Jogos relaxantes para reduzir a ansiedade.' },
+        { heading: 'Alívio do Estresse', desc: 'Jogos feitos para derreter as preocupações.' },
+        { heading: 'Casual', desc: 'Jogos sem pressão para sessões tranquilas.' },
+      ],
+    },
+    bored: {
+      label: 'Jogos contra o Tédio',
+      title: 'Vença o Tédio a Qualquer Hora',
+      subtitle: 'Coleções curadas para cada situação: trabalho, escola ou casa.',
+      viewAll: 'Ver Todos',
+      cards: [
+        { title: 'Tédio no Trabalho', note: 'Tecla do chefe inclusa' },
+        { title: 'Tédio na Escola', note: 'Desbloqueado e pronto para Chromebook' },
+        { title: 'Esperando na Fila', note: 'Diversão rápida no celular' },
+      ],
+    },
+    more: {
+      heading: 'Explore Mais Categorias',
+      subtitle: 'Milhares de jogos organizados só para você.',
+      cards: [
+        { route: 'arcade-games', title: 'Jogos Arcade', desc: 'Ação arcade clássica e moderna' },
+        { route: 'browser-games', title: 'Jogos de Navegador', desc: 'Jogue no Chrome, Firefox, Safari' },
+        { route: 'no-download-games', title: 'Jogos sem Download', desc: 'Jogo instantâneo, zero espera' },
+        { route: 'html5-games', title: 'Jogos HTML5', desc: 'Tecnologia moderna, jogabilidade fluida' },
+      ],
+      featured: [
+        { heading: 'Jogos de Navegador HTML5', desc: 'Jogos modernos para qualquer dispositivo.' },
+        { heading: 'Amigável para Celular', desc: 'Otimizado para telas de toque.' },
+      ],
+    },
+    features: [
+      { value: '+3.900', label: 'Jogos Grátis' },
+      { value: '+20', label: 'Categorias' },
+      { value: 'Sem Download', label: 'Jogo Instantâneo' },
+      { value: 'Todos os Dispositivos', label: 'PC e Celular' },
+    ],
+    seo: {
+      hero: {
+        h2: 'Descubra os Melhores Minijogos Grátis Online',
+        p: 'Bem-vindo à <strong>MiniGamesHub</strong>, seu destino principal para <strong>minijogos grátis online</strong> e jogos pequenos que entregam diversão grande em pacotes pequenos. Com mais de +3.900 <strong>jogos HTML5</strong> na nossa coleção, você nunca vai ficar sem jogos emocionantes para jogar direto no seu navegador: sem downloads, sem instalações e sem cadastro!',
+      },
+      why: {
+        h3: 'Por Que Escolher Minijogos?',
+        p: '<strong>Minijogos</strong> e <strong>jogos pequenos</strong> foram feitos para sessões curtas de 5 a 15 minutos, ideais para:',
+        list: [
+          'Pausas rápidas no trabalho para recarregar a mente',
+          'Tempo livre na escola entre as aulas',
+          'Esperando em filas ou no trajeto',
+          'Desligar depois de um dia longo e estressante',
+        ],
+      },
+      football: {
+        h3: '🎮 Coleção de Jogos de Futebol e Soccer',
+        p: 'Procurando o <strong>jogo de futebol online</strong> perfeito? Nossa categoria de esportes inclui:',
+        list: [
+          'Jogos de soccer de torneios internacionais',
+          'Desafios de pênaltis',
+          'Simulações de técnico de futebol',
+          'Partidas de futebol estilo arcade',
+        ],
+      },
+    },
+    faq: {
+      title: 'Perguntas Frequentes',
+      subtitle: 'Sobre minijogos, jogos de navegador e como a plataforma funciona',
+      tagline: 'FAQs',
+      items: [
+        {
+          title: 'O que são minijogos?',
+          description:
+            'Minijogos são jogos curtos e casuais feitos para sessões rápidas, normalmente 5 a 10 minutos. Perfeitos para quem tem pouco tempo e quer entretenimento rápido sem compromisso.',
+        },
+        {
+          title: 'Qual a diferença entre minijogos e jogos pequenos?',
+          description:
+            'Minijogos enfatizam o tempo de jogo curto, enquanto jogos pequenos se referem a jogos leves com arquivos pequenos. Na MiniGamesHub você tem os dois: rápidos de jogar e leves no armazenamento!',
+        },
+        {
+          title: 'O que são jogos HTML5?',
+          description:
+            'Jogos HTML5 são jogos de navegador feitos com tecnologia web moderna. Funcionam em qualquer dispositivo com navegador: sem apps, sem downloads, jogo instantâneo!',
+        },
+        {
+          title: 'Posso jogar jogos arcade grátis?',
+          description:
+            'Sim! Todos os jogos arcade na MiniGamesHub são 100% grátis. Jogue jogos arcade clássicos e modernos na hora no seu navegador.',
+        },
+        {
+          title: 'O que são jogos relaxantes?',
+          description:
+            'Jogos relaxantes foram feitos para reduzir o estresse e oferecer uma experiência calmante. São jogos tranquilos e sem pressão, perfeitos para desligar depois de um dia longo.',
+        },
+        {
+          title: 'Quais são os melhores jogos para quando estou entediado?',
+          description:
+            'Os melhores jogos para o tédio dependem da sua situação! Para o trabalho: minijogos rápidos com tecla do chefe. Para casa: jogos arcade imersivos. Para o estresse: jogos relaxantes calmantes. Explore nossas categorias e encontre seu jogo perfeito!',
+        },
+        {
+          title: 'Posso jogar jogos de soccer grátis?',
+          description:
+            'Com certeza! Todos os jogos de soccer e futebol na MiniGamesHub são 100% grátis. Sem downloads, sem cadastro, só diversão instantânea de futebol no seu navegador!',
         },
       ],
     },

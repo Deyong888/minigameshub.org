@@ -109,7 +109,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap({
-      // Exclude noindex game pages across all locales (en/es/zh) to focus crawl budget
+      // Exclude noindex game pages across all locales (en/es/zh/de/pt) to focus crawl budget
       // on quality URLs. Page format: /game/{id}-{slug} (slug = namespace || id).
       filter: (page: string) => {
         const pathname = page
@@ -169,7 +169,7 @@ export default defineConfig({
 
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'es', 'zh'],
+    locales: ['en', 'es', 'zh', 'de', 'pt'],
     routing: {
       prefixDefaultLocale: false,
     },
