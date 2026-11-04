@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { boredAtWorkGames } from '~/data/games';
+
+const metadata = {
+  title: 'Jogos para jogar no trabalho – Jogue escondido no escritório',
+  description: 'A melhor coleção de jogos de navegador para quando você está entediado no trabalho. Sem download, com tecla do chefe inclusa!',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jogos para jogar no trabalho",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/pt/bored-games/bored-at-work",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": boredAtWorkGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/pt/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/pt/bored-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Jogos contra o tédio
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">No trabalho</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-8 md:mb-12 font-heading text-center">
+      Jogos para jogar no trabalho
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Minijogos discretos perfeitos para pausas no escritório. Rápidos de jogar, fáceis de esconder.
+    </p>
+
+    <GameGrid games={boredAtWorkGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Diversão discreta para o escritório</h2>
+      <p>
+        Todo mundo precisa de uma pausa mental no trabalho para recarregar as energias. Nossa coleção de jogos para o escritório foi feita para ser discreta, silenciosa e rápida de fechar se o chefe se aproximar. Aumente sua produtividade com pausas curtas e estratégicas com esses jogos de navegador.
+      </p>
+      <h3>Recursos amigáveis para o trabalho</h3>
+      <ul>
+        <li><strong>Tecla do chefe:</strong> Feche ou oculte o jogo na hora com um atalho de teclado.</li>
+        <li><strong>Silenciosos por padrão:</strong> Muitos jogos começam sem som para evitar situações constrangedoras.</li>
+        <li><strong>Partidas rápidas:</strong> Perfeitos para pausas de 5 minutos entre tarefas.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

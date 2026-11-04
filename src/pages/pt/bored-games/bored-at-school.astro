@@ -1,0 +1,93 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { boredAtSchoolGames } from '~/data/games';
+
+const metadata = {
+  title: 'Jogos para jogar na escola – Jogos desbloqueados',
+  description: 'Jogue jogos desbloqueados na escola. Divertidos, educativos e seguros para o ambiente escolar.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jogos para jogar na escola",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/pt/bored-games/bored-at-school",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": boredAtSchoolGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/pt/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/pt/bored-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Jogos contra o tédio
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Na escola</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-8 md:mb-12 font-heading text-center">
+      Jogos para jogar na escola
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Jogos liberados para a escola que funcionam em Chromebooks e redes escolares.
+    </p>
+
+    <GameGrid games={boredAtSchoolGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Jogos desbloqueados para a escola</h2>
+      <p>
+        A gente sabe como o tempo livre na escola pode ser chato. Nossa coleção de jogos desbloqueados foi selecionada para funcionar em redes escolares e Chromebooks, com diversão segura e educativa. Seja no intervalo ou depois de terminar a tarefa mais cedo, esses jogos são a forma perfeita de passar o tempo.
+      </p>
+      <h3>Por que jogos para a escola?</h3>
+      <p>
+        Feitos pensando nos estudantes e no ambiente educacional.
+      </p>
+      <ul>
+        <li><strong>Desbloqueados:</strong> Otimizados para passar pelos firewalls escolares mais comuns.</li>
+        <li><strong>Educativos:</strong> Muitos títulos melhoram a lógica, a estratégia e as habilidades de resolução de problemas.</li>
+        <li><strong>Sem instalação:</strong> Jogue direto no navegador sem precisar baixar nada.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

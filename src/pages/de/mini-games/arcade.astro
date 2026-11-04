@@ -1,0 +1,93 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { miniArcadeGames } from '~/data/games';
+
+const metadata = {
+  title: 'Arcade-Minispiele – Spiele gratis online',
+  description: 'Spiele die besten Online-Arcade-Minispiele. Klassischer Spaß, Instant-Spiel, keine Downloads.',
+  // 与 /de/arcade-games 意图重复,canonical 收敛到主枢纽页,避免站内关键词蚕食
+  canonical: 'https://minigameshub.org/de/arcade-games',
+  // canonical 已指向他页,不再输出 hreflang(避免信号冲突)
+  skipHreflang: true,
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Arcade-Minispiele",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/de/mini-games/arcade",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": miniArcadeGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/de/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/de/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Start
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/de/mini-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Minispiele
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Arcade</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Arcade-Minispiele
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Minispiele im klassischen und modernen Arcade-Stil.
+    </p>
+    <GameGrid games={miniArcadeGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Arcade-Spaß für die Hosentasche</h2>
+      <p>
+        Erlebe den Nervenkitzel klassischer Arcades – ganz ohne Münzen. Unsere Arcade-Minispiele fangen die Essenz von Retro- und modernen Spielen in schnellen Formaten ein.
+      </p>
+      <h3>Arcade-Features</h3>
+      <ul>
+        <li><strong>Highscores:</strong> Kämpfe um Platz eins.</li>
+        <li><strong>Einfaches Gameplay:</strong> Leichte Steuerung, schwer zu meistern.</li>
+        <li><strong>Schnelle Action:</strong> Perfekt für kurze Pausen.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
