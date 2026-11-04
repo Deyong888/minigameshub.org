@@ -1,0 +1,119 @@
+---
+import Features3 from '~/components/widgets/Features3.astro';
+import Hero from '~/components/widgets/Hero.astro';
+import Stats from '~/components/widgets/Stats.astro';
+import Steps2 from '~/components/widgets/Steps2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Sobre nós',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Hero Widget ******************* -->
+
+  <Hero
+    tagline="Sobre nós"
+    image={{
+      src: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+      alt: 'Imagem da MiniGamesHub',
+    }}
+  >
+    <Fragment slot="title">
+      Melhore seu tempo livre com nossos <br />
+      <span class="text-accent dark:text-white"> Minijogos incríveis</span>
+    </Fragment>
+
+    <Fragment slot="subtitle">
+      A MiniGamesHub é o seu destino número um contra o tédio. Oferecemos uma seleção curada dos melhores jogos de navegador, HTML5 e minijogos que você pode jogar na hora, sem downloads. Seja no trabalho, na escola ou em casa.
+    </Fragment>
+  </Hero>
+
+  <!-- Stats Widget ****************** -->
+
+  <Stats
+    title="Estatísticas sobre nós"
+    stats={[
+      { title: 'Jogos', amount: '+5000' },
+      { title: 'Usuários', amount: '1M+' },
+      { title: 'Categorias', amount: '20+' },
+      { title: 'Diversão', amount: '∞' },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    title="Nossas categorias principais"
+    subtitle="Explore uma grande variedade de gêneros feitos para todo tipo de jogador."
+    columns={3}
+    isBeforeContent={true}
+    items={[
+      {
+        title: 'Tédio no trabalho',
+        description:
+          'Jogos discretos, quebra-cabeças rápidos e jogos de estratégia perfeitos para uma pausa de 5 minutos.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Tédio na escola',
+        description:
+          'Jogos desbloqueados e educativos que funcionam em Chromebooks e redes escolares.',
+        icon: 'tabler:school',
+      },
+      {
+        title: 'Minijogos',
+        description:
+          'Ação rápida, arcade e jogos casuais para diversão instantânea.',
+        icon: 'tabler:device-gamepad',
+      },
+    ]}
+  />
+
+  <!-- Features3 Widget ************** -->
+
+  <Features3
+    columns={3}
+    isAfterContent={true}
+    items={[
+      {
+        title: 'Sem downloads',
+        description:
+          'Esqueça instalações demoradas. Todos os nossos jogos rodam direto no seu navegador.',
+        icon: 'tabler:cloud-download',
+      },
+      {
+        title: 'Compatível com celular',
+        description:
+          'Curta seus jogos favoritos em qualquer lugar, no celular ou tablet.',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'Grátis para sempre',
+        description:
+          'Acesso ilimitado a toda a nossa biblioteca de jogos sem custo algum.',
+        icon: 'tabler:coin',
+      },
+    ]}
+  />
+
+  <!-- Steps2 Widget ****************** -->
+
+  <Steps2
+    title="Informações da empresa"
+    subtitle="A MiniGamesHub.org pertence e é operada pela Synthflow Digital LTD."
+    items={[
+      {
+        title: 'Endereço registrado',
+        description: 'Office 16430, 182-184 High Street North, East Ham, London, E6 2JA',
+        icon: 'tabler:map-pin',
+      },
+      {
+        title: 'E-mail de contato',
+        description: 'support@synthflowdigital.com',
+        icon: 'tabler:mail',
+      },
+    ]}
+  />
+</Layout>

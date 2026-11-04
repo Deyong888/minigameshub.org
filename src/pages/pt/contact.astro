@@ -1,0 +1,74 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroText from '~/components/widgets/HeroText.astro';
+import ContactUs from '~/components/widgets/Contact.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+
+const metadata = {
+  title: 'Contato',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- HeroText Widget ******************* -->
+
+  <HeroText tagline="Contato" title="Vamos nos conectar!" />
+
+  <ContactUs
+    id="form"
+    title="Mande uma mensagem hoje!"
+    subtitle="Para respostas mais rápidas, explore nossa seção de perguntas frequentes. Pode ser que você ache a solução que procura bem ali! Se não, nosso time de suporte vai adorar te ajudar."
+    inputs={[
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Nome',
+      },
+      {
+        type: 'email',
+        name: 'email',
+        label: 'E-mail',
+      },
+    ]}
+    textarea={{
+      label: 'Mensagem',
+    }}
+    disclaimer={{
+      label:
+        'Ao enviar este formulário de contato, você reconhece e concorda com a coleta das suas informações pessoais.',
+    }}
+    description="Nosso time de suporte costuma responder em até 24 horas úteis."
+  />
+
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Estamos aqui para ajudar!"
+    items={[
+      {
+        title: 'Suporte geral',
+        description: `Fale com a gente para dúvidas sobre a navegação no site, jogos que não carregam ou perguntas gerais sobre o funcionamento do site.`,
+      },
+      {
+        title: 'Denunciar um jogo',
+        description:
+          'Encontrou um jogo quebrado ou impróprio? Avise a gente para resolvermos o quanto antes.',
+      },
+      {
+        title: 'Sugestões',
+        description:
+          'Tem uma ideia para melhorar a BoredGames? Quer ver um jogo específico? Conta pra gente!',
+      },
+      {
+        title: 'E-mail',
+        description: 'contact@minigameshub.org',
+        icon: 'tabler:mail',
+      },
+      {
+        title: 'Localização',
+        description: 'Office 16430, 182-184 High Street North, East Ham, London, E6 2JA',
+        icon: 'tabler:map-pin',
+      },
+    ]}
+  />
+</Layout>
