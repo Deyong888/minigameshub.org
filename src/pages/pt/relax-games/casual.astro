@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { relaxCasualGames } from '~/data/games';
+
+const metadata = {
+  title: 'Jogos casuais de relaxamento – Diversão sem pressão',
+  description: 'Curta jogos relax e casuais. Sem cronômetros, sem high scores, só diversão.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jogos casuais de relaxamento",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/pt/relax-games/casual",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": relaxCasualGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/pt/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/pt/relax-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Jogos de relaxamento
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Casuais</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Jogos casuais de relaxamento
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Jogos relax para puro prazer.
+    </p>
+    <GameGrid games={relaxCasualGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Relaxamento casual e simples</h2>
+      <p>
+        Nossos jogos casuais de relaxamento são perfeitos para aqueles momentos em que você só quer jogar sem complicação. Ideais para pausas curtas ou para fechar o dia, esses jogos combinam mecânicas simples com uma experiência gratificante.
+      </p>
+      <h3>Diversão sem estresse</h3>
+      <ul>
+        <li><strong>Fácil de aprender:</strong> Mecânicas intuitivas que não precisam de tutoriais longos.</li>
+        <li><strong>Sessões flexíveis:</strong> Jogue por 5 minutos ou uma hora, você escolhe.</li>
+        <li><strong>Variedade de temas:</strong> De jardinagem virtual até organização de espaços.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>

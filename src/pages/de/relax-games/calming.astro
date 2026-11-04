@@ -1,0 +1,90 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { relaxCalmingGames } from '~/data/games';
+
+const metadata = {
+  title: 'Beruhigende Spiele – Zen und Frieden',
+  description: 'Finde dein Zen mit beruhigenden Spielen. Sanfte Rätsel, schöne Visuals und entspannendes Gameplay.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Beruhigende Spiele",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/de/relax-games/calming",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": relaxCalmingGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/de/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Start
+          </a>
+        </li>
+        <li class="inline-flex items-center">
+          <a href="/de/relax-games" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            Entspannungsspiele
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Beruhigend</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Beruhigende Spiele
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Friedliche Erlebnisse, die deinen Geist beruhigen.
+    </p>
+    <GameGrid games={relaxCalmingGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Digitale Zen-Erlebnisse</h2>
+      <p>
+        Tauch ein in den Flow mit unserer Sammlung beruhigender Spiele. Anders als klassische Spiele, die schnelle Reflexe verlangen, laden diese Titel zum Innehalten und zur Geduld ein. Sanfte Optik und entspannte Soundtracks schaffen die perfekte Atmosphäre zum Abschalten.
+      </p>
+      <h3>Features der Zen-Spiele</h3>
+      <ul>
+        <li><strong>Minimalistische Ästhetik:</strong> Klare Designs, die deine Sinne nicht überfordern.</li>
+        <li><strong>Ambient-Musik:</strong> Soundlandschaften, die deine Herzfrequenz senken sollen.</li>
+        <li><strong>Sanfter Fortschritt:</strong> Spiel in deinem Tempo – ganz ohne Angst vor Fehlern.</li>
+      </ul>
+    </div>
+  </section>
+</Layout>
