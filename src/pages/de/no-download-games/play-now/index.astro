@@ -1,0 +1,107 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { noDownloadGames } from '~/data/games';
+
+const metadata = {
+  title: 'Jetzt spielen – Instant-Browser-Spiele | MiniGamesHub',
+  description: 'Klicke und spiele sofort. Kein Warten, keine Ladebildschirme, keine Registrierung. Nur purer Instant-Spaß.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jetzt-spielen-Spiele",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/de/no-download-games/play-now",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": noDownloadGames.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/de/game/${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/de/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Start
+          </a>
+        </li>
+        <li>
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <a href="/de/no-download-games" class="ml-1 text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white md:ml-2">Ohne Download</a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Jetzt spielen</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Jetzt spielen
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Sofortige Befriedigung für Spieler.
+    </p>
+
+    <div class="prose dark:prose-invert max-w-none mb-12 bg-blue-50 dark:bg-slate-800 p-6 rounded-lg">
+      <h3>Instant-Spiel-Action</h3>
+      <p>In einer Welt riesiger Updates und langer Installationen willst du manchmal einfach nur spielen. Unsere „Jetzt spielen“-Sammlung konzentriert sich auf Spiele, die sofort laden und dich in Sekunden ins Geschehen bringen.</p>
+      <ul>
+        <li><strong>Schnelles Laden:</strong> Optimierte Assets für schnelle Startzeiten.</li>
+        <li><strong>Ohne Konten:</strong> Keine Registrierungs- oder Login-Mauern.</li>
+        <li><strong>Einfache Steuerung:</strong> Steig direkt ein – ganz ohne steile Lernkurve.</li>
+      </ul>
+    </div>
+
+    <GameGrid games={noDownloadGames} />
+
+    <div class="mt-16 prose dark:prose-invert max-w-none">
+      <h2>Klick & Spiel: Keine Hürden zum Spaß</h2>
+      <p>
+        Wir finden: Spiele sollten für alle sofort zugänglich sein. Darum räumt unsere „Jetzt spielen“-Sektion alle Hürden zwischen dir und dem Spiel aus dem Weg. Keine Paywalls, keine Pflicht-Registrierung, keine verwirrenden Setups. Nur pures, unverfälschtes Spielen.
+      </p>
+      
+      <h3>Warum Nutzer Instant-Spiele lieben</h3>
+      <ul>
+        <li><strong>Barrierefreiheit:</strong> Genial für geteilte Computer oder öffentliche Terminals, wo du nichts installieren kannst.</li>
+        <li><strong>Vielfalt:</strong> Probiere dutzende Spiele in der Zeit aus, die eine einzige AAA-Installation dauern würde.</li>
+        <li><strong>Datenschutz:</strong> Da du kein Konto brauchst, kannst du anonym spielen.</li>
+      </ul>
+      
+      <h3>Eine Welt voller Genres</h3>
+      <p>
+        Lass dich vom Tempo nicht täuschen – das sind keine simplen Spiele. Hier findest du tiefe RPGs, komplexe Strategiespiele und skillbasierte Arcade-Shooter, die sofort spielbereit sind.
+      </p>
+    </div>
+  </section>
+</Layout>

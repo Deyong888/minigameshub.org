@@ -1,0 +1,94 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import { html5Games } from '~/data/games';
+
+const metadata = {
+  title: 'Jogos HTML5 – Jogue jogos web modernos grátis',
+  description: 'Curta os jogos HTML5 mais recentes em qualquer dispositivo. Jogos compatíveis com celular, multiplataforma e com modo offline que rodam lisos no seu navegador.',
+};
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Jogos HTML5",
+  "description": metadata.description,
+  "url": "https://minigameshub.org/pt/html5-games",
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": html5Games.map((game, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": game.title,
+        "url": `https://minigameshub.org/pt/game/${game.id}-${game.slug}`,
+        "image": game.thumbnail,
+        "description": game.description,
+        "genre": game.category,
+        "playMode": "SinglePlayer",
+        "applicationCategory": "Game"
+      }
+    }))
+  }
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-4xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a href="/pt/" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white">
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"/>
+            </svg>
+            Início
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Jogos HTML5</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 font-heading text-center">
+      Jogos HTML5
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      Jogos modernos, rápidos e lindos que funcionam em todo lugar.
+    </p>
+
+    <!-- Categories Cloud -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <a href="/pt/html5-games/mobile-friendly" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Compatível com celular</a>
+      <a href="/pt/html5-games/cross-platform" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Multiplataforma</a>
+      <a href="/pt/html5-games/offline-capable" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition capitalize">Modo offline</a>
+    </div>
+
+    <GameGrid games={html5Games} />
+
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-8 text-center">Explore categorias de jogos HTML5</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/pt/html5-games/mobile-friendly" class="block p-6 bg-white dark:bg-slate-800 rounded-lg shadow hover:shadow-lg transition border border-gray-100 dark:border-gray-700">
+          <h3 class="text-xl font-bold mb-2 text-primary">Compatível com celular</h3>
+          <p class="text-gray-600 dark:text-gray-400">Jogos otimizados para telas de toque e celulares.</p>
+        </a>
+        <a href="/pt/html5-games/cross-platform" class="block p-6 bg-white dark:bg-slate-800 rounded-lg shadow hover:shadow-lg transition border border-gray-100 dark:border-gray-700">
+          <h3 class="text-xl font-bold mb-2 text-primary">Multiplataforma</h3>
+          <p class="text-gray-600 dark:text-gray-400">Jogue no PC, tablet ou celular sem perder o progresso.</p>
+        </a>
+        <a href="/pt/html5-games/offline-capable" class="block p-6 bg-white dark:bg-slate-800 rounded-lg shadow hover:shadow-lg transition border border-gray-100 dark:border-gray-700">
+          <h3 class="text-xl font-bold mb-2 text-primary">Modo offline</h3>
+          <p class="text-gray-600 dark:text-gray-400">Jogos que funcionam até sem conexão com a internet.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
