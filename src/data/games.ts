@@ -377,3 +377,39 @@ export const thanksgivingHubGames: Game[] = [
   ...thanksgivingCookingGames,
   ...thanksgivingClassicsGames,
 ];
+// 10. GTA-Style Games (seasonal hub: /gta-style-games/, evergreen URL)
+// Curated by GamePix ID (all 16 verified live on minigameshub.org 2026-11-07, curl 200).
+// pickGamesByIds drops IDs missing from the feed, so a game only renders while it
+// actually exists in the catalog — no dead links, same guarantee as the
+// Thanksgiving pattern above.
+export const gtaOpenWorldGames: Game[] = pickGamesByIds([
+  'D7660', // Grand Crime Auto 6 — Miami streets, the closest GTA 6 vibe in the catalog
+  'UG18IE', // Blocky Dude Gangster Auto City
+  'ATEI6', // Crime Theft Gangster Paradise — Las Vegas underworld
+  'C521S3', // Concrete Boots 3 — gangster sim, procedural city
+  'YTAR0', // Russian Grand City Auto — open sandbox
+  '22E43', // Grand City Car Thief
+]);
+
+export const gtaCityDrivingGames: Game[] = pickGamesByIds([
+  '2IGY2', // Grand City Driving 2
+  '4GNCC', // Mafia City Driving
+  'AI9DN', // Grand City Police Simulation
+  'I1C8Y', // Crazy Driver Police Chase
+  'S24CPC', // Car vs. Cop
+]);
+
+export const gtaCrimeChaseGames: Game[] = pickGamesByIds([
+  '5613C', // Police Chase
+  'E6225E', // Police Chase 2
+  'E830T9', // Escape the Police
+  'EIVTA4', // Vegas Crime Simulator
+  'TDO3T', // D. Copter Reloaded — helicopter gangster skirmishes
+]);
+
+// Combined picks for the hub page schema (open-world + driving + chases)
+export const gtaHubGames: Game[] = [
+  ...gtaOpenWorldGames,
+  ...gtaCityDrivingGames,
+  ...gtaCrimeChaseGames,
+];

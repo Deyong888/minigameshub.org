@@ -1,0 +1,222 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import GameGrid from '~/components/widgets/GameGrid.astro';
+import {
+  gtaOpenWorldGames,
+  gtaCityDrivingGames,
+  gtaCrimeChaseGames,
+  gtaHubGames,
+} from '~/data/games';
+
+const metadata = {
+  title: 'Games Like GTA 6 — Free GTA-Style Browser Games to Play Now (2026)',
+  description:
+    'Waiting for GTA 6? Play 16 free GTA-style browser games right now — open-world crime, city driving, police chases and heists. No downloads, no sign-up, instant play. GTA 6 launches November 19, 2026 on PS5 and Xbox Series X|S.',
+};
+
+const faqs = [
+  {
+    question: 'Are these the real GTA 6?',
+    answer:
+      'No. These are GTA-inspired HTML5 browser games — free fan-style titles with open-city crime, driving and police chases. They are not affiliated with Rockstar Games or Take-Two Interactive, and none of them is Grand Theft Auto VI. The real GTA 6 is a paid game for PlayStation 5 and Xbox Series X|S, launching November 19, 2026, and it cannot be played free in a browser.',
+  },
+  {
+    question: 'When does GTA 6 come out, and when can I preload it?',
+    answer:
+      'Grand Theft Auto VI launches November 19, 2026, at midnight local time on PS5 and Xbox Series X|S. Digital pre-loading starts November 10 — at midnight local time on PS5, and at 12:00 a.m. GMT worldwide on Xbox Series X|S (7 p.m. ET on November 9 in the US). Physical copies are code-in-box and reach retailers from November 12. Rockstar says the download needs up to 212 GB of free space.',
+  },
+  {
+    question: 'Are these GTA-style games really free? Do I need to download anything?',
+    answer:
+      'Yes — 100% free, with no downloads, installs, or sign-up. These are HTML5 browser games, so they run instantly in Chrome, Edge, Firefox, or Safari on any device.',
+  },
+  {
+    question: 'Can I play these games on a Chromebook or at school?',
+    answer:
+      'Yes. All of the games above are lightweight HTML5 titles that run well on Chromebooks and school or work computers — just open the page and play, no plugins required.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: 'Games Like GTA 6 — Free GTA-Style Browser Games',
+      description: metadata.description,
+      url: 'https://minigameshub.org/gta-style-games',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: gtaHubGames.map((game, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          item: {
+            '@type': 'VideoGame',
+            name: game.title,
+            url: `https://minigameshub.org/game/${game.id}-${game.slug}`,
+            image: game.thumbnail,
+            description: game.description,
+            genre: game.category,
+            playMode: 'SinglePlayer',
+            applicationCategory: 'Game',
+          },
+        })),
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a
+            href="/"
+            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white"
+          >
+            <svg class="w-3 h-3 mr-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+              <path d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
+            </svg>
+            Home
+          </a>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 md:ml-2 dark:text-gray-400">Games Like GTA 6</span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+
+    <h1 class="font-bold font-heading text-4xl md:text-5xl leading-tighter tracking-tighter mb-4 text-center">
+      Games Like GTA 6
+    </h1>
+    <p class="text-xl text-muted mb-8 text-center">
+      16 free GTA-style browser games — open-world crime, city driving, police chases. No downloads, no wait.
+    </p>
+
+    <div class="max-w-4xl mx-auto mb-10 p-5 bg-amber-50 dark:bg-slate-800 border border-amber-200 dark:border-slate-700 rounded-lg text-sm text-gray-700 dark:text-gray-300">
+      <p class="font-bold text-gray-900 dark:text-white mb-1">Not the real GTA 6 — read this first</p>
+      <p>
+        These are GTA-inspired HTML5 games: free browser titles with open-city crime, driving and police
+        chases. They are <strong>not</strong> Grand Theft Auto VI and are not affiliated with Rockstar Games
+        or Take-Two Interactive. The real GTA 6 is a paid game for PlayStation 5 and Xbox Series X|S,
+        launching <strong>November 19, 2026</strong> — it cannot be played free in a browser. What this page
+        gives you is the closest free taste of that open-city feeling while you wait.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto mb-12 p-5 bg-gray-50 dark:bg-slate-800 rounded-lg text-sm text-gray-700 dark:text-gray-300">
+      <p class="font-bold text-gray-900 dark:text-white mb-2">GTA 6 — the dates that matter</p>
+      <ul class="list-disc pl-5 space-y-1">
+        <li><strong>November 10:</strong> digital pre-load begins — midnight local time on PS5; 12:00 a.m. GMT worldwide on Xbox Series X|S (7 p.m. ET, November 9, in the US).</li>
+        <li><strong>November 12:</strong> physical code-in-box copies reach retailers — a download code, no disc.</li>
+        <li><strong>November 19:</strong> GTA 6 launches at midnight local time on PS5 and Xbox Series X|S.</li>
+        <li>Pre-load needs <strong>up to 212 GB</strong> of free space, depending on your console.</li>
+      </ul>
+    </div>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-12 text-gray-700 dark:text-gray-300">
+      <p>
+        GTA 6 is set in Leonida — Rockstar's return to Vice City — and the wait is now measured in days, not
+        months. While the 212 GB download queues up, the games below scratch the same itch for free: steal a
+        car, lose the cops, build a criminal empire, and cruise a neon city that never sleeps. Every game on
+        this page runs instantly in your browser — on desktop, Chromebook, tablet, or phone.
+      </p>
+      <p>
+        The {gtaHubGames.length} picks below are the ones we'd hand to a friend first. Want more? Browse the
+        full <a href="/category/action" class="text-primary hover:underline">action shelf</a>, fire up the
+        <a href="/category/racing" class="text-primary hover:underline">racing category</a>, or explore
+        thousands more titles in <a href="/mini-games" class="text-primary hover:underline">Mini Games</a>.
+      </p>
+    </div>
+
+    <div class="prose prose-lg dark:prose-invert max-w-none mb-12 text-gray-700 dark:text-gray-300">
+      <h2>Our GTA 6 Waitlist Picks</h2>
+      <p>
+        Start with <a href="/game/D7660-grand-crime-auto-6" class="text-primary hover:underline">Grand Crime Auto 6</a> — it is the most on-the-nose pick on the page, a Miami-street crime game with mafia gangs to dismantle, which lands a little differently in the week Vice City returns. <a href="/game/UG18IE-blocky-dude-gangster-auto-city" class="text-primary hover:underline">Blocky Dude Gangster Auto City</a> is the lighter, blocky counterpoint for the same open-city fantasy, and <a href="/game/ATEI6-crime-theft-gangster-paradise" class="text-primary hover:underline">Crime Theft Gangster Paradise</a> takes the same formula to Las Vegas — shootouts, high-speed chases, and a climb to the top of the underworld.
+      </p>
+      <p>
+        If empire-building is your thing, <a href="/game/C521S3-concrete-boots-3" class="text-primary hover:underline">Concrete Boots 3</a> is a gangster simulation in a procedurally generated city, and <a href="/game/YTAR0-russian-grand-city-auto" class="text-primary hover:underline">Russian Grand City Auto</a> is pure sandbox — drive anything, explore every alleyway, no rules. <a href="/game/22E43-grand-city-car-thief" class="text-primary hover:underline">Grand City Car Thief</a> keeps it simple: outsmart the onlookers, grab the car, go.
+      </p>
+      <p>
+        For the chase itself, <a href="/game/E6225E-police-chase-2" class="text-primary hover:underline">Police Chase 2</a> and <a href="/game/E830T9-escape-the-police" class="text-primary hover:underline">Escape the Police</a> let you play both sides of the siren, and <a href="/game/EIVTA4-vegas-crime-simulator" class="text-primary hover:underline">Vegas Crime Simulator</a> is the neon-lit kitchen sink — car chases, shootouts, and heists in one game. And if the download is still crawling on November 10, our <a href="/thanksgiving-games" class="text-primary hover:underline">Thanksgiving Games</a> hub is open for the holiday weekend.
+      </p>
+    </div>
+
+    <!-- Section quick links -->
+    <div class="flex flex-wrap justify-center gap-2 mb-4">
+      <a href="#open-world-crime" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Open-World Crime</a>
+      <a href="#city-driving" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">City Driving &amp; Getaways</a>
+      <a href="#cops-chases" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Cops, Chases &amp; Heists</a>
+    </div>
+
+    <GameGrid
+      id="open-world-crime"
+      title="Open-World Crime"
+      subtitle="The closest thing to GTA in your browser — steal cars, build empires, rule the city"
+      games={gtaOpenWorldGames}
+    />
+
+    <GameGrid
+      id="city-driving"
+      title="City Driving & Getaways"
+      subtitle="Supercars, police cruisers, and high-speed escapes through the streets"
+      games={gtaCityDrivingGames}
+    />
+
+    <GameGrid
+      id="cops-chases"
+      title="Cops, Chases & Heists"
+      subtitle="Play both sides of the siren — hunt fugitives or outrun the law"
+      games={gtaCrimeChaseGames}
+    />
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-8">Games Like GTA 6 — FAQ</h2>
+      <div class="space-y-6 text-gray-700 dark:text-gray-300">
+        {faqs.map((faq) => (
+          <div>
+            <p class="font-bold text-gray-900 dark:text-white mb-1">{faq.question}</p>
+            <p>{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <h2 class="text-2xl font-bold text-center mb-8">Keep Playing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/thanksgiving-games" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">Thanksgiving Games</h3>
+          <p class="text-sm text-gray-500">Family showdowns, cooking chaos, and harvest fun for the holiday weekend.</p>
+        </a>
+        <a href="/christmas-games" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">Christmas Games</h3>
+          <p class="text-sm text-gray-500">Next up on the holiday calendar: Santa adventures, festive puzzles, winter sports.</p>
+        </a>
+        <a href="/new-games" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">New Games</h3>
+          <p class="text-sm text-gray-500">Freshly added browser games, updated as new titles land.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
