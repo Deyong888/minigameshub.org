@@ -48,6 +48,6 @@ Not in the mood for launchers and 50 GB downloads? These run instantly in your b
 - 🏍️ **[Moto X3M: Spooky Land](https://minigameshub.org/game/7MS9M-moto-x3m-spooky-land)** — Halloween stunt racing at its best.
 - 😌 **[Relaxing Browser Games](https://minigameshub.org/relax-games)** — not into scary? Cozy puzzles and chill escapes, still free and instant.
 
-We'll publish a fresh "free games to claim" roundup every week through the holiday season — check back next Wednesday for the November 5 – 11 lineup.
+We'll publish a fresh "free games to claim" roundup every week through the holiday season — the [November 12 – 18 lineup](https://minigameshub.org/free-games-to-claim-this-week-november-12-18-2026) is now live, with Knightica free on Epic and Jurassic World Evolution 2 with Prime Gaming.
 
 **Update (November 4):** the [November 5 – 11 roundup](https://minigameshub.org/free-games-to-claim-this-week-november-5-11-2026) is now live — Flotsam goes free on Epic Thursday, plus Steam's Last Gambit and Prime Gaming's latest.

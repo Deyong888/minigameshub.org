@@ -249,6 +249,10 @@ Plan on about **5.6 GB** for the game resources, plus an app package of a little
 
 The compatibility layer itself is free and open source (MIT license). The game is not — you bring your own legally owned copy. On iOS, signing with a free Apple ID also works, with the 7-day re-sign catch described above.
 
+## Keep reading
+
+The same native-play idea, generalized beyond Diablo: [Switch Games Natively on iPhone: How nxnative and D2R Mobile Work](https://minigameshub.org/switch-games-natively-on-iphone-nxnative-d2r-mobile) — 80 tested Switch games as native iPhone apps, and how D2R Mobile proved the approach first.
+
 ## The Bottom Line
 
 For years, "Diablo 2 on your phone" meant a video stream of a game running somewhere else. D2R Mobile is the first time it means the actual game — your Switch copy, running natively in your pocket, offline, at 60 fps, with touch controls that were clearly designed by someone who plays. The price of admission is real: you need the Switch version with the expansion, a recent phone, and an evening's worth of setup patience. If you've got all three, there is currently nothing else like it.
