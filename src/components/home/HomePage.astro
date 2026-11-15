@@ -204,6 +204,57 @@ const faqJsonLd = {
     </div>
   </section>
 
+  <!-- FABLE 5.2 AI-BUILT GAMES BANNER (English homepage only — the hub is English-only) -->
+  {
+    lang === 'en' && (
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-2 mb-2">
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-violet-700 via-indigo-700 to-purple-700 px-6 py-10 md:px-12 md:py-12 shadow-xl shadow-violet-500/20">
+          <div class="absolute -top-16 -right-10 w-64 h-64 bg-white/10 rounded-full blur-2xl" />
+          <div class="relative flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div class="max-w-xl">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-white text-xs font-semibold mb-3">
+                <Icon name="tabler:sparkles" class="w-4 h-4" /> New · AI-Built Games
+              </div>
+              <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-white font-heading">
+                Games Built by Claude Fable 5.2
+              </h2>
+              <p class="mt-2 text-white/90 text-base md:text-lg">
+                25 browser games made by AI — the FPS Saltline, the sailing adventure Tidewright, the
+                WoW-style MMORPG World of ClaudeCraft, and more. Play free, no download.
+              </p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <a
+                  href="/fable-5-2-games/saltline"
+                  class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/15 text-white hover:bg-white/25 transition"
+                >
+                  Saltline
+                </a>
+                <a
+                  href="/fable-5-2-games/battle-drones"
+                  class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/15 text-white hover:bg-white/25 transition"
+                >
+                  Battle Drones
+                </a>
+                <a
+                  href="/fable-5-2-games/world-of-claudecraft"
+                  class="text-xs font-semibold px-3 py-1.5 rounded-full bg-white/15 text-white hover:bg-white/25 transition"
+                >
+                  World of ClaudeCraft
+                </a>
+              </div>
+            </div>
+            <a
+              href="/fable-5-2-games"
+              class="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-full bg-white text-violet-700 font-bold text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 whitespace-nowrap"
+            >
+              Play all 25 games <Icon name="tabler:arrow-right" class="w-5 h-5" />
+            </a>
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   <!-- NEW GAMES GRID -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
     <div class="flex items-end justify-between mb-6">
