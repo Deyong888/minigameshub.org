@@ -312,8 +312,14 @@ const schema = {
       <script is:inline>
         // Click-to-load player: the iframe is only created when Play is pressed,
         // so heavy 3D scenes never load until the player asks for them.
-        document.addEventListener('DOMContentLoaded', function () {
+        // NOTE: this site uses Astro view transitions, so DOMContentLoaded does
+        // NOT fire when navigating here from the hub page — init immediately
+        // and also on astro:page-load (fires on initial load and every swap).
+        // The data-fable-init guard prevents double-binding when both run.
+        function initFablePlayers() {
           document.querySelectorAll('[data-fable-player]').forEach(function (box) {
+            if (box.dataset.fableInit) return;
+            box.dataset.fableInit = '1';
             var playBtn = box.querySelector('[data-fable-play]');
             var fsBtn = box.querySelector('[data-fable-fullscreen]');
             playBtn.addEventListener('click', function () {
@@ -334,7 +340,9 @@ const schema = {
               });
             }
           });
-        });
+        }
+        initFablePlayers();
+        document.addEventListener('astro:page-load', initFablePlayers);
       </script>
     )
   }
