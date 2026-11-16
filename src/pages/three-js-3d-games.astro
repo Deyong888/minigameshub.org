@@ -1,0 +1,220 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import { Icon } from 'astro-icon/components';
+import { threeJsGames } from '~/data/threejs-games';
+import GameCard from '~/components/fable/GameCard.astro';
+
+const metadata = {
+  title: 'Three.js 3D Games – Play Free 3D Browser Games Online',
+  description:
+    'Play 16 free Three.js 3D browser games — HexGL, FormulaZero, Backrooms: Dimension 9, Wok-ing Dead, putt.day and more. Racers, shooters, tower defense, and horror, no downloads, instant play.',
+  // No locale versions of this page exist; skip hreflang so we don't point at 404s.
+  skipHreflang: true,
+};
+
+const faqs = [
+  {
+    question: 'What is Three.js?',
+    answer:
+      'Three.js is a free, open-source JavaScript library for building 3D graphics in the browser with WebGL. It powers everything from product configurators to full games — including every title on this page. Because Three.js runs on plain web technology, these games load in any modern browser with no installs or plugins.',
+  },
+  {
+    question: 'Are these 3D games free to play?',
+    answer:
+      'Yes. Every game on this page is free to play in your browser. Each one is hosted by its own creator, so there is nothing to buy, download, or sign up for on this site.',
+  },
+  {
+    question: 'Do I need to download anything to play?',
+    answer:
+      'No downloads, no installs, no plugins. Click a game card to open its page, then press Play — the game loads right in the page. A few of these are heavy 3D scenes, so give them a moment to load, especially on slower connections.',
+  },
+  {
+    question: 'What should I play first?',
+    answer:
+      'Start with HexGL if you like racing — it is the classic browser anti-gravity racer and the benchmark for everything here. For horror, try Backrooms: Dimension 9 with headphones. For something you have never seen before, Wok-ing Dead has you cooking takeout orders while fighting off zombies. And putt.day gives you one fresh mini-golf hole every day.',
+  },
+];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'CollectionPage',
+      name: 'Three.js 3D Games',
+      description: metadata.description,
+      url: 'https://minigameshub.org/three-js-3d-games',
+      mainEntity: {
+        '@type': 'ItemList',
+        itemListElement: threeJsGames.map((game, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          url: `https://minigameshub.org/three-js-3d-games/${game.slug}`,
+          item: {
+            '@type': 'VideoGame',
+            name: game.name,
+            url: `https://minigameshub.org/three-js-3d-games/${game.slug}`,
+            description: game.description,
+            genre: game.genre,
+            playMode: 'SinglePlayer',
+            applicationCategory: 'Game',
+            ...(game.cover ? { image: game.cover } : {}),
+            ...(game.author ? { author: { '@type': 'Person', name: game.author } } : {}),
+          },
+        })),
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<Layout metadata={metadata}>
+  <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <section class="px-4 py-16 sm:px-6 mx-auto lg:px-8 lg:py-20 max-w-7xl">
+    <nav class="flex mb-8" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li class="inline-flex items-center">
+          <a
+            href="/"
+            class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary dark:text-gray-400 dark:hover:text-white"
+          >
+            <Icon name="tabler:home" class="w-4 h-4 mr-1.5" aria-hidden="true" />
+            Home
+          </a>
+        </li>
+        <li aria-current="page" class="flex items-center">
+          <Icon name="tabler:chevron-right" class="w-3.5 h-3.5 text-gray-400 mx-1" aria-hidden="true" />
+          <span class="text-sm font-medium text-gray-500 dark:text-gray-400">Three.js 3D Games</span>
+        </li>
+      </ol>
+    </nav>
+
+    {/* Hero */}
+    <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-600 via-teal-600 to-cyan-700 px-6 py-12 sm:px-10 sm:py-16 text-white text-center">
+      <Icon
+        name="tabler:device-gamepad-2"
+        class="absolute -left-8 -bottom-10 w-56 h-56 text-white/10"
+        aria-hidden="true"
+      />
+      <Icon name="tabler:cube" class="absolute -right-6 -top-6 w-44 h-44 text-white/10" aria-hidden="true" />
+      <div class="relative">
+        <p class="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wide uppercase px-3 py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
+          <Icon name="tabler:cube" class="w-3.5 h-3.5" aria-hidden="true" />
+          Three.js · Free · No downloads
+        </p>
+        <h1 class="font-bold font-heading text-4xl sm:text-5xl md:text-6xl leading-tighter tracking-tighter mt-5">
+          Three.js 3D Games
+        </h1>
+        <p class="text-lg sm:text-xl text-white/90 mt-4 max-w-2xl mx-auto">
+          Free 3D games built with Three.js, playable in your browser — click any card to open its page and play.
+        </p>
+        <div class="flex flex-wrap justify-center gap-2 mt-6">
+          <span class="text-sm font-semibold px-3 py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
+            {threeJsGames.length} games
+          </span>
+          <span class="text-sm font-semibold px-3 py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
+            Racing · Action · Horror · Sports
+          </span>
+          <span class="text-sm font-semibold px-3 py-1.5 bg-white/20 rounded-full backdrop-blur-sm">
+            Every game embeds and plays here
+          </span>
+        </div>
+      </div>
+    </div>
+
+    {/* Intro */}
+    <div class="prose prose-lg dark:prose-invert max-w-4xl mx-auto mt-12 mb-4 text-gray-700 dark:text-gray-300">
+      <p>
+        Three.js is the library that put real 3D in the browser. For over a decade, independent developers have
+        used it to build games that run on nothing but a web page — no console, no install, no store. This page
+        collects sixteen of the best: anti-gravity racers, a zombie night shift at a gas station, a horror walk
+        through the Backrooms, a daily mini-golf hole, and a takeout stall under siege by the undead. Every game
+        here was checked by hand — it loads, it plays in the page, and it is genuinely fun, not just a tech demo
+        with a start button.
+      </p>
+      <p>
+        The benchmark is HexGL, the anti-gravity racer that showed the web what Three.js could do and still feels
+        fast years later. Around it you will find newer work from the same scene: FormulaZero, a hybrid formula
+        time-attack racer with global leaderboards; Backrooms: Dimension 9, a first-person horror exploration
+        with multiplayer and proximity voice chat; and Wok-ing Dead, where you fry takeout orders in a rainy
+        Chinatown while zombies close in. The range is the point — one library, sixteen very different games.
+      </p>
+      <p>
+        A note on what this page is: a curated collection, not a store. Every game is hosted by its own creator,
+        and we do not own these games or claim credit for them. If a game moves, changes, or comes down, that is
+        the creator&apos;s decision, and we will update this page as we learn about it. If this page leaves you
+        wanting more instant-play games, our
+        <a href="/category/racing" class="text-primary hover:underline">racing</a>,
+        <a href="/category/action" class="text-primary hover:underline">action</a>, and
+        <a href="/category/adventure" class="text-primary hover:underline">adventure</a> categories hold thousands
+        of free browser titles that run the same way: open the page, click, play. Fans of AI-made games should
+        also try our
+        <a href="/fable-5-2-games" class="text-primary hover:underline">Claude Fable 5.2 games collection</a>.
+      </p>
+    </div>
+
+    {/* Section quick links */}
+    <div class="flex flex-wrap justify-center gap-2 mt-8 mb-4">
+      <a href="#three-js-3d-games" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Three.js 3D Games</a>
+      <a href="/fable-5-2-games" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Fable 5.2 Games</a>
+      <a href="/category/racing" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Racing Games</a>
+      <a href="/category/action" class="px-3 py-1 bg-gray-100 dark:bg-slate-700 rounded-full text-sm hover:bg-primary hover:text-white transition">Action Games</a>
+    </div>
+
+    <h2 id="three-js-3d-games" class="text-3xl font-bold text-center mt-12 mb-2 scroll-mt-24">
+      Three.js 3D Games
+    </h2>
+    <p class="text-center text-muted mb-8">
+      {threeJsGames.length} games built with Three.js — click a card to play.
+    </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+      {threeJsGames.map((game) => (
+        <GameCard game={game} hubUrl="/three-js-3d-games" />
+      ))}
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+      <h2 class="text-2xl font-bold text-center mb-8">Three.js 3D Games — FAQ</h2>
+      <div class="space-y-6 text-gray-700 dark:text-gray-300">
+        {faqs.map((faq) => (
+          <div>
+            <p class="font-bold text-gray-900 dark:text-white mb-1">{faq.question}</p>
+            <p>{faq.answer}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <h2 class="text-2xl font-bold text-center mb-8">Keep Playing</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="/category/racing" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">Racing Games</h3>
+          <p class="text-sm text-gray-500">Kart racers, drift challenges, and high-speed chases.</p>
+        </a>
+        <a href="/category/action" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">Action Games</h3>
+          <p class="text-sm text-gray-500">Shooters, fighters, and fast-paced arcade action — free in your browser.</p>
+        </a>
+        <a href="/fable-5-2-games" class="p-6 bg-gray-50 dark:bg-slate-800 rounded-lg hover:shadow-lg transition text-center group">
+          <h3 class="font-bold text-lg mb-2 group-hover:text-primary">Fable 5.2 Games</h3>
+          <p class="text-sm text-gray-500">25 AI-built 3D games, including Saltline and World of ClaudeCraft.</p>
+        </a>
+      </div>
+    </div>
+
+    <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-16">
+      Updated November 16, 2026. All games are hosted by their respective creators.
+    </p>
+  </section>
+</Layout>

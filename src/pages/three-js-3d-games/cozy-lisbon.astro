@@ -1,0 +1,17 @@
+---
+import GamePage from '~/components/fable/GamePage.astro';
+import { getThreeJsGame, getThreeJsRelated } from '~/data/threejs-games';
+
+const game = getThreeJsGame('cozy-lisbon')!;
+const related = getThreeJsRelated(game, 3);
+---
+
+<GamePage
+  slug="cozy-lisbon"
+  hubName="Three.js 3D Games"
+  hubUrl="/three-js-3d-games"
+  titleSuffix="Three.js 3D Browser Game"
+  backLabel="Back to all Three.js 3D games"
+  game={game}
+  related={related}
+/>
