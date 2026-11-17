@@ -12,10 +12,11 @@
  * 覆盖前者;正常情况下各批次选品不重复,不会发生覆盖)。新增批次时只需
  * 加一个分片文件 + 一行导入。
  *
- * 合并点(三处必须一致,与 gameSeo.ts 的注释对应):
+ * 合并点(两处必须一致,与 gameSeo.ts 的注释对应):
  * 1. src/data/games.ts —— 游戏页/全站取数的唯一 Game 映射
  * 2. src/integrations/game-sitemap.ts —— sitemap-games.xml 的收录判定
- * 3. astro.config.ts —— @astrojs/sitemap filter 的排除判定
+ * (astro.config.ts 自 2026-11-16 起不再参与:游戏页全部排除出 sitemap-0.xml,
+ * 不再按可索引性逐条过滤。)
  */
 import baseOverrides from '../data/rich-content-overrides.json';
 import batch1Overrides from '../data/rich-content-overrides-b1.json';

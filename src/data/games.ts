@@ -2,6 +2,7 @@ import type { Game } from '~/types/game';
 import gamepixData from './gamepix.json';
 import gamepixBatchData from './gamepix-batch-2026-10-21.json';
 import { withRichContentOverride } from '~/utils/richContentOverrides';
+import { isGameIndexable } from '~/utils/gameSeo';
 
 interface GamePixItem {
   id: string;
@@ -268,6 +269,20 @@ export const getUniqueGames = () => {
   allGames.forEach((g) => map.set(g.slug, g));
   return Array.from(map.values());
 };
+
+// 外壳方案(2026-11-16):五个语种的游戏页路由共用此 helper 生成 getStaticPaths,
+// 保证五处路径集合一致。只预渲染 isGameIndexable 为真的游戏(每语种 500 款);
+// 其余 6,805 款/语种不再生成静态 HTML,改由通用播放器外壳承接
+// (src/components/game/GameShell.astro + vercel.json rewrite 兜底)。
+// 全量预渲染曾产出 36,525 页/3.1GB 部署体积,外壳方案压到约 2,500 页/210MB。
+// props 直传 game 对象,避免每页重建 7305 条 lookup Map。
+export const getGameStaticPaths = () =>
+  getUniqueGames()
+    .filter((game) => isGameIndexable(game))
+    .map((game) => ({
+      params: { id: game.id, slug: game.slug },
+      props: { game },
+    }));
 
 export const getUniqueCategories = () => {
   const categories = new Set(allGames.map((g) => g.category));

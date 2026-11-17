@@ -1,0 +1,9 @@
+---
+import GameShell from '~/components/game/GameShell.astro';
+
+// 通用播放器外壳(2026-11-16,外壳方案):见 GameShell.astro 头注释。
+// Vercel rewrite 把未预渲染的 /es/game/* 请求指向本页;不要移到 /es/game/* 下以免自循环。
+export const prerender = true;
+---
+
+<GameShell />

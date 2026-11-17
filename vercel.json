@@ -7,6 +7,13 @@
     { "source": "/game/body-drop-3d", "destination": "/game/36DO1-body-drop-3d", "permanent": true },
     { "source": "/game/stickman-hook-online", "destination": "/game/I5S7H-stickman-hook-online", "permanent": true }
   ],
+  "rewrites": [
+    { "source": "/game/:path*", "destination": "/play" },
+    { "source": "/es/game/:path*", "destination": "/es/play" },
+    { "source": "/zh/game/:path*", "destination": "/zh/play" },
+    { "source": "/de/game/:path*", "destination": "/de/play" },
+    { "source": "/pt/game/:path*", "destination": "/pt/play" }
+  ],
   "headers": [
     {
       "source": "/_astro/(.*)",
@@ -14,6 +21,51 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/game/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/es/game/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/zh/game/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/de/game/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/pt/game/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
         }
       ]
     }
