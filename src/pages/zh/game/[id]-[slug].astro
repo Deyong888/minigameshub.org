@@ -4,33 +4,23 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import GameGrid from '~/components/widgets/GameGrid.astro';
 import GamePlayer from '~/components/game/GamePlayer.astro';
 import FaqSection from '~/components/common/FaqSection.astro';
-import { getUniqueGames, getRelatedGames } from '~/data/games';
+import { getGameStaticPaths, getRelatedGames } from '~/data/games';
 import { getLangFromUrl, useTranslations, translateDynamic } from '~/utils/i18n';
 import { getHowToPlayZh, getTipsZh, getGameDetailsZh, getGameFaqZh } from '~/utils/gameContent';
 import { isGameIndexable } from '~/utils/gameSeo';
 import { getCanonical } from '~/utils/permalinks';
 
-// Hybrid rendering: game pages render on-demand on Vercel (cached at edge).
-// See src/pages/game/[id]-[slug].astro for rationale.
-export const prerender = false;
+// 外壳方案(2026-11-16):与英文版相同,只预渲染 isGameIndexable 的游戏
+// (每语种 500 款);其余由通用播放器外壳承接(见 GameShell.astro)。
+// 详见 src/pages/game/[id]-[slug].astro;边缘缓存见 vercel.json。
+export const prerender = true;
 
-const gameLookup = new Map(getUniqueGames().map((g) => [`${g.id}-${g.slug}`, g]));
-const game = gameLookup.get(`${Astro.params.id}-${Astro.params.slug}`);
-if (!game) {
-  return new Response(
-    '<!doctype html><html lang="zh"><head><meta charset="utf-8">' +
-      '<title>未找到游戏 | MiniGamesHub</title><meta name="robots" content="noindex"></head>' +
-      '<body style="font-family:sans-serif;text-align:center;padding:80px">' +
-      '<h1>未找到游戏</h1><p>您查找的游戏已不再提供。</p>' +
-      '<p><a href="/zh/">返回 MiniGamesHub</a></p></body></html>',
-    { status: 404, headers: { 'content-type': 'text/html; charset=utf-8' } }
-  );
+export function getStaticPaths() {
+  return getGameStaticPaths();
 }
-const relatedGames = getRelatedGames(game, 12);
 
-// 在 Vercel 边缘缓存 24 小时（过期后 7 天内继续提供旧内容并后台刷新），
-// 避免每次访问都触发 serverless 冷启动。
-Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+const { game } = Astro.props;
+const relatedGames = getRelatedGames(game, 12);
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);

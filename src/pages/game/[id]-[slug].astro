@@ -4,35 +4,25 @@ import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
 import GameGrid from '~/components/widgets/GameGrid.astro';
 import GamePlayer from '~/components/game/GamePlayer.astro';
 import FaqSection from '~/components/common/FaqSection.astro';
-import { getUniqueGames, getRelatedGames } from '~/data/games';
-import type { Game } from '~/types/game';
+import { getGameStaticPaths, getRelatedGames } from '~/data/games';
 import { getHowToPlay, getTips, getGameDetails, getGameFaq } from '~/utils/gameContent';
 import { isGameIndexable } from '~/utils/gameSeo';
 
-// Hybrid rendering: game pages are NOT pre-rendered at build time (there are
-// ~7k of them × 3 languages). They render on-demand on Vercel and are cached
-// at the edge, which is what keeps the build under Vercel's 45-minute limit.
-export const prerender = false;
+// 外壳方案(2026-11-16):只预渲染 isGameIndexable 的游戏(每语种 500 款,
+// 见 src/data/games.ts 的 getGameStaticPaths);其余游戏页由通用播放器外壳
+// 承接(见 src/components/game/GameShell.astro + vercel.json rewrite)。
+// 全量预渲染曾产出 36,525 页/3.1GB;外壳方案压到约 2,500 页/210MB。
+// 零 serverless 函数 —— 根治 Hobby 计划 Fluid Active CPU 超限导致的
+// 402 全站停用(2026-11-16 触发)。未知 slug 由外壳页的友好 404 状态承接;
+// 边缘缓存改由 vercel.json 的 /game/* header 规则承担(与此前 s-maxage 一致)。
+export const prerender = true;
 
-// Lookup map built once per serverless instance (module scope).
-const gameLookup = new Map(getUniqueGames().map((g) => [`${g.id}-${g.slug}`, g]));
-const game = gameLookup.get(`${Astro.params.id}-${Astro.params.slug}`);
-if (!game) {
-  return new Response(
-    '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
-      '<title>Game not found | MiniGamesHub</title><meta name="robots" content="noindex"></head>' +
-      '<body style="font-family:sans-serif;text-align:center;padding:80px">' +
-      '<h1>Game not found</h1><p>The game you are looking for is no longer available.</p>' +
-      '<p><a href="/">Back to MiniGamesHub</a></p></body></html>',
-    { status: 404, headers: { 'content-type': 'text/html; charset=utf-8' } }
-  );
+export function getStaticPaths() {
+  return getGameStaticPaths();
 }
-const relatedGames = getRelatedGames(game, 12);
 
-// Cache the rendered game page at Vercel's edge for 24h (serve stale up to 7d
-// while revalidating). Without this every visit would invoke the serverless
-// function, negating the build-time win with cold-start latency.
-Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+const { game } = Astro.props;
+const relatedGames = getRelatedGames(game, 12);
 
 // Enriched, category-aware body content (P0 SEO fix) — generated in src/utils/gameContent.ts
 const howToPlay = getHowToPlay(game);
