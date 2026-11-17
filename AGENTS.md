@@ -59,7 +59,7 @@ No test framework is configured. CI runs `build` and `check`; `npm test` is unus
 
 ## Gotchas
 
-- `astro-compress` strips HTML attribute quotes — `removeAttributeQuotes: false` in config
+- `astro-compress` HTML minification is OFF (`HTML: false`, 2026-11-16): html-minifier-terser runs single-threaded and batches gigabytes in memory — with the earlier full prerender (36,525 game pages, ~3.1 GB HTML) it took ~2h and OOM-risked the build, far past Vercel's 45-min limit. The shell scheme (2026-11-16) cut game pages to ~2,500 (only indexable games pre-rendered; the rest served by the GameShell player shell via vercel.json rewrites), but the minifier stays off: Vercel serves gzip/brotli anyway. CSS/JS minification stays on. (Previously: `removeAttributeQuotes: false` was needed because the minifier stripped attribute quotes.)
 - `@astrojs/tailwind` has `applyBaseStyles: false` (base styles managed in `src/assets/styles/tailwind.css`)
 - `@astrojs/partytown` only included when `hasExternalScripts` is `true` (currently `false` because GA4 ID is `null` in config)
 - No pre-commit hooks are configured

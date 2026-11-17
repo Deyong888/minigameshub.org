@@ -14,36 +14,11 @@ import type { AstroIntegration } from 'astro';
 
 import astrowind from './vendor/integration';
 
-import gamepixData from './src/data/gamepix.json';
-import gamepixBatchData from './src/data/gamepix-batch-2026-10-21.json';
 import gameSitemap from './src/integrations/game-sitemap';
 
 import { readingTimeRemarkPlugin, responsiveTablesRehypePlugin, lazyImagesRehypePlugin } from './src/utils/frontmatter';
-import { isGameIndexable } from './src/utils/gameSeo';
-import { withRichContentOverride } from './src/utils/richContentOverrides';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-// AdSense 合规整改:thin-content 游戏页全量 noindex,保护抓取预算。
-// 与游戏页 robots、game-sitemap 共用唯一判定源 isGameIndexable。
-// noindex 页仍可渲染、可内链到达,但不再告诉 Google 抓取 ~7k 近空 URL。
-// 真实内容在分类 / 聚合 / 博客 / 首页,保持完全索引。
-type GamepixItemLike = { id: string; namespace?: string; description?: string; rich_content?: string };
-// 2026-10-21 上新批次:与 games.ts、game-sitemap.ts 相同的增量合并(批次排在基础之后,按 id 去重保留基础版本),保证三处判定一致
-const baseGamepixItems: GamepixItemLike[] = (gamepixData as { items?: GamepixItemLike[] }).items ?? [];
-const seenGameIds = new Set(baseGamepixItems.map((item) => item.id));
-const batchGamepixItems: GamepixItemLike[] = ((gamepixBatchData as { items?: GamepixItemLike[] }).items ?? []).filter(
-  (item) => {
-    if (seenGameIds.has(item.id)) return false;
-    seenGameIds.add(item.id);
-    return true;
-  }
-);
-const gamepixItems: GamepixItemLike[] = [...baseGamepixItems, ...batchGamepixItems];
-const noindexGameSuffixes = new Set(
-  // 人工富内容回填(2026-10-11 质量审计):与游戏页 robots、game-sitemap 共用同一合并逻辑
-  gamepixItems.map(withRichContentOverride).filter((g) => !isGameIndexable(g)).map((g) => `${g.id}-${g.namespace || g.id}`)
-);
 
 const hasExternalScripts = true;
 const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroIntegration)[] = []) =>
@@ -51,12 +26,14 @@ const whenExternalScripts = (items: (() => AstroIntegration) | (() => AstroInteg
 
 export default defineConfig({
   site: 'https://minigameshub.org',
-  // Astro 5 removed `output: 'hybrid'` — `static` + an adapter now supports
-  // per-route opt-out via `export const prerender = false`, which is exactly
-  // what we use. Only a few hundred pages (home, categories, blog, hub, about,
-  // editorial) are pre-rendered at build; the ~21k game pages render on-demand
-  // via Vercel serverless + edge cache. This keeps the build far under Vercel's
-  // 45-minute limit.
+  // Astro 5 removed `output: 'hybrid'` — `static` + an adapter supports
+  // per-route opt-out via `export const prerender = false`. Since 2026-11-16
+  // every route is pre-rendered and the deployment serves zero functions:
+  // on-demand game pages burned the Hobby plan's 4 Fluid Active CPU-hours
+  // and paused the whole site with 402 on 2026-11-16. Game pages use the
+  // shell scheme (2026-11-16): only isGameIndexable games (500/locale) are
+  // pre-rendered; the rest are served by the GameShell player shell via
+  // vercel.json rewrites (see src/components/game/GameShell.astro).
   output: 'static',
   adapter: vercel({ webAnalytics: { enabled: false } }),
   redirects: {
@@ -109,13 +86,20 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     sitemap({
-      // Exclude noindex game pages across all locales (en/es/zh/de/pt) to focus crawl budget
-      // on quality URLs. Page format: /game/{id}-{slug} (slug = namespace || id).
+      // 游戏页全部排除:可索引的 500 条英文游戏页只进 sitemap-games.xml
+      // (game-sitemap integration 生成),不再与 sitemap-0.xml 重复;
+      // noindex 游戏页同样排除(与 2026-11-16 之前的行为一致)。
+      // 外壳页 /play(各语种)同样排除:noindex 的 rewrite 承接页,不应被收录。
+      // Page format: /game/{id}-{slug} (slug = namespace || id), plus
+      // /{es|zh|de|pt}/game/{id}-{slug} for localized game pages.
       filter: (page: string) => {
         const pathname = page
           .replace(/^https?:\/\/[^/]+/, '')
-          .replace(/^\/(es|zh)(?=\/)/, '');
-        if (pathname.startsWith('/game/') && noindexGameSuffixes.has(pathname.slice('/game/'.length))) {
+          .replace(/^\/(es|zh|de|pt)(?=\/)/, '');
+        if (pathname.startsWith('/game/')) {
+          return false;
+        }
+        if (pathname === '/play') {
           return false;
         }
         return true;
@@ -151,11 +135,15 @@ export default defineConfig({
 
     compress({
       CSS: true,
-      HTML: {
-        'html-minifier-terser': {
-          removeAttributeQuotes: false,
-        },
-      },
+      // HTML minification OFF (2026-11-16): html-minifier-terser runs
+      // single-threaded and batches gigabytes in memory — with the earlier
+      // full prerender (36,525 game pages, ~3.1 GB HTML) it took ~2h and
+      // OOM-risked the build, far past Vercel's 45-minute build limit.
+      // The shell scheme (2026-11-16) cut game pages to ~2,500, but the
+      // minifier stays off: Vercel serves gzip/brotli anyway, so the
+      // ~10-15% minification win is not worth the build time.
+      // CSS/JS minification stays on (few files).
+      HTML: false,
       Image: false,
       JavaScript: true,
       SVG: false,

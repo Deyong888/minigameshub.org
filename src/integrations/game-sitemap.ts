@@ -1,5 +1,7 @@
 /**
- * Emits a sitemap for the ~6.7k game pages that render on-demand.
+ * Emits a sitemap for the indexable game pages (500 en URLs, see gameSeo.ts).
+ * Game pages are fully pre-rendered since 2026-11-16; this file remains the
+ * single home for game URLs in sitemaps (sitemap-0.xml excludes all /game/).
  *
  * Why an integration and not a post-build script:
  * @astrojs/vercel copies `dist/client` into `.vercel/output/static` inside the

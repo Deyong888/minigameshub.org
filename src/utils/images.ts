@@ -1,4 +1,4 @@
-import { isUnpicCompatible, unpicOptimizer, astroAssetsOptimizer } from './images-optimization';
+import { isUnpicCompatible, unpicOptimizer, astroAssetsOptimizer, gamepixOptimizer } from './images-optimization';
 import type { ImageMetadata } from 'astro';
 import type { OpenGraph } from '@astrolib/seo';
 import type { ImagesOptimizer } from './images-optimization';
@@ -76,7 +76,13 @@ export const adaptOpenGraphImages = async (
 
         let _image: OptimizedImage | undefined;
 
-        if (
+        if (typeof resolvedImage === 'string' && resolvedImage.includes('img.gamepix.com')) {
+          // 游戏封面图本身就是 CDN:直接在 URL 上加 ?w= 缩放参数,不要走
+          // astroAssetsOptimizer 下载原图 —— getImage(inferSize) 每页一次远程
+          // 下载约 500ms,7,305 款游戏预渲染时直接拖垮构建(实测单页 600ms,
+          // 全量约 6 小时)。与 Image.astro 的 gamepixOptimizer 同款做法。
+          _image = (await gamepixOptimizer(resolvedImage, [defaultWidth], defaultWidth, defaultHeight, 'jpg'))[0];
+        } else if (
           typeof resolvedImage === 'string' &&
           (resolvedImage.startsWith('http://') || resolvedImage.startsWith('https://')) &&
           isUnpicCompatible(resolvedImage)
