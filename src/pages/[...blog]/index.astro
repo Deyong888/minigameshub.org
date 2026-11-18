@@ -43,6 +43,11 @@ const metadata = merge(
   },
   { ...(post?.metadata ? { ...post.metadata, canonical: post.metadata?.canonical || url } : {}) }
 ) as MetaData;
+
+// 标题已自带品牌后缀(54/58 篇 metadata.title 以 "| MiniGamesHub" 结尾),跳过全局 titleTemplate,避免 "…| MiniGamesHub — MiniGamesHub" 双品牌超长(游戏页同款模式)
+if (metadata.title?.includes('MiniGamesHub')) {
+  metadata.ignoreTitleTemplate = true;
+}
 ---
 
 <Layout metadata={metadata}>
