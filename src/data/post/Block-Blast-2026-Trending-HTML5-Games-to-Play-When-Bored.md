@@ -11,7 +11,7 @@ tags:
   - trending games
 metadata:
   title: Block Blast 2026 — Trending HTML5 Games to Play When Bored | MiniGamesHub
-  description: 10 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "Love Block Blast? Try these 10 trending HTML5 games instead — Boing Bang, Drop N Merge, Block 2048, Counter Craft Zombies and more. Free, no download."
   # 质量审计 2026-10-11: 近重复 doorway 列表文, noindex 收敛, 权重归集到 canonical 篇
   robots:
     index: false

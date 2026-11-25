@@ -11,7 +11,7 @@ tags:
   - free games
 metadata:
   title: 25 Best Unblocked Games for School Chromebook 2026 | MiniGamesHub
-  description: 25 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "25 unblocked games that actually run on a school Chromebook — Exit Puzzle, Jewel Duel, Knife Smash, Pac vs Ghosts and more. Free, instant play, no downloads."
   # 质量审计 2026-10-11: 近重复 doorway 列表文, noindex 收敛, 权重归集到 canonical 篇
   robots:
     index: false

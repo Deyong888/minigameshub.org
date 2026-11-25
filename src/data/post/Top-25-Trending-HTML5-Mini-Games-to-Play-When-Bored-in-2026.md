@@ -11,7 +11,7 @@ tags:
   - when bored
 metadata:
   title: Top 25 Trending HTML5 Mini Games to Play When Bored in 2026 | MiniGamesHub
-  description: 25 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "The 25 HTML5 mini games players keep coming back to in 2026 — Ice Ball Run, Karate King, Grow a Garden Obby, Magic Finger 3D and more. Free in your browser."
   # 质量审计 2026-10-11: 近重复 doorway 列表文, noindex 收敛, 权重归集到 canonical 篇
   robots:
     index: false

@@ -11,7 +11,7 @@ tags:
   - when bored
 metadata:
   title: Best Browser Games 2026 — Play Instantly When Bored | MiniGamesHub
-  description: 10 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "Our 10 best browser games of 2026: Hue Stack, Merge Dragons, Skeleton Knight, Asteroids Survival and more. Hand-picked, free, and playable in seconds."
   # 质量审计 2026-10-11: 近重复 doorway 列表文, noindex 收敛, 权重归集到 canonical 篇
   robots:
     index: false

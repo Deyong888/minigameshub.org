@@ -11,7 +11,7 @@ tags:
   - free games
 metadata:
   title: Top 10 Games to Play When Bored at Work | MiniGamesHub
-  description: 10 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "10 quick browser games for work breaks — Coin Merge Machine, Medieval Farms, Car Parking Puzzle, Fishing Clicker and more. Free, quiet, and boss-safe."
 ---
 
 When you've got a few minutes to spare, MiniGamesHub has you covered with 3,900+ free HTML5 games that load instantly in your browser. Below are 10 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.

@@ -11,7 +11,7 @@ tags:
   - when bored
 metadata:
   title: 50 Games to Play When Bored in 2026 — Free Mini Browser Games | MiniGamesHub
-  description: 50 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "50 free mini browser games for boring moments — Laser Maze, Stick War Saga, Karate King, Santa Run and 46 more. Instant play, no download, no sign-up."
 ---
 
 When you've got a few minutes to spare, MiniGamesHub has you covered with 3,900+ free HTML5 games that load instantly in your browser. Below are 50 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.

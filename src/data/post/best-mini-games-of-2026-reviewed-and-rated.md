@@ -11,7 +11,7 @@ tags:
   - best games 2026
 metadata:
   title: Best Mini Games of 2026 — Reviewed & Hand-Picked | MiniGamesHub
-  description: 12 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "12 mini games reviewed and rated for 2026 — Buba Jump, Jelly Mash, Mutant Assassin 3D, Merge Dragons and more. Every pick is free and playable now."
 ---
 
 When you've got a few minutes to spare, MiniGamesHub has you covered with 3,900+ free HTML5 games that load instantly in your browser. Below are 12 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.

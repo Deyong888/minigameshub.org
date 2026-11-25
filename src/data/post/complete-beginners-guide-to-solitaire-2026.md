@@ -11,7 +11,7 @@ tags:
   - free board games
 metadata:
   title: Best Board & Card Mini Games to Play Free in 2026 | MiniGamesHub
-  description: 8 hand-picked board and card mini games — free in your browser, no download and no install, on school Chromebooks or any device.
+  description: "The best free board and card mini games of 2026 — Mahjong Mania, Ludo King, Domino Battle, Double Checkers and more. No download, play on any device."
 ---
 
 When you've got a few minutes to spare, MiniGamesHub has you covered with 3,900+ free HTML5 games that load instantly in your browser. Below are 8 real games from our catalog — every one embeds the actual playable title with its official cover art, so you can try it right here or open the full game page.

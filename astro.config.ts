@@ -102,6 +102,21 @@ export default defineConfig({
         if (pathname === '/play') {
           return false;
         }
+        // 2026-11-25: cross-canonical (noindex) blog posts must not be
+        // listed in sitemap-0.xml — a sitemap should only contain canonical
+        // URLs (2026-10-11 quality audit: near-duplicate doorway listicles
+        // consolidated to their canonical posts; the pages stay live for
+        // readers, noindex + cross-canonical, but out of the sitemap).
+        const NON_CANONICAL_POSTS = [
+          '/25-best-unblocked-games-for-school-chromebook-2026',
+          '/30-best-games-to-play-when-bored-at-school-unblocked-in-2026-no-download-needed',
+          '/best-browser-games-2026-play-instantly-when-bored',
+          '/block-blast-2026-trending-html5-games-to-play-when-bored',
+          '/top-25-trending-html5-mini-games-to-play-when-bored-in-2026',
+        ];
+        if (NON_CANONICAL_POSTS.includes(pathname)) {
+          return false;
+        }
         return true;
       },
     }),

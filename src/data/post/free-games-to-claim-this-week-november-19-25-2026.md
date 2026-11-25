@@ -1,7 +1,7 @@
 ---
 publishDate: 2026-11-18T00:00:00Z
-title: "Free Games to Claim This Week (November 19 — 25, 2026) — Alien: Isolation, Mark of the Deep & Prime Gaming"
-excerpt: "Every free PC game you can claim November 19 — 25, 2026 — Alien: Isolation and Mark of the Deep go free on Epic Thursday, Werewolf: The Apocalypse – Earthblood and Clem arrive with Prime Gaming, and Ad Infinitum hits its last chance. Deadlines inside, plus free Christmas browser games for instant play."
+title: "Free Games to Claim This Week (November 19 — 25, 2026) — Mark of the Deep & Prime Gaming"
+excerpt: "Every free PC game you can claim November 19 — 25, 2026 — Mark of the Deep goes free on Epic Thursday, Werewolf: The Apocalypse – Earthblood and Clem arrive with Prime Gaming, and Ad Infinitum hits its last chance. Deadlines inside, plus free Christmas browser games for instant play."
 category: Free Games
 tags:
   - free games
@@ -10,25 +10,21 @@ tags:
   - prime gaming
   - november 2026
 metadata:
-  title: "Free Games to Claim This Week (Nov 19 – 25, 2026) — Alien: Isolation & Mark of the Deep | MiniGamesHub"
-  description: "Claim free PC games Nov 19 – 25, 2026 — Alien: Isolation and Mark of the Deep free on Epic Nov 19–26, Werewolf: The Apocalypse – Earthblood and Clem free with Prime Gaming Nov 19, Ad Infinitum last chance Nov 25. All deadlines plus instant-play Christmas browser games."
+  title: "Free Games to Claim This Week (Nov 19 – 25, 2026) — Mark of the Deep | MiniGamesHub"
+  description: "Claim free PC games Nov 19 – 25, 2026 — Mark of the Deep free on Epic Nov 19–26, Werewolf: The Apocalypse – Earthblood and Clem free with Prime Gaming Nov 19, Ad Infinitum last chance Nov 25. All deadlines plus instant-play Christmas browser games."
 ---
 
-Thursday is the biggest free-games day of the month so far. The Epic Games Store swaps its weekly giveaway on November 19 at 11 AM ET, and this time it is a double header: the survival-horror classic **Alien: Isolation** (normally $39.99) and the pirate Metroidvania **Mark of the Deep** (normally $19.99) — $59.98 of games, both free to keep until November 26. Amazon Prime members get two more the same day, **Werewolf: The Apocalypse – Earthblood** and **Clem**, through the Luna claims page. Below are this week's freebies, their claim deadlines, and — if you'd rather play something *right now* — free Christmas browser games that need no download at all.
+**Correction (November 25, 2026):** An earlier version of this post listed Alien: Isolation as free on Epic from November 19. That listing came from early Epic feed data, but the game never appeared on Epic's free games page — only Mark of the Deep went free that week. The sections below have been corrected.
+
+Thursday is the biggest free-games day of the month so far. The Epic Games Store swaps its weekly giveaway on November 19 at 11 AM ET, and this time the headline is the pirate Metroidvania **Mark of the Deep** (normally $19.99) — free to keep until November 26. Amazon Prime members get two more the same day, **Werewolf: The Apocalypse – Earthblood** and **Clem**, through the Luna claims page. Below are this week's freebies, their claim deadlines, and — if you'd rather play something *right now* — free Christmas browser games that need no download at all.
 
 **One important note first:** the games below are full PC downloads you claim through the Epic Games Store or Amazon Luna — they are _not_ browser games, and you'll need a free Epic account to claim them. If you want instant play with zero installs, skip to the [Christmas browser games](#want-instant-play-free-christmas-browser-games) at the bottom.
 
 ## Epic Games Store — Free November 19 — 26
 
-### Alien: Isolation (free from Nov 19)
-
-The pick of the month, and one of the most respected horror games ever made. You play Amanda Ripley, searching a derelict space station for her missing mother, while a single Alien hunts you through the vents and corridors. There is no power fantasy here: you cannot kill the creature, so every encounter is about hiding, distracting it, and knowing when to run. The motion tracker, the flickering lights, and the sound design do most of the scaring. Normally $39.99 — free to keep from November 19 at 11 AM ET through November 26 at 11 AM ET. If you only claim one game this week, claim this one. _(As announced by Epic; free November 19 — 26.)_
-
-[Claim Alien: Isolation free on Epic](https://store.epicgames.com/en-US/p/alien-isolation)
-
 ### Mark of the Deep (free from Nov 19)
 
-A pirate Metroidvania with soulslike combat, and the second half of Epic's Thursday double header. You play a pirate chasing the crew that betrayed you across a cursed archipelago, unlocking new abilities that open up earlier areas, and fighting bosses that punish button-mashing. It is the smaller, scrappier of the two free games this week — and the one most likely to surprise you. Normally $19.99 — free to keep from November 19 at 11 AM ET through November 26 at 11 AM ET. _(As announced by Epic; free November 19 — 26.)_
+A pirate Metroidvania with soulslike combat. You play a pirate chasing the crew that betrayed you across a cursed archipelago, unlocking new abilities that open up earlier areas, and fighting bosses that punish button-mashing. It is the kind of game most likely to surprise you. Normally $19.99 — free to keep from November 19 at 11 AM ET through November 26 at 11 AM ET. _(As announced by Epic; free November 19 — 26.)_
 
 [Claim Mark of the Deep free on Epic](https://store.epicgames.com/en-US/p/mark-of-the-deep-f7dc08)
 

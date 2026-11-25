@@ -12,7 +12,7 @@ metadata:
   description: Looking for the best unblocked games for school in 2026? Discover fast-loading browser classics that run on Chromebooks, plus tips for playing safely.
 ---
 
-# Best Unblocked Games For School To Play In 2026
+## Best Unblocked Games For School To Play In 2026
 
 Let's be honest about why you're here. You've got twenty minutes between classes, a school-issued Chromebook, and a wifi connection that blocks half the internet. You want something to play that actually loads, doesn't require a download, and won't get you pulled aside by the IT department.
 

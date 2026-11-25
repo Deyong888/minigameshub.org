@@ -11,7 +11,7 @@ tags:
   - free games
 metadata:
   title: 30 Best Games to Play When Bored at School (Unblocked, No Download Needed) in 2026 | MiniGamesHub
-  description: 30 hand-picked games to play when you're bored — all free in your browser, no download and no install, and they run on school Chromebooks or any device.
+  description: "30 unblocked school games that need no download — 8 Ball Pool, Penalty Shooters, Airplane Pilot Simulator, Merge Royal and more. Chromebook-ready, free."
   # 质量审计 2026-10-11: 近重复 doorway 列表文, noindex 收敛, 权重归集到 canonical 篇
   robots:
     index: false
